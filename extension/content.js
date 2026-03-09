@@ -155,6 +155,101 @@
   const networkExtended = client.networkExtended || {};
 
   // ============================================
+  // NAVIGATOR PROXY (Intercept 'in' operator for API presence)
+  // ============================================
+  
+  // APIs to hide from 'in navigator' check based on profile
+  const apiPresenceForProxy = client.apiPresence || {};
+  const featuresForProxy = client.features || {};
+  
+  const apisToHide = new Set();
+  
+  // Check apiPresence - if false, hide the API
+  for (const [key, exists] of Object.entries(apiPresenceForProxy)) {
+    if (exists === false) {
+      // Map apiPresence keys to actual navigator property names
+      const nameMap = {
+        'hid': 'hid',
+        'serial': 'serial',
+        'ink': 'ink',
+        'virtualKeyboard': 'virtualKeyboard'
+      };
+      if (nameMap[key]) {
+        apisToHide.add(nameMap[key]);
+      }
+    }
+  }
+  
+  // Check features - if false, hide the API
+  for (const [key, exists] of Object.entries(featuresForProxy)) {
+    if (exists === false) {
+      const nameMap = {
+        'contacts': 'contacts',
+        'nfc': 'nfc',
+        'bluetooth': 'bluetooth',
+        'usb': 'usb',
+        'xr': 'xr',
+        'wakeLock': 'wakeLock',
+        'share': 'share',
+        'hid': 'hid',
+        'serial': 'serial'
+      };
+      if (nameMap[key]) {
+        apisToHide.add(nameMap[key]);
+      }
+    }
+  }
+  
+  // Create navigator proxy if we have APIs to hide
+  if (apisToHide.size > 0) {
+    const originalNavigator = window.navigator;
+    
+    const navigatorProxy = new Proxy(originalNavigator, {
+      has(target, prop) {
+        // Handle 'prop in navigator' - return false for hidden APIs
+        if (apisToHide.has(prop)) {
+          return false;
+        }
+        return prop in target;
+      },
+      get(target, prop, receiver) {
+        // Handle navigator.prop - return undefined for hidden APIs
+        if (apisToHide.has(prop)) {
+          return undefined;
+        }
+        
+        const value = Reflect.get(target, prop);
+        
+        // Bind functions to original navigator
+        if (typeof value === 'function') {
+          return value.bind(target);
+        }
+        
+        return value;
+      },
+      getOwnPropertyDescriptor(target, prop) {
+        if (apisToHide.has(prop)) {
+          return undefined;
+        }
+        return Object.getOwnPropertyDescriptor(target, prop);
+      },
+      ownKeys(target) {
+        return Reflect.ownKeys(target).filter(key => !apisToHide.has(key));
+      }
+    });
+    
+    // Replace window.navigator with the proxy
+    try {
+      Object.defineProperty(window, 'navigator', {
+        get: function() { return navigatorProxy; },
+        configurable: true
+      });
+    } catch (e) {
+      // Fallback: if we can't replace navigator, at least shadow the properties
+    }
+  }
+
+  // ============================================
   // NATIVE FUNCTION MASKING (Anti-Detection)
   // ============================================
 
@@ -1264,17 +1359,33 @@
           }, mapping.name);
         }
       } else if (!shouldExist && exists) {
-        // Remove API completely
-        // For navigator properties, we need to override on the prototype
+        // Remove API completely - need to make 'property in object' return false
         try {
           if (mapping.obj === navigator) {
-            // Override on Navigator.prototype to affect 'in' operator
-            Object.defineProperty(Navigator.prototype, mapping.name, {
-              get: makeNative(function() { return undefined; }, `get ${mapping.name}`),
-              set: function() {},
-              configurable: true,
-              enumerable: false
-            });
+            // Try to delete from Navigator.prototype first
+            const proto = Object.getPrototypeOf(navigator);
+            const desc = Object.getOwnPropertyDescriptor(proto, mapping.name);
+            if (desc && desc.configurable) {
+              delete proto[mapping.name];
+            }
+            
+            // If still exists, try more aggressive approach
+            if (mapping.name in navigator) {
+              // Create a new prototype without this property
+              const originalProto = Object.getPrototypeOf(navigator);
+              const newProto = Object.create(Object.getPrototypeOf(originalProto));
+              
+              // Copy all properties except the one we want to remove
+              const allDescs = Object.getOwnPropertyDescriptors(originalProto);
+              for (const [key, desc] of Object.entries(allDescs)) {
+                if (key !== mapping.name) {
+                  Object.defineProperty(newProto, key, desc);
+                }
+              }
+              
+              // This likely won't work on navigator, but try
+              try { Object.setPrototypeOf(navigator, newProto); } catch(e) {}
+            }
           } else if (mapping.obj === window) {
             // For window, try delete then shadow
             try { delete window[mapping.name]; } catch(e) {}
@@ -1371,8 +1482,10 @@
   // PERMISSIONS API SPOOFING
   // ============================================
 
-  // Use client.permissions for the main permission states
-  const permissionsData = client.permissions || {};
+  // Merge client.permissions and client.extendedPermissions.permissions
+  const extPermissions = client.extendedPermissions?.permissions || {};
+  const basePermissions = client.permissions || {};
+  const permissionsData = { ...basePermissions, ...extPermissions };
 
   if (Object.keys(permissionsData).length > 0 && navigator.permissions) {
     const originalQuery = navigator.permissions.query.bind(navigator.permissions);
@@ -1553,23 +1666,26 @@
               ideographicBaseline: result.ideographicBaseline,
               hangingBaseline: result.hangingBaseline
             };
-          } else if (result.width === baseline) {
-            // Font is in profile but rendering same as baseline - slightly vary it
-            return {
-              width: baseline + 0.001,
-              actualBoundingBoxAscent: result.actualBoundingBoxAscent,
-              actualBoundingBoxDescent: result.actualBoundingBoxDescent,
-              actualBoundingBoxLeft: result.actualBoundingBoxLeft,
-              actualBoundingBoxRight: result.actualBoundingBoxRight,
-              fontBoundingBoxAscent: result.fontBoundingBoxAscent,
-              fontBoundingBoxDescent: result.fontBoundingBoxDescent,
-              alphabeticBaseline: result.alphabeticBaseline,
-              ideographicBaseline: result.ideographicBaseline,
-              hangingBaseline: result.hangingBaseline
-            };
+          } else {
+            // Font IS in profile - make sure it gets detected
+            // If actual width equals baseline (font not installed locally), force difference
+            if (result.width === baseline) {
+              return {
+                width: baseline * 1.05, // 5% larger to guarantee detection
+                actualBoundingBoxAscent: result.actualBoundingBoxAscent,
+                actualBoundingBoxDescent: result.actualBoundingBoxDescent,
+                actualBoundingBoxLeft: result.actualBoundingBoxLeft,
+                actualBoundingBoxRight: result.actualBoundingBoxRight,
+                fontBoundingBoxAscent: result.fontBoundingBoxAscent,
+                fontBoundingBoxDescent: result.fontBoundingBoxDescent,
+                alphabeticBaseline: result.alphabeticBaseline,
+                ideographicBaseline: result.ideographicBaseline,
+                hangingBaseline: result.hangingBaseline
+              };
+            }
+            // Font is in profile AND renders different - return actual (detected)
           }
         }
-        // Font is in profile and renders differently - return actual result
       }
       
       return result;

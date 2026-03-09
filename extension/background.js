@@ -67,6 +67,15 @@ async function updateHeaderRules(profile, enabled) {
     });
   }
   
+  // DNT header from server
+  if (server.dnt !== undefined && server.dnt !== null) {
+    requestHeaders.push({
+      header: 'DNT',
+      operation: 'set',
+      value: String(server.dnt)
+    });
+  }
+  
   if (requestHeaders.length === 0) return;
   
   // Add the rule - remove first then add in same call to ensure uniqueness
@@ -182,4 +191,43 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     });
     return true; // Keep channel open for async response
   }
+  
+  // Handle window resize for mobile emulation
+  if (message.type === 'resizeWindow') {
+    const { width, height } = message;
+    resizeCurrentWindow(width, height).then(result => {
+      sendResponse(result);
+    }).catch(err => {
+      sendResponse({ success: false, error: err.message });
+    });
+    return true;
+  }
 });
+
+// Resize browser window to match profile screen dimensions
+async function resizeCurrentWindow(targetWidth, targetHeight) {
+  try {
+    // Get the current window
+    const currentWindow = await chrome.windows.getCurrent();
+    
+    // Add browser chrome height (tabs, address bar, etc.) - approximately 80-100px
+    // This varies by OS but we'll use a reasonable estimate
+    const chromeHeight = 100;
+    const chromeWidth = 0; // Sides are usually accurate
+    
+    const newWidth = targetWidth + chromeWidth;
+    const newHeight = targetHeight + chromeHeight;
+    
+    // Update the window size
+    await chrome.windows.update(currentWindow.id, {
+      width: Math.round(newWidth),
+      height: Math.round(newHeight)
+    });
+    
+    console.log(`[FP Spoofer] Window resized to ${newWidth}x${newHeight} (viewport: ${targetWidth}x${targetHeight})`);
+    return { success: true, width: newWidth, height: newHeight };
+  } catch (e) {
+    console.error('[FP Spoofer] Failed to resize window:', e);
+    return { success: false, error: e.message };
+  }
+}

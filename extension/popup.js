@@ -2,6 +2,7 @@
 
 document.addEventListener('DOMContentLoaded', async () => {
   const enableSpoof = document.getElementById('enableSpoof');
+  const resizeWindow = document.getElementById('resizeWindow');
   const fileInput = document.getElementById('fileInput');
   const importBtn = document.getElementById('importBtn');
   const exportBtn = document.getElementById('exportBtn');
@@ -11,12 +12,16 @@ document.addEventListener('DOMContentLoaded', async () => {
   const loadedProfile = document.getElementById('loadedProfile');
   const loadedUA = document.getElementById('loadedUA');
   const loadedPlatform = document.getElementById('loadedPlatform');
+  const loadedScreen = document.getElementById('loadedScreen');
   const statSignals = document.getElementById('statSignals');
   const statWebGL = document.getElementById('statWebGL');
 
   // Load saved state
-  const data = await chrome.storage.local.get(['spoofEnabled', 'spoofProfile']);
+  const data = await chrome.storage.local.get(['spoofEnabled', 'spoofProfile', 'resizeWindowEnabled']);
   enableSpoof.checked = data.spoofEnabled || false;
+  if (resizeWindow) {
+    resizeWindow.checked = data.resizeWindowEnabled !== false; // Default to true
+  }
   
   if (data.spoofProfile) {
     displayProfileInfo(data.spoofProfile);
@@ -26,7 +31,25 @@ document.addEventListener('DOMContentLoaded', async () => {
   enableSpoof.addEventListener('change', async () => {
     await chrome.storage.local.set({ spoofEnabled: enableSpoof.checked });
     showStatus(enableSpoof.checked ? 'Spoofing enabled' : 'Spoofing disabled', 'success');
+    
+    // Resize window if enabled
+    if (enableSpoof.checked && resizeWindow?.checked && data.spoofProfile) {
+      await resizeToProfile(data.spoofProfile);
+    }
   });
+
+  // Toggle resize window option
+  if (resizeWindow) {
+    resizeWindow.addEventListener('change', async () => {
+      await chrome.storage.local.set({ resizeWindowEnabled: resizeWindow.checked });
+      if (resizeWindow.checked && enableSpoof.checked) {
+        const data = await chrome.storage.local.get(['spoofProfile']);
+        if (data.spoofProfile) {
+          await resizeToProfile(data.spoofProfile);
+        }
+      }
+    });
+  }
 
   // Import button click
   importBtn.addEventListener('click', () => {
@@ -54,6 +77,11 @@ document.addEventListener('DOMContentLoaded', async () => {
       // Auto-enable spoofing
       enableSpoof.checked = true;
       await chrome.storage.local.set({ spoofEnabled: true });
+      
+      // Auto-resize window if option is enabled
+      if (resizeWindow?.checked) {
+        await resizeToProfile(profile);
+      }
       
     } catch (err) {
       showStatus(`Import failed: ${err.message}`, 'error');
@@ -98,11 +126,35 @@ document.addEventListener('DOMContentLoaded', async () => {
     showStatus('Profile cleared', 'success');
   });
 
+  // Resize window to match profile screen dimensions
+  async function resizeToProfile(profile) {
+    const screen = profile.client?.screen || {};
+    const width = screen.availWidth || screen.width;
+    const height = screen.availHeight || screen.height;
+    
+    if (width && height && width < 1000) { // Only resize for likely mobile profiles
+      try {
+        const response = await chrome.runtime.sendMessage({
+          type: 'resizeWindow',
+          width: width,
+          height: height
+        });
+        
+        if (response?.success) {
+          showStatus(`Window resized to ${width}x${height}`, 'success');
+        }
+      } catch (e) {
+        console.error('Resize failed:', e);
+      }
+    }
+  }
+
   function displayProfileInfo(profile) {
     loadedProfile.style.display = 'block';
     
     const client = profile.client || {};
     const navigator = client.navigator || {};
+    const screen = client.screen || {};
     const webgl = client.webgl || {};
     
     // User Agent (truncated)
@@ -112,6 +164,12 @@ document.addEventListener('DOMContentLoaded', async () => {
     
     // Platform
     loadedPlatform.textContent = navigator.platform || '-';
+    
+    // Screen dimensions
+    if (loadedScreen) {
+      const screenStr = screen.width && screen.height ? `${screen.width}x${screen.height}` : '-';
+      loadedScreen.textContent = screenStr;
+    }
     
     // Count signals
     const signalCount = countSignals(profile);

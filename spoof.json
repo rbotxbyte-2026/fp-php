@@ -4,16 +4,16 @@
     "protocol": "HTTP/1.0",
     "https": true,
     "port": "80",
-    "request_time": "2026-03-09 13:43:27",
+    "request_time": "2026-03-09 14:07:42",
     "user_agent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Mobile Safari/537.36",
     "accept": "*/*",
     "accept_language": "en-IN,en;q=0.9,gu;q=0.8,en-GB;q=0.7,en-US;q=0.6,hi;q=0.5",
     "accept_encoding": "gzip, br",
     "connection": "close",
     "cache_control": null,
-    "dnt": null,
+    "dnt": "1",
     "upgrade_insecure": null,
-    "referer": "https://botxbyte.com/fp.php?c=deex",
+    "referer": "https://botxbyte.com/fp.php?c=deexx",
     "origin": "https://botxbyte.com",
     "te": null,
     "priority": "u=1, i",
@@ -28,12 +28,12 @@
     "ch_ua_bitness": null,
     "ch_ua_full_version_list": null,
     "ch_ua_model": null,
-    "x_forwarded_for": "2405:f600:8:d4f6:3021:ec99:42a9:3227, 162.158.155.171",
+    "x_forwarded_for": "2405:f600:8:d4f6:3021:ec99:42a9:3227, 172.70.115.201",
     "x_real_ip": null,
     "via": null,
     "cf_connecting_ip": "2405:f600:8:d4f6:3021:ec99:42a9:3227",
     "cf_ipcountry": "IN",
-    "cf_ray": "9d9a823c8e07afb0-EWR",
+    "cf_ray": "9d9aa5c1cbd6160c-EWR",
     "cdn_loop": "cloudflare; loops=1",
     "x_forwarded_proto": "https",
     "ja3_hash": null,
@@ -45,10 +45,11 @@
       "Cf-Ipcountry": "IN",
       "Cf-Connecting-Ip": "2405:f600:8:d4f6:3021:ec99:42a9:3227",
       "Cdn-Loop": "cloudflare; loops=1",
-      "Cf-Ray": "9d9a823c8e07afb0-EWR",
+      "Cf-Ray": "9d9aa5c1cbd6160c-EWR",
+      "Dnt": "1",
       "Accept-Language": "en-IN,en;q=0.9,gu;q=0.8,en-GB;q=0.7,en-US;q=0.6,hi;q=0.5",
       "Accept-Encoding": "gzip, br",
-      "Referer": "https://botxbyte.com/fp.php?c=deex",
+      "Referer": "https://botxbyte.com/fp.php?c=deexx",
       "Sec-Fetch-Dest": "empty",
       "Sec-Fetch-Mode": "cors",
       "Sec-Fetch-Site": "same-origin",
@@ -61,10 +62,10 @@
       "X-Requested-With": "XMLHttpRequest",
       "Sec-Ch-Ua-Platform": "\"Android\"",
       "Priority": "u=1, i",
-      "Content-Length": "39552",
+      "Content-Length": "39368",
       "Connection": "close",
       "X-Forwarded-Proto": "https",
-      "X-Forwarded-For": "2405:f600:8:d4f6:3021:ec99:42a9:3227, 162.158.155.171",
+      "X-Forwarded-For": "2405:f600:8:d4f6:3021:ec99:42a9:3227, 172.70.115.201",
       "X-Server-Addr": "107.170.48.37",
       "Host": "botxbyte.com",
       "Authorization": ""
@@ -75,6 +76,7 @@
       "Cf-Connecting-Ip",
       "Cdn-Loop",
       "Cf-Ray",
+      "Dnt",
       "Accept-Language",
       "Accept-Encoding",
       "Referer",
@@ -98,7 +100,7 @@
       "Host",
       "Authorization"
     ],
-    "header_count": 27
+    "header_count": 28
   },
   "client": {
     "navigator": {
@@ -160,7 +162,7 @@
       "calendar": "gregory",
       "numberingSystem": "latn",
       "localeDateString": "09/03/2026",
-      "localeTimeString": "19:13:27"
+      "localeTimeString": "19:37:42"
     },
     "canvas": {
       "hash": "7ecb5be6",
@@ -277,14 +279,11 @@
     "mimeTypes": [],
     "fonts": {
       "detected": [
-        "MS Serif",
-        "Noto Serif",
-        "PT Serif",
-        "Apple Color Emoji",
-        "Apple Symbols",
-        "Apple SD Gothic Neo"
+        "Courier New",
+        "Times New Roman",
+        "Courier New"
       ],
-      "count": 6,
+      "count": 3,
       "metricsHash": "24a67c0b"
     },
     "features": {
@@ -303,7 +302,7 @@
       "usb": true,
       "nfc": false,
       "serial": true,
-      "hid": true,
+      "hid": false,
       "xr": true,
       "gamepad": true,
       "geolocation": true,
@@ -396,9 +395,6 @@
       "overflowInline": true
     },
     "permissions": {
-      "ambient-light-sensor": "denied",
-      "nfc": "denied",
-      "window-placement": "denied",
       "geolocation": "prompt",
       "notifications": "prompt",
       "camera": "prompt",
@@ -413,10 +409,13 @@
       "magnetometer": "granted",
       "midi": "prompt",
       "background-fetch": "granted",
+      "nfc": "prompt",
       "screen-wake-lock": "granted",
       "idle-detection": "prompt",
       "display-capture": "prompt",
-      "storage-access": "granted"
+      "storage-access": "granted",
+      "ambient-light-sensor": "unsupported",
+      "window-placement": "unsupported"
     },
     "speechVoices": [
       {
@@ -950,7 +949,7 @@
       "historyLength": 1,
       "cookieCount": 0,
       "domainLookupTime": null,
-      "URL": "https://botxbyte.com/fp.php?c=deex",
+      "URL": "https://botxbyte.com/fp.php?c=deexx",
       "protocol": "https:",
       "host": "botxbyte.com"
     },
@@ -996,14 +995,14 @@
         0.1
       ],
       "navigationTiming": {
-        "type": "navigate",
+        "type": "reload",
         "redirectCount": 0,
-        "domInteractive": 557,
-        "domContentLoaded": 644,
-        "loadEvent": 645,
-        "ttfb": 387,
-        "transferSize": 38674,
-        "encodedBodySize": 38374
+        "domInteractive": 566,
+        "domContentLoaded": 567,
+        "loadEvent": 567,
+        "ttfb": 455,
+        "transferSize": 38670,
+        "encodedBodySize": 38370
       },
       "memory": {
         "jsHeapSizeLimit": 1130000000,
@@ -1011,11 +1010,11 @@
         "usedJSHeapSize": 10000000
       },
       "timeOrigin": 1773061077763.8,
-      "now": 3430.2000000178814
+      "now": 3341.5999999940395
     },
     "stackTrace": {
       "engine": "V8(Chrome/Node)",
-      "sample": "Error: fp |     at getStackTrace (https://botxbyte.com/fp.php?c=deex:694:21) |     at collect (https://botxbyte.com/fp.php?c=deex:3228:21)",
+      "sample": "Error: fp |     at getStackTrace (https://botxbyte.com/fp.php?c=deexx:694:21) |     at collect (https://botxbyte.com/fp.php?c=deexx:3228:21)",
       "lines": 4
     },
     "internals": {
@@ -1094,7 +1093,7 @@
     "refreshRate": {
       "measured_fps": 60,
       "snapped_hz": 60,
-      "avg_frame_ms": 16.65
+      "avg_frame_ms": 16.672
     },
     "videoDecoder": {
       "supported": true,
@@ -1108,10 +1107,10 @@
     },
     "behavioral": {
       "mouse": {
-        "sampleCount": 6,
-        "avgVelocity": 1.2211,
-        "maxVelocity": 2.5155,
-        "angleVariance": 11.31
+        "sampleCount": 26,
+        "avgVelocity": 0.1165,
+        "maxVelocity": 0.3035,
+        "angleVariance": 333.43
       },
       "keyboard": null,
       "scroll": {
@@ -1145,7 +1144,7 @@
           "absolute": false
         }
       },
-      "sessionDuration": 3427
+      "sessionDuration": 3339
     },
     "fontPreferences": {
       "default": 465.65911865234375,
@@ -1804,16 +1803,16 @@
     },
     "fontLoading": {
       "supported": true,
-      "readyTimeMs": 0,
+      "readyTimeMs": 0.1,
       "status": "loaded",
       "loadedFamilies": 0
     },
     "hypervisorProbe": {
-      "mean_ms": 0.0075,
-      "stdDev_ms": 0.0263,
+      "mean_ms": 0.0125,
+      "stdDev_ms": 0.0331,
       "min_ms": 0,
       "max_ms": 0.1,
-      "cv_percent": 351.19,
+      "cv_percent": 264.58,
       "possibleVM": true
     },
     "memoryPattern": {
@@ -1822,14 +1821,14 @@
         {
           "pages": 1,
           "sizeKB": 64,
-          "allocMs": 0,
+          "allocMs": 0.1,
           "touchMs": 0
         },
         {
           "pages": 10,
           "sizeKB": 640,
           "allocMs": 0,
-          "touchMs": 0
+          "touchMs": 0.1
         },
         {
           "pages": 50,
@@ -1846,11 +1845,11 @@
         {
           "pages": 256,
           "sizeKB": 16384,
-          "allocMs": 0.1,
+          "allocMs": 0,
           "touchMs": 0
         }
       ],
-      "patternHash": "2ed65de3"
+      "patternHash": "57af5c9d"
     },
     "fontsByCSS": {
       "detected": [
@@ -1860,24 +1859,9 @@
         "Verdana",
         "Times New Roman",
         "Courier New",
-        "Impact",
-        "Trebuchet MS",
-        "Comic Sans MS",
-        "Baskerville",
-        "Futura",
-        "Gill Sans",
-        "Optima",
-        "Didot",
-        "Helvetica Neue",
-        "Geneva",
-        "Monaco",
-        "Avenir",
-        "Avenir Next",
-        "Hoefler Text",
-        "American Typewriter",
-        "Apple Color Emoji"
+        "Baskerville"
       ],
-      "count": 22,
+      "count": 7,
       "method": "css_offsetWidth"
     },
     "extendedPermissions": {
@@ -1996,9 +1980,12 @@
     "monochromeDepth": 0,
     "privateClickMeasurement": false,
     "fontsSubset": {
-      "detected": [],
-      "count": 0,
-      "hash": "0",
+      "detected": [
+        "Courier New",
+        "Times New Roman"
+      ],
+      "count": 2,
+      "hash": "6776b24c",
       "testedSubset": [
         "Arial Unicode MS",
         "Gill Sans",
@@ -2548,5 +2535,5 @@
       "hash": "42431f88"
     }
   },
-  "generated": "2026-03-09T13:43:27+00:00"
+  "generated": "2026-03-09T14:07:42+00:00"
 }
