@@ -1473,8 +1473,8 @@ function getNavigatorExtra() {
         uaData_brands:           navigator.userAgentData ? navigator.userAgentData.brands : null,
         uaData_mobile:           navigator.userAgentData ? navigator.userAgentData.mobile : null,
         uaData_platform:         navigator.userAgentData ? navigator.userAgentData.platform : null,
-        // Private Click Measurement (Safari)
-        privateClickMeasurement: !!(window.webkit && window.webkit.messageHandlers),
+        // Private Click Measurement (Safari/WebKit - PCM API for privacy-preserving attribution)
+        privateClickMeasurement: !!(window.PrivateClickMeasurement || (window.webkit && window.webkit.messageHandlers?.privateClickMeasurement)),
         webkitMessageHandlers:   window.webkit ? Object.keys(window.webkit.messageHandlers || {}) : null,
         // connection extra
         connection_saveData:     navigator.connection ? navigator.connection.saveData : null,
@@ -2211,6 +2211,48 @@ function getHypervisorProbe() {
 }
 
 // ══════════════════════════════════════════
+// 62. FONTS SUBSET (Fingerprint Pro-style stable subset)
+// ══════════════════════════════════════════
+function getFontsSubset() {
+    // Fingerprint Pro uses a small stable subset to reduce noise from user-installed fonts
+    // These fonts are commonly used across platforms and provide stable signals
+    var fpSubset = [
+        'Arial Unicode MS',
+        'Gill Sans',
+        'Helvetica Neue',
+        'Menlo',
+        'Arial',
+        'Courier New',
+        'Georgia',
+        'Helvetica',
+        'Times New Roman',
+        'Verdana',
+        'Monaco',
+        'Lucida Console',
+        'Consolas',
+        'Segoe UI',
+        'SF Pro'
+    ];
+
+    var c = document.createElement('canvas'); c.width = 400; c.height = 30;
+    var ctx = c.getContext('2d');
+    var base = 'monospace', str = 'mmmmlliii1234QWERTYabcdef';
+    ctx.font = '16px ' + base;
+    var baseW = ctx.measureText(str).width;
+    var detected = [];
+    for (var i = 0; i < fpSubset.length; i++) {
+        ctx.font = '16px "' + fpSubset[i] + '", ' + base;
+        if (ctx.measureText(str).width !== baseW) detected.push(fpSubset[i]);
+    }
+    return {
+        detected:      detected,
+        count:         detected.length,
+        hash:          hashStr(detected.join('|')),
+        testedSubset:  fpSubset,
+    };
+}
+
+// ══════════════════════════════════════════
 // 55. MEMORY ALLOCATION PATTERNS (#114)
 // ══════════════════════════════════════════
 function getMemoryPattern() {
@@ -2462,6 +2504,591 @@ function getExtendedPermissions() {
 }
 
 // ══════════════════════════════════════════
+// 62. SVG RENDERING FINGERPRINT (CreepJS)
+// ══════════════════════════════════════════
+function getSVGRendering() {
+    try {
+        var ns = 'http://www.w3.org/2000/svg';
+        var svg = document.createElementNS(ns, 'svg');
+        svg.setAttribute('width', '200');
+        svg.setAttribute('height', '200');
+        svg.style.cssText = 'position:absolute;top:-9999px;left:-9999px;visibility:hidden;';
+
+        // Create path with curves
+        var path = document.createElementNS(ns, 'path');
+        path.setAttribute('d', 'M10,80 Q95,10 180,80 T350,80');
+        path.setAttribute('fill', 'none');
+        path.setAttribute('stroke', '#000');
+        svg.appendChild(path);
+
+        // Create rect with transform
+        var rect = document.createElementNS(ns, 'rect');
+        rect.setAttribute('x', '10');
+        rect.setAttribute('y', '10');
+        rect.setAttribute('width', '50');
+        rect.setAttribute('height', '50');
+        rect.setAttribute('fill', 'rgba(255,0,0,0.5)');
+        rect.setAttribute('transform', 'rotate(45 35 35)');
+        svg.appendChild(rect);
+
+        // Create ellipse
+        var ellipse = document.createElementNS(ns, 'ellipse');
+        ellipse.setAttribute('cx', '100');
+        ellipse.setAttribute('cy', '100');
+        ellipse.setAttribute('rx', '50');
+        ellipse.setAttribute('ry', '30');
+        ellipse.setAttribute('fill', 'rgba(0,0,255,0.5)');
+        svg.appendChild(ellipse);
+
+        // Create text
+        var text = document.createElementNS(ns, 'text');
+        text.setAttribute('x', '10');
+        text.setAttribute('y', '150');
+        text.setAttribute('font-size', '16');
+        text.setAttribute('font-family', 'Arial');
+        text.textContent = 'SVG FP 🎨';
+        svg.appendChild(text);
+
+        document.body.appendChild(svg);
+
+        // Get measurements
+        var pathLen = path.getTotalLength ? +path.getTotalLength().toFixed(4) : null;
+        var pathBB = path.getBBox();
+        var rectBB = rect.getBBox();
+        var ellipseBB = ellipse.getBBox();
+        var textBB = text.getBBox();
+
+        var measurements = {
+            pathLength: pathLen,
+            pathBBox: { x: +pathBB.x.toFixed(2), y: +pathBB.y.toFixed(2), width: +pathBB.width.toFixed(2), height: +pathBB.height.toFixed(2) },
+            rectBBox: { x: +rectBB.x.toFixed(2), y: +rectBB.y.toFixed(2), width: +rectBB.width.toFixed(2), height: +rectBB.height.toFixed(2) },
+            ellipseBBox: { x: +ellipseBB.x.toFixed(2), y: +ellipseBB.y.toFixed(2), width: +ellipseBB.width.toFixed(2), height: +ellipseBB.height.toFixed(2) },
+            textBBox: { x: +textBB.x.toFixed(2), y: +textBB.y.toFixed(2), width: +textBB.width.toFixed(2), height: +textBB.height.toFixed(2) },
+        };
+
+        document.body.removeChild(svg);
+
+        return {
+            supported: true,
+            measurements: measurements,
+            hash: hashStr(JSON.stringify(measurements)),
+        };
+    } catch(e) { return { error: e.message }; }
+}
+
+// ══════════════════════════════════════════
+// 63. HTML ELEMENT FINGERPRINT (CreepJS)
+// ══════════════════════════════════════════
+function getHTMLElement() {
+    try {
+        var results = {};
+
+        // HTMLElement prototype chain
+        var el = document.createElement('div');
+        results.protoChain = [];
+        var proto = Object.getPrototypeOf(el);
+        while (proto) {
+            results.protoChain.push(proto.constructor.name);
+            proto = Object.getPrototypeOf(proto);
+            if (results.protoChain.length > 10) break;
+        }
+
+        // Check specific properties
+        results.shadowRoot = 'attachShadow' in el;
+        results.animate = typeof el.animate === 'function';
+        results.getAnimations = typeof el.getAnimations === 'function';
+        results.computedStyleMap = typeof el.computedStyleMap === 'function';
+        results.attributeStyleMap = !!el.attributeStyleMap;
+        results.part = 'part' in el;
+        results.slot = 'slot' in el;
+        results.assignedSlot = 'assignedSlot' in el;
+
+        // Input element specific
+        var input = document.createElement('input');
+        results.inputShowPicker = typeof input.showPicker === 'function';
+        results.inputCheckValidity = typeof input.checkValidity === 'function';
+        results.inputSelectionStart = 'selectionStart' in input;
+
+        // Custom elements support
+        results.customElements = !!window.customElements;
+        results.customElementsDefine = !!(window.customElements && window.customElements.define);
+
+        // Document fragment
+        var frag = document.createDocumentFragment();
+        results.fragmentAppend = typeof frag.append === 'function';
+        results.fragmentPrepend = typeof frag.prepend === 'function';
+        results.fragmentReplaceChildren = typeof frag.replaceChildren === 'function';
+
+        return {
+            protoChain: results.protoChain,
+            features: results,
+            hash: hashStr(JSON.stringify(results)),
+        };
+    } catch(e) { return { error: e.message }; }
+}
+
+// ══════════════════════════════════════════
+// 64. DOM RECT FINGERPRINT (CreepJS)
+// ══════════════════════════════════════════
+function getDOMRect() {
+    try {
+        var results = [];
+
+        // Create test elements with various styles
+        var container = document.createElement('div');
+        container.style.cssText = 'position:absolute;top:-9999px;left:-9999px;visibility:hidden;';
+        document.body.appendChild(container);
+
+        var testCases = [
+            { tag: 'div', style: 'width:100px;height:50px;' },
+            { tag: 'div', style: 'width:100.5px;height:50.5px;' },
+            { tag: 'div', style: 'width:100px;height:50px;transform:rotate(45deg);' },
+            { tag: 'div', style: 'width:100px;height:50px;transform:scale(1.5);' },
+            { tag: 'span', style: 'font-size:16px;', text: 'Test text' },
+            { tag: 'span', style: 'font-size:16px;font-family:Arial;', text: 'Arial 123' },
+            { tag: 'span', style: 'font-size:16px;font-family:Times New Roman;', text: 'Times 123' },
+            { tag: 'div', style: 'width:100px;height:50px;border:1px solid black;box-sizing:border-box;' },
+            { tag: 'div', style: 'width:100px;height:50px;padding:10px;box-sizing:content-box;' },
+            { tag: 'div', style: 'width:100px;height:50px;margin:10px;' },
+        ];
+
+        testCases.forEach(function(tc, idx) {
+            var el = document.createElement(tc.tag);
+            el.style.cssText = tc.style;
+            if (tc.text) el.textContent = tc.text;
+            container.appendChild(el);
+
+            var rect = el.getBoundingClientRect();
+            results.push({
+                idx: idx,
+                width: +rect.width.toFixed(4),
+                height: +rect.height.toFixed(4),
+                x: +rect.x.toFixed(4),
+                y: +rect.y.toFixed(4),
+            });
+        });
+
+        document.body.removeChild(container);
+
+        return {
+            rects: results,
+            hash: hashStr(results.map(function(r) { return r.width + ',' + r.height; }).join('|')),
+        };
+    } catch(e) { return { error: e.message }; }
+}
+
+// ══════════════════════════════════════════
+// 65. CONTENT WINDOW FINGERPRINT (CreepJS)
+// ══════════════════════════════════════════
+function getContentWindow() {
+    try {
+        var results = {};
+
+        // Create iframe
+        var iframe = document.createElement('iframe');
+        iframe.style.cssText = 'position:absolute;top:-9999px;left:-9999px;width:100px;height:100px;visibility:hidden;';
+        iframe.sandbox = ''; // Most restrictive sandbox
+        document.body.appendChild(iframe);
+
+        // Check contentWindow properties
+        try {
+            var cw = iframe.contentWindow;
+            results.hasContentWindow = !!cw;
+            results.contentWindowType = cw ? Object.prototype.toString.call(cw) : null;
+
+            // Check if we can access properties
+            try { results.cwLocation = typeof cw.location; } catch(e) { results.cwLocation = 'blocked'; }
+            try { results.cwDocument = typeof cw.document; } catch(e) { results.cwDocument = 'blocked'; }
+            try { results.cwNavigator = typeof cw.navigator; } catch(e) { results.cwNavigator = 'blocked'; }
+            try { results.cwParent = cw.parent === window; } catch(e) { results.cwParent = 'blocked'; }
+            try { results.cwTop = cw.top === window; } catch(e) { results.cwTop = 'blocked'; }
+            try { results.cwFrameElement = !!cw.frameElement; } catch(e) { results.cwFrameElement = 'blocked'; }
+        } catch(e) {
+            results.contentWindowError = e.message;
+        }
+
+        // Check contentDocument
+        try {
+            results.hasContentDocument = !!iframe.contentDocument;
+        } catch(e) {
+            results.contentDocumentBlocked = true;
+        }
+
+        // Check srcdoc support
+        var iframe2 = document.createElement('iframe');
+        iframe2.srcdoc = '<html><body>test</body></html>';
+        results.srcdocSupport = 'srcdoc' in iframe2;
+
+        // Check sandbox attribute
+        results.sandboxSupport = 'sandbox' in iframe;
+        results.sandboxTokens = iframe.sandbox ? Array.from(iframe.sandbox) : null;
+
+        // Check loading attribute
+        results.lazyLoadSupport = 'loading' in iframe;
+
+        // Check referrerPolicy
+        results.referrerPolicySupport = 'referrerPolicy' in iframe;
+
+        // Check allow attribute (feature policy)
+        results.allowSupport = 'allow' in iframe;
+
+        // Check csp attribute
+        results.cspSupport = 'csp' in iframe;
+
+        document.body.removeChild(iframe);
+
+        return {
+            features: results,
+            hash: hashStr(JSON.stringify(results)),
+        };
+    } catch(e) { return { error: e.message }; }
+}
+
+// ══════════════════════════════════════════
+// 66. CONSOLE ERRORS FINGERPRINT (CreepJS)
+// ══════════════════════════════════════════
+function getConsoleErrors() {
+    try {
+        var errors = [];
+
+        // Test various error types and their stack format
+        var errorTests = [
+            function() { throw new Error('test'); },
+            function() { throw new TypeError('type test'); },
+            function() { throw new RangeError('range test'); },
+            function() { throw new SyntaxError('syntax test'); },
+            function() { throw new ReferenceError('ref test'); },
+            function() { throw new URIError('uri test'); },
+        ];
+
+        errorTests.forEach(function(test, idx) {
+            try {
+                test();
+            } catch(e) {
+                errors.push({
+                    idx: idx,
+                    name: e.name,
+                    messageLength: e.message.length,
+                    hasStack: !!e.stack,
+                    stackLines: e.stack ? e.stack.split('\n').length : 0,
+                    stackFormat: e.stack ? (e.stack.indexOf('@') > -1 ? 'firefox' : e.stack.indexOf('    at ') > -1 ? 'v8' : 'other') : null,
+                });
+            }
+        });
+
+        // Test eval error handling
+        var evalError = null;
+        try {
+            eval('invalid syntax {{{{');
+        } catch(e) {
+            evalError = {
+                name: e.name,
+                hasLineNumber: 'lineNumber' in e,
+                hasColumnNumber: 'columnNumber' in e,
+                hasFileName: 'fileName' in e,
+            };
+        }
+
+        // Test JSON parse error
+        var jsonError = null;
+        try {
+            JSON.parse('{invalid}');
+        } catch(e) {
+            jsonError = {
+                name: e.name,
+                messagePattern: e.message.substring(0, 20),
+            };
+        }
+
+        // Test function constructor
+        var funcError = null;
+        try {
+            new Function('return {{{');
+        } catch(e) {
+            funcError = {
+                name: e.name,
+                messagePattern: e.message.substring(0, 20),
+            };
+        }
+
+        return {
+            errors: errors,
+            evalError: evalError,
+            jsonError: jsonError,
+            funcError: funcError,
+            hash: hashStr(JSON.stringify(errors)),
+        };
+    } catch(e) { return { error: e.message }; }
+}
+
+// ══════════════════════════════════════════
+// 67. TEXT METRICS FINGERPRINT (CreepJS extended)
+// ══════════════════════════════════════════
+function getTextMetrics() {
+    try {
+        var c = document.createElement('canvas');
+        c.width = 500; c.height = 100;
+        var ctx = c.getContext('2d');
+
+        var fonts = ['Arial', 'Times New Roman', 'Courier New', 'Georgia', 'Verdana', 'Helvetica'];
+        var sizes = [12, 16, 24];
+        var testStr = 'The quick brown fox jumps over the lazy dog 0123456789 @#$%';
+
+        var measurements = [];
+
+        fonts.forEach(function(font) {
+            sizes.forEach(function(size) {
+                ctx.font = size + 'px "' + font + '"';
+                var m = ctx.measureText(testStr);
+                measurements.push({
+                    font: font,
+                    size: size,
+                    width: +m.width.toFixed(4),
+                    actualBoundingBoxAscent: m.actualBoundingBoxAscent ? +m.actualBoundingBoxAscent.toFixed(4) : null,
+                    actualBoundingBoxDescent: m.actualBoundingBoxDescent ? +m.actualBoundingBoxDescent.toFixed(4) : null,
+                    actualBoundingBoxLeft: m.actualBoundingBoxLeft ? +m.actualBoundingBoxLeft.toFixed(4) : null,
+                    actualBoundingBoxRight: m.actualBoundingBoxRight ? +m.actualBoundingBoxRight.toFixed(4) : null,
+                    fontBoundingBoxAscent: m.fontBoundingBoxAscent ? +m.fontBoundingBoxAscent.toFixed(4) : null,
+                    fontBoundingBoxDescent: m.fontBoundingBoxDescent ? +m.fontBoundingBoxDescent.toFixed(4) : null,
+                });
+            });
+        });
+
+        return {
+            measurements: measurements,
+            count: measurements.length,
+            hash: hashStr(measurements.map(function(m) { return m.width; }).join(',')),
+        };
+    } catch(e) { return { error: e.message }; }
+}
+
+// ══════════════════════════════════════════
+// 68. APPLE PAY CAPABILITY (CreepJS)
+// ══════════════════════════════════════════
+function getApplePayCapability() {
+    try {
+        var result = {
+            apiAvailable: false,
+            canMakePayments: null,
+            canMakePaymentsWithActiveCard: null,
+            merchantIdentifier: null,
+        };
+
+        // Check for Apple Pay JS API
+        if (window.ApplePaySession) {
+            result.apiAvailable = true;
+
+            // Check if Apple Pay can make payments
+            try {
+                result.canMakePayments = ApplePaySession.canMakePayments();
+            } catch(e) {
+                result.canMakePayments = 'error: ' + e.message;
+            }
+
+            // Check supported version
+            try {
+                result.supportsVersion = [];
+                for (var v = 1; v <= 14; v++) {
+                    if (ApplePaySession.supportsVersion(v)) {
+                        result.supportsVersion.push(v);
+                    }
+                }
+            } catch(e) {}
+
+            // Check for active card (requires merchant ID - will likely fail without config)
+            // We just detect if the method exists
+            result.hasActiveCardCheck = typeof ApplePaySession.canMakePaymentsWithActiveCard === 'function';
+        }
+
+        // Check for Payment Request API (cross-browser)
+        result.paymentRequestAPI = !!window.PaymentRequest;
+
+        // Check for Apple-specific payment handler
+        result.applePayPaymentMethod = false;
+        if (window.PaymentRequest) {
+            try {
+                // This doesn't actually call anything, just checks if constructor works
+                result.paymentRequestSupported = true;
+            } catch(e) {
+                result.paymentRequestSupported = false;
+            }
+        }
+
+        return result;
+    } catch(e) { return { error: e.message }; }
+}
+
+// ══════════════════════════════════════════
+// 69. SERVICE WORKER FINGERPRINT (CreepJS)
+// ══════════════════════════════════════════
+function getServiceWorkerInfo() {
+    return new Promise(function(resolve) {
+        try {
+            var result = {
+                supported: 'serviceWorker' in navigator,
+                controller: null,
+                ready: null,
+                state: null,
+                features: {},
+            };
+
+            if (!result.supported) {
+                return resolve(result);
+            }
+
+            // Check controller
+            result.controller = !!navigator.serviceWorker.controller;
+
+            // Check features available on ServiceWorkerRegistration
+            result.features = {
+                pushManager: 'PushManager' in window,
+                sync: 'SyncManager' in window,
+                periodicSync: 'PeriodicSyncManager' in window,
+                backgroundFetch: 'BackgroundFetchManager' in window,
+                cacheAPI: 'caches' in window,
+                notifications: 'Notification' in window,
+                paymentManager: 'PaymentManager' in window,
+                cookieStore: 'cookieStore' in window,
+                getRegistrations: typeof navigator.serviceWorker.getRegistrations === 'function',
+            };
+
+            // Try to get ready state
+            navigator.serviceWorker.ready.then(function(registration) {
+                result.ready = true;
+                result.scope = registration.scope;
+
+                // Get active worker state
+                if (registration.active) {
+                    result.state = registration.active.state;
+                    result.scriptURL = registration.active.scriptURL ? 'present' : null;
+                }
+
+                // Check which features are available on this registration
+                result.registrationFeatures = {
+                    pushManager: !!registration.pushManager,
+                    sync: !!registration.sync,
+                    periodicSync: !!registration.periodicSync,
+                    backgroundFetch: !!registration.backgroundFetch,
+                    navigationPreload: !!registration.navigationPreload,
+                    updateViaCache: registration.updateViaCache,
+                };
+
+                // Get update state
+                result.installing = !!registration.installing;
+                result.waiting = !!registration.waiting;
+                result.active = !!registration.active;
+
+                resolve(result);
+            }).catch(function(e) {
+                result.ready = false;
+                result.readyError = e.message;
+                resolve(result);
+            });
+
+            // Timeout fallback
+            setTimeout(function() {
+                if (!result.ready && result.ready !== false) {
+                    result.ready = 'timeout';
+                    resolve(result);
+                }
+            }, 2000);
+
+        } catch(e) {
+            resolve({ error: e.message });
+        }
+    });
+}
+
+// ══════════════════════════════════════════
+// 70. CSS MEDIA QUERIES EXTENDED (CreepJS style)
+// ══════════════════════════════════════════
+function getCSSMediaQueriesExtended() {
+    try {
+        var queries = {
+            // Color scheme
+            'prefers-color-scheme: dark': matchMedia('(prefers-color-scheme: dark)').matches,
+            'prefers-color-scheme: light': matchMedia('(prefers-color-scheme: light)').matches,
+
+            // Motion
+            'prefers-reduced-motion: reduce': matchMedia('(prefers-reduced-motion: reduce)').matches,
+            'prefers-reduced-motion: no-preference': matchMedia('(prefers-reduced-motion: no-preference)').matches,
+
+            // Contrast
+            'prefers-contrast: more': matchMedia('(prefers-contrast: more)').matches,
+            'prefers-contrast: less': matchMedia('(prefers-contrast: less)').matches,
+            'prefers-contrast: no-preference': matchMedia('(prefers-contrast: no-preference)').matches,
+
+            // Transparency
+            'prefers-reduced-transparency: reduce': matchMedia('(prefers-reduced-transparency: reduce)').matches,
+            'prefers-reduced-transparency: no-preference': matchMedia('(prefers-reduced-transparency: no-preference)').matches,
+
+            // Inverted colors
+            'inverted-colors: inverted': matchMedia('(inverted-colors: inverted)').matches,
+            'inverted-colors: none': matchMedia('(inverted-colors: none)').matches,
+
+            // Forced colors
+            'forced-colors: active': matchMedia('(forced-colors: active)').matches,
+            'forced-colors: none': matchMedia('(forced-colors: none)').matches,
+
+            // Hover capability
+            'any-hover: hover': matchMedia('(any-hover: hover)').matches,
+            'any-hover: none': matchMedia('(any-hover: none)').matches,
+            'hover: hover': matchMedia('(hover: hover)').matches,
+            'hover: none': matchMedia('(hover: none)').matches,
+
+            // Pointer capability
+            'any-pointer: fine': matchMedia('(any-pointer: fine)').matches,
+            'any-pointer: coarse': matchMedia('(any-pointer: coarse)').matches,
+            'any-pointer: none': matchMedia('(any-pointer: none)').matches,
+            'pointer: fine': matchMedia('(pointer: fine)').matches,
+            'pointer: coarse': matchMedia('(pointer: coarse)').matches,
+            'pointer: none': matchMedia('(pointer: none)').matches,
+
+            // Display mode (PWA)
+            'display-mode: fullscreen': matchMedia('(display-mode: fullscreen)').matches,
+            'display-mode: standalone': matchMedia('(display-mode: standalone)').matches,
+            'display-mode: minimal-ui': matchMedia('(display-mode: minimal-ui)').matches,
+            'display-mode: browser': matchMedia('(display-mode: browser)').matches,
+
+            // Orientation
+            'orientation: portrait': matchMedia('(orientation: portrait)').matches,
+            'orientation: landscape': matchMedia('(orientation: landscape)').matches,
+
+            // Color gamut
+            'color-gamut: srgb': matchMedia('(color-gamut: srgb)').matches,
+            'color-gamut: p3': matchMedia('(color-gamut: p3)').matches,
+            'color-gamut: rec2020': matchMedia('(color-gamut: rec2020)').matches,
+
+            // HDR
+            'dynamic-range: standard': matchMedia('(dynamic-range: standard)').matches,
+            'dynamic-range: high': matchMedia('(dynamic-range: high)').matches,
+
+            // Update frequency
+            'update: fast': matchMedia('(update: fast)').matches,
+            'update: slow': matchMedia('(update: slow)').matches,
+            'update: none': matchMedia('(update: none)').matches,
+
+            // Overflow
+            'overflow-block: scroll': matchMedia('(overflow-block: scroll)').matches,
+            'overflow-inline: scroll': matchMedia('(overflow-inline: scroll)').matches,
+
+            // Scripting
+            'scripting: enabled': matchMedia('(scripting: enabled)').matches,
+            'scripting: none': matchMedia('(scripting: none)').matches,
+        };
+
+        // Calculate hash
+        var trueQueries = Object.keys(queries).filter(function(k) { return queries[k]; });
+
+        return {
+            queries: queries,
+            trueCount: trueQueries.length,
+            hash: hashStr(trueQueries.join('|')),
+        };
+    } catch(e) { return { error: e.message }; }
+}
+
+// ══════════════════════════════════════════
 // MAIN COLLECTOR
 // ══════════════════════════════════════════
 async function collect() {
@@ -2486,6 +3113,7 @@ async function collect() {
     step('[6/21] Fonts...');
     var fonts       = getFonts();
     var fontPrefs   = getFontPreferences();
+    var fontsSubset = getFontsSubset();
 
     step('[7/21] Plugins & MIME...');
     var pluginData = getPlugins();
@@ -2557,7 +3185,37 @@ async function collect() {
     var mediaConstr = getMediaConstraints();
     var jsEngine    = getJSEngineSignals();
 
-    step('[21/21] Finalising...');
+    // ═══ CreepJS-aligned fingerprints ═══
+    step('[21/24] SVG / HTML Element / DOM Rect...');
+    var svgRendering   = getSVGRendering();
+    var htmlElement    = getHTMLElement();
+    var domRect        = getDOMRect();
+    var contentWindow  = getContentWindow();
+
+    step('[22/24] Console Errors / Text Metrics...');
+    var consoleErrors  = getConsoleErrors();
+    var textMetrics    = getTextMetrics();
+
+    step('[23/27] Apple Pay / Service Worker...');
+    var applePay       = getApplePayCapability();
+    var serviceWorker  = await getServiceWorkerInfo();
+    var cssMediaExt    = getCSSMediaQueriesExtended();
+
+    // ═══ New Fingerprint Pro-aligned fields (2026) ═══
+    step('[24/27] Computing normalized fields...');
+    // Normalized audio base latency (simple number like Fingerprint Pro)
+    var audioBaseLatencySimple = (audioLatency && audioLatency.baseLatency !== undefined) ? audioLatency.baseLatency : null;
+
+    // Contrast preference as numeric value (0=none, 1=more, -1=less, 2=forced)
+    var contrastPreference = colorContrast ? colorContrast.contrastPreference : 0;
+
+    // Monochrome depth (0-16)
+    var monochromeDepth = colorContrast ? colorContrast.monochromeDepth : 0;
+
+    // Private Click Measurement (Apple privacy signal)
+    var privateClickMeasurement = !!(window.PrivateClickMeasurement || (window.webkit && window.webkit.messageHandlers?.privateClickMeasurement));
+
+    step('[25/27] Finalising...');
     var conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
     var dtf  = Intl.DateTimeFormat().resolvedOptions();
 
@@ -2769,6 +3427,91 @@ async function collect() {
 
         // Math values as single hash
         mathHash: getMathHash(),
+
+        // ══ NEW: Fingerprint Pro 2026 Aligned Fields ══
+
+        // Audio base latency as simple number (like Fingerprint Pro raw_device_attributes)
+        audioBaseLatencySimple: audioBaseLatencySimple,
+
+        // Contrast preference as numeric: 0=none, 1=more, -1=less, 2=forced
+        contrastPreference: contrastPreference,
+
+        // Monochrome depth (0-16 probe)
+        monochromeDepth: monochromeDepth,
+
+        // Private Click Measurement (Apple privacy-preserving attribution API)
+        privateClickMeasurement: privateClickMeasurement,
+
+        // Fonts subset (stable FP-style subset for reduced noise)
+        fontsSubset: fontsSubset,
+
+        // Inverted colors (explicit boolean for compatibility)
+        invertedColors: matchMedia('(inverted-colors: inverted)').matches,
+
+        // Touch support (FP Pro format: maxTouchPoints, touchEvent, touchStart)
+        touchSupport: {
+            maxTouchPoints: navigator.maxTouchPoints || 0,
+            touchEvent:     !!window.TouchEvent,
+            touchStart:     'ontouchstart' in window,
+        },
+
+        // Screen resolution as array [height, width] (FP Pro format)
+        screenResolution: [screen.height, screen.width],
+
+        // Screen frame as array [top, right, bottom, left] (FP Pro format)
+        screenFrameArray: [
+            screenFrame.top    || 0,
+            screenFrame.right  || 0,
+            screenFrame.bottom || 0,
+            screenFrame.left   || 0
+        ],
+
+        // Reduced transparency (separate from mediaQueries for FP Pro compatibility)
+        reducedTransparency: matchMedia('(prefers-reduced-transparency: reduce)').matches,
+
+        // Reduced motion (separate field)
+        reducedMotion: matchMedia('(prefers-reduced-motion: reduce)').matches,
+
+        // Forced colors (separate boolean)
+        forcedColors: matchMedia('(forced-colors: active)').matches,
+
+        // Cookies enabled (FP Pro naming)
+        cookiesEnabled: navigator.cookieEnabled,
+
+        // Color gamut as string (FP Pro format: "srgb", "p3", "rec2020")
+        colorGamut: colorContrast ? colorContrast.colorGamutString : 'srgb',
+
+        // HDR capability (separate boolean)
+        hdr: matchMedia('(dynamic-range: high)').matches,
+
+        // ══ NEW: CreepJS Aligned Fields ══
+
+        // SVG rendering fingerprint (path measurements, bbox)
+        svgRendering: svgRendering,
+
+        // HTML element fingerprint (prototype chain, features)
+        htmlElement: htmlElement,
+
+        // DOM Rect fingerprint (getBoundingClientRect variations)
+        domRect: domRect,
+
+        // Content window fingerprint (iframe behavior)
+        contentWindow: contentWindow,
+
+        // Console errors fingerprint (error format/stack trace)
+        consoleErrors: consoleErrors,
+
+        // Text metrics fingerprint (extended canvas text measurements)
+        textMetrics: textMetrics,
+
+        // Apple Pay capability (CreepJS)
+        applePayCapability: applePay,
+
+        // Service Worker fingerprint (CreepJS - full details)
+        serviceWorker: serviceWorker,
+
+        // CSS Media Queries extended (CreepJS-style comprehensive)
+        cssMediaQueriesExtended: cssMediaExt,
     };
 }
 

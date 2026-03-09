@@ -1,0 +1,2197 @@
+{
+  "server": {
+    "ip": "2405:f600:8:d4f6:3021:ec99:42a9:3227",
+    "protocol": "HTTP/1.0",
+    "https": true,
+    "port": "80",
+    "request_time": "2026-03-09 11:54:09",
+    "user_agent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36",
+    "accept": "*/*",
+    "accept_language": "hi-IN,hi;q=0.9,en-US;q=0.8,en;q=0.7",
+    "accept_encoding": "gzip, br",
+    "connection": "close",
+    "cache_control": null,
+    "dnt": null,
+    "upgrade_insecure": null,
+    "referer": "https://botxbyte.com/fp.php?c=b",
+    "origin": "https://botxbyte.com",
+    "te": null,
+    "priority": "u=1, i",
+    "sec_fetch_site": "same-origin",
+    "sec_fetch_mode": "cors",
+    "sec_fetch_dest": "empty",
+    "sec_fetch_user": null,
+    "ch_ua": "\"Chromium\";v=\"142\", \"Google Chrome\";v=\"142\", \"Not_A Brand\";v=\"99\"",
+    "ch_ua_mobile": "?1",
+    "ch_ua_platform": "\"Android\"",
+    "ch_ua_arch": null,
+    "ch_ua_bitness": null,
+    "ch_ua_full_version_list": null,
+    "ch_ua_model": null,
+    "x_forwarded_for": "2405:f600:8:d4f6:3021:ec99:42a9:3227, 104.23.190.217",
+    "x_real_ip": null,
+    "via": null,
+    "cf_connecting_ip": "2405:f600:8:d4f6:3021:ec99:42a9:3227",
+    "cf_ipcountry": "IN",
+    "cf_ray": "9d99e2231b4aabf2-EWR",
+    "cdn_loop": "cloudflare; loops=1",
+    "x_forwarded_proto": "https",
+    "ja3_hash": null,
+    "ja3_string": null,
+    "ja4_hash": null,
+    "tls_client_hello_hex": null,
+    "all_headers": {
+      "Cf-Visitor": "{\"scheme\":\"https\"}",
+      "Cf-Ipcountry": "IN",
+      "Cf-Connecting-Ip": "2405:f600:8:d4f6:3021:ec99:42a9:3227",
+      "Cdn-Loop": "cloudflare; loops=1",
+      "Cf-Ray": "9d99e2231b4aabf2-EWR",
+      "Accept-Language": "hi-IN,hi;q=0.9,en-US;q=0.8,en;q=0.7",
+      "Accept-Encoding": "gzip, br",
+      "Referer": "https://botxbyte.com/fp.php?c=b",
+      "Sec-Fetch-Dest": "empty",
+      "Sec-Fetch-Mode": "cors",
+      "Sec-Fetch-Site": "same-origin",
+      "Origin": "https://botxbyte.com",
+      "Accept": "*/*",
+      "Sec-Ch-Ua-Mobile": "?1",
+      "Content-Type": "application/json",
+      "Sec-Ch-Ua": "\"Chromium\";v=\"142\", \"Google Chrome\";v=\"142\", \"Not_A Brand\";v=\"99\"",
+      "User-Agent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36",
+      "X-Requested-With": "XMLHttpRequest",
+      "Sec-Ch-Ua-Platform": "\"Android\"",
+      "Priority": "u=1, i",
+      "Content-Length": "35618",
+      "Connection": "close",
+      "X-Forwarded-Proto": "https",
+      "X-Forwarded-For": "2405:f600:8:d4f6:3021:ec99:42a9:3227, 104.23.190.217",
+      "X-Server-Addr": "107.170.48.37",
+      "Host": "botxbyte.com",
+      "Authorization": ""
+    },
+    "header_order": [
+      "Cf-Visitor",
+      "Cf-Ipcountry",
+      "Cf-Connecting-Ip",
+      "Cdn-Loop",
+      "Cf-Ray",
+      "Accept-Language",
+      "Accept-Encoding",
+      "Referer",
+      "Sec-Fetch-Dest",
+      "Sec-Fetch-Mode",
+      "Sec-Fetch-Site",
+      "Origin",
+      "Accept",
+      "Sec-Ch-Ua-Mobile",
+      "Content-Type",
+      "Sec-Ch-Ua",
+      "User-Agent",
+      "X-Requested-With",
+      "Sec-Ch-Ua-Platform",
+      "Priority",
+      "Content-Length",
+      "Connection",
+      "X-Forwarded-Proto",
+      "X-Forwarded-For",
+      "X-Server-Addr",
+      "Host",
+      "Authorization"
+    ],
+    "header_count": 27
+  },
+  "client": {
+    "navigator": {
+      "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36",
+      "appVersion": "5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Mobile Safari/537.36",
+      "appName": "Netscape",
+      "appCodeName": "Mozilla",
+      "product": "Gecko",
+      "productSub": "20030107",
+      "platform": "Linux armv81",
+      "vendor": "Google Inc.",
+      "vendorSub": "",
+      "language": "hi-IN",
+      "languages": [
+        "hi-IN",
+        "hi",
+        "en-US",
+        "en"
+      ],
+      "cookieEnabled": true,
+      "doNotTrack": null,
+      "globalPrivacyControl": null,
+      "hardwareConcurrency": 20,
+      "deviceMemory": 8,
+      "maxTouchPoints": 5,
+      "pdfViewerEnabled": true,
+      "webdriver": false,
+      "onLine": true,
+      "javaEnabled": false,
+      "cookieStore": true
+    },
+    "screen": {
+      "width": 388,
+      "height": 783,
+      "availWidth": 388,
+      "availHeight": 783,
+      "colorDepth": 30,
+      "pixelDepth": 30,
+      "devicePixelRatio": 3.143749952316284,
+      "orientationType": "portrait-primary",
+      "orientationAngle": 0,
+      "innerWidth": 388,
+      "innerHeight": 783,
+      "outerWidth": 388,
+      "outerHeight": 783,
+      "screenX": 0,
+      "screenY": 0,
+      "pageXOffset": 0,
+      "pageYOffset": 0,
+      "scrollbarWidth": 0,
+      "isFullscreen": false
+    },
+    "locale": {
+      "timezone": "Asia/Calcutta",
+      "timezoneOffset": -330,
+      "locale": "hi",
+      "calendar": "gregory",
+      "numberingSystem": "latn",
+      "localeDateString": "9/3/2026",
+      "localeTimeString": "5:24:09 pm"
+    },
+    "canvas": {
+      "hash": "7ecb5be6",
+      "geometry_hash": "189e07f6",
+      "winding_rule": true
+    },
+    "webgl": {
+      "supported": true,
+      "vendor": "WebKit",
+      "renderer": "WebKit WebGL",
+      "version": "WebGL 1.0 (OpenGL ES 2.0 Chromium)",
+      "shadingLanguageVersion": "WebGL GLSL ES 1.0 (OpenGL ES GLSL ES 1.0 Chromium)",
+      "unmaskedVendor": "Qualcomm",
+      "unmaskedRenderer": "Adreno(TM) 405",
+      "maxTextureSize": 16384,
+      "maxCubeMapTextureSize": 16384,
+      "maxViewportDims": [
+        16384,
+        16384
+      ],
+      "maxVertexAttribs": 16,
+      "maxVertexUniformVectors": 1024,
+      "maxFragmentUniformVectors": 1024,
+      "maxCombinedTextureUnits": 32,
+      "maxVertexTextureUnits": 16,
+      "maxTextureImageUnits": 16,
+      "maxRenderbufferSize": 16384,
+      "maxVaryingVectors": 30,
+      "aliasedLineWidthRange": [
+        1,
+        1
+      ],
+      "aliasedPointSizeRange": [
+        1,
+        511
+      ],
+      "redBits": 8,
+      "greenBits": 8,
+      "blueBits": 8,
+      "alphaBits": 8,
+      "depthBits": 24,
+      "stencilBits": 0,
+      "subpixelBits": 4,
+      "extensionCount": 39,
+      "extensionHash": "4e69110f",
+      "extensions": [
+        "ANGLE_instanced_arrays",
+        "EXT_blend_minmax",
+        "EXT_clip_control",
+        "EXT_color_buffer_half_float",
+        "EXT_depth_clamp",
+        "EXT_disjoint_timer_query",
+        "EXT_float_blend",
+        "EXT_frag_depth",
+        "EXT_polygon_offset_clamp",
+        "EXT_shader_texture_lod",
+        "EXT_texture_compression_bptc",
+        "EXT_texture_compression_rgtc",
+        "EXT_texture_filter_anisotropic",
+        "EXT_texture_mirror_clamp_to_edge",
+        "EXT_sRGB",
+        "KHR_parallel_shader_compile",
+        "OES_element_index_uint",
+        "OES_fbo_render_mipmap",
+        "OES_standard_derivatives",
+        "OES_texture_float",
+        "OES_texture_float_linear",
+        "OES_texture_half_float",
+        "OES_texture_half_float_linear",
+        "OES_vertex_array_object",
+        "WEBGL_blend_func_extended",
+        "WEBGL_color_buffer_float",
+        "WEBGL_compressed_texture_astc",
+        "WEBGL_compressed_texture_etc",
+        "WEBGL_compressed_texture_etc1",
+        "WEBGL_compressed_texture_pvrtc",
+        "WEBGL_compressed_texture_s3tc",
+        "WEBGL_compressed_texture_s3tc_srgb",
+        "WEBGL_debug_renderer_info",
+        "WEBGL_debug_shaders",
+        "WEBGL_depth_texture",
+        "WEBGL_draw_buffers",
+        "WEBGL_lose_context",
+        "WEBGL_multi_draw",
+        "WEBGL_polygon_mode"
+      ],
+      "shaderRenderHash": "1280848c",
+      "rasterizationMethod": "hardware"
+    },
+    "webgl2": {
+      "supported": true,
+      "maxSamples": 4,
+      "maxUniformBufferBindings": 24,
+      "maxTransformFeedbackSeparateComponents": 4,
+      "maxElementsVertices": 2147483647,
+      "maxElementsIndices": 2147483647,
+      "max3DTextureSize": 2048,
+      "maxArrayTextureLayers": 2048,
+      "maxColorAttachments": 8,
+      "maxDrawBuffers": 8
+    },
+    "audio": {
+      "sampleRate": 44100,
+      "sampleRateLive": 48000,
+      "hash": "4ce09ba6",
+      "fullHash": "634840bb",
+      "value": 124.9095564117888,
+      "maxChannelCount": 2,
+      "contextState": "suspended",
+      "numberOfChannels": 1,
+      "duration": 1
+    },
+    "plugins": [
+      {
+        "name": "PDF Viewer",
+        "filename": "internal-pdf-viewer",
+        "description": "Portable Document Format",
+        "mimes": [
+          {
+            "type": "application/pdf",
+            "description": "Portable Document Format",
+            "suffixes": "pdf"
+          },
+          {
+            "type": "text/pdf",
+            "description": "Portable Document Format",
+            "suffixes": "pdf"
+          }
+        ]
+      },
+      {
+        "name": "Chrome PDF Viewer",
+        "filename": "internal-pdf-viewer",
+        "description": "Portable Document Format",
+        "mimes": [
+          {
+            "type": "application/pdf",
+            "description": "Portable Document Format",
+            "suffixes": "pdf"
+          },
+          {
+            "type": "text/pdf",
+            "description": "Portable Document Format",
+            "suffixes": "pdf"
+          }
+        ]
+      },
+      {
+        "name": "Chromium PDF Viewer",
+        "filename": "internal-pdf-viewer",
+        "description": "Portable Document Format",
+        "mimes": [
+          {
+            "type": "application/pdf",
+            "description": "Portable Document Format",
+            "suffixes": "pdf"
+          },
+          {
+            "type": "text/pdf",
+            "description": "Portable Document Format",
+            "suffixes": "pdf"
+          }
+        ]
+      },
+      {
+        "name": "Microsoft Edge PDF Viewer",
+        "filename": "internal-pdf-viewer",
+        "description": "Portable Document Format",
+        "mimes": [
+          {
+            "type": "application/pdf",
+            "description": "Portable Document Format",
+            "suffixes": "pdf"
+          },
+          {
+            "type": "text/pdf",
+            "description": "Portable Document Format",
+            "suffixes": "pdf"
+          }
+        ]
+      },
+      {
+        "name": "WebKit built-in PDF",
+        "filename": "internal-pdf-viewer",
+        "description": "Portable Document Format",
+        "mimes": [
+          {
+            "type": "application/pdf",
+            "description": "Portable Document Format",
+            "suffixes": "pdf"
+          },
+          {
+            "type": "text/pdf",
+            "description": "Portable Document Format",
+            "suffixes": "pdf"
+          }
+        ]
+      }
+    ],
+    "mimeTypes": [
+      {
+        "type": "application/pdf",
+        "description": "Portable Document Format",
+        "suffixes": "pdf",
+        "enabledPlugin": "PDF Viewer"
+      },
+      {
+        "type": "text/pdf",
+        "description": "Portable Document Format",
+        "suffixes": "pdf",
+        "enabledPlugin": "PDF Viewer"
+      }
+    ],
+    "fonts": {
+      "detected": [
+        "Arial",
+        "Arial Black",
+        "Arial Narrow",
+        "Arial Rounded MT Bold",
+        "Comic Sans MS",
+        "Courier",
+        "Courier New",
+        "Georgia",
+        "Impact",
+        "Microsoft Sans Serif",
+        "Symbol",
+        "Tahoma",
+        "Times New Roman",
+        "Trebuchet MS",
+        "Verdana",
+        "Webdings",
+        "Wingdings",
+        "Wingdings 2",
+        "Wingdings 3",
+        "Helvetica",
+        "Helvetica Neue",
+        "Geneva",
+        "Optima",
+        "Futura",
+        "Gill Sans",
+        "Baskerville",
+        "Didot",
+        "Palatino",
+        "Avenir",
+        "Avenir Next",
+        "Hoefler Text",
+        "Bodoni 72",
+        "Superclarendon",
+        "Rockwell",
+        "American Typewriter",
+        "Chalkboard SE",
+        "Marker Felt",
+        "Herculanum",
+        "Papyrus",
+        "Copperplate",
+        "Big Caslon",
+        "Monaco",
+        "Andale Mono",
+        "Courier New",
+        "PT Sans",
+        "PT Serif",
+        "Apple Color Emoji",
+        "Apple Symbols",
+        "Apple SD Gothic Neo"
+      ],
+      "count": 49,
+      "metricsHash": "24a67c0b"
+    },
+    "features": {
+      "localStorage": true,
+      "sessionStorage": true,
+      "indexedDB": true,
+      "openDatabase": false,
+      "caches": true,
+      "serviceWorker": true,
+      "webWorker": true,
+      "sharedWorker": true,
+      "webSocket": true,
+      "webRTC": true,
+      "fetch": true,
+      "bluetooth": true,
+      "usb": true,
+      "nfc": false,
+      "serial": true,
+      "hid": true,
+      "xr": true,
+      "gamepad": true,
+      "geolocation": true,
+      "deviceMotion": true,
+      "deviceOrientation": true,
+      "ambientLight": false,
+      "notifications": true,
+      "speechSynthesis": true,
+      "speechRecognition": true,
+      "mediaSession": true,
+      "paymentRequest": true,
+      "credentials": true,
+      "wakeLock": true,
+      "pictureInPicture": true,
+      "clipboard": true,
+      "share": true,
+      "contacts": false,
+      "fileSystem": true,
+      "eyeDropper": true,
+      "pointerEvents": true,
+      "touchEvents": true,
+      "wasm": true,
+      "wasmStreaming": true,
+      "offscreenCanvas": true,
+      "cryptoSubtle": true,
+      "intersectionObserver": true,
+      "resizeObserver": true,
+      "mutationObserver": true,
+      "broadcastChannel": true,
+      "scheduler": true,
+      "requestIdleCallback": true
+    },
+    "webrtc": {
+      "ips": [],
+      "ipv4": [],
+      "ipv6": []
+    },
+    "battery": {
+      "charging": false,
+      "chargingTime": null,
+      "dischargingTime": 41940,
+      "level": 1
+    },
+    "mediaDevices": [
+      {
+        "kind": "audioinput",
+        "label": "(requires permission)",
+        "deviceId": null,
+        "groupId": null
+      },
+      {
+        "kind": "videoinput",
+        "label": "(requires permission)",
+        "deviceId": null,
+        "groupId": null
+      },
+      {
+        "kind": "audiooutput",
+        "label": "(requires permission)",
+        "deviceId": null,
+        "groupId": null
+      }
+    ],
+    "network": {
+      "effectiveType": "4g",
+      "downlink": 9.95,
+      "rtt": 50,
+      "saveData": false,
+      "type": null
+    },
+    "mediaQueries": {
+      "darkMode": false,
+      "lightMode": true,
+      "reducedMotion": false,
+      "reducedTransparency": false,
+      "reducedData": false,
+      "highContrast": false,
+      "invertedColors": false,
+      "hdr": false,
+      "coarsePointer": true,
+      "finePointer": false,
+      "noPointer": false,
+      "hover": false,
+      "anyHover": false,
+      "colorGamutSRGB": true,
+      "colorGamutP3": false,
+      "colorGamutRec2020": false,
+      "print": false,
+      "monochrome": false,
+      "overflowInline": true
+    },
+    "permissions": {
+      "ambient-light-sensor": "unsupported",
+      "nfc": "unsupported",
+      "window-placement": "unsupported",
+      "geolocation": "prompt",
+      "notifications": "prompt",
+      "camera": "prompt",
+      "microphone": "prompt",
+      "clipboard-read": "prompt",
+      "clipboard-write": "granted",
+      "payment-handler": "granted",
+      "background-sync": "granted",
+      "persistent-storage": "prompt",
+      "accelerometer": "granted",
+      "gyroscope": "granted",
+      "magnetometer": "granted",
+      "midi": "prompt",
+      "background-fetch": "granted",
+      "screen-wake-lock": "granted",
+      "idle-detection": "prompt",
+      "display-capture": "prompt",
+      "storage-access": "granted"
+    },
+    "speechVoices": [],
+    "document": {
+      "characterSet": "UTF-8",
+      "contentType": "text/html",
+      "referrer": "",
+      "visibilityState": "visible",
+      "historyLength": 2,
+      "cookieCount": 0,
+      "domainLookupTime": null,
+      "URL": "https://botxbyte.com/fp.php?c=b",
+      "protocol": "https:",
+      "host": "botxbyte.com"
+    },
+    "math": {
+      "tan_neg1e300": -1.4214488238747245,
+      "sin_1": 0.8414709848078965,
+      "cos_1": 0.5403023058681398,
+      "atan2": 1.1071487177940904,
+      "exp_1": 2.718281828459045,
+      "log_pi": 1.1447298858494002,
+      "sqrt_2": 1.4142135623730951,
+      "pow_pi": 1.9275814160560206e-50,
+      "acos": 1.4470237543681796,
+      "asin": 0.12377257242671708,
+      "sinh_1": 1.1752011936438014,
+      "cosh_1": 1.5430806348152437,
+      "tanh_1": 0.7615941559557649,
+      "log2_pi": 1.6514961294723187,
+      "log10_pi": 0.4971498726941338,
+      "cbrt_2": 1.2599210498948732,
+      "hypot": 5,
+      "fround": 1.3370000123977661,
+      "clz32": 31,
+      "imul": 12,
+      "trunc": -1,
+      "sign": -1,
+      "expm1": 1.718281828459045,
+      "log1p": 0.6931471805599453
+    },
+    "performance": {
+      "timerResolutionMs": 0.1,
+      "timerGranularity": "coarse_100us",
+      "timerSamples": [
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1
+      ],
+      "navigationTiming": {
+        "type": "navigate",
+        "redirectCount": 0,
+        "domInteractive": 1147,
+        "domContentLoaded": 1310,
+        "loadEvent": 1342,
+        "ttfb": 390,
+        "transferSize": 38633,
+        "encodedBodySize": 38333
+      },
+      "memory": {
+        "jsHeapSizeLimit": 2248146944,
+        "totalJSHeapSize": 9824977,
+        "usedJSHeapSize": 7754621
+      },
+      "timeOrigin": 1773057240296.6,
+      "now": 9457
+    },
+    "stackTrace": {
+      "engine": "V8(Chrome/Node)",
+      "sample": "Error: fp |     at getStackTrace (https://botxbyte.com/fp.php?c=b:694:21) |     at collect (https://botxbyte.com/fp.php?c=b:3228:21)",
+      "lines": 4
+    },
+    "internals": {
+      "toStringTags": {
+        "Window": "[object Window]",
+        "Document": "[object HTMLDocument]",
+        "Navigator": "[object Navigator]",
+        "Screen": "[object Screen]",
+        "Location": "[object Location]",
+        "History": "[object History]"
+      },
+      "windowProto": "Window",
+      "docProto": "HTMLDocument",
+      "nativeChecks": {
+        "navigator.userAgent getter": "native",
+        "navigator.platform getter": "native",
+        "navigator.hardwareConcurrency": "native"
+      },
+      "iteratorSymbol": "symbol",
+      "asyncIterator": "symbol"
+    },
+    "cssSupport": {
+      "grid": true,
+      "flexbox": true,
+      "customProperties": true,
+      "containerQueries": true,
+      "hasSelector": true,
+      "subgrid": true,
+      "cascade": false,
+      "colorMix": true,
+      "nesting": true,
+      "scrollTimeline": true,
+      "viewTimeline": true,
+      "anchorPosition": true,
+      "startingStyle": false,
+      "math": true,
+      "clamp": true,
+      "aspectRatio": true,
+      "gap": true,
+      "backdropFilter": true,
+      "contain": true,
+      "contentVisibility": true,
+      "overscrollBehavior": true,
+      "scrollBehavior": true
+    },
+    "cssComputedStyles": {
+      "fontFamily": "\"Courier New\", monospace",
+      "fontSize": "16px",
+      "color": "rgb(201, 209, 217)",
+      "backgroundColor": "rgba(0, 0, 0, 0)",
+      "lineHeight": "normal",
+      "boxSizing": "border-box",
+      "nativeScrollbarWidth": 0
+    },
+    "cpu": {
+      "hardwareConcurrency": 20,
+      "deviceMemory": 8,
+      "wasm_supported": true,
+      "wasm_simd": true,
+      "wasm_threads": false,
+      "wasm_bulk_memory": true,
+      "wasm_sat_float": false,
+      "estimated_arch": "ARM64_NEON"
+    },
+    "architecture": {
+      "byte": -1,
+      "method": "int8_probe",
+      "float32Byte0": 0,
+      "wasmMemRead": "error",
+      "uaDataArch": null,
+      "uaDataBitness": null,
+      "uaDataPlatform": "Android",
+      "uaDataPlatformVersion": "14.0.0",
+      "uaDataModel": "2311DRK48G"
+    },
+    "refreshRate": {
+      "measured_fps": 60,
+      "snapped_hz": 60,
+      "avg_frame_ms": 16.667
+    },
+    "videoDecoder": {
+      "supported": true,
+      "codecs": {
+        "h264": "supported",
+        "h265": "supported",
+        "vp8": "supported",
+        "vp9": "supported",
+        "av1": "supported"
+      }
+    },
+    "behavioral": {
+      "mouse": null,
+      "keyboard": null,
+      "scroll": {
+        "eventCount": 0,
+        "totalDelta": 0,
+        "sample": []
+      },
+      "clicks": {
+        "count": 0,
+        "avgPressure": null,
+        "avgInterval": null
+      },
+      "touch": {
+        "radii": [],
+        "pressures": []
+      },
+      "sensors": {
+        "motion": {
+          "x": null,
+          "y": null,
+          "z": null,
+          "gx": null,
+          "gy": null,
+          "gz": null,
+          "interval": 16
+        },
+        "orientation": {
+          "alpha": null,
+          "beta": null,
+          "gamma": null,
+          "absolute": false
+        }
+      },
+      "sessionDuration": 8996
+    },
+    "fontPreferences": {
+      "default": 431.8359375,
+      "apple": 419.6015625,
+      "sans": 431.8359375,
+      "serif": 413.3671875,
+      "mono": 374.4609375,
+      "system": 419.6015625,
+      "min": 9
+    },
+    "webglPrecisions": {
+      "contextAttributes": {
+        "alpha": true,
+        "antialias": true,
+        "depth": true,
+        "desynchronized": false,
+        "failIfMajorPerformanceCaveat": false,
+        "powerPreference": "default",
+        "premultipliedAlpha": true,
+        "preserveDrawingBuffer": false,
+        "stencil": false,
+        "xrCompatible": false
+      },
+      "contextAttributesHash": "13f1d07c",
+      "shaderPrecisions": {
+        "VERTEX_LOW_FLOAT": {
+          "rangeMin": 127,
+          "rangeMax": 127,
+          "precision": 23
+        },
+        "VERTEX_MEDIUM_FLOAT": {
+          "rangeMin": 127,
+          "rangeMax": 127,
+          "precision": 23
+        },
+        "VERTEX_HIGH_FLOAT": {
+          "rangeMin": 127,
+          "rangeMax": 127,
+          "precision": 23
+        },
+        "VERTEX_LOW_INT": {
+          "rangeMin": 31,
+          "rangeMax": 30,
+          "precision": 0
+        },
+        "VERTEX_MEDIUM_INT": {
+          "rangeMin": 31,
+          "rangeMax": 30,
+          "precision": 0
+        },
+        "VERTEX_HIGH_INT": {
+          "rangeMin": 31,
+          "rangeMax": 30,
+          "precision": 0
+        },
+        "FRAGMENT_LOW_FLOAT": {
+          "rangeMin": 127,
+          "rangeMax": 127,
+          "precision": 23
+        },
+        "FRAGMENT_MEDIUM_FLOAT": {
+          "rangeMin": 127,
+          "rangeMax": 127,
+          "precision": 23
+        },
+        "FRAGMENT_HIGH_FLOAT": {
+          "rangeMin": 127,
+          "rangeMax": 127,
+          "precision": 23
+        },
+        "FRAGMENT_LOW_INT": {
+          "rangeMin": 31,
+          "rangeMax": 30,
+          "precision": 0
+        },
+        "FRAGMENT_MEDIUM_INT": {
+          "rangeMin": 31,
+          "rangeMax": 30,
+          "precision": 0
+        },
+        "FRAGMENT_HIGH_INT": {
+          "rangeMin": 31,
+          "rangeMax": 30,
+          "precision": 0
+        }
+      },
+      "shaderPrecisionsHash": "386364c0",
+      "extensionPresenceHash": "46f092ef"
+    },
+    "audioLatency": {
+      "baseLatency": 0.005333333333333333,
+      "outputLatency": 0,
+      "sampleRate": 48000,
+      "state": "suspended",
+      "maxChannelCount": 2,
+      "channelCount": 2,
+      "channelInterpretation": "speakers"
+    },
+    "domBlockers": {
+      "detected": false,
+      "blockedCount": 0,
+      "blockedClasses": [],
+      "allResults": {
+        "ad-banner": false,
+        "ad-unit": false,
+        "adsbox": false,
+        "ad-slot": false,
+        "adsbygoogle": false,
+        "banner_ad": false,
+        "pub_300x250": false,
+        "pub_300x250m": false,
+        "pub_728x90": false,
+        "text-ad": false,
+        "textAd": false,
+        "text_ad": false,
+        "text_ads": false,
+        "textads": false,
+        "sponsoredMidArticle": false,
+        "mmnetwork-ad": false,
+        "ad-text": false,
+        "googlead": false,
+        "GoogleActiveViewElement": false,
+        "#AdHeader": false,
+        "#AdContainer": false,
+        "#ad-container": false,
+        "#advertise": false,
+        "#adbar": false
+      }
+    },
+    "emojiBoundingBox": {
+      "width": 128,
+      "height": 168,
+      "top": -9999,
+      "bottom": -9831,
+      "left": -9999,
+      "right": -9871
+    },
+    "mathmlBoundingBox": {
+      "width": 33.125,
+      "height": 25.875,
+      "supported": true
+    },
+    "screenFrame": {
+      "top": 0,
+      "left": 0,
+      "right": 0,
+      "bottom": 0,
+      "availTop": null,
+      "availLeft": null
+    },
+    "colorProfile": {
+      "colorGamutString": "srgb",
+      "contrastPreference": 0,
+      "monochromeDepth": 0,
+      "colorDepth": 30,
+      "hdrCapability": false
+    },
+    "vendorFlavors": [
+      "chrome"
+    ],
+    "navigatorExtra": {
+      "oscpu": null,
+      "cpuClass": null,
+      "buildID": null,
+      "productSub": "20030107",
+      "taintEnabled": null,
+      "uaData_brands": [
+        {
+          "brand": "Chromium",
+          "version": "142"
+        },
+        {
+          "brand": "Google Chrome",
+          "version": "142"
+        },
+        {
+          "brand": "Not_A Brand",
+          "version": "99"
+        }
+      ],
+      "uaData_mobile": true,
+      "uaData_platform": "Android",
+      "privateClickMeasurement": false,
+      "webkitMessageHandlers": null,
+      "connection_saveData": false,
+      "mimeTypesLength": 2,
+      "pluginsLength": 5
+    },
+    "incognito": {
+      "isPrivate": false,
+      "method": null,
+      "confidence": "low"
+    },
+    "tampering": {
+      "anomalyScore": 15,
+      "signals": [
+        "no_chrome_runtime",
+        "toString_error"
+      ],
+      "webdriver": false,
+      "inIframe": false,
+      "devtoolsOpen": false,
+      "antiDetectBrowser": false
+    },
+    "mathHash": "100ac6dd",
+    "webglExtra": {
+      "unsupportedExtensions": [
+        "EXT_color_buffer_float",
+        "EXT_disjoint_timer_query_webgl2",
+        "OES_draw_buffers_indexed",
+        "WEBGL_clip_cull_distance",
+        "WEBGL_compressed_texture_atc",
+        "WEBKIT_WEBGL_compressed_texture_pvrtc"
+      ],
+      "unsupportedCount": 6,
+      "allParametersHash": "3f9e1c3d"
+    },
+    "dateTimeLocale": {
+      "numberFormatLocale": "hi",
+      "numberingSystem": "latn",
+      "formattedTestNumber": "12,34,567.89",
+      "dateTimeLocale": "hi",
+      "dateTimeCalendar": "gregory",
+      "dateTimeTimeZone": "Asia/Calcutta",
+      "relativeTimeLocale": "hi",
+      "collatorLocale": "hi",
+      "pluralRulesLocale": "hi",
+      "localeHash": "7d16abc7"
+    },
+    "multiMonitor": {
+      "isExtended": false,
+      "getScreenDetailsAPI": true,
+      "screenCount": null,
+      "screens": null,
+      "screenDetailsError": "NotAllowedError"
+    },
+    "pwaInfo": {
+      "displayMode": "browser",
+      "isStandalone": false,
+      "navigatorStandalone": false,
+      "isInstalled": false,
+      "launchQueue": true,
+      "getInstalledRelatedApps": true
+    },
+    "mediaCapabilities": {
+      "supported": true,
+      "codecs": {
+        "video/webm; codecs=\"vp9\"": {
+          "supported": false,
+          "smooth": false,
+          "powerEfficient": false
+        },
+        "audio/mp4; codecs=\"mp4a.40.2\"": {
+          "supported": true,
+          "smooth": true,
+          "powerEfficient": true
+        },
+        "audio/webm; codecs=\"opus\"": {
+          "supported": true,
+          "smooth": true,
+          "powerEfficient": true
+        },
+        "video/mp4; codecs=\"avc1.42E01E\"": {
+          "supported": true,
+          "smooth": true,
+          "powerEfficient": true
+        },
+        "video/mp4; codecs=\"av01.0.05M.08\"": {
+          "supported": true,
+          "smooth": true,
+          "powerEfficient": false
+        }
+      }
+    },
+    "rtcCapabilities": {
+      "supported": true,
+      "videoCodecs": [
+        {
+          "mimeType": "video/VP8",
+          "clockRate": 90000,
+          "sdpFmtpLine": null
+        },
+        {
+          "mimeType": "video/rtx",
+          "clockRate": 90000,
+          "sdpFmtpLine": null
+        },
+        {
+          "mimeType": "video/H264",
+          "clockRate": 90000,
+          "sdpFmtpLine": "level-asymmetry-allowed=1;packetization-mode=1;profile-level-id=42001f"
+        },
+        {
+          "mimeType": "video/H264",
+          "clockRate": 90000,
+          "sdpFmtpLine": "level-asymmetry-allowed=1;packetization-mode=0;profile-level-id=42001f"
+        },
+        {
+          "mimeType": "video/H264",
+          "clockRate": 90000,
+          "sdpFmtpLine": "level-asymmetry-allowed=1;packetization-mode=1;profile-level-id=42e01f"
+        },
+        {
+          "mimeType": "video/H264",
+          "clockRate": 90000,
+          "sdpFmtpLine": "level-asymmetry-allowed=1;packetization-mode=0;profile-level-id=42e01f"
+        },
+        {
+          "mimeType": "video/H264",
+          "clockRate": 90000,
+          "sdpFmtpLine": "level-asymmetry-allowed=1;packetization-mode=1;profile-level-id=4d001f"
+        },
+        {
+          "mimeType": "video/H264",
+          "clockRate": 90000,
+          "sdpFmtpLine": "level-asymmetry-allowed=1;packetization-mode=0;profile-level-id=4d001f"
+        },
+        {
+          "mimeType": "video/AV1",
+          "clockRate": 90000,
+          "sdpFmtpLine": "level-idx=5;profile=0;tier=0"
+        },
+        {
+          "mimeType": "video/VP9",
+          "clockRate": 90000,
+          "sdpFmtpLine": "profile-id=0"
+        },
+        {
+          "mimeType": "video/VP9",
+          "clockRate": 90000,
+          "sdpFmtpLine": "profile-id=2"
+        },
+        {
+          "mimeType": "video/H264",
+          "clockRate": 90000,
+          "sdpFmtpLine": "level-asymmetry-allowed=1;packetization-mode=1;profile-level-id=640034"
+        },
+        {
+          "mimeType": "video/H265",
+          "clockRate": 90000,
+          "sdpFmtpLine": "level-id=186;profile-id=1;tier-flag=0;tx-mode=SRST"
+        },
+        {
+          "mimeType": "video/red",
+          "clockRate": 90000,
+          "sdpFmtpLine": null
+        },
+        {
+          "mimeType": "video/ulpfec",
+          "clockRate": 90000,
+          "sdpFmtpLine": null
+        }
+      ],
+      "audioCodecs": [
+        {
+          "mimeType": "audio/opus",
+          "clockRate": 48000,
+          "channels": 2
+        },
+        {
+          "mimeType": "audio/red",
+          "clockRate": 48000,
+          "channels": 2
+        },
+        {
+          "mimeType": "audio/G722",
+          "clockRate": 8000,
+          "channels": 1
+        },
+        {
+          "mimeType": "audio/PCMU",
+          "clockRate": 8000,
+          "channels": 1
+        },
+        {
+          "mimeType": "audio/PCMA",
+          "clockRate": 8000,
+          "channels": 1
+        },
+        {
+          "mimeType": "audio/CN",
+          "clockRate": 8000,
+          "channels": 1
+        },
+        {
+          "mimeType": "audio/telephone-event",
+          "clockRate": 48000,
+          "channels": 1
+        },
+        {
+          "mimeType": "audio/telephone-event",
+          "clockRate": 8000,
+          "channels": 1
+        }
+      ],
+      "videoCount": 15,
+      "audioCount": 8
+    },
+    "perfObserverTypes": {
+      "supported": true,
+      "entryTypes": [
+        "element",
+        "event",
+        "first-input",
+        "largest-contentful-paint",
+        "layout-shift",
+        "long-animation-frame",
+        "longtask",
+        "mark",
+        "measure",
+        "navigation",
+        "paint",
+        "resource",
+        "visibility-state"
+      ],
+      "count": 13,
+      "hash": "45e14c21"
+    },
+    "featurePolicy": {
+      "supported": true,
+      "allowedFeatures": [
+        "geolocation",
+        "ch-ua-full-version-list",
+        "cross-origin-isolated",
+        "screen-wake-lock",
+        "on-device-speech-recognition",
+        "translator",
+        "publickey-credentials-get",
+        "shared-storage-select-url",
+        "ch-ua-arch",
+        "bluetooth",
+        "compute-pressure",
+        "ch-prefers-reduced-transparency",
+        "deferred-fetch",
+        "usb",
+        "ch-save-data",
+        "publickey-credentials-create",
+        "shared-storage",
+        "deferred-fetch-minimal",
+        "run-ad-auction",
+        "ch-downlink",
+        "ch-ua-form-factors",
+        "otp-credentials",
+        "payment",
+        "ch-ua",
+        "ch-ua-model",
+        "ch-ect",
+        "autoplay",
+        "camera",
+        "language-detector",
+        "private-state-token-issuance",
+        "digital-credentials-get",
+        "accelerometer",
+        "ch-ua-platform-version",
+        "idle-detection",
+        "private-aggregation",
+        "interest-cohort",
+        "ch-viewport-height",
+        "captured-surface-control",
+        "local-fonts",
+        "ch-ua-platform",
+        "midi",
+        "ch-ua-full-version",
+        "xr-spatial-tracking",
+        "clipboard-read",
+        "gamepad",
+        "display-capture",
+        "keyboard-map",
+        "join-ad-interest-group",
+        "aria-notify",
+        "ch-width",
+        "ch-prefers-reduced-motion",
+        "browsing-topics",
+        "encrypted-media",
+        "gyroscope",
+        "serial",
+        "ch-rtt",
+        "ch-ua-mobile",
+        "window-management",
+        "unload",
+        "ch-dpr",
+        "ch-prefers-color-scheme",
+        "ch-ua-wow64",
+        "attribution-reporting",
+        "fullscreen",
+        "identity-credentials-get",
+        "private-state-token-redemption",
+        "hid",
+        "summarizer",
+        "ch-ua-bitness",
+        "storage-access",
+        "sync-xhr",
+        "ch-device-memory",
+        "ch-viewport-width",
+        "picture-in-picture",
+        "magnetometer",
+        "clipboard-write",
+        "microphone"
+      ],
+      "allowedCount": 77,
+      "featureStates": {
+        "camera": true,
+        "microphone": true,
+        "geolocation": true,
+        "payment": true,
+        "usb": true,
+        "bluetooth": true,
+        "accelerometer": true,
+        "gyroscope": true,
+        "magnetometer": true,
+        "fullscreen": true,
+        "picture-in-picture": true,
+        "autoplay": true,
+        "encrypted-media": true,
+        "midi": true,
+        "screen-wake-lock": true,
+        "xr-spatial-tracking": true,
+        "ambient-light-sensor": false,
+        "battery": false,
+        "document-domain": false,
+        "sync-xhr": true,
+        "clipboard-read": true,
+        "clipboard-write": true
+      }
+    },
+    "apiPresence": {
+      "webTransport": true,
+      "webRTC_insertable_streams": true,
+      "compressionStream": true,
+      "decompressionStream": true,
+      "trustedTypes": true,
+      "reportingObserver": true,
+      "navigationAPI": true,
+      "sanitizerAPI": false,
+      "schedulerPostTask": true,
+      "taskController": true,
+      "idleDetector": true,
+      "documentPiP": true,
+      "storageManager": true,
+      "fileSystemAccess": true,
+      "accessHandle": true,
+      "cssHoudini": true,
+      "audioWorklet": true,
+      "abortSignalAny": true,
+      "abortSignalTimeout": true,
+      "structuredClone": true,
+      "webLocks": true,
+      "keyboardAPI": true,
+      "presentationAPI": true,
+      "midiAccess": true,
+      "digitalGoods": false,
+      "userActivation": true,
+      "windowControlsOverlay": true,
+      "cookieStore": true,
+      "backgroundFetch": true,
+      "periodicSync": true,
+      "contentIndex": false,
+      "paymentHandler": false,
+      "canvasRoundRect": true,
+      "canvasReset": true,
+      "canvasFilter": true,
+      "fontsReadyAPI": true,
+      "fontFaceSet": true,
+      "cssTypedOM": true,
+      "cssLayoutWorklet": false,
+      "eyeDropper": true,
+      "getScreenDetails": true,
+      "virtualKeyboard": true,
+      "handwriting": false,
+      "ink": true,
+      "serial": true,
+      "hid": true,
+      "userAgentData": true
+    },
+    "userActivation": {
+      "supported": true,
+      "isActive": false,
+      "hasBeenActive": false
+    },
+    "networkExtended": {
+      "effectiveType": "4g",
+      "downlink": 9.95,
+      "downlinkMax": null,
+      "rtt": 50,
+      "saveData": false,
+      "type": null,
+      "onchange": true
+    },
+    "eventCounts": {
+      "supported": true,
+      "counts": {
+        "pointerdown": 0,
+        "touchend": 0,
+        "input": 0,
+        "keydown": 0,
+        "mouseleave": 0,
+        "mouseenter": 0,
+        "drop": 0,
+        "beforeinput": 0,
+        "pointerenter": 0,
+        "dragend": 0,
+        "pointercancel": 0,
+        "compositionupdate": 0,
+        "mousedown": 0,
+        "dragleave": 0,
+        "dragover": 0,
+        "mouseup": 0,
+        "pointerover": 0,
+        "lostpointercapture": 0,
+        "mouseover": 0,
+        "gotpointercapture": 0,
+        "dblclick": 0,
+        "keyup": 0,
+        "keypress": 0,
+        "pointerup": 0,
+        "compositionstart": 0,
+        "auxclick": 0,
+        "dragstart": 0,
+        "touchstart": 0,
+        "compositionend": 0,
+        "pointerout": 0,
+        "dragenter": 0,
+        "touchcancel": 0,
+        "click": 0,
+        "contextmenu": 0,
+        "mouseout": 0,
+        "pointerleave": 0
+      },
+      "totalEvents": 0
+    },
+    "uaHighEntropy": {
+      "supported": true,
+      "architecture": null,
+      "bitness": null,
+      "brands": [
+        {
+          "brand": "Chromium",
+          "version": "142"
+        },
+        {
+          "brand": "Google Chrome",
+          "version": "142"
+        },
+        {
+          "brand": "Not_A Brand",
+          "version": "99"
+        }
+      ],
+      "fullVersionList": [
+        {
+          "brand": "Chromium",
+          "version": "142.0.7444.158"
+        },
+        {
+          "brand": "Google Chrome",
+          "version": "142.0.7444.158"
+        },
+        {
+          "brand": "Not_A Brand",
+          "version": "99.0.0.0"
+        }
+      ],
+      "mobile": true,
+      "model": "2311DRK48G",
+      "platform": "Android",
+      "platformVersion": "14.0.0",
+      "uaFullVersion": "142.0.7444.158"
+    },
+    "storageInfo": {
+      "storageEstimate": {
+        "quota": 147064317542,
+        "usage": 0,
+        "usageDetails": []
+      },
+      "persistentStorage": false,
+      "hasStorageAccess": true,
+      "cookieStoreSupported": true
+    },
+    "fontLoading": {
+      "supported": true,
+      "readyTimeMs": 0,
+      "status": "loaded",
+      "loadedFamilies": 0
+    },
+    "hypervisorProbe": {
+      "mean_ms": 0,
+      "stdDev_ms": 0,
+      "min_ms": 0,
+      "max_ms": 0,
+      "cv_percent": 0,
+      "possibleVM": false
+    },
+    "memoryPattern": {
+      "supported": true,
+      "allocations": [
+        {
+          "pages": 1,
+          "sizeKB": 64,
+          "allocMs": 0.4,
+          "touchMs": 0
+        },
+        {
+          "pages": 10,
+          "sizeKB": 640,
+          "allocMs": 0,
+          "touchMs": 0
+        },
+        {
+          "pages": 50,
+          "sizeKB": 3200,
+          "allocMs": 0,
+          "touchMs": 0.1
+        },
+        {
+          "pages": 100,
+          "sizeKB": 6400,
+          "allocMs": 0,
+          "touchMs": 0
+        },
+        {
+          "pages": 256,
+          "sizeKB": 16384,
+          "allocMs": 0,
+          "touchMs": 0
+        }
+      ],
+      "patternHash": "14bf7386"
+    },
+    "fontsByCSS": {
+      "detected": [
+        "Arial",
+        "Georgia",
+        "Helvetica",
+        "Verdana",
+        "Times New Roman",
+        "Courier New",
+        "Impact",
+        "Trebuchet MS",
+        "Comic Sans MS",
+        "Baskerville",
+        "Futura",
+        "Gill Sans",
+        "Optima",
+        "Didot",
+        "Helvetica Neue",
+        "Geneva",
+        "Monaco",
+        "Avenir",
+        "Avenir Next",
+        "Hoefler Text",
+        "American Typewriter",
+        "Apple Color Emoji"
+      ],
+      "count": 22,
+      "method": "css_offsetWidth"
+    },
+    "extendedPermissions": {
+      "supported": true,
+      "permissions": {
+        "push": "unsupported",
+        "speaker-selection": "unsupported",
+        "fullscreen": "unsupported",
+        "window-management": "prompt",
+        "local-fonts": "prompt",
+        "captured-surface-control": "prompt",
+        "keyboard-lock": "granted",
+        "pointer-lock": "granted"
+      }
+    },
+    "securityContext": {
+      "crossOriginIsolated": false,
+      "isSecureContext": true,
+      "originAgentCluster": true,
+      "documentPrerendering": false,
+      "credentialless": false,
+      "hasPrivateToken": true,
+      "openDatabaseStatus": "absent",
+      "canvasColorSpaceP3": true,
+      "canvasColorSpaceSRGB": true
+    },
+    "visualViewport": {
+      "supported": true,
+      "width": 388,
+      "height": 783,
+      "offsetLeft": 0,
+      "offsetTop": 0,
+      "pageLeft": 0,
+      "pageTop": 0,
+      "scale": 1
+    },
+    "mediaConstraints": {
+      "supported": true,
+      "constraints": {
+        "aspectRatio": true,
+        "autoGainControl": true,
+        "brightness": true,
+        "channelCount": true,
+        "colorTemperature": true,
+        "contrast": true,
+        "deviceId": true,
+        "displaySurface": true,
+        "echoCancellation": true,
+        "exposureCompensation": true,
+        "exposureMode": true,
+        "exposureTime": true,
+        "facingMode": true,
+        "focusDistance": true,
+        "focusMode": true,
+        "frameRate": true,
+        "groupId": true,
+        "height": true,
+        "iso": true,
+        "latency": true,
+        "noiseSuppression": true,
+        "pan": true,
+        "pointsOfInterest": true,
+        "resizeMode": true,
+        "restrictOwnAudio": true,
+        "sampleRate": true,
+        "sampleSize": true,
+        "saturation": true,
+        "sharpness": true,
+        "suppressLocalAudioPlayback": true,
+        "tilt": true,
+        "torch": true,
+        "voiceIsolation": true,
+        "whiteBalanceMode": true,
+        "width": true,
+        "zoom": true
+      },
+      "count": 36,
+      "hash": "6ff3cba5"
+    },
+    "jsEngine": {
+      "weakRef": true,
+      "finalizationRegistry": true,
+      "atomics": true,
+      "sharedArrayBuffer": false,
+      "readableStream": true,
+      "writableStream": true,
+      "transformStream": true,
+      "byobReader": true,
+      "logicalAssign": true,
+      "optionalChaining": true,
+      "nullishCoalescing": true,
+      "privateClassFields": true,
+      "arrayAt": true,
+      "arrayFindLast": true,
+      "objectHasOwn": true,
+      "promiseAny": true,
+      "structuredClone": true,
+      "presentErrorTypes": [
+        "Error",
+        "EvalError",
+        "RangeError",
+        "ReferenceError",
+        "SyntaxError",
+        "TypeError",
+        "URIError",
+        "AggregateError"
+      ],
+      "cryptoRandomUUID": true,
+      "queueMicrotask": true,
+      "reportError": true,
+      "adoptedStyleSheets": true,
+      "interactionCount": false
+    },
+    "audioBaseLatencySimple": 0.005333333333333333,
+    "contrastPreference": 0,
+    "monochromeDepth": 0,
+    "privateClickMeasurement": false,
+    "fontsSubset": {
+      "detected": [
+        "Arial Unicode MS",
+        "Gill Sans",
+        "Helvetica Neue",
+        "Arial",
+        "Courier New",
+        "Georgia",
+        "Helvetica",
+        "Times New Roman",
+        "Verdana",
+        "Monaco"
+      ],
+      "count": 10,
+      "hash": "147e2a99",
+      "testedSubset": [
+        "Arial Unicode MS",
+        "Gill Sans",
+        "Helvetica Neue",
+        "Menlo",
+        "Arial",
+        "Courier New",
+        "Georgia",
+        "Helvetica",
+        "Times New Roman",
+        "Verdana",
+        "Monaco",
+        "Lucida Console",
+        "Consolas",
+        "Segoe UI",
+        "SF Pro"
+      ]
+    },
+    "invertedColors": false,
+    "touchSupport": {
+      "maxTouchPoints": 5,
+      "touchEvent": true,
+      "touchStart": true
+    },
+    "screenResolution": [
+      783,
+      388
+    ],
+    "screenFrameArray": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "reducedTransparency": false,
+    "reducedMotion": false,
+    "forcedColors": false,
+    "cookiesEnabled": true,
+    "colorGamut": "srgb",
+    "hdr": false,
+    "svgRendering": {
+      "supported": true,
+      "measurements": {
+        "pathLength": 375.2419,
+        "pathBBox": {
+          "x": 10,
+          "y": 45,
+          "width": 340,
+          "height": 70
+        },
+        "rectBBox": {
+          "x": 10,
+          "y": 10,
+          "width": 50,
+          "height": 50
+        },
+        "ellipseBBox": {
+          "x": 50,
+          "y": 70,
+          "width": 100,
+          "height": 60
+        },
+        "textBBox": {
+          "x": 10,
+          "y": 135,
+          "width": 79.84,
+          "height": 18.5
+        }
+      },
+      "hash": "76be8fb5"
+    },
+    "htmlElement": {
+      "protoChain": [
+        "HTMLDivElement",
+        "HTMLElement",
+        "Element",
+        "Node",
+        "EventTarget",
+        "Object"
+      ],
+      "features": {
+        "protoChain": [
+          "HTMLDivElement",
+          "HTMLElement",
+          "Element",
+          "Node",
+          "EventTarget",
+          "Object"
+        ],
+        "shadowRoot": true,
+        "animate": true,
+        "getAnimations": true,
+        "computedStyleMap": true,
+        "attributeStyleMap": true,
+        "part": true,
+        "slot": true,
+        "assignedSlot": true,
+        "inputShowPicker": true,
+        "inputCheckValidity": true,
+        "inputSelectionStart": true,
+        "customElements": true,
+        "customElementsDefine": true,
+        "fragmentAppend": true,
+        "fragmentPrepend": true,
+        "fragmentReplaceChildren": true
+      },
+      "hash": "69fbc435"
+    },
+    "domRect": {
+      "rects": [
+        {
+          "idx": 0,
+          "width": 100,
+          "height": 50,
+          "x": -9999,
+          "y": -9999
+        },
+        {
+          "idx": 1,
+          "width": 100.5,
+          "height": 50.5,
+          "x": -9999,
+          "y": -9949
+        },
+        {
+          "idx": 2,
+          "width": 106.0664,
+          "height": 106.0664,
+          "x": -10002.0332,
+          "y": -9926.5332
+        },
+        {
+          "idx": 3,
+          "width": 150,
+          "height": 75,
+          "x": -10024,
+          "y": -9861
+        },
+        {
+          "idx": 4,
+          "width": 86.4141,
+          "height": 18.5,
+          "x": -9999,
+          "y": -9798.5
+        },
+        {
+          "idx": 5,
+          "width": 63.1484,
+          "height": 18,
+          "x": -9912.5859,
+          "y": -9798.5
+        },
+        {
+          "idx": 6,
+          "width": 67.4297,
+          "height": 18,
+          "x": -9849.4375,
+          "y": -9798.5
+        },
+        {
+          "idx": 7,
+          "width": 100,
+          "height": 50,
+          "x": -9999,
+          "y": -9779
+        },
+        {
+          "idx": 8,
+          "width": 120,
+          "height": 70,
+          "x": -9999,
+          "y": -9729
+        },
+        {
+          "idx": 9,
+          "width": 100,
+          "height": 50,
+          "x": -9989,
+          "y": -9649
+        }
+      ],
+      "hash": "494425ed"
+    },
+    "contentWindow": {
+      "features": {
+        "hasContentWindow": true,
+        "contentWindowType": "[object Object]",
+        "cwLocation": "object",
+        "cwDocument": "blocked",
+        "cwNavigator": "blocked",
+        "cwParent": true,
+        "cwTop": true,
+        "cwFrameElement": "blocked",
+        "hasContentDocument": false,
+        "srcdocSupport": true,
+        "sandboxSupport": true,
+        "sandboxTokens": [],
+        "lazyLoadSupport": true,
+        "referrerPolicySupport": true,
+        "allowSupport": true,
+        "cspSupport": true
+      },
+      "hash": "4a35cfd9"
+    },
+    "consoleErrors": {
+      "errors": [
+        {
+          "idx": 0,
+          "name": "Error",
+          "messageLength": 4,
+          "hasStack": true,
+          "stackLines": 6,
+          "stackFormat": "v8"
+        },
+        {
+          "idx": 1,
+          "name": "TypeError",
+          "messageLength": 9,
+          "hasStack": true,
+          "stackLines": 6,
+          "stackFormat": "v8"
+        },
+        {
+          "idx": 2,
+          "name": "RangeError",
+          "messageLength": 10,
+          "hasStack": true,
+          "stackLines": 6,
+          "stackFormat": "v8"
+        },
+        {
+          "idx": 3,
+          "name": "SyntaxError",
+          "messageLength": 11,
+          "hasStack": true,
+          "stackLines": 6,
+          "stackFormat": "v8"
+        },
+        {
+          "idx": 4,
+          "name": "ReferenceError",
+          "messageLength": 8,
+          "hasStack": true,
+          "stackLines": 6,
+          "stackFormat": "v8"
+        },
+        {
+          "idx": 5,
+          "name": "URIError",
+          "messageLength": 8,
+          "hasStack": true,
+          "stackLines": 6,
+          "stackFormat": "v8"
+        }
+      ],
+      "evalError": {
+        "name": "SyntaxError",
+        "hasLineNumber": false,
+        "hasColumnNumber": false,
+        "hasFileName": false
+      },
+      "jsonError": {
+        "name": "SyntaxError",
+        "messagePattern": "Expected property na"
+      },
+      "funcError": {
+        "name": "SyntaxError",
+        "messagePattern": "Unexpected token '{'"
+      },
+      "hash": "37c2c22a"
+    },
+    "textMetrics": {
+      "measurements": [
+        {
+          "font": "Arial",
+          "size": 12,
+          "width": 347.0566,
+          "actualBoundingBoxAscent": 9.3809,
+          "actualBoundingBoxDescent": 2.5254,
+          "actualBoundingBoxLeft": -0.2813,
+          "actualBoundingBoxRight": 346.3184,
+          "fontBoundingBoxAscent": 11,
+          "fontBoundingBoxDescent": 3
+        },
+        {
+          "font": "Arial",
+          "size": 16,
+          "width": 462.7422,
+          "actualBoundingBoxAscent": 12.5078,
+          "actualBoundingBoxDescent": 3.3672,
+          "actualBoundingBoxLeft": -0.375,
+          "actualBoundingBoxRight": 461.7578,
+          "fontBoundingBoxAscent": 14,
+          "fontBoundingBoxDescent": 3
+        },
+        {
+          "font": "Arial",
+          "size": 24,
+          "width": 694.1133,
+          "actualBoundingBoxAscent": 18.7617,
+          "actualBoundingBoxDescent": 5.0508,
+          "actualBoundingBoxLeft": -0.5625,
+          "actualBoundingBoxRight": 692.6367,
+          "fontBoundingBoxAscent": 22,
+          "fontBoundingBoxDescent": 5
+        },
+        {
+          "font": "Times New Roman",
+          "size": 12,
+          "width": 318.3281,
+          "actualBoundingBoxAscent": 8.6133,
+          "actualBoundingBoxDescent": 2.5898,
+          "actualBoundingBoxLeft": -0.3633,
+          "actualBoundingBoxRight": 317.9121,
+          "fontBoundingBoxAscent": 11,
+          "fontBoundingBoxDescent": 3
+        },
+        {
+          "font": "Times New Roman",
+          "size": 16,
+          "width": 424.4375,
+          "actualBoundingBoxAscent": 11.4844,
+          "actualBoundingBoxDescent": 3.4531,
+          "actualBoundingBoxLeft": -0.4844,
+          "actualBoundingBoxRight": 423.8828,
+          "fontBoundingBoxAscent": 14,
+          "fontBoundingBoxDescent": 3
+        },
+        {
+          "font": "Times New Roman",
+          "size": 24,
+          "width": 636.6563,
+          "actualBoundingBoxAscent": 17.2266,
+          "actualBoundingBoxDescent": 5.1797,
+          "actualBoundingBoxLeft": -0.7266,
+          "actualBoundingBoxRight": 635.8242,
+          "fontBoundingBoxAscent": 21,
+          "fontBoundingBoxDescent": 5
+        },
+        {
+          "font": "Courier New",
+          "size": 12,
+          "width": 424.8691,
+          "actualBoundingBoxAscent": 7.9746,
+          "actualBoundingBoxDescent": 2.2617,
+          "actualBoundingBoxLeft": -0.8379,
+          "actualBoundingBoxRight": 423.7852,
+          "fontBoundingBoxAscent": 10,
+          "fontBoundingBoxDescent": 4
+        },
+        {
+          "font": "Courier New",
+          "size": 16,
+          "width": 566.4922,
+          "actualBoundingBoxAscent": 10.6328,
+          "actualBoundingBoxDescent": 3.0156,
+          "actualBoundingBoxLeft": -1.1172,
+          "actualBoundingBoxRight": 565.0469,
+          "fontBoundingBoxAscent": 13,
+          "fontBoundingBoxDescent": 5
+        },
+        {
+          "font": "Courier New",
+          "size": 24,
+          "width": 849.7383,
+          "actualBoundingBoxAscent": 15.9492,
+          "actualBoundingBoxDescent": 4.5234,
+          "actualBoundingBoxLeft": -1.6758,
+          "actualBoundingBoxRight": 847.5703,
+          "fontBoundingBoxAscent": 20,
+          "fontBoundingBoxDescent": 7
+        },
+        {
+          "font": "Georgia",
+          "size": 12,
+          "width": 343.6289,
+          "actualBoundingBoxAscent": 9.0762,
+          "actualBoundingBoxDescent": 2.6016,
+          "actualBoundingBoxLeft": -0.0879,
+          "actualBoundingBoxRight": 342.9902,
+          "fontBoundingBoxAscent": 11,
+          "fontBoundingBoxDescent": 3
+        },
+        {
+          "font": "Georgia",
+          "size": 16,
+          "width": 458.1719,
+          "actualBoundingBoxAscent": 12.1016,
+          "actualBoundingBoxDescent": 3.4688,
+          "actualBoundingBoxLeft": -0.1172,
+          "actualBoundingBoxRight": 457.3203,
+          "fontBoundingBoxAscent": 15,
+          "fontBoundingBoxDescent": 4
+        },
+        {
+          "font": "Georgia",
+          "size": 24,
+          "width": 687.2578,
+          "actualBoundingBoxAscent": 18.1523,
+          "actualBoundingBoxDescent": 5.2031,
+          "actualBoundingBoxLeft": -0.1758,
+          "actualBoundingBoxRight": 685.9805,
+          "fontBoundingBoxAscent": 22,
+          "fontBoundingBoxDescent": 5
+        },
+        {
+          "font": "Verdana",
+          "size": 12,
+          "width": 399.6738,
+          "actualBoundingBoxAscent": 9.2344,
+          "actualBoundingBoxDescent": 2.4785,
+          "actualBoundingBoxLeft": null,
+          "actualBoundingBoxRight": 398.8008,
+          "fontBoundingBoxAscent": 12,
+          "fontBoundingBoxDescent": 3
+        },
+        {
+          "font": "Verdana",
+          "size": 16,
+          "width": 532.8984,
+          "actualBoundingBoxAscent": 12.3125,
+          "actualBoundingBoxDescent": 3.3047,
+          "actualBoundingBoxLeft": null,
+          "actualBoundingBoxRight": 531.7344,
+          "fontBoundingBoxAscent": 16,
+          "fontBoundingBoxDescent": 3
+        },
+        {
+          "font": "Verdana",
+          "size": 24,
+          "width": 799.3477,
+          "actualBoundingBoxAscent": 18.4688,
+          "actualBoundingBoxDescent": 4.957,
+          "actualBoundingBoxLeft": null,
+          "actualBoundingBoxRight": 797.6016,
+          "fontBoundingBoxAscent": 24,
+          "fontBoundingBoxDescent": 5
+        },
+        {
+          "font": "Helvetica",
+          "size": 12,
+          "width": 347.0566,
+          "actualBoundingBoxAscent": 9.3047,
+          "actualBoundingBoxDescent": 2.6543,
+          "actualBoundingBoxLeft": -0.1934,
+          "actualBoundingBoxRight": 346.6055,
+          "fontBoundingBoxAscent": 11,
+          "fontBoundingBoxDescent": 3
+        },
+        {
+          "font": "Helvetica",
+          "size": 16,
+          "width": 462.7422,
+          "actualBoundingBoxAscent": 12.4063,
+          "actualBoundingBoxDescent": 3.5391,
+          "actualBoundingBoxLeft": -0.2578,
+          "actualBoundingBoxRight": 462.1406,
+          "fontBoundingBoxAscent": 14,
+          "fontBoundingBoxDescent": 4
+        },
+        {
+          "font": "Helvetica",
+          "size": 24,
+          "width": 694.1133,
+          "actualBoundingBoxAscent": 18.6094,
+          "actualBoundingBoxDescent": 5.3086,
+          "actualBoundingBoxLeft": -0.3867,
+          "actualBoundingBoxRight": 693.2109,
+          "fontBoundingBoxAscent": 22,
+          "fontBoundingBoxDescent": 6
+        }
+      ],
+      "count": 18,
+      "hash": "7c9efa4b"
+    },
+    "applePayCapability": {
+      "apiAvailable": false,
+      "canMakePayments": null,
+      "canMakePaymentsWithActiveCard": null,
+      "merchantIdentifier": null,
+      "paymentRequestAPI": true,
+      "applePayPaymentMethod": false,
+      "paymentRequestSupported": true
+    },
+    "serviceWorker": {
+      "supported": true,
+      "controller": false,
+      "ready": "timeout",
+      "state": null,
+      "features": {
+        "pushManager": true,
+        "sync": true,
+        "periodicSync": true,
+        "backgroundFetch": true,
+        "cacheAPI": true,
+        "notifications": true,
+        "paymentManager": true,
+        "cookieStore": true,
+        "getRegistrations": true
+      }
+    },
+    "cssMediaQueriesExtended": {
+      "queries": {
+        "prefers-color-scheme: dark": false,
+        "prefers-color-scheme: light": true,
+        "prefers-reduced-motion: reduce": false,
+        "prefers-reduced-motion: no-preference": true,
+        "prefers-contrast: more": false,
+        "prefers-contrast: less": false,
+        "prefers-contrast: no-preference": true,
+        "prefers-reduced-transparency: reduce": false,
+        "prefers-reduced-transparency: no-preference": true,
+        "inverted-colors: inverted": false,
+        "inverted-colors: none": false,
+        "forced-colors: active": false,
+        "forced-colors: none": true,
+        "any-hover: hover": false,
+        "any-hover: none": true,
+        "hover: hover": false,
+        "hover: none": true,
+        "any-pointer: fine": false,
+        "any-pointer: coarse": true,
+        "any-pointer: none": false,
+        "pointer: fine": false,
+        "pointer: coarse": true,
+        "pointer: none": false,
+        "display-mode: fullscreen": false,
+        "display-mode: standalone": false,
+        "display-mode: minimal-ui": false,
+        "display-mode: browser": true,
+        "orientation: portrait": true,
+        "orientation: landscape": false,
+        "color-gamut: srgb": true,
+        "color-gamut: p3": false,
+        "color-gamut: rec2020": false,
+        "dynamic-range: standard": true,
+        "dynamic-range: high": false,
+        "update: fast": true,
+        "update: slow": false,
+        "update: none": false,
+        "overflow-block: scroll": true,
+        "overflow-inline: scroll": true,
+        "scripting: enabled": true,
+        "scripting: none": false
+      },
+      "trueCount": 17,
+      "hash": "2e0e2486"
+    }
+  },
+  "generated": "2026-03-09T11:54:09+00:00"
+}
