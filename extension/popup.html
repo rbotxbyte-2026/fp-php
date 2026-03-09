@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      width: 320px;
+      padding: 16px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #1a1a2e;
+      color: #eee;
+    }
+    h1 {
+      font-size: 16px;
+      margin-bottom: 12px;
+      color: #00d4ff;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    h1::before {
+      content: '🛡️';
+    }
+    .section {
+      margin-bottom: 16px;
+    }
+    .section-title {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #888;
+      margin-bottom: 8px;
+    }
+    .toggle-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 12px;
+      background: #252542;
+      border-radius: 6px;
+      margin-bottom: 8px;
+    }
+    .toggle-label {
+      font-size: 13px;
+    }
+    .toggle {
+      position: relative;
+      width: 44px;
+      height: 24px;
+    }
+    .toggle input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: #444;
+      border-radius: 24px;
+      transition: 0.3s;
+    }
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 18px;
+      width: 18px;
+      left: 3px;
+      bottom: 3px;
+      background: #fff;
+      border-radius: 50%;
+      transition: 0.3s;
+    }
+    input:checked + .slider {
+      background: #00d4ff;
+    }
+    input:checked + .slider:before {
+      transform: translateX(20px);
+    }
+    .btn {
+      width: 100%;
+      padding: 10px;
+      border: none;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.2s;
+      margin-bottom: 8px;
+    }
+    .btn-primary {
+      background: #00d4ff;
+      color: #000;
+    }
+    .btn-primary:hover {
+      background: #00b8e6;
+    }
+    .btn-secondary {
+      background: #252542;
+      color: #eee;
+      border: 1px solid #444;
+    }
+    .btn-secondary:hover {
+      background: #333355;
+    }
+    .btn-danger {
+      background: #ff4757;
+      color: #fff;
+    }
+    .btn-danger:hover {
+      background: #ff3344;
+    }
+    .status {
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-size: 12px;
+      margin-bottom: 12px;
+      display: none;
+    }
+    .status.success {
+      display: block;
+      background: rgba(0, 212, 255, 0.15);
+      border: 1px solid #00d4ff;
+      color: #00d4ff;
+    }
+    .status.error {
+      display: block;
+      background: rgba(255, 71, 87, 0.15);
+      border: 1px solid #ff4757;
+      color: #ff4757;
+    }
+    .status.warning {
+      display: block;
+      background: rgba(255, 193, 7, 0.15);
+      border: 1px solid #ffc107;
+      color: #ffc107;
+    }
+    .file-input {
+      display: none;
+    }
+    .info-box {
+      background: #252542;
+      border-radius: 6px;
+      padding: 10px;
+      font-size: 11px;
+      color: #888;
+      margin-top: 12px;
+    }
+    .info-box strong {
+      color: #00d4ff;
+      display: block;
+      margin-bottom: 4px;
+    }
+    .loaded-info {
+      background: #252542;
+      border-radius: 6px;
+      padding: 10px;
+      font-size: 11px;
+      margin-bottom: 12px;
+    }
+    .loaded-info .label {
+      color: #888;
+    }
+    .loaded-info .value {
+      color: #00d4ff;
+      font-family: monospace;
+    }
+    .stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-top: 8px;
+    }
+    .stat-item {
+      background: #1a1a2e;
+      padding: 6px 8px;
+      border-radius: 4px;
+    }
+    .stat-item .num {
+      font-size: 16px;
+      font-weight: 600;
+      color: #00d4ff;
+    }
+    .stat-item .desc {
+      font-size: 9px;
+      color: #666;
+      text-transform: uppercase;
+    }
+  </style>
+</head>
+<body>
+  <h1>FP Spoofer</h1>
+  
+  <div id="status" class="status"></div>
+  
+  <div class="section">
+    <div class="section-title">Spoofing Control</div>
+    <div class="toggle-row">
+      <span class="toggle-label">Enable Spoofing</span>
+      <label class="toggle">
+        <input type="checkbox" id="enableSpoof">
+        <span class="slider"></span>
+      </label>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Import Profile</div>
+    <input type="file" id="fileInput" class="file-input" accept=".json">
+    <button class="btn btn-primary" id="importBtn">📁 Import JSON Profile</button>
+    <button class="btn btn-secondary" id="exportBtn">💾 Export Current Profile</button>
+  </div>
+
+  <div id="loadedProfile" class="loaded-info" style="display: none;">
+    <div><span class="label">Loaded Profile:</span></div>
+    <div><span class="label">User Agent: </span><span class="value" id="loadedUA">-</span></div>
+    <div><span class="label">Platform: </span><span class="value" id="loadedPlatform">-</span></div>
+    <div class="stats">
+      <div class="stat-item">
+        <div class="num" id="statSignals">0</div>
+        <div class="desc">Signals</div>
+      </div>
+      <div class="stat-item">
+        <div class="num" id="statWebGL">-</div>
+        <div class="desc">WebGL</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Actions</div>
+    <button class="btn btn-secondary" id="reloadBtn">🔄 Reload Active Tab</button>
+    <button class="btn btn-danger" id="clearBtn">🗑️ Clear Profile</button>
+  </div>
+
+  <div class="info-box">
+    <strong>How to use:</strong>
+    1. Import a JSON fingerprint profile (output.json format)<br>
+    2. Enable spoofing toggle<br>
+    3. Reload the page to apply spoofed values
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

@@ -1,0 +1,2553 @@
+{
+    "server": {
+        "ip": "2405:f600:8:d4f6:dcb2:58c5:3792:ec69",
+        "protocol": "HTTP\/1.0",
+        "https": true,
+        "port": "80",
+        "request_time": "2026-03-09 12:58:06",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/145.0.0.0 Mobile Safari\/537.36",
+        "accept": "*\/*",
+        "accept_language": "en-IN,en;q=0.9,gu;q=0.8,en-GB;q=0.7,en-US;q=0.6,hi;q=0.5",
+        "accept_encoding": "gzip, br",
+        "connection": "close",
+        "cache_control": null,
+        "dnt": "1",
+        "upgrade_insecure": null,
+        "referer": "https:\/\/botxbyte.com\/fp.php",
+        "origin": "https:\/\/botxbyte.com",
+        "te": null,
+        "priority": "u=1, i",
+        "sec_fetch_site": "same-origin",
+        "sec_fetch_mode": "cors",
+        "sec_fetch_dest": "empty",
+        "sec_fetch_user": null,
+        "ch_ua": "\"Not:A-Brand\";v=\"99\", \"Google Chrome\";v=\"145\", \"Chromium\";v=\"145\"",
+        "ch_ua_mobile": "?1",
+        "ch_ua_platform": "\"Android\"",
+        "ch_ua_arch": null,
+        "ch_ua_bitness": null,
+        "ch_ua_full_version_list": null,
+        "ch_ua_model": null,
+        "x_forwarded_for": "2405:f600:8:d4f6:dcb2:58c5:3792:ec69, 162.158.155.171",
+        "x_real_ip": null,
+        "via": null,
+        "cf_connecting_ip": "2405:f600:8:d4f6:dcb2:58c5:3792:ec69",
+        "cf_ipcountry": "IN",
+        "cf_ray": "9d9a3fcb9a663a40-EWR",
+        "cdn_loop": "cloudflare; loops=1",
+        "x_forwarded_proto": "https",
+        "ja3_hash": null,
+        "ja3_string": null,
+        "ja4_hash": null,
+        "tls_client_hello_hex": null,
+        "all_headers": {
+            "Cf-Visitor": "{\"scheme\":\"https\"}",
+            "Cf-Ipcountry": "IN",
+            "Cf-Connecting-Ip": "2405:f600:8:d4f6:dcb2:58c5:3792:ec69",
+            "Cdn-Loop": "cloudflare; loops=1",
+            "Cf-Ray": "9d9a3fcb9a663a40-EWR",
+            "Accept-Language": "en-IN,en;q=0.9,gu;q=0.8,en-GB;q=0.7,en-US;q=0.6,hi;q=0.5",
+            "Accept-Encoding": "gzip, br",
+            "Referer": "https:\/\/botxbyte.com\/fp.php",
+            "Sec-Fetch-Dest": "empty",
+            "Sec-Fetch-Mode": "cors",
+            "Sec-Fetch-Site": "same-origin",
+            "Origin": "https:\/\/botxbyte.com",
+            "Accept": "*\/*",
+            "Sec-Ch-Ua-Mobile": "?1",
+            "Content-Type": "application\/json",
+            "Dnt": "1",
+            "Sec-Ch-Ua": "\"Not:A-Brand\";v=\"99\", \"Google Chrome\";v=\"145\", \"Chromium\";v=\"145\"",
+            "User-Agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/145.0.0.0 Mobile Safari\/537.36",
+            "X-Requested-With": "XMLHttpRequest",
+            "Sec-Ch-Ua-Platform": "\"Android\"",
+            "Priority": "u=1, i",
+            "Content-Length": "39310",
+            "Connection": "close",
+            "X-Forwarded-Proto": "https",
+            "X-Forwarded-For": "2405:f600:8:d4f6:dcb2:58c5:3792:ec69, 162.158.155.171",
+            "X-Server-Addr": "107.170.48.37",
+            "Host": "botxbyte.com",
+            "Authorization": ""
+        },
+        "header_order": [
+            "Cf-Visitor",
+            "Cf-Ipcountry",
+            "Cf-Connecting-Ip",
+            "Cdn-Loop",
+            "Cf-Ray",
+            "Accept-Language",
+            "Accept-Encoding",
+            "Referer",
+            "Sec-Fetch-Dest",
+            "Sec-Fetch-Mode",
+            "Sec-Fetch-Site",
+            "Origin",
+            "Accept",
+            "Sec-Ch-Ua-Mobile",
+            "Content-Type",
+            "Dnt",
+            "Sec-Ch-Ua",
+            "User-Agent",
+            "X-Requested-With",
+            "Sec-Ch-Ua-Platform",
+            "Priority",
+            "Content-Length",
+            "Connection",
+            "X-Forwarded-Proto",
+            "X-Forwarded-For",
+            "X-Server-Addr",
+            "Host",
+            "Authorization"
+        ],
+        "header_count": 28
+    },
+    "client": {
+        "navigator": {
+            "userAgent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/145.0.0.0 Mobile Safari\/537.36",
+            "appVersion": "5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/145.0.0.0 Mobile Safari\/537.36",
+            "appName": "Netscape",
+            "appCodeName": "Mozilla",
+            "product": "Gecko",
+            "productSub": "20030107",
+            "platform": "Linux armv81",
+            "vendor": "Google Inc.",
+            "vendorSub": "",
+            "language": "en-IN",
+            "languages": [
+                "en-IN",
+                "gu",
+                "en-GB",
+                "en-US",
+                "en",
+                "hi"
+            ],
+            "cookieEnabled": true,
+            "doNotTrack": "1",
+            "globalPrivacyControl": null,
+            "hardwareConcurrency": 8,
+            "deviceMemory": 4,
+            "maxTouchPoints": 5,
+            "pdfViewerEnabled": null,
+            "webdriver": false,
+            "onLine": true,
+            "javaEnabled": false,
+            "cookieStore": true
+        },
+        "screen": {
+            "width": 393,
+            "height": 873,
+            "availWidth": 393,
+            "availHeight": 873,
+            "colorDepth": 24,
+            "pixelDepth": 24,
+            "devicePixelRatio": 2.75,
+            "orientationType": "portrait-primary",
+            "orientationAngle": 0,
+            "innerWidth": 392,
+            "innerHeight": 787,
+            "outerWidth": 393,
+            "outerHeight": 873,
+            "screenX": 0,
+            "screenY": 0,
+            "pageXOffset": 0,
+            "pageYOffset": 0,
+            "scrollbarWidth": 0,
+            "isFullscreen": false
+        },
+        "locale": {
+            "timezone": "Asia\/Calcutta",
+            "timezoneOffset": -330,
+            "locale": "en-GB",
+            "calendar": "gregory",
+            "numberingSystem": "latn",
+            "localeDateString": "09\/03\/2026",
+            "localeTimeString": "18:28:05"
+        },
+        "canvas": {
+            "hash": "52af5fa3",
+            "geometry_hash": "20d95c2d",
+            "winding_rule": true
+        },
+        "webgl": {
+            "supported": true,
+            "vendor": "WebKit",
+            "renderer": "WebKit WebGL",
+            "version": "WebGL 1.0 (OpenGL ES 2.0 Chromium)",
+            "shadingLanguageVersion": "WebGL GLSL ES 1.0 (OpenGL ES GLSL ES 1.0 Chromium)",
+            "unmaskedVendor": "ARM",
+            "unmaskedRenderer": "Mali-G68 MC4",
+            "maxTextureSize": 4096,
+            "maxCubeMapTextureSize": 4096,
+            "maxViewportDims": [
+                16383,
+                16383
+            ],
+            "maxVertexAttribs": 32,
+            "maxVertexUniformVectors": 4096,
+            "maxFragmentUniformVectors": 4096,
+            "maxCombinedTextureUnits": 96,
+            "maxVertexTextureUnits": 16,
+            "maxTextureImageUnits": 16,
+            "maxRenderbufferSize": 16383,
+            "maxVaryingVectors": 31,
+            "aliasedLineWidthRange": [
+                1,
+                4095.9375
+            ],
+            "aliasedPointSizeRange": [
+                1,
+                1024
+            ],
+            "redBits": 8,
+            "greenBits": 8,
+            "blueBits": 8,
+            "alphaBits": 8,
+            "depthBits": 24,
+            "stencilBits": 0,
+            "subpixelBits": 8,
+            "extensionCount": 18,
+            "extensionHash": "4db81847",
+            "extensions": [
+                "ANGLE_instanced_arrays",
+                "EXT_blend_minmax",
+                "EXT_float_blend",
+                "EXT_texture_filter_anisotropic",
+                "EXT_sRGB",
+                "OES_element_index_uint",
+                "OES_fbo_render_mipmap",
+                "OES_standard_derivatives",
+                "OES_texture_float_linear",
+                "OES_vertex_array_object",
+                "WEBGL_compressed_texture_astc",
+                "WEBGL_compressed_texture_etc",
+                "WEBGL_compressed_texture_etc1",
+                "WEBGL_debug_renderer_info",
+                "WEBGL_debug_shaders",
+                "WEBGL_depth_texture",
+                "WEBGL_lose_context",
+                "WEBGL_multi_draw"
+            ],
+            "shaderRenderHash": "1280848c",
+            "rasterizationMethod": "hardware"
+        },
+        "webgl2": {
+            "supported": true,
+            "maxSamples": 4,
+            "maxUniformBufferBindings": 216,
+            "maxTransformFeedbackSeparateComponents": 4,
+            "maxElementsVertices": 16777216,
+            "maxElementsIndices": 16777216,
+            "max3DTextureSize": 16383,
+            "maxArrayTextureLayers": 4096,
+            "maxColorAttachments": 8,
+            "maxDrawBuffers": 8
+        },
+        "audio": {
+            "sampleRate": 44100,
+            "sampleRateLive": 48000,
+            "hash": "26005579",
+            "fullHash": "2d99ce51",
+            "value": 124.08075643483608,
+            "maxChannelCount": 2,
+            "contextState": "suspended",
+            "numberOfChannels": 1,
+            "duration": 1
+        },
+        "plugins": [],
+        "mimeTypes": [],
+        "fonts": {
+            "detected": [
+                "Arial",
+                "Courier",
+                "Courier New",
+                "Georgia",
+                "Tahoma",
+                "Times New Roman",
+                "Verdana",
+                "Helvetica",
+                "Baskerville",
+                "Palatino",
+                "Courier New"
+            ],
+            "count": 11,
+            "metricsHash": "1e9d30b9"
+        },
+        "features": {
+            "localStorage": true,
+            "sessionStorage": true,
+            "indexedDB": true,
+            "openDatabase": false,
+            "caches": true,
+            "serviceWorker": true,
+            "webWorker": true,
+            "sharedWorker": false,
+            "webSocket": true,
+            "webRTC": true,
+            "fetch": true,
+            "bluetooth": true,
+            "usb": true,
+            "nfc": false,
+            "serial": true,
+            "hid": false,
+            "xr": true,
+            "gamepad": true,
+            "geolocation": true,
+            "deviceMotion": true,
+            "deviceOrientation": true,
+            "ambientLight": false,
+            "notifications": true,
+            "speechSynthesis": true,
+            "speechRecognition": true,
+            "mediaSession": true,
+            "paymentRequest": true,
+            "credentials": true,
+            "wakeLock": true,
+            "pictureInPicture": true,
+            "clipboard": true,
+            "share": true,
+            "contacts": true,
+            "fileSystem": true,
+            "eyeDropper": false,
+            "pointerEvents": true,
+            "touchEvents": true,
+            "wasm": true,
+            "wasmStreaming": true,
+            "offscreenCanvas": true,
+            "cryptoSubtle": true,
+            "intersectionObserver": true,
+            "resizeObserver": true,
+            "mutationObserver": true,
+            "broadcastChannel": true,
+            "scheduler": true,
+            "requestIdleCallback": true
+        },
+        "webrtc": {
+            "ips": [
+                "192.168.1.78",
+                "2405:f600:8:d4f6:dcb2:58c5:3792:ec69",
+                "103.178.154.17"
+            ],
+            "ipv4": [
+                "192.168.1.78",
+                "103.178.154.17"
+            ],
+            "ipv6": [
+                "2405:f600:8:d4f6:dcb2:58c5:3792:ec69"
+            ]
+        },
+        "battery": {
+            "charging": false,
+            "chargingTime": null,
+            "dischargingTime": null,
+            "level": 0.84
+        },
+        "mediaDevices": [
+            {
+                "kind": "audioinput",
+                "label": "(requires permission)",
+                "deviceId": null,
+                "groupId": null
+            },
+            {
+                "kind": "videoinput",
+                "label": "(requires permission)",
+                "deviceId": null,
+                "groupId": null
+            },
+            {
+                "kind": "audiooutput",
+                "label": "(requires permission)",
+                "deviceId": null,
+                "groupId": null
+            }
+        ],
+        "network": {
+            "effectiveType": "4g",
+            "downlink": 1.55,
+            "rtt": 50,
+            "saveData": false,
+            "type": "wifi"
+        },
+        "mediaQueries": {
+            "darkMode": true,
+            "lightMode": false,
+            "reducedMotion": false,
+            "reducedTransparency": false,
+            "reducedData": false,
+            "highContrast": false,
+            "invertedColors": false,
+            "hdr": false,
+            "coarsePointer": true,
+            "finePointer": false,
+            "noPointer": false,
+            "hover": false,
+            "anyHover": false,
+            "colorGamutSRGB": true,
+            "colorGamutP3": false,
+            "colorGamutRec2020": false,
+            "print": false,
+            "monochrome": false,
+            "overflowInline": true
+        },
+        "permissions": {
+            "ambient-light-sensor": "unsupported",
+            "window-placement": "unsupported",
+            "geolocation": "prompt",
+            "notifications": "prompt",
+            "camera": "prompt",
+            "microphone": "prompt",
+            "clipboard-read": "prompt",
+            "clipboard-write": "granted",
+            "payment-handler": "granted",
+            "background-sync": "granted",
+            "persistent-storage": "prompt",
+            "accelerometer": "granted",
+            "gyroscope": "granted",
+            "magnetometer": "granted",
+            "midi": "prompt",
+            "background-fetch": "granted",
+            "nfc": "prompt",
+            "screen-wake-lock": "granted",
+            "idle-detection": "prompt",
+            "display-capture": "prompt",
+            "storage-access": "granted"
+        },
+        "speechVoices": [
+            {
+                "name": "Assamese India",
+                "lang": "as_IN",
+                "local": true,
+                "isDefault": true
+            },
+            {
+                "name": "Bulgarian Bulgaria",
+                "lang": "bg_BG",
+                "local": true,
+                "isDefault": false
+            },
+            {
+                "name": "Bengali Bangladesh",
+                "lang": "bn_BD",
+                "local": true,
+                "isDefault": false
+            },
+            {
+                "name": "Bengali India",
+                "lang": "bn_IN",
+                "local": true,
+                "isDefault": false
+            },
+            {
+                "name": "Bodo India",
+                "lang": "brx_IN",
+                "local": true,
+                "isDefault": false
+            },
+            {
+                "name": "Bosnian Bosnia & Herzegovina",
+                "lang": "bs_BA_#Cyrl",
+                "local": true,
+                "isDefault": false
+            },
+            {
+                "name": "Bosnian Bosnia & Herzegovina",
+                "lang": "bs_BA_#Latn",
+                "local": true,
+                "isDefault": false
+            },
+            {
+                "name": "Catalan Spain",
+                "lang": "ca_ES",
+                "local": true,
+                "isDefault": false
+            },
+            {
+                "name": "Czech Czechia",
+                "lang": "cs_CZ",
+                "local": true,
+                "isDefault": false
+            },
+            {
+                "name": "Welsh United Kingdom",
+                "lang": "cy_GB",
+                "local": true,
+                "isDefault": false
+            },
+            {
+                "name": "Danish Denmark",
+                "lang": "da_DK",
+                "local": true,
+                "isDefault": false
+            },
+            {
+                "name": "German Germany",
+                "lang": "de_DE",
+                "local": true,
+                "isDefault": false
+            },
+            {
+                "name": "Dogri India",
+                "lang": "doi_IN",
+                "local": true,
+                "isDefault": false
+            },
+            {
+                "name": "Greek Greece",
+                "lang": "el_GR",
+                "local": true,
+                "isDefault": false
+            },
+            {
+                "name": "English Australia",
+                "lang": "en_AU",
+                "local": true,
+                "isDefault": false
+            },
+            {
+                "name": "English United Kingdom",
+                "lang": "en_GB",
+                "local": true,
+                "isDefault": false
+            },
+            {
+                "name": "English India",
+                "lang": "en_IN",
+                "local": true,
+                "isDefault": false
+            },
+            {
+                "name": "English Nigeria",
+                "lang": "en_NG",
+                "local": true,
+                "isDefault": false
+            },
+            {
+                "name": "English United States",
+                "lang": "en_US",
+                "local": true,
+                "isDefault": false
+            },
+            {
+                "name": "Spanish Spain",
+                "lang": "es_ES",
+                "local": true,
+                "isDefault": false
+            },
+            {
+                "name": "Spanish United States",
+                "lang": "es_US",
+                "local": true,
+                "isDefault": false
+            },
+            {
+                "name": "Estonian Estonia",
+                "lang": "et_EE",
+                "local": true,
+                "isDefault": false
+            },
+            {
+                "name": "Finnish Finland",
+                "lang": "fi_FI",
+                "local": true,
+                "isDefault": false
+            },
+            {
+                "name": "Filipino Philippines",
+                "lang": "fil_PH",
+                "local": true,
+                "isDefault": false
+            },
+            {
+                "name": "French Canada",
+                "lang": "fr_CA",
+                "local": true,
+                "isDefault": false
+            },
+            {
+                "name": "French France",
+                "lang": "fr_FR",
+                "local": true,
+                "isDefault": false
+            },
+            {
+                "name": "Gujarati India",
+                "lang": "gu_IN",
+                "local": true,
+                "isDefault": false
+            },
+            {
+                "name": "Hebrew Israel",
+                "lang": "iw_IL",
+                "local": true,
+                "isDefault": false
+            },
+            {
+                "name": "Hindi India",
+                "lang": "hi_IN",
+                "local": true,
+                "isDefault": false
+            },
+            {
+                "name": "Croatian Croatia",
+                "lang": "hr_HR",
+                "local": true,
+                "isDefault": false
+            },
+            {
+                "name": "Hungarian Hungary",
+                "lang": "hu_HU",
+                "local": true,
+                "isDefault": false
+            },
+            {
+                "name": "Indonesian Indonesia",
+                "lang": "in_ID",
+                "local": true,
+                "isDefault": false
+            },
+            {
+                "name": "Icelandic Iceland",
+                "lang": "is_IS",
+                "local": true,
+                "isDefault": false
+            },
+            {
+                "name": "Italian Italy",
+                "lang": "it_IT",
+                "local": true,
+                "isDefault": false
+            },
+            {
+                "name": "Japanese Japan",
+                "lang": "ja_JP",
+                "local": true,
+                "isDefault": false
+            },
+            {
+                "name": "Javanese Indonesia",
+                "lang": "jv_ID",
+                "local": true,
+                "isDefault": false
+            },
+            {
+                "name": "Khmer Cambodia",
+                "lang": "km_KH",
+                "local": true,
+                "isDefault": false
+            },
+            {
+                "name": "Kannada India",
+                "lang": "kn_IN",
+                "local": true,
+                "isDefault": false
+            },
+            {
+                "name": "Korean South Korea",
+                "lang": "ko_KR",
+                "local": true,
+                "isDefault": false
+            },
+            {
+                "name": "Konkani India",
+                "lang": "kok_IN",
+                "local": true,
+                "isDefault": false
+            },
+            {
+                "name": "Kashmiri India",
+                "lang": "ks_IN_#Arab",
+                "local": true,
+                "isDefault": false
+            },
+            {
+                "name": "Lithuanian Lithuania",
+                "lang": "lt_LT",
+                "local": true,
+                "isDefault": false
+            },
+            {
+                "name": "Latvian Latvia",
+                "lang": "lv_LV",
+                "local": true,
+                "isDefault": false
+            },
+            {
+                "name": "Maithili India",
+                "lang": "mai_IN",
+                "local": true,
+                "isDefault": false
+            },
+            {
+                "name": "Malayalam India",
+                "lang": "ml_IN",
+                "local": true,
+                "isDefault": false
+            },
+            {
+                "name": "Manipuri India",
+                "lang": "mni_IN_#Beng",
+                "local": true,
+                "isDefault": false
+            },
+            {
+                "name": "Marathi India",
+                "lang": "mr_IN",
+                "local": true,
+                "isDefault": false
+            },
+            {
+                "name": "Malay Malaysia",
+                "lang": "ms_MY",
+                "local": true,
+                "isDefault": false
+            },
+            {
+                "name": "Norwegian Bokmål Norway",
+                "lang": "nb_NO",
+                "local": true,
+                "isDefault": false
+            },
+            {
+                "name": "Nepali Nepal",
+                "lang": "ne_NP",
+                "local": true,
+                "isDefault": false
+            },
+            {
+                "name": "Dutch Belgium",
+                "lang": "nl_BE",
+                "local": true,
+                "isDefault": false
+            },
+            {
+                "name": "Dutch Netherlands",
+                "lang": "nl_NL",
+                "local": true,
+                "isDefault": false
+            },
+            {
+                "name": "Odia India",
+                "lang": "or_IN",
+                "local": true,
+                "isDefault": false
+            },
+            {
+                "name": "Punjabi India",
+                "lang": "pa_IN_#Guru",
+                "local": true,
+                "isDefault": false
+            },
+            {
+                "name": "Polish Poland",
+                "lang": "pl_PL",
+                "local": true,
+                "isDefault": false
+            },
+            {
+                "name": "Portuguese Brazil",
+                "lang": "pt_BR",
+                "local": true,
+                "isDefault": false
+            },
+            {
+                "name": "Portuguese Portugal",
+                "lang": "pt_PT",
+                "local": true,
+                "isDefault": false
+            },
+            {
+                "name": "Romanian Romania",
+                "lang": "ro_RO",
+                "local": true,
+                "isDefault": false
+            },
+            {
+                "name": "Russian Russia",
+                "lang": "ru_RU",
+                "local": true,
+                "isDefault": false
+            },
+            {
+                "name": "Sanskrit India",
+                "lang": "sa_IN",
+                "local": true,
+                "isDefault": false
+            },
+            {
+                "name": "Santali India",
+                "lang": "sat_IN_#Olck",
+                "local": true,
+                "isDefault": false
+            },
+            {
+                "name": "Sindhi India",
+                "lang": "sd_IN_#Deva",
+                "local": true,
+                "isDefault": false
+            },
+            {
+                "name": "Sinhala Sri Lanka",
+                "lang": "si_LK",
+                "local": true,
+                "isDefault": false
+            },
+            {
+                "name": "Slovak Slovakia",
+                "lang": "sk_SK",
+                "local": true,
+                "isDefault": false
+            },
+            {
+                "name": "Slovenian Slovenia",
+                "lang": "sl_SI",
+                "local": true,
+                "isDefault": false
+            },
+            {
+                "name": "Albanian Albania",
+                "lang": "sq_AL",
+                "local": true,
+                "isDefault": false
+            },
+            {
+                "name": "Serbian Serbia",
+                "lang": "sr_RS_#Cyrl",
+                "local": true,
+                "isDefault": false
+            },
+            {
+                "name": "Serbian Serbia",
+                "lang": "sr_RS_#Latn",
+                "local": true,
+                "isDefault": false
+            },
+            {
+                "name": "Sundanese Indonesia",
+                "lang": "su_ID_#Latn",
+                "local": true,
+                "isDefault": false
+            },
+            {
+                "name": "Swedish Sweden",
+                "lang": "sv_SE",
+                "local": true,
+                "isDefault": false
+            },
+            {
+                "name": "Swahili Kenya",
+                "lang": "sw_KE",
+                "local": true,
+                "isDefault": false
+            },
+            {
+                "name": "Tamil India",
+                "lang": "ta_IN",
+                "local": true,
+                "isDefault": false
+            },
+            {
+                "name": "Telugu India",
+                "lang": "te_IN",
+                "local": true,
+                "isDefault": false
+            },
+            {
+                "name": "Thai Thailand",
+                "lang": "th_TH",
+                "local": true,
+                "isDefault": false
+            },
+            {
+                "name": "Turkish Turkey",
+                "lang": "tr_TR",
+                "local": true,
+                "isDefault": false
+            },
+            {
+                "name": "Ukrainian Ukraine",
+                "lang": "uk_UA",
+                "local": true,
+                "isDefault": false
+            },
+            {
+                "name": "Urdu India",
+                "lang": "ur_IN",
+                "local": true,
+                "isDefault": false
+            },
+            {
+                "name": "Urdu Pakistan",
+                "lang": "ur_PK",
+                "local": true,
+                "isDefault": false
+            },
+            {
+                "name": "Vietnamese Vietnam",
+                "lang": "vi_VN",
+                "local": true,
+                "isDefault": false
+            },
+            {
+                "name": "Cantonese Hong Kong",
+                "lang": "yue_HK_#Hant",
+                "local": true,
+                "isDefault": false
+            },
+            {
+                "name": "Chinese China",
+                "lang": "zh_CN_#Hans",
+                "local": true,
+                "isDefault": false
+            },
+            {
+                "name": "Chinese Hong Kong",
+                "lang": "zh_HK_#Hans",
+                "local": true,
+                "isDefault": false
+            },
+            {
+                "name": "Chinese Macao",
+                "lang": "zh_MO_#Hans",
+                "local": true,
+                "isDefault": false
+            },
+            {
+                "name": "Chinese Singapore",
+                "lang": "zh_SG_#Hans",
+                "local": true,
+                "isDefault": false
+            },
+            {
+                "name": "Chinese Hong Kong",
+                "lang": "zh_HK_#Hant",
+                "local": true,
+                "isDefault": false
+            },
+            {
+                "name": "Chinese Macao",
+                "lang": "zh_MO_#Hant",
+                "local": true,
+                "isDefault": false
+            },
+            {
+                "name": "Chinese Taiwan",
+                "lang": "zh_TW_#Hant",
+                "local": true,
+                "isDefault": false
+            }
+        ],
+        "document": {
+            "characterSet": "UTF-8",
+            "contentType": "text\/html",
+            "referrer": "",
+            "visibilityState": "visible",
+            "historyLength": 1,
+            "cookieCount": 0,
+            "domainLookupTime": null,
+            "URL": "https:\/\/botxbyte.com\/fp.php",
+            "protocol": "https:",
+            "host": "botxbyte.com"
+        },
+        "math": {
+            "tan_neg1e300": -1.4214488238747245,
+            "sin_1": 0.8414709848078965,
+            "cos_1": 0.5403023058681398,
+            "atan2": 1.1071487177940904,
+            "exp_1": 2.718281828459045,
+            "log_pi": 1.1447298858494002,
+            "sqrt_2": 1.4142135623730951,
+            "pow_pi": 1.9275814160560206e-50,
+            "acos": 1.4470237543681796,
+            "asin": 0.12377257242671708,
+            "sinh_1": 1.1752011936438014,
+            "cosh_1": 1.5430806348152437,
+            "tanh_1": 0.7615941559557649,
+            "log2_pi": 1.6514961294723187,
+            "log10_pi": 0.4971498726941338,
+            "cbrt_2": 1.2599210498948732,
+            "hypot": 5,
+            "fround": 1.3370000123977661,
+            "clz32": 31,
+            "imul": 12,
+            "trunc": -1,
+            "sign": -1,
+            "expm1": 1.718281828459045,
+            "log1p": 0.6931471805599453
+        },
+        "performance": {
+            "timerResolutionMs": 0.1,
+            "timerGranularity": "coarse_100us",
+            "timerSamples": [
+                0.1,
+                0.1,
+                0.1,
+                0.1,
+                0.1,
+                0.1,
+                0.1,
+                0.1,
+                0.1,
+                0.1
+            ],
+            "navigationTiming": {
+                "type": "navigate",
+                "redirectCount": 0,
+                "domInteractive": 646,
+                "domContentLoaded": 651,
+                "loadEvent": 652,
+                "ttfb": 445,
+                "transferSize": null,
+                "encodedBodySize": 38453
+            },
+            "memory": {
+                "jsHeapSizeLimit": 1130000000,
+                "totalJSHeapSize": 10000000,
+                "usedJSHeapSize": 10000000
+            },
+            "timeOrigin": 1773061077763.8,
+            "now": 8003.399999976158
+        },
+        "stackTrace": {
+            "engine": "V8(Chrome\/Node)",
+            "sample": "Error: fp |     at getStackTrace (https:\/\/botxbyte.com\/fp.php:694:21) |     at collect (https:\/\/botxbyte.com\/fp.php:3228:21)",
+            "lines": 4
+        },
+        "internals": {
+            "toStringTags": {
+                "Window": "[object Window]",
+                "Document": "[object HTMLDocument]",
+                "Navigator": "[object Navigator]",
+                "Screen": "[object Screen]",
+                "Location": "[object Location]",
+                "History": "[object History]"
+            },
+            "windowProto": "Window",
+            "docProto": "HTMLDocument",
+            "nativeChecks": {
+                "navigator.userAgent getter": "native",
+                "navigator.platform getter": "native",
+                "navigator.hardwareConcurrency": "native"
+            },
+            "iteratorSymbol": "symbol",
+            "asyncIterator": "symbol"
+        },
+        "cssSupport": {
+            "grid": true,
+            "flexbox": true,
+            "customProperties": true,
+            "containerQueries": true,
+            "hasSelector": true,
+            "subgrid": true,
+            "cascade": false,
+            "colorMix": true,
+            "nesting": true,
+            "scrollTimeline": true,
+            "viewTimeline": true,
+            "anchorPosition": true,
+            "startingStyle": false,
+            "math": true,
+            "clamp": true,
+            "aspectRatio": true,
+            "gap": true,
+            "backdropFilter": true,
+            "contain": true,
+            "contentVisibility": true,
+            "overscrollBehavior": true,
+            "scrollBehavior": true
+        },
+        "cssComputedStyles": {
+            "fontFamily": "\"Courier New\", monospace",
+            "fontSize": "16px",
+            "color": "rgb(201, 209, 217)",
+            "backgroundColor": "rgba(0, 0, 0, 0)",
+            "lineHeight": "normal",
+            "boxSizing": "border-box",
+            "nativeScrollbarWidth": 0
+        },
+        "cpu": {
+            "hardwareConcurrency": 8,
+            "deviceMemory": 4,
+            "wasm_supported": true,
+            "wasm_simd": true,
+            "wasm_threads": false,
+            "wasm_bulk_memory": true,
+            "wasm_sat_float": false,
+            "estimated_arch": "ARM64_NEON"
+        },
+        "architecture": {
+            "byte": -1,
+            "method": "int8_probe",
+            "float32Byte0": 0,
+            "wasmMemRead": "error",
+            "uaDataArch": null,
+            "uaDataBitness": null,
+            "uaDataPlatform": "Android",
+            "uaDataPlatformVersion": "13.0.0",
+            "uaDataModel": "21091116I"
+        },
+        "refreshRate": {
+            "measured_fps": 61,
+            "snapped_hz": 60,
+            "avg_frame_ms": 16.514
+        },
+        "videoDecoder": {
+            "supported": true,
+            "codecs": {
+                "h264": "supported",
+                "h265": "supported",
+                "vp8": "supported",
+                "vp9": "supported",
+                "av1": "supported"
+            }
+        },
+        "behavioral": {
+            "mouse": null,
+            "keyboard": null,
+            "scroll": {
+                "eventCount": 0,
+                "totalDelta": 0,
+                "sample": []
+            },
+            "clicks": {
+                "count": 0,
+                "avgPressure": null,
+                "avgInterval": null
+            },
+            "touch": {
+                "radii": [],
+                "pressures": []
+            },
+            "sensors": {
+                "motion": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0,
+                    "gx": -0.5,
+                    "gy": 0.8,
+                    "gz": 9.700000000000001,
+                    "interval": 16
+                },
+                "orientation": {
+                    "alpha": 130.5,
+                    "beta": 4.9,
+                    "gamma": 2.8000000000000003,
+                    "absolute": false
+                }
+            },
+            "sessionDuration": 7482
+        },
+        "fontPreferences": {
+            "default": 465.65911865234375,
+            "apple": 465.65911865234375,
+            "sans": 465.65911865234375,
+            "serif": 498.6363830566406,
+            "mono": 377.8125,
+            "system": 465.65911865234375,
+            "min": 9.704545974731445
+        },
+        "webglPrecisions": {
+            "contextAttributes": {
+                "alpha": true,
+                "antialias": true,
+                "depth": true,
+                "desynchronized": false,
+                "failIfMajorPerformanceCaveat": false,
+                "powerPreference": "default",
+                "premultipliedAlpha": true,
+                "preserveDrawingBuffer": false,
+                "stencil": false,
+                "xrCompatible": false
+            },
+            "contextAttributesHash": "13f1d07c",
+            "shaderPrecisions": {
+                "VERTEX_LOW_FLOAT": {
+                    "rangeMin": 15,
+                    "rangeMax": 15,
+                    "precision": 10
+                },
+                "VERTEX_MEDIUM_FLOAT": {
+                    "rangeMin": 15,
+                    "rangeMax": 15,
+                    "precision": 10
+                },
+                "VERTEX_HIGH_FLOAT": {
+                    "rangeMin": 127,
+                    "rangeMax": 127,
+                    "precision": 23
+                },
+                "VERTEX_LOW_INT": {
+                    "rangeMin": 15,
+                    "rangeMax": 14,
+                    "precision": 0
+                },
+                "VERTEX_MEDIUM_INT": {
+                    "rangeMin": 15,
+                    "rangeMax": 14,
+                    "precision": 0
+                },
+                "VERTEX_HIGH_INT": {
+                    "rangeMin": 31,
+                    "rangeMax": 30,
+                    "precision": 0
+                },
+                "FRAGMENT_LOW_FLOAT": {
+                    "rangeMin": 15,
+                    "rangeMax": 15,
+                    "precision": 10
+                },
+                "FRAGMENT_MEDIUM_FLOAT": {
+                    "rangeMin": 15,
+                    "rangeMax": 15,
+                    "precision": 10
+                },
+                "FRAGMENT_HIGH_FLOAT": {
+                    "rangeMin": 127,
+                    "rangeMax": 127,
+                    "precision": 23
+                },
+                "FRAGMENT_LOW_INT": {
+                    "rangeMin": 15,
+                    "rangeMax": 14,
+                    "precision": 0
+                },
+                "FRAGMENT_MEDIUM_INT": {
+                    "rangeMin": 15,
+                    "rangeMax": 14,
+                    "precision": 0
+                },
+                "FRAGMENT_HIGH_INT": {
+                    "rangeMin": 31,
+                    "rangeMax": 30,
+                    "precision": 0
+                }
+            },
+            "shaderPrecisionsHash": "76982640",
+            "extensionPresenceHash": "46f092d0"
+        },
+        "audioLatency": {
+            "baseLatency": 0.005333333333333333,
+            "outputLatency": 0,
+            "sampleRate": 48000,
+            "state": "suspended",
+            "maxChannelCount": 2,
+            "channelCount": 2,
+            "channelInterpretation": "speakers"
+        },
+        "domBlockers": {
+            "detected": false,
+            "blockedCount": 0,
+            "blockedClasses": [],
+            "allResults": {
+                "ad-banner": false,
+                "ad-unit": false,
+                "adsbox": false,
+                "ad-slot": false,
+                "adsbygoogle": false,
+                "banner_ad": false,
+                "pub_300x250": false,
+                "pub_300x250m": false,
+                "pub_728x90": false,
+                "text-ad": false,
+                "textAd": false,
+                "text_ad": false,
+                "text_ads": false,
+                "textads": false,
+                "sponsoredMidArticle": false,
+                "mmnetwork-ad": false,
+                "ad-text": false,
+                "googlead": false,
+                "GoogleActiveViewElement": false,
+                "#AdHeader": false,
+                "#AdContainer": false,
+                "#ad-container": false,
+                "#advertise": false,
+                "#adbar": false
+            }
+        },
+        "emojiBoundingBox": {
+            "width": 159.375,
+            "height": 150.182,
+            "top": -9999,
+            "bottom": -9848.818,
+            "left": -9999,
+            "right": -9839.625
+        },
+        "mathmlBoundingBox": {
+            "width": 31.386,
+            "height": 19.955,
+            "supported": true
+        },
+        "screenFrame": {
+            "top": 0,
+            "left": 0,
+            "right": 0,
+            "bottom": 0,
+            "availTop": null,
+            "availLeft": null
+        },
+        "colorProfile": {
+            "colorGamutString": "srgb",
+            "contrastPreference": 0,
+            "monochromeDepth": 0,
+            "colorDepth": 24,
+            "hdrCapability": false
+        },
+        "vendorFlavors": [],
+        "navigatorExtra": {
+            "oscpu": null,
+            "cpuClass": null,
+            "buildID": null,
+            "productSub": "20030107",
+            "taintEnabled": null,
+            "uaData_brands": [
+                {
+                    "brand": "Not:A-Brand",
+                    "version": "99"
+                },
+                {
+                    "brand": "Google Chrome",
+                    "version": "145"
+                },
+                {
+                    "brand": "Chromium",
+                    "version": "145"
+                }
+            ],
+            "uaData_mobile": true,
+            "uaData_platform": "Android",
+            "privateClickMeasurement": false,
+            "webkitMessageHandlers": null,
+            "connection_saveData": false,
+            "mimeTypesLength": 0,
+            "pluginsLength": 0
+        },
+        "incognito": {
+            "isPrivate": false,
+            "method": null,
+            "confidence": "low"
+        },
+        "tampering": {
+            "anomalyScore": 35,
+            "signals": [
+                "no_chrome_runtime",
+                "chrome_no_plugins",
+                "toString_error"
+            ],
+            "webdriver": false,
+            "inIframe": false,
+            "devtoolsOpen": false,
+            "antiDetectBrowser": false
+        },
+        "mathHash": "100ac6dd",
+        "webglExtra": {
+            "unsupportedExtensions": [
+                "EXT_clip_control",
+                "EXT_color_buffer_float",
+                "EXT_color_buffer_half_float",
+                "EXT_depth_clamp",
+                "EXT_disjoint_timer_query",
+                "EXT_disjoint_timer_query_webgl2",
+                "EXT_frag_depth",
+                "EXT_polygon_offset_clamp",
+                "EXT_shader_texture_lod",
+                "EXT_texture_compression_bptc",
+                "EXT_texture_compression_rgtc",
+                "EXT_texture_mirror_clamp_to_edge",
+                "KHR_parallel_shader_compile",
+                "OES_draw_buffers_indexed",
+                "OES_texture_float",
+                "OES_texture_half_float",
+                "OES_texture_half_float_linear",
+                "WEBGL_blend_func_extended",
+                "WEBGL_clip_cull_distance",
+                "WEBGL_color_buffer_float",
+                "WEBGL_compressed_texture_atc",
+                "WEBGL_compressed_texture_pvrtc",
+                "WEBGL_compressed_texture_s3tc",
+                "WEBGL_compressed_texture_s3tc_srgb",
+                "WEBGL_draw_buffers",
+                "WEBGL_polygon_mode",
+                "WEBKIT_WEBGL_compressed_texture_pvrtc"
+            ],
+            "unsupportedCount": 27,
+            "allParametersHash": "e75409c"
+        },
+        "dateTimeLocale": {
+            "numberFormatLocale": "en-GB",
+            "numberingSystem": "latn",
+            "formattedTestNumber": "1,234,567.89",
+            "dateTimeLocale": "en-GB",
+            "dateTimeCalendar": "gregory",
+            "dateTimeTimeZone": "Asia\/Calcutta",
+            "relativeTimeLocale": "en-GB",
+            "collatorLocale": "en-GB",
+            "pluralRulesLocale": "en-GB",
+            "localeHash": "32e75347"
+        },
+        "multiMonitor": {
+            "isExtended": false,
+            "getScreenDetailsAPI": true,
+            "screenCount": null,
+            "screens": null,
+            "screenDetailsError": "NotAllowedError"
+        },
+        "pwaInfo": {
+            "displayMode": "browser",
+            "isStandalone": false,
+            "navigatorStandalone": false,
+            "isInstalled": false,
+            "launchQueue": true,
+            "getInstalledRelatedApps": true
+        },
+        "mediaCapabilities": {
+            "supported": true,
+            "codecs": {
+                "video\/webm; codecs=\"vp9\"": {
+                    "supported": false,
+                    "smooth": false,
+                    "powerEfficient": false
+                },
+                "audio\/mp4; codecs=\"mp4a.40.2\"": {
+                    "supported": true,
+                    "smooth": true,
+                    "powerEfficient": true
+                },
+                "audio\/webm; codecs=\"opus\"": {
+                    "supported": true,
+                    "smooth": true,
+                    "powerEfficient": true
+                },
+                "video\/mp4; codecs=\"avc1.42E01E\"": {
+                    "supported": true,
+                    "smooth": true,
+                    "powerEfficient": true
+                },
+                "video\/mp4; codecs=\"av01.0.05M.08\"": {
+                    "supported": true,
+                    "smooth": true,
+                    "powerEfficient": false
+                }
+            }
+        },
+        "rtcCapabilities": {
+            "supported": true,
+            "videoCodecs": [
+                {
+                    "mimeType": "video\/VP8",
+                    "clockRate": 90000,
+                    "sdpFmtpLine": null
+                },
+                {
+                    "mimeType": "video\/rtx",
+                    "clockRate": 90000,
+                    "sdpFmtpLine": null
+                },
+                {
+                    "mimeType": "video\/AV1",
+                    "clockRate": 90000,
+                    "sdpFmtpLine": "level-idx=5;profile=0;tier=0"
+                },
+                {
+                    "mimeType": "video\/VP9",
+                    "clockRate": 90000,
+                    "sdpFmtpLine": "profile-id=0"
+                },
+                {
+                    "mimeType": "video\/H264",
+                    "clockRate": 90000,
+                    "sdpFmtpLine": "level-asymmetry-allowed=1;packetization-mode=1;profile-level-id=420015"
+                },
+                {
+                    "mimeType": "video\/H264",
+                    "clockRate": 90000,
+                    "sdpFmtpLine": "level-asymmetry-allowed=1;packetization-mode=1;profile-level-id=42e015"
+                },
+                {
+                    "mimeType": "video\/H264",
+                    "clockRate": 90000,
+                    "sdpFmtpLine": "level-asymmetry-allowed=1;packetization-mode=1;profile-level-id=4d0015"
+                },
+                {
+                    "mimeType": "video\/H264",
+                    "clockRate": 90000,
+                    "sdpFmtpLine": "level-asymmetry-allowed=1;packetization-mode=1;profile-level-id=640015"
+                },
+                {
+                    "mimeType": "video\/H265",
+                    "clockRate": 90000,
+                    "sdpFmtpLine": "level-id=123;profile-id=1;tier-flag=0;tx-mode=SRST"
+                },
+                {
+                    "mimeType": "video\/red",
+                    "clockRate": 90000,
+                    "sdpFmtpLine": null
+                },
+                {
+                    "mimeType": "video\/ulpfec",
+                    "clockRate": 90000,
+                    "sdpFmtpLine": null
+                }
+            ],
+            "audioCodecs": [
+                {
+                    "mimeType": "audio\/opus",
+                    "clockRate": 48000,
+                    "channels": 2
+                },
+                {
+                    "mimeType": "audio\/red",
+                    "clockRate": 48000,
+                    "channels": 2
+                },
+                {
+                    "mimeType": "audio\/G722",
+                    "clockRate": 8000,
+                    "channels": 1
+                },
+                {
+                    "mimeType": "audio\/PCMU",
+                    "clockRate": 8000,
+                    "channels": 1
+                },
+                {
+                    "mimeType": "audio\/PCMA",
+                    "clockRate": 8000,
+                    "channels": 1
+                },
+                {
+                    "mimeType": "audio\/CN",
+                    "clockRate": 8000,
+                    "channels": 1
+                },
+                {
+                    "mimeType": "audio\/telephone-event",
+                    "clockRate": 48000,
+                    "channels": 1
+                },
+                {
+                    "mimeType": "audio\/telephone-event",
+                    "clockRate": 8000,
+                    "channels": 1
+                }
+            ],
+            "videoCount": 11,
+            "audioCount": 8
+        },
+        "perfObserverTypes": {
+            "supported": true,
+            "entryTypes": [
+                "element",
+                "event",
+                "first-input",
+                "largest-contentful-paint",
+                "layout-shift",
+                "long-animation-frame",
+                "longtask",
+                "mark",
+                "measure",
+                "navigation",
+                "paint",
+                "resource",
+                "visibility-state"
+            ],
+            "count": 13,
+            "hash": "45e14c21"
+        },
+        "featurePolicy": {
+            "supported": true,
+            "allowedFeatures": [
+                "geolocation",
+                "ch-ua-full-version-list",
+                "cross-origin-isolated",
+                "screen-wake-lock",
+                "on-device-speech-recognition",
+                "publickey-credentials-get",
+                "shared-storage-select-url",
+                "ch-ua-arch",
+                "bluetooth",
+                "ch-prefers-reduced-transparency",
+                "deferred-fetch",
+                "usb",
+                "ch-save-data",
+                "publickey-credentials-create",
+                "shared-storage",
+                "deferred-fetch-minimal",
+                "run-ad-auction",
+                "ch-downlink",
+                "ch-ua-form-factors",
+                "otp-credentials",
+                "payment",
+                "ch-ua",
+                "ch-ua-model",
+                "ch-ect",
+                "autoplay",
+                "camera",
+                "private-state-token-issuance",
+                "digital-credentials-get",
+                "accelerometer",
+                "ch-ua-platform-version",
+                "idle-detection",
+                "private-aggregation",
+                "interest-cohort",
+                "ch-viewport-height",
+                "ch-ua-platform",
+                "midi",
+                "ch-ua-full-version",
+                "xr-spatial-tracking",
+                "clipboard-read",
+                "gamepad",
+                "display-capture",
+                "keyboard-map",
+                "join-ad-interest-group",
+                "aria-notify",
+                "local-network",
+                "ch-ua-high-entropy-values",
+                "ch-width",
+                "ch-prefers-reduced-motion",
+                "browsing-topics",
+                "encrypted-media",
+                "local-network-access",
+                "gyroscope",
+                "serial",
+                "ch-rtt",
+                "ch-ua-mobile",
+                "window-management",
+                "unload",
+                "ch-dpr",
+                "ch-prefers-color-scheme",
+                "ch-ua-wow64",
+                "attribution-reporting",
+                "fullscreen",
+                "identity-credentials-get",
+                "private-state-token-redemption",
+                "ch-ua-bitness",
+                "storage-access",
+                "sync-xhr",
+                "ch-device-memory",
+                "ch-viewport-width",
+                "picture-in-picture",
+                "magnetometer",
+                "loopback-network",
+                "clipboard-write",
+                "microphone"
+            ],
+            "allowedCount": 74,
+            "featureStates": {
+                "camera": true,
+                "microphone": true,
+                "geolocation": true,
+                "payment": true,
+                "usb": true,
+                "bluetooth": true,
+                "accelerometer": true,
+                "gyroscope": true,
+                "magnetometer": true,
+                "fullscreen": true,
+                "picture-in-picture": true,
+                "autoplay": true,
+                "encrypted-media": true,
+                "midi": true,
+                "screen-wake-lock": true,
+                "xr-spatial-tracking": true,
+                "ambient-light-sensor": false,
+                "battery": false,
+                "document-domain": false,
+                "sync-xhr": true,
+                "clipboard-read": true,
+                "clipboard-write": true
+            }
+        },
+        "apiPresence": {
+            "webTransport": true,
+            "webRTC_insertable_streams": true,
+            "compressionStream": true,
+            "decompressionStream": true,
+            "trustedTypes": true,
+            "reportingObserver": true,
+            "navigationAPI": true,
+            "sanitizerAPI": false,
+            "schedulerPostTask": true,
+            "taskController": true,
+            "idleDetector": true,
+            "documentPiP": false,
+            "storageManager": true,
+            "fileSystemAccess": true,
+            "accessHandle": true,
+            "cssHoudini": true,
+            "audioWorklet": true,
+            "abortSignalAny": true,
+            "abortSignalTimeout": true,
+            "structuredClone": true,
+            "webLocks": true,
+            "keyboardAPI": true,
+            "presentationAPI": true,
+            "midiAccess": true,
+            "digitalGoods": true,
+            "userActivation": true,
+            "windowControlsOverlay": true,
+            "cookieStore": true,
+            "backgroundFetch": true,
+            "periodicSync": true,
+            "contentIndex": true,
+            "paymentHandler": false,
+            "canvasRoundRect": true,
+            "canvasReset": true,
+            "canvasFilter": true,
+            "fontsReadyAPI": true,
+            "fontFaceSet": true,
+            "cssTypedOM": true,
+            "cssLayoutWorklet": false,
+            "eyeDropper": false,
+            "getScreenDetails": true,
+            "virtualKeyboard": true,
+            "handwriting": false,
+            "ink": true,
+            "serial": true,
+            "hid": false,
+            "userAgentData": true
+        },
+        "userActivation": {
+            "supported": true,
+            "isActive": false,
+            "hasBeenActive": false
+        },
+        "networkExtended": {
+            "effectiveType": "4g",
+            "downlink": 1.55,
+            "downlinkMax": null,
+            "rtt": 50,
+            "saveData": false,
+            "type": "wifi",
+            "onchange": true
+        },
+        "eventCounts": {
+            "supported": true,
+            "counts": {
+                "pointerdown": 0,
+                "touchend": 0,
+                "input": 0,
+                "keydown": 0,
+                "mouseleave": 0,
+                "mouseenter": 0,
+                "drop": 0,
+                "beforeinput": 0,
+                "pointerenter": 0,
+                "dragend": 0,
+                "pointercancel": 0,
+                "compositionupdate": 0,
+                "mousedown": 0,
+                "dragleave": 0,
+                "dragover": 0,
+                "mouseup": 0,
+                "pointerover": 0,
+                "lostpointercapture": 0,
+                "mouseover": 0,
+                "gotpointercapture": 0,
+                "dblclick": 0,
+                "keyup": 0,
+                "keypress": 0,
+                "pointerup": 0,
+                "compositionstart": 0,
+                "auxclick": 0,
+                "dragstart": 0,
+                "touchstart": 0,
+                "compositionend": 0,
+                "pointerout": 0,
+                "dragenter": 0,
+                "touchcancel": 0,
+                "click": 0,
+                "contextmenu": 0,
+                "mouseout": 0,
+                "pointerleave": 0
+            },
+            "totalEvents": 0
+        },
+        "uaHighEntropy": {
+            "supported": true,
+            "architecture": null,
+            "bitness": null,
+            "brands": [
+                {
+                    "brand": "Not:A-Brand",
+                    "version": "99"
+                },
+                {
+                    "brand": "Google Chrome",
+                    "version": "145"
+                },
+                {
+                    "brand": "Chromium",
+                    "version": "145"
+                }
+            ],
+            "fullVersionList": [
+                {
+                    "brand": "Not:A-Brand",
+                    "version": "99.0.0.0"
+                },
+                {
+                    "brand": "Google Chrome",
+                    "version": "145.0.7632.159"
+                },
+                {
+                    "brand": "Chromium",
+                    "version": "145.0.7632.159"
+                }
+            ],
+            "mobile": true,
+            "model": "21091116I",
+            "platform": "Android",
+            "platformVersion": "13.0.0",
+            "uaFullVersion": "145.0.7632.159"
+        },
+        "storageInfo": {
+            "storageEstimate": {
+                "quota": 10737418240,
+                "usage": 0,
+                "usageDetails": []
+            },
+            "persistentStorage": false,
+            "hasStorageAccess": true,
+            "cookieStoreSupported": true
+        },
+        "fontLoading": {
+            "supported": true,
+            "readyTimeMs": 0.1,
+            "status": "loaded",
+            "loadedFamilies": 0
+        },
+        "hypervisorProbe": {
+            "mean_ms": 0.0425,
+            "stdDev_ms": 0.0494,
+            "min_ms": 0,
+            "max_ms": 0.1,
+            "cv_percent": 116.32,
+            "possibleVM": true
+        },
+        "memoryPattern": {
+            "supported": true,
+            "allocations": [
+                {
+                    "pages": 1,
+                    "sizeKB": 64,
+                    "allocMs": 0,
+                    "touchMs": 0.1
+                },
+                {
+                    "pages": 10,
+                    "sizeKB": 640,
+                    "allocMs": 0,
+                    "touchMs": 0
+                },
+                {
+                    "pages": 50,
+                    "sizeKB": 3200,
+                    "allocMs": 0,
+                    "touchMs": 0
+                },
+                {
+                    "pages": 100,
+                    "sizeKB": 6400,
+                    "allocMs": 0.1,
+                    "touchMs": 0
+                },
+                {
+                    "pages": 256,
+                    "sizeKB": 16384,
+                    "allocMs": 0,
+                    "touchMs": 0
+                }
+            ],
+            "patternHash": "60fdd3f"
+        },
+        "fontsByCSS": {
+            "detected": [
+                "Arial",
+                "Georgia",
+                "Helvetica",
+                "Verdana",
+                "Times New Roman",
+                "Courier New",
+                "Baskerville"
+            ],
+            "count": 7,
+            "method": "css_offsetWidth"
+        },
+        "extendedPermissions": {
+            "supported": true,
+            "permissions": {
+                "push": "unsupported",
+                "speaker-selection": "unsupported",
+                "local-fonts": "unsupported",
+                "captured-surface-control": "unsupported",
+                "keyboard-lock": "unsupported",
+                "pointer-lock": "unsupported",
+                "fullscreen": "unsupported",
+                "window-management": "denied"
+            }
+        },
+        "securityContext": {
+            "crossOriginIsolated": false,
+            "isSecureContext": true,
+            "originAgentCluster": true,
+            "documentPrerendering": false,
+            "credentialless": false,
+            "hasPrivateToken": true,
+            "openDatabaseStatus": "absent",
+            "canvasColorSpaceP3": true,
+            "canvasColorSpaceSRGB": true
+        },
+        "visualViewport": {
+            "supported": true,
+            "width": 392.73,
+            "height": 787.64,
+            "offsetLeft": 0,
+            "offsetTop": 0,
+            "pageLeft": 0,
+            "pageTop": 0,
+            "scale": 1
+        },
+        "mediaConstraints": {
+            "supported": true,
+            "constraints": {
+                "aspectRatio": true,
+                "autoGainControl": true,
+                "brightness": true,
+                "channelCount": true,
+                "colorTemperature": true,
+                "contrast": true,
+                "deviceId": true,
+                "displaySurface": true,
+                "echoCancellation": true,
+                "exposureCompensation": true,
+                "exposureMode": true,
+                "exposureTime": true,
+                "facingMode": true,
+                "focusDistance": true,
+                "focusMode": true,
+                "frameRate": true,
+                "groupId": true,
+                "height": true,
+                "iso": true,
+                "latency": true,
+                "noiseSuppression": true,
+                "pan": true,
+                "pointsOfInterest": true,
+                "resizeMode": true,
+                "restrictOwnAudio": true,
+                "sampleRate": true,
+                "sampleSize": true,
+                "saturation": true,
+                "sharpness": true,
+                "suppressLocalAudioPlayback": true,
+                "tilt": true,
+                "torch": true,
+                "voiceIsolation": true,
+                "whiteBalanceMode": true,
+                "width": true,
+                "zoom": true
+            },
+            "count": 36,
+            "hash": "6ff3cba5"
+        },
+        "jsEngine": {
+            "weakRef": true,
+            "finalizationRegistry": true,
+            "atomics": true,
+            "sharedArrayBuffer": false,
+            "readableStream": true,
+            "writableStream": true,
+            "transformStream": true,
+            "byobReader": true,
+            "logicalAssign": true,
+            "optionalChaining": true,
+            "nullishCoalescing": true,
+            "privateClassFields": true,
+            "arrayAt": true,
+            "arrayFindLast": true,
+            "objectHasOwn": true,
+            "promiseAny": true,
+            "structuredClone": true,
+            "presentErrorTypes": [
+                "Error",
+                "EvalError",
+                "RangeError",
+                "ReferenceError",
+                "SyntaxError",
+                "TypeError",
+                "URIError",
+                "AggregateError"
+            ],
+            "cryptoRandomUUID": true,
+            "queueMicrotask": true,
+            "reportError": true,
+            "adoptedStyleSheets": true,
+            "interactionCount": true
+        },
+        "audioBaseLatencySimple": 0.005333333333333333,
+        "contrastPreference": 0,
+        "monochromeDepth": 0,
+        "privateClickMeasurement": false,
+        "fontsSubset": {
+            "detected": [
+                "Arial",
+                "Courier New",
+                "Georgia",
+                "Helvetica",
+                "Times New Roman",
+                "Verdana"
+            ],
+            "count": 6,
+            "hash": "60055cb7",
+            "testedSubset": [
+                "Arial Unicode MS",
+                "Gill Sans",
+                "Helvetica Neue",
+                "Menlo",
+                "Arial",
+                "Courier New",
+                "Georgia",
+                "Helvetica",
+                "Times New Roman",
+                "Verdana",
+                "Monaco",
+                "Lucida Console",
+                "Consolas",
+                "Segoe UI",
+                "SF Pro"
+            ]
+        },
+        "invertedColors": false,
+        "touchSupport": {
+            "maxTouchPoints": 5,
+            "touchEvent": true,
+            "touchStart": true
+        },
+        "screenResolution": [
+            873,
+            393
+        ],
+        "screenFrameArray": [
+            0,
+            0,
+            0,
+            0
+        ],
+        "reducedTransparency": false,
+        "reducedMotion": false,
+        "forcedColors": false,
+        "cookiesEnabled": true,
+        "colorGamut": "srgb",
+        "hdr": false,
+        "svgRendering": {
+            "supported": true,
+            "measurements": {
+                "pathLength": 375.2419,
+                "pathBBox": {
+                    "x": 10,
+                    "y": 45,
+                    "width": 340,
+                    "height": 70
+                },
+                "rectBBox": {
+                    "x": 10,
+                    "y": 10,
+                    "width": 50,
+                    "height": 50
+                },
+                "ellipseBBox": {
+                    "x": 50,
+                    "y": 70,
+                    "width": 100,
+                    "height": 60
+                },
+                "textBBox": {
+                    "x": 10,
+                    "y": 134.73,
+                    "width": 81.31,
+                    "height": 19.27
+                }
+            },
+            "hash": "423a2772"
+        },
+        "htmlElement": {
+            "protoChain": [
+                "HTMLDivElement",
+                "HTMLElement",
+                "Element",
+                "Node",
+                "EventTarget",
+                "Object"
+            ],
+            "features": {
+                "protoChain": [
+                    "HTMLDivElement",
+                    "HTMLElement",
+                    "Element",
+                    "Node",
+                    "EventTarget",
+                    "Object"
+                ],
+                "shadowRoot": true,
+                "animate": true,
+                "getAnimations": true,
+                "computedStyleMap": true,
+                "attributeStyleMap": true,
+                "part": true,
+                "slot": true,
+                "assignedSlot": true,
+                "inputShowPicker": true,
+                "inputCheckValidity": true,
+                "inputSelectionStart": true,
+                "customElements": true,
+                "customElementsDefine": true,
+                "fragmentAppend": true,
+                "fragmentPrepend": true,
+                "fragmentReplaceChildren": true
+            },
+            "hash": "69fbc435"
+        },
+        "domRect": {
+            "rects": [
+                {
+                    "idx": 0,
+                    "width": 100,
+                    "height": 50,
+                    "x": -9999,
+                    "y": -9999
+                },
+                {
+                    "idx": 1,
+                    "width": 100.5,
+                    "height": 50.5,
+                    "x": -9999,
+                    "y": -9949
+                },
+                {
+                    "idx": 2,
+                    "width": 106.0653,
+                    "height": 106.0653,
+                    "x": -10002.0332,
+                    "y": -9926.5332
+                },
+                {
+                    "idx": 3,
+                    "width": 150,
+                    "height": 75,
+                    "x": -10024,
+                    "y": -9861
+                },
+                {
+                    "idx": 4,
+                    "width": 87.1875,
+                    "height": 17.4545,
+                    "x": -9999,
+                    "y": -9798.5
+                },
+                {
+                    "idx": 5,
+                    "width": 67.4091,
+                    "height": 19.2727,
+                    "x": -9911.8125,
+                    "y": -9798.5
+                },
+                {
+                    "idx": 6,
+                    "width": 76.8125,
+                    "height": 18.9091,
+                    "x": -9844.4033,
+                    "y": -9798.1367
+                },
+                {
+                    "idx": 7,
+                    "width": 100,
+                    "height": 50,
+                    "x": -9999,
+                    "y": -9778.8643
+                },
+                {
+                    "idx": 8,
+                    "width": 120,
+                    "height": 70,
+                    "x": -9999,
+                    "y": -9728.8643
+                },
+                {
+                    "idx": 9,
+                    "width": 100,
+                    "height": 50,
+                    "x": -9989,
+                    "y": -9648.8643
+                }
+            ],
+            "hash": "2c24cb0c"
+        },
+        "contentWindow": {
+            "features": {
+                "hasContentWindow": true,
+                "contentWindowType": "[object Object]",
+                "cwLocation": "object",
+                "cwDocument": "blocked",
+                "cwNavigator": "blocked",
+                "cwParent": true,
+                "cwTop": true,
+                "cwFrameElement": "blocked",
+                "hasContentDocument": false,
+                "srcdocSupport": true,
+                "sandboxSupport": true,
+                "sandboxTokens": [],
+                "lazyLoadSupport": true,
+                "referrerPolicySupport": true,
+                "allowSupport": true,
+                "cspSupport": true
+            },
+            "hash": "4a35cfd9"
+        },
+        "consoleErrors": {
+            "errors": [
+                {
+                    "idx": 0,
+                    "name": "Error",
+                    "messageLength": 4,
+                    "hasStack": true,
+                    "stackLines": 7,
+                    "stackFormat": "v8"
+                },
+                {
+                    "idx": 1,
+                    "name": "TypeError",
+                    "messageLength": 9,
+                    "hasStack": true,
+                    "stackLines": 7,
+                    "stackFormat": "v8"
+                },
+                {
+                    "idx": 2,
+                    "name": "RangeError",
+                    "messageLength": 10,
+                    "hasStack": true,
+                    "stackLines": 7,
+                    "stackFormat": "v8"
+                },
+                {
+                    "idx": 3,
+                    "name": "SyntaxError",
+                    "messageLength": 11,
+                    "hasStack": true,
+                    "stackLines": 7,
+                    "stackFormat": "v8"
+                },
+                {
+                    "idx": 4,
+                    "name": "ReferenceError",
+                    "messageLength": 8,
+                    "hasStack": true,
+                    "stackLines": 7,
+                    "stackFormat": "v8"
+                },
+                {
+                    "idx": 5,
+                    "name": "URIError",
+                    "messageLength": 8,
+                    "hasStack": true,
+                    "stackLines": 7,
+                    "stackFormat": "v8"
+                }
+            ],
+            "evalError": {
+                "name": "SyntaxError",
+                "hasLineNumber": false,
+                "hasColumnNumber": false,
+                "hasFileName": false
+            },
+            "jsonError": {
+                "name": "SyntaxError",
+                "messagePattern": "Expected property na"
+            },
+            "funcError": {
+                "name": "SyntaxError",
+                "messagePattern": "Unexpected token '{'"
+            },
+            "hash": "5ee10672"
+        },
+        "textMetrics": {
+            "measurements": [
+                {
+                    "font": "Arial",
+                    "size": 12,
+                    "width": 375.5156,
+                    "actualBoundingBoxAscent": 10,
+                    "actualBoundingBoxDescent": 2,
+                    "actualBoundingBoxLeft": null,
+                    "actualBoundingBoxRight": 375.8887,
+                    "fontBoundingBoxAscent": 11,
+                    "fontBoundingBoxDescent": 3
+                },
+                {
+                    "font": "Arial",
+                    "size": 16,
+                    "width": 500.6875,
+                    "actualBoundingBoxAscent": 13,
+                    "actualBoundingBoxDescent": 3,
+                    "actualBoundingBoxLeft": null,
+                    "actualBoundingBoxRight": 500.8516,
+                    "fontBoundingBoxAscent": 15,
+                    "fontBoundingBoxDescent": 4
+                },
+                {
+                    "font": "Arial",
+                    "size": 24,
+                    "width": 751.0313,
+                    "actualBoundingBoxAscent": 19,
+                    "actualBoundingBoxDescent": 4,
+                    "actualBoundingBoxLeft": -1,
+                    "actualBoundingBoxRight": 750.7773,
+                    "fontBoundingBoxAscent": 23,
+                    "fontBoundingBoxDescent": 6
+                },
+                {
+                    "font": "Times New Roman",
+                    "size": 12,
+                    "width": 366.627,
+                    "actualBoundingBoxAscent": 10,
+                    "actualBoundingBoxDescent": 3,
+                    "actualBoundingBoxLeft": null,
+                    "actualBoundingBoxRight": 366.875,
+                    "fontBoundingBoxAscent": 11,
+                    "fontBoundingBoxDescent": 3
+                },
+                {
+                    "font": "Times New Roman",
+                    "size": 16,
+                    "width": 488.8359,
+                    "actualBoundingBoxAscent": 13,
+                    "actualBoundingBoxDescent": 4,
+                    "actualBoundingBoxLeft": null,
+                    "actualBoundingBoxRight": 488.5,
+                    "fontBoundingBoxAscent": 15,
+                    "fontBoundingBoxDescent": 4
+                },
+                {
+                    "font": "Times New Roman",
+                    "size": 24,
+                    "width": 733.2539,
+                    "actualBoundingBoxAscent": 18,
+                    "actualBoundingBoxDescent": 6,
+                    "actualBoundingBoxLeft": null,
+                    "actualBoundingBoxRight": 732.75,
+                    "fontBoundingBoxAscent": 22,
+                    "fontBoundingBoxDescent": 6
+                },
+                {
+                    "font": "Courier New",
+                    "size": 12,
+                    "width": 428.6719,
+                    "actualBoundingBoxAscent": 9,
+                    "actualBoundingBoxDescent": 2,
+                    "actualBoundingBoxLeft": null,
+                    "actualBoundingBoxRight": 428.4063,
+                    "fontBoundingBoxAscent": 9,
+                    "fontBoundingBoxDescent": 4
+                },
+                {
+                    "font": "Courier New",
+                    "size": 16,
+                    "width": 571.5625,
+                    "actualBoundingBoxAscent": 10,
+                    "actualBoundingBoxDescent": 3,
+                    "actualBoundingBoxLeft": null,
+                    "actualBoundingBoxRight": 570.875,
+                    "fontBoundingBoxAscent": 12,
+                    "fontBoundingBoxDescent": 5
+                },
+                {
+                    "font": "Courier New",
+                    "size": 24,
+                    "width": 857.3438,
+                    "actualBoundingBoxAscent": 17,
+                    "actualBoundingBoxDescent": 5,
+                    "actualBoundingBoxLeft": -1,
+                    "actualBoundingBoxRight": 855.8125,
+                    "fontBoundingBoxAscent": 20,
+                    "fontBoundingBoxDescent": 7
+                },
+                {
+                    "font": "Georgia",
+                    "size": 12,
+                    "width": 366.627,
+                    "actualBoundingBoxAscent": 10,
+                    "actualBoundingBoxDescent": 3,
+                    "actualBoundingBoxLeft": null,
+                    "actualBoundingBoxRight": 366.875,
+                    "fontBoundingBoxAscent": 11,
+                    "fontBoundingBoxDescent": 3
+                },
+                {
+                    "font": "Georgia",
+                    "size": 16,
+                    "width": 488.8359,
+                    "actualBoundingBoxAscent": 13,
+                    "actualBoundingBoxDescent": 4,
+                    "actualBoundingBoxLeft": null,
+                    "actualBoundingBoxRight": 488.5,
+                    "fontBoundingBoxAscent": 15,
+                    "fontBoundingBoxDescent": 4
+                },
+                {
+                    "font": "Georgia",
+                    "size": 24,
+                    "width": 733.2539,
+                    "actualBoundingBoxAscent": 18,
+                    "actualBoundingBoxDescent": 6,
+                    "actualBoundingBoxLeft": null,
+                    "actualBoundingBoxRight": 732.75,
+                    "fontBoundingBoxAscent": 22,
+                    "fontBoundingBoxDescent": 6
+                },
+                {
+                    "font": "Verdana",
+                    "size": 12,
+                    "width": 375.5156,
+                    "actualBoundingBoxAscent": 10,
+                    "actualBoundingBoxDescent": 2,
+                    "actualBoundingBoxLeft": null,
+                    "actualBoundingBoxRight": 375.8887,
+                    "fontBoundingBoxAscent": 11,
+                    "fontBoundingBoxDescent": 3
+                },
+                {
+                    "font": "Verdana",
+                    "size": 16,
+                    "width": 500.6875,
+                    "actualBoundingBoxAscent": 13,
+                    "actualBoundingBoxDescent": 3,
+                    "actualBoundingBoxLeft": null,
+                    "actualBoundingBoxRight": 500.8516,
+                    "fontBoundingBoxAscent": 15,
+                    "fontBoundingBoxDescent": 4
+                },
+                {
+                    "font": "Verdana",
+                    "size": 24,
+                    "width": 751.0313,
+                    "actualBoundingBoxAscent": 19,
+                    "actualBoundingBoxDescent": 4,
+                    "actualBoundingBoxLeft": -1,
+                    "actualBoundingBoxRight": 750.7773,
+                    "fontBoundingBoxAscent": 23,
+                    "fontBoundingBoxDescent": 6
+                },
+                {
+                    "font": "Helvetica",
+                    "size": 12,
+                    "width": 375.5156,
+                    "actualBoundingBoxAscent": 10,
+                    "actualBoundingBoxDescent": 2,
+                    "actualBoundingBoxLeft": null,
+                    "actualBoundingBoxRight": 375.8887,
+                    "fontBoundingBoxAscent": 11,
+                    "fontBoundingBoxDescent": 3
+                },
+                {
+                    "font": "Helvetica",
+                    "size": 16,
+                    "width": 500.6875,
+                    "actualBoundingBoxAscent": 13,
+                    "actualBoundingBoxDescent": 3,
+                    "actualBoundingBoxLeft": null,
+                    "actualBoundingBoxRight": 500.8516,
+                    "fontBoundingBoxAscent": 15,
+                    "fontBoundingBoxDescent": 4
+                },
+                {
+                    "font": "Helvetica",
+                    "size": 24,
+                    "width": 751.0313,
+                    "actualBoundingBoxAscent": 19,
+                    "actualBoundingBoxDescent": 4,
+                    "actualBoundingBoxLeft": -1,
+                    "actualBoundingBoxRight": 750.7773,
+                    "fontBoundingBoxAscent": 23,
+                    "fontBoundingBoxDescent": 6
+                }
+            ],
+            "count": 18,
+            "hash": "286a8bf"
+        },
+        "applePayCapability": {
+            "apiAvailable": false,
+            "canMakePayments": null,
+            "canMakePaymentsWithActiveCard": null,
+            "merchantIdentifier": null,
+            "paymentRequestAPI": true,
+            "applePayPaymentMethod": false,
+            "paymentRequestSupported": true
+        },
+        "serviceWorker": {
+            "supported": true,
+            "controller": false,
+            "ready": "timeout",
+            "state": null,
+            "features": {
+                "pushManager": true,
+                "sync": true,
+                "periodicSync": true,
+                "backgroundFetch": true,
+                "cacheAPI": true,
+                "notifications": true,
+                "paymentManager": true,
+                "cookieStore": true,
+                "getRegistrations": true
+            }
+        },
+        "cssMediaQueriesExtended": {
+            "queries": {
+                "prefers-color-scheme: dark": true,
+                "prefers-color-scheme: light": false,
+                "prefers-reduced-motion: reduce": false,
+                "prefers-reduced-motion: no-preference": true,
+                "prefers-contrast: more": false,
+                "prefers-contrast: less": false,
+                "prefers-contrast: no-preference": true,
+                "prefers-reduced-transparency: reduce": false,
+                "prefers-reduced-transparency: no-preference": true,
+                "inverted-colors: inverted": false,
+                "inverted-colors: none": false,
+                "forced-colors: active": false,
+                "forced-colors: none": true,
+                "any-hover: hover": false,
+                "any-hover: none": true,
+                "hover: hover": false,
+                "hover: none": true,
+                "any-pointer: fine": false,
+                "any-pointer: coarse": true,
+                "any-pointer: none": false,
+                "pointer: fine": false,
+                "pointer: coarse": true,
+                "pointer: none": false,
+                "display-mode: fullscreen": false,
+                "display-mode: standalone": false,
+                "display-mode: minimal-ui": false,
+                "display-mode: browser": true,
+                "orientation: portrait": true,
+                "orientation: landscape": false,
+                "color-gamut: srgb": true,
+                "color-gamut: p3": false,
+                "color-gamut: rec2020": false,
+                "dynamic-range: standard": true,
+                "dynamic-range: high": false,
+                "update: fast": true,
+                "update: slow": false,
+                "update: none": false,
+                "overflow-block: scroll": true,
+                "overflow-inline: scroll": true,
+                "scripting: enabled": true,
+                "scripting: none": false
+            },
+            "trueCount": 17,
+            "hash": "42431f88"
+        }
+    },
+    "generated": "2026-03-09T12:58:06+00:00"
+}

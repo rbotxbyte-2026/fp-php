@@ -1,0 +1,33 @@
+{
+  "manifest_version": 3,
+  "name": "FP Spoofer",
+  "version": "1.0.1",
+  "description": "Import and spoof browser fingerprint values",
+  "permissions": [
+    "storage",
+    "scripting",
+    "activeTab",
+    "webNavigation",
+    "declarativeNetRequest",
+    "declarativeNetRequestFeedback",
+    "declarativeNetRequestWithHostAccess"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "run_at": "document_start",
+      "all_frames": true,
+      "world": "MAIN"
+    }
+  ]
+}

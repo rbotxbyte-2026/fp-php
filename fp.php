@@ -84,7 +84,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && sv('HTTP_X_REQUESTED_WITH') === 'XM
         'header_order'            => array_keys($all_headers),
         'header_count'            => count($all_headers),
     );
-    echo json_encode(array('server' => $server, 'client' => $js_data, 'generated' => date('c')), JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+    $result = array('server' => $server, 'client' => $js_data, 'generated' => date('c'));
+    $json_output = json_encode($result, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+    
+    // Save to server.json (always save latest fingerprint)
+    $save_path = __DIR__ . '/server.json';
+    file_put_contents($save_path, $json_output);
+    
+    // Also save timestamped version in captures/ folder for history
+    $captures_dir = __DIR__ . '/captures';
+    if (!is_dir($captures_dir)) {
+        mkdir($captures_dir, 0755, true);
+    }
+    $timestamp_file = $captures_dir . '/capture_' . date('Y-m-d_H-i-s') . '.json';
+    file_put_contents($timestamp_file, $json_output);
+    
+    echo $json_output;
     exit;
 }
 ?>
