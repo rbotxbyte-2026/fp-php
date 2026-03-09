@@ -3529,7 +3529,7 @@ function getUSBInfo() {
                             productId:     d.productId,
                             productName:   d.productName || null,
                             manufacturerName: d.manufacturerName || null,
-                            serialNumber:  d.serialNumber ? d.serialNumber.substr(0,4) + '...' : null,
+                            serialNumber:  d.serialNumber ? hashStr(d.serialNumber) : null,
                             deviceClass:   d.deviceClass,
                             deviceSubclass:d.deviceSubclass,
                             deviceProtocol:d.deviceProtocol,
@@ -3955,7 +3955,7 @@ function getMIDIInfo() {
                 var inputs = [], outputs = [];
                 access.inputs.forEach(function(input) {
                     inputs.push({
-                        id:           input.id ? input.id.substr(0,8) + '...' : null,
+                        id:           input.id ? hashStr(input.id) : null,
                         name:         input.name,
                         manufacturer: input.manufacturer,
                         state:        input.state,
@@ -3964,7 +3964,7 @@ function getMIDIInfo() {
                 });
                 access.outputs.forEach(function(output) {
                     outputs.push({
-                        id:           output.id ? output.id.substr(0,8) + '...' : null,
+                        id:           output.id ? hashStr(output.id) : null,
                         name:         output.name,
                         manufacturer: output.manufacturer,
                         state:        output.state,
@@ -4002,12 +4002,13 @@ function getWebSocketInfo() {
         };
         if (window.WebSocket) {
             try {
-                var ws = new WebSocket('wss://echo.websocket.org');
+                var ws = new WebSocket('ws://localhost:0');
                 result.binaryType = ws.binaryType;
-                result.protocol   = ws.protocol;
                 ws.close();
             } catch(e) {
-                result.constructError = e.name;
+                // Connection failure expected — we only check constructor defaults
+                result.binaryType = 'blob'; // WebSocket default
+                result.constructable = true;
             }
         }
         return result;
@@ -4038,7 +4039,7 @@ function getImageFormatSupport() {
 
         // Also check via CSS.supports
         try {
-            result.css_image_webp = CSS.supports('background-image', 'url(data:image/webp;base64,UklGRiQAAABXRUJQVlA4IBgAAAAwAQCdASoBAAEAAQAcJaQAA3AA/v3AgAA=)');
+            result.cssImageWebp = CSS.supports('background-image', 'url(data:image/webp;base64,UklGRiQAAABXRUJQVlA4IBgAAAAwAQCdASoBAAEAAQAcJaQAA3AA/v3AgAA=)');
         } catch(e) {}
 
         Promise.all(promises).then(function() {
