@@ -111,7 +111,7 @@
   }
 })();
 
-(async function() {
+(function() {
   'use strict';
 
   let spoofConfig = null;
@@ -1527,76 +1527,12 @@
   }
 
   // ============================================
-  // FONT PREFERENCES SPOOFING (measureText)
+  // COMBINED FONT SPOOFING (measureText)
+  // Handles both font detection AND font preferences in one override
   // ============================================
 
   const fontPrefs = client.fontPreferences || {};
-
-  if (Object.keys(fontPrefs).length > 0) {
-    const originalMeasureText = CanvasRenderingContext2D.prototype.measureText;
-    
-    CanvasRenderingContext2D.prototype.measureText = makeNative(function(text) {
-      const result = originalMeasureText.call(this, text);
-      const ctx = this;
-      const font = ctx.font || '';
-      
-      // Check if this is a font preference measurement (common test strings)
-      const testStrings = [
-        'mmmmmmmmmmlli',
-        'mmmmmmmmmmll',
-        'BESbswy',
-        'abcdefghijklmnopqrstuvwxyz',
-        'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
-        '0123456789'
-      ];
-      
-      if (testStrings.includes(text) || text.length > 10) {
-        // Check font family
-        const fontLower = font.toLowerCase();
-        let spoofedWidth = null;
-        
-        if (fontLower.includes('apple') || fontLower.includes('-apple-system')) {
-          spoofedWidth = fontPrefs.apple;
-        } else if (fontLower.includes('sans-serif') && !fontLower.includes('serif')) {
-          spoofedWidth = fontPrefs.sans;
-        } else if (fontLower.includes('serif') && !fontLower.includes('sans')) {
-          spoofedWidth = fontPrefs.serif;
-        } else if (fontLower.includes('mono') || fontLower.includes('courier')) {
-          spoofedWidth = fontPrefs.mono;
-        } else if (fontLower.includes('system-ui')) {
-          spoofedWidth = fontPrefs.system;
-        } else if (fontLower.includes('8px') || fontLower.includes('9px')) {
-          spoofedWidth = fontPrefs.min;
-        } else {
-          spoofedWidth = fontPrefs.default;
-        }
-        
-        if (spoofedWidth !== null && spoofedWidth !== undefined) {
-          // Create a new TextMetrics-like object with spoofed width
-          const ratio = spoofedWidth / (result.width || 1);
-          return {
-            width: spoofedWidth,
-            actualBoundingBoxAscent: result.actualBoundingBoxAscent,
-            actualBoundingBoxDescent: result.actualBoundingBoxDescent,
-            actualBoundingBoxLeft: result.actualBoundingBoxLeft,
-            actualBoundingBoxRight: result.actualBoundingBoxRight * ratio,
-            fontBoundingBoxAscent: result.fontBoundingBoxAscent,
-            fontBoundingBoxDescent: result.fontBoundingBoxDescent,
-            alphabeticBaseline: result.alphabeticBaseline,
-            ideographicBaseline: result.ideographicBaseline,
-            hangingBaseline: result.hangingBaseline
-          };
-        }
-      }
-      
-      return result;
-    }, 'measureText');
-  }
-
-  // ============================================
-  // COMPLETE FONT SPOOFING SYSTEM
-  // ============================================
-
+  
   // Get all font-related data from profile
   const fontsData = client.fonts || {};
   const fontsDetected = fontsData.detected || [];
@@ -1606,89 +1542,78 @@
   const fontsSubsetDetected = fontsSubset.detected || [];
   
   // Create sets of "installed" fonts from profile
-  // Combine fonts.detected + fontsSubset.detected for measureText
   const installedFontsForMeasureText = new Set([
     ...fontsDetected.map(f => f.toLowerCase()),
     ...fontsSubsetDetected.map(f => f.toLowerCase())
   ]);
   const installedFontsForCSS = new Set(fontsByCSSDetected.map(f => f.toLowerCase()));
   
-  // PART 1: Override measureText() for fonts.detected (canvas-based detection)
-  // The detection works by comparing font width to monospace baseline
-  // If width differs from baseline -> font exists
-  // If width same as baseline -> font doesn't exist (fallback used)
+  // DEBUG: Log what fonts are in the profile
+  console.log('[FP-SPOOF] Profile fonts:', fontsDetected.length, Array.from(installedFontsForMeasureText));
   
-  if (fontsDetected.length > 0 || fontsData.count !== undefined) {
-    const originalMeasureText2 = CanvasRenderingContext2D.prototype.measureText;
+  // COMBINED measureText override
+  if (fontsDetected.length > 0 || Object.keys(fontPrefs).length > 0) {
+    const originalMeasureText = CanvasRenderingContext2D.prototype.measureText;
     
-    // Global baseline storage (per test string)
-    const baselineWidths = new Map();
+    // Create a separate canvas for baseline measurements
+    const baselineCanvas = document.createElement('canvas');
+    const baselineCtx = baselineCanvas.getContext('2d');
+    
+    // Helper to create a fake TextMetrics with custom width
+    const createFakeTextMetrics = function(realMetrics, fakeWidth) {
+      return new Proxy(realMetrics, {
+        get: function(target, prop) {
+          if (prop === 'width') {
+            return fakeWidth;
+          }
+          const value = target[prop];
+          return typeof value === 'function' ? value.bind(target) : value;
+        }
+      });
+    };
     
     CanvasRenderingContext2D.prototype.measureText = makeNative(function(text) {
-      const result = originalMeasureText2.call(this, text);
       const font = this.font || '';
-      const fontLower = font.toLowerCase();
       
-      // Check if this is a baseline measurement (just "Npx monospace" without a specific font)
-      // e.g., "16px monospace" - no quotes, no comma before monospace
-      const isBaselineTest = fontLower.match(/^\d+px\s+monospace$/);
+      // Extract font size
+      const sizeMatch = font.match(/(\d+)px/);
+      const fontSize = sizeMatch ? sizeMatch[1] : '16';
       
-      if (isBaselineTest) {
-        // Store baseline width for this text
-        baselineWidths.set(text, result.width);
-        return result;
-      }
-      
-      // Check if this is a font detection test ("FontName", monospace)
-      // e.g., '16px "Arial", monospace'
-      const fontTestMatch = font.match(/["']([^"']+)["']\s*,\s*monospace/i);
+      // Check if this is a font probe (has quotes around font name)
+      // Pattern: '16px "FontName", fallback' or "16px 'FontName', fallback"
+      const fontTestMatch = font.match(/["']([^"']+)["']\s*,\s*(\w+)/);
       
       if (fontTestMatch) {
+        // This IS a font probe: '16px "Arial", monospace'
         const testFont = fontTestMatch[1].trim();
         const testFontLower = testFont.toLowerCase();
+        const fallbackFont = fontTestMatch[2]; // 'monospace'
         
-        // Check if this font should "exist" according to our profile
+        // Should this font "exist" according to profile?
         const shouldExist = installedFontsForMeasureText.has(testFontLower);
-        const baseline = baselineWidths.get(text);
         
-        if (baseline !== undefined) {
-          if (!shouldExist) {
-            // Font not in profile - return baseline width (font "not found")
-            return {
-              width: baseline,
-              actualBoundingBoxAscent: result.actualBoundingBoxAscent,
-              actualBoundingBoxDescent: result.actualBoundingBoxDescent,
-              actualBoundingBoxLeft: result.actualBoundingBoxLeft,
-              actualBoundingBoxRight: result.actualBoundingBoxRight,
-              fontBoundingBoxAscent: result.fontBoundingBoxAscent,
-              fontBoundingBoxDescent: result.fontBoundingBoxDescent,
-              alphabeticBaseline: result.alphabeticBaseline,
-              ideographicBaseline: result.ideographicBaseline,
-              hangingBaseline: result.hangingBaseline
-            };
-          } else {
-            // Font IS in profile - make sure it gets detected
-            // If actual width equals baseline (font not installed locally), force difference
-            if (result.width === baseline) {
-              return {
-                width: baseline * 1.05, // 5% larger to guarantee detection
-                actualBoundingBoxAscent: result.actualBoundingBoxAscent,
-                actualBoundingBoxDescent: result.actualBoundingBoxDescent,
-                actualBoundingBoxLeft: result.actualBoundingBoxLeft,
-                actualBoundingBoxRight: result.actualBoundingBoxRight,
-                fontBoundingBoxAscent: result.fontBoundingBoxAscent,
-                fontBoundingBoxDescent: result.fontBoundingBoxDescent,
-                alphabeticBaseline: result.alphabeticBaseline,
-                ideographicBaseline: result.ideographicBaseline,
-                hangingBaseline: result.hangingBaseline
-              };
-            }
-            // Font is in profile AND renders different - return actual (detected)
+        // Get baseline width using separate canvas
+        baselineCtx.font = fontSize + 'px ' + fallbackFont;
+        const baselineWidth = originalMeasureText.call(baselineCtx, text).width;
+        
+        // Get actual result
+        const result = originalMeasureText.call(this, text);
+        
+        if (!shouldExist) {
+          // Font NOT in profile → return proxy with baseline width
+          return createFakeTextMetrics(result, baselineWidth);
+        } else {
+          // Font IS in profile → ensure it's detected
+          if (result.width === baselineWidth) {
+            // Font not locally installed but should appear installed → fake different width
+            return createFakeTextMetrics(result, baselineWidth * 1.05);
           }
+          return result;
         }
       }
       
-      return result;
+      // NOT a font probe - return original result
+      return originalMeasureText.call(this, text);
     }, 'measureText');
   }
 

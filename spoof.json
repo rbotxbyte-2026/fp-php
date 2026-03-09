@@ -1,10 +1,10 @@
 {
   "server": {
-    "ip": "2405:f600:8:d4f6:3021:ec99:42a9:3227",
+    "ip": "2402:a00:182:1cd5:3db9:ec95:6497:2dd5",
     "protocol": "HTTP/1.0",
     "https": true,
     "port": "80",
-    "request_time": "2026-03-09 14:07:42",
+    "request_time": "2026-03-09 18:16:42",
     "user_agent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Mobile Safari/537.36",
     "accept": "*/*",
     "accept_language": "en-IN,en;q=0.9,gu;q=0.8,en-GB;q=0.7,en-US;q=0.6,hi;q=0.5",
@@ -13,7 +13,7 @@
     "cache_control": null,
     "dnt": "1",
     "upgrade_insecure": null,
-    "referer": "https://botxbyte.com/fp.php?c=deexx",
+    "referer": "https://botxbyte.com/fp.php",
     "origin": "https://botxbyte.com",
     "te": null,
     "priority": "u=1, i",
@@ -28,12 +28,12 @@
     "ch_ua_bitness": null,
     "ch_ua_full_version_list": null,
     "ch_ua_model": null,
-    "x_forwarded_for": "2405:f600:8:d4f6:3021:ec99:42a9:3227, 172.70.115.201",
+    "x_forwarded_for": "2402:a00:182:1cd5:3db9:ec95:6497:2dd5, 172.71.203.106",
     "x_real_ip": null,
     "via": null,
-    "cf_connecting_ip": "2405:f600:8:d4f6:3021:ec99:42a9:3227",
+    "cf_connecting_ip": "2402:a00:182:1cd5:3db9:ec95:6497:2dd5",
     "cf_ipcountry": "IN",
-    "cf_ray": "9d9aa5c1cbd6160c-EWR",
+    "cf_ray": "9d9c127fccec4936-EWR",
     "cdn_loop": "cloudflare; loops=1",
     "x_forwarded_proto": "https",
     "ja3_hash": null,
@@ -43,13 +43,13 @@
     "all_headers": {
       "Cf-Visitor": "{\"scheme\":\"https\"}",
       "Cf-Ipcountry": "IN",
-      "Cf-Connecting-Ip": "2405:f600:8:d4f6:3021:ec99:42a9:3227",
+      "Cf-Connecting-Ip": "2402:a00:182:1cd5:3db9:ec95:6497:2dd5",
       "Cdn-Loop": "cloudflare; loops=1",
-      "Cf-Ray": "9d9aa5c1cbd6160c-EWR",
+      "Cf-Ray": "9d9c127fccec4936-EWR",
       "Dnt": "1",
       "Accept-Language": "en-IN,en;q=0.9,gu;q=0.8,en-GB;q=0.7,en-US;q=0.6,hi;q=0.5",
       "Accept-Encoding": "gzip, br",
-      "Referer": "https://botxbyte.com/fp.php?c=deexx",
+      "Referer": "https://botxbyte.com/fp.php",
       "Sec-Fetch-Dest": "empty",
       "Sec-Fetch-Mode": "cors",
       "Sec-Fetch-Site": "same-origin",
@@ -62,10 +62,10 @@
       "X-Requested-With": "XMLHttpRequest",
       "Sec-Ch-Ua-Platform": "\"Android\"",
       "Priority": "u=1, i",
-      "Content-Length": "39368",
+      "Content-Length": "39616",
       "Connection": "close",
       "X-Forwarded-Proto": "https",
-      "X-Forwarded-For": "2405:f600:8:d4f6:3021:ec99:42a9:3227, 172.70.115.201",
+      "X-Forwarded-For": "2402:a00:182:1cd5:3db9:ec95:6497:2dd5, 172.71.203.106",
       "X-Server-Addr": "107.170.48.37",
       "Host": "botxbyte.com",
       "Authorization": ""
@@ -162,7 +162,7 @@
       "calendar": "gregory",
       "numberingSystem": "latn",
       "localeDateString": "09/03/2026",
-      "localeTimeString": "19:37:42"
+      "localeTimeString": "23:46:42"
     },
     "canvas": {
       "hash": "7ecb5be6",
@@ -279,11 +279,34 @@
     "mimeTypes": [],
     "fonts": {
       "detected": [
+        "Arial",
+        "Courier",
         "Courier New",
+        "Georgia",
+        "Impact",
+        "Symbol",
+        "Tahoma",
         "Times New Roman",
+        "Verdana",
+        "Webdings",
+        "Wingdings",
+        "Helvetica",
+        "Geneva",
+        "Optima",
+        "Futura",
+        "Baskerville",
+        "Didot",
+        "Palatino",
+        "Avenir",
+        "Superclarendon",
+        "Rockwell",
+        "Herculanum",
+        "Papyrus",
+        "Copperplate",
+        "Monaco",
         "Courier New"
       ],
-      "count": 3,
+      "count": 26,
       "metricsHash": "24a67c0b"
     },
     "features": {
@@ -949,7 +972,7 @@
       "historyLength": 1,
       "cookieCount": 0,
       "domainLookupTime": null,
-      "URL": "https://botxbyte.com/fp.php?c=deexx",
+      "URL": "https://botxbyte.com/fp.php",
       "protocol": "https:",
       "host": "botxbyte.com"
     },
@@ -997,12 +1020,12 @@
       "navigationTiming": {
         "type": "reload",
         "redirectCount": 0,
-        "domInteractive": 566,
-        "domContentLoaded": 567,
-        "loadEvent": 567,
-        "ttfb": 455,
-        "transferSize": 38670,
-        "encodedBodySize": 38370
+        "domInteractive": 564,
+        "domContentLoaded": 647,
+        "loadEvent": 647,
+        "ttfb": 402,
+        "transferSize": 38668,
+        "encodedBodySize": 38368
       },
       "memory": {
         "jsHeapSizeLimit": 1130000000,
@@ -1010,11 +1033,11 @@
         "usedJSHeapSize": 10000000
       },
       "timeOrigin": 1773061077763.8,
-      "now": 3341.5999999940395
+      "now": 3402
     },
     "stackTrace": {
       "engine": "V8(Chrome/Node)",
-      "sample": "Error: fp |     at getStackTrace (https://botxbyte.com/fp.php?c=deexx:694:21) |     at collect (https://botxbyte.com/fp.php?c=deexx:3228:21)",
+      "sample": "Error: fp |     at getStackTrace (https://botxbyte.com/fp.php:694:21) |     at collect (https://botxbyte.com/fp.php:3228:21)",
       "lines": 4
     },
     "internals": {
@@ -1093,7 +1116,7 @@
     "refreshRate": {
       "measured_fps": 60,
       "snapped_hz": 60,
-      "avg_frame_ms": 16.672
+      "avg_frame_ms": 16.669
     },
     "videoDecoder": {
       "supported": true,
@@ -1107,10 +1130,10 @@
     },
     "behavioral": {
       "mouse": {
-        "sampleCount": 26,
-        "avgVelocity": 0.1165,
-        "maxVelocity": 0.3035,
-        "angleVariance": 333.43
+        "sampleCount": 12,
+        "avgVelocity": 0.4306,
+        "maxVelocity": 1.4252,
+        "angleVariance": 344.74
       },
       "keyboard": null,
       "scroll": {
@@ -1144,7 +1167,7 @@
           "absolute": false
         }
       },
-      "sessionDuration": 3339
+      "sessionDuration": 3397
     },
     "fontPreferences": {
       "default": 465.65911865234375,
@@ -1803,16 +1826,16 @@
     },
     "fontLoading": {
       "supported": true,
-      "readyTimeMs": 0.1,
+      "readyTimeMs": 0,
       "status": "loaded",
       "loadedFamilies": 0
     },
     "hypervisorProbe": {
-      "mean_ms": 0.0125,
-      "stdDev_ms": 0.0331,
+      "mean_ms": 0.0175,
+      "stdDev_ms": 0.038,
       "min_ms": 0,
       "max_ms": 0.1,
-      "cv_percent": 264.58,
+      "cv_percent": 217.12,
       "possibleVM": true
     },
     "memoryPattern": {
@@ -1821,14 +1844,14 @@
         {
           "pages": 1,
           "sizeKB": 64,
-          "allocMs": 0.1,
+          "allocMs": 0,
           "touchMs": 0
         },
         {
           "pages": 10,
           "sizeKB": 640,
           "allocMs": 0,
-          "touchMs": 0.1
+          "touchMs": 0
         },
         {
           "pages": 50,
@@ -1849,7 +1872,7 @@
           "touchMs": 0
         }
       ],
-      "patternHash": "57af5c9d"
+      "patternHash": "2ed65e02"
     },
     "fontsByCSS": {
       "detected": [
@@ -1981,11 +2004,16 @@
     "privateClickMeasurement": false,
     "fontsSubset": {
       "detected": [
+        "Arial",
         "Courier New",
-        "Times New Roman"
+        "Georgia",
+        "Helvetica",
+        "Times New Roman",
+        "Verdana",
+        "Monaco"
       ],
-      "count": 2,
-      "hash": "6776b24c",
+      "count": 7,
+      "hash": "7ac74e34",
       "testedSubset": [
         "Arial Unicode MS",
         "Gill Sans",
@@ -2262,204 +2290,204 @@
         {
           "font": "Arial",
           "size": 12,
-          "width": 465.6591,
+          "width": 347.0566,
           "actualBoundingBoxAscent": 9.3809,
           "actualBoundingBoxDescent": 2.5254,
           "actualBoundingBoxLeft": -0.2813,
-          "actualBoundingBoxRight": 464.6685,
+          "actualBoundingBoxRight": 346.3184,
           "fontBoundingBoxAscent": 11,
           "fontBoundingBoxDescent": 3
         },
         {
           "font": "Arial",
           "size": 16,
-          "width": 465.6591,
+          "width": 462.7422,
           "actualBoundingBoxAscent": 12.5078,
           "actualBoundingBoxDescent": 3.3672,
           "actualBoundingBoxLeft": -0.375,
-          "actualBoundingBoxRight": 464.6685,
+          "actualBoundingBoxRight": 461.7578,
           "fontBoundingBoxAscent": 14,
           "fontBoundingBoxDescent": 3
         },
         {
           "font": "Arial",
           "size": 24,
-          "width": 465.6591,
+          "width": 694.1133,
           "actualBoundingBoxAscent": 18.7617,
           "actualBoundingBoxDescent": 5.0508,
           "actualBoundingBoxLeft": -0.5625,
-          "actualBoundingBoxRight": 464.6685,
+          "actualBoundingBoxRight": 692.6367,
           "fontBoundingBoxAscent": 22,
           "fontBoundingBoxDescent": 5
         },
         {
           "font": "Times New Roman",
           "size": 12,
-          "width": 465.6591,
+          "width": 318.3281,
           "actualBoundingBoxAscent": 8.6133,
           "actualBoundingBoxDescent": 2.5898,
           "actualBoundingBoxLeft": -0.3633,
-          "actualBoundingBoxRight": 465.0506,
+          "actualBoundingBoxRight": 317.9121,
           "fontBoundingBoxAscent": 11,
           "fontBoundingBoxDescent": 3
         },
         {
           "font": "Times New Roman",
           "size": 16,
-          "width": 465.6591,
+          "width": 424.4375,
           "actualBoundingBoxAscent": 11.4844,
           "actualBoundingBoxDescent": 3.4531,
           "actualBoundingBoxLeft": -0.4844,
-          "actualBoundingBoxRight": 465.0506,
+          "actualBoundingBoxRight": 423.8828,
           "fontBoundingBoxAscent": 14,
           "fontBoundingBoxDescent": 3
         },
         {
           "font": "Times New Roman",
           "size": 24,
-          "width": 465.6591,
+          "width": 636.6563,
           "actualBoundingBoxAscent": 17.2266,
           "actualBoundingBoxDescent": 5.1797,
           "actualBoundingBoxLeft": -0.7266,
-          "actualBoundingBoxRight": 465.0506,
+          "actualBoundingBoxRight": 635.8242,
           "fontBoundingBoxAscent": 21,
           "fontBoundingBoxDescent": 5
         },
         {
           "font": "Courier New",
           "size": 12,
-          "width": 377.8125,
+          "width": 424.8691,
           "actualBoundingBoxAscent": 7.9746,
           "actualBoundingBoxDescent": 2.2617,
           "actualBoundingBoxLeft": -0.8379,
-          "actualBoundingBoxRight": 376.8486,
+          "actualBoundingBoxRight": 423.7852,
           "fontBoundingBoxAscent": 10,
           "fontBoundingBoxDescent": 4
         },
         {
           "font": "Courier New",
           "size": 16,
-          "width": 377.8125,
+          "width": 566.4922,
           "actualBoundingBoxAscent": 10.6328,
           "actualBoundingBoxDescent": 3.0156,
           "actualBoundingBoxLeft": -1.1172,
-          "actualBoundingBoxRight": 376.8486,
+          "actualBoundingBoxRight": 565.0469,
           "fontBoundingBoxAscent": 13,
           "fontBoundingBoxDescent": 5
         },
         {
           "font": "Courier New",
           "size": 24,
-          "width": 377.8125,
+          "width": 849.7383,
           "actualBoundingBoxAscent": 15.9492,
           "actualBoundingBoxDescent": 4.5234,
           "actualBoundingBoxLeft": -1.6758,
-          "actualBoundingBoxRight": 376.8486,
+          "actualBoundingBoxRight": 847.5703,
           "fontBoundingBoxAscent": 20,
           "fontBoundingBoxDescent": 7
         },
         {
           "font": "Georgia",
           "size": 12,
-          "width": 465.6591,
+          "width": 343.6289,
           "actualBoundingBoxAscent": 9.0762,
           "actualBoundingBoxDescent": 2.6016,
           "actualBoundingBoxLeft": -0.0879,
-          "actualBoundingBoxRight": 464.7936,
+          "actualBoundingBoxRight": 342.9902,
           "fontBoundingBoxAscent": 11,
           "fontBoundingBoxDescent": 3
         },
         {
           "font": "Georgia",
           "size": 16,
-          "width": 465.6591,
+          "width": 458.1719,
           "actualBoundingBoxAscent": 12.1016,
           "actualBoundingBoxDescent": 3.4688,
           "actualBoundingBoxLeft": -0.1172,
-          "actualBoundingBoxRight": 464.7936,
+          "actualBoundingBoxRight": 457.3203,
           "fontBoundingBoxAscent": 15,
           "fontBoundingBoxDescent": 4
         },
         {
           "font": "Georgia",
           "size": 24,
-          "width": 465.6591,
+          "width": 687.2578,
           "actualBoundingBoxAscent": 18.1523,
           "actualBoundingBoxDescent": 5.2031,
           "actualBoundingBoxLeft": -0.1758,
-          "actualBoundingBoxRight": 464.7936,
+          "actualBoundingBoxRight": 685.9805,
           "fontBoundingBoxAscent": 22,
           "fontBoundingBoxDescent": 5
         },
         {
           "font": "Verdana",
           "size": 12,
-          "width": 465.6591,
+          "width": 399.6738,
           "actualBoundingBoxAscent": 9.2344,
           "actualBoundingBoxDescent": 2.4785,
           "actualBoundingBoxLeft": null,
-          "actualBoundingBoxRight": 464.6419,
+          "actualBoundingBoxRight": 398.8008,
           "fontBoundingBoxAscent": 12,
           "fontBoundingBoxDescent": 3
         },
         {
           "font": "Verdana",
           "size": 16,
-          "width": 465.6591,
+          "width": 532.8984,
           "actualBoundingBoxAscent": 12.3125,
           "actualBoundingBoxDescent": 3.3047,
           "actualBoundingBoxLeft": null,
-          "actualBoundingBoxRight": 464.6419,
+          "actualBoundingBoxRight": 531.7344,
           "fontBoundingBoxAscent": 16,
           "fontBoundingBoxDescent": 3
         },
         {
           "font": "Verdana",
           "size": 24,
-          "width": 465.6591,
+          "width": 799.3477,
           "actualBoundingBoxAscent": 18.4688,
           "actualBoundingBoxDescent": 4.957,
           "actualBoundingBoxLeft": null,
-          "actualBoundingBoxRight": 464.6419,
+          "actualBoundingBoxRight": 797.6016,
           "fontBoundingBoxAscent": 24,
           "fontBoundingBoxDescent": 5
         },
         {
           "font": "Helvetica",
           "size": 12,
-          "width": 465.6591,
+          "width": 347.0566,
           "actualBoundingBoxAscent": 9.3047,
           "actualBoundingBoxDescent": 2.6543,
           "actualBoundingBoxLeft": -0.1934,
-          "actualBoundingBoxRight": 465.0538,
+          "actualBoundingBoxRight": 346.6055,
           "fontBoundingBoxAscent": 11,
           "fontBoundingBoxDescent": 3
         },
         {
           "font": "Helvetica",
           "size": 16,
-          "width": 465.6591,
+          "width": 462.7422,
           "actualBoundingBoxAscent": 12.4063,
           "actualBoundingBoxDescent": 3.5391,
           "actualBoundingBoxLeft": -0.2578,
-          "actualBoundingBoxRight": 465.0538,
+          "actualBoundingBoxRight": 462.1406,
           "fontBoundingBoxAscent": 14,
           "fontBoundingBoxDescent": 4
         },
         {
           "font": "Helvetica",
           "size": 24,
-          "width": 465.6591,
+          "width": 694.1133,
           "actualBoundingBoxAscent": 18.6094,
           "actualBoundingBoxDescent": 5.3086,
           "actualBoundingBoxLeft": -0.3867,
-          "actualBoundingBoxRight": 465.0538,
+          "actualBoundingBoxRight": 693.2109,
           "fontBoundingBoxAscent": 22,
           "fontBoundingBoxDescent": 6
         }
       ],
       "count": 18,
-      "hash": "762935d9"
+      "hash": "7c9efa4b"
     },
     "applePayCapability": {
       "apiAvailable": false,
@@ -2535,5 +2563,5 @@
       "hash": "42431f88"
     }
   },
-  "generated": "2026-03-09T14:07:42+00:00"
+  "generated": "2026-03-09T18:16:42+00:00"
 }
