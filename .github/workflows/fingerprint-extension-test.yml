@@ -1,0 +1,83 @@
+name: Fingerprint Extension Test
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'extension/**'
+      - 'original.json'
+      - 'test-extension.js'
+
+jobs:
+  test-fingerprint:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Chrome for Testing
+        run: |
+          # Install Chrome for Testing using Puppeteer's browser installer
+          npx @puppeteer/browsers install chrome@stable
+          
+          # Find the installed Chrome
+          CHROME_PATH=$(find . -name "chrome" -type f -path "*chrome-linux64*" | head -1)
+          echo "CHROME_PATH=$CHROME_PATH" >> $GITHUB_ENV
+          
+          # Verify installation
+          echo "Chrome for Testing installed at: $CHROME_PATH"
+          $CHROME_PATH --version
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run fingerprint test
+        run: |
+          node test-extension.js
+        env:
+          TARGET_URL: 'https://botxbyte.com/fp.php'
+          PROFILE_PATH: './original.json'
+          EXTENSION_PATH: './extension'
+          RESULT_PATH: './fingerprint-result.json'
+          CHROME_PATH: ${{ env.CHROME_PATH }}
+
+      - name: Display result
+        if: always()
+        run: |
+          if [ -f fingerprint-result.json ]; then
+            echo "=== Fingerprint Result ==="
+            cat fingerprint-result.json | head -100
+          else
+            echo "No fingerprint result captured"
+            if [ -f page.html ]; then
+              echo "=== Page HTML (first 500 chars) ==="
+              head -c 500 page.html
+            fi
+          fi
+
+      - name: Upload result artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: fingerprint-result
+          path: |
+            fingerprint-result.json
+            screenshot.png
+            page.html
+          if-no-files-found: warn
+
+      - name: Upload screenshot on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: debug-artifacts
+          path: |
+            screenshot.png
+            page.html
+          if-no-files-found: ignore

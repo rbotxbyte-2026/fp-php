@@ -1,0 +1,13 @@
+{
+  "name": "fp-spoofer-test",
+  "version": "1.0.0",
+  "description": "Fingerprint spoofer extension test runner",
+  "main": "test-extension.js",
+  "scripts": {
+    "test": "node test-extension.js",
+    "install-chrome": "npx @puppeteer/browsers install chrome@stable"
+  },
+  "dependencies": {
+    "puppeteer-core": "^23.0.0"
+  }
+}
