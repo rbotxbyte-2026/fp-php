@@ -41,6 +41,7 @@ jobs:
       - name: Copy extension to Downloads
         run: |
           mkdir -p ~/Downloads/fp-spoofer-extension
+          mkdir -p ~/Desktop
           cp -r extension/* ~/Downloads/fp-spoofer-extension/
           cp original.json ~/Downloads/
           
