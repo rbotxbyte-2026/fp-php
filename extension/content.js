@@ -1187,7 +1187,7 @@ const EMBEDDED_DEFAULT_PROFILE = {"server":{"ip":"2405:f600:8:e0a9:985c:f5c3:340
   }
   
   // Fetch timezone from IP - runs immediately
-  if (config && config.server && config.server.ipTimezoneEnabled !== false) {
+  if (spoofConfig && spoofConfig.server && spoofConfig.server.ipTimezoneEnabled !== false) {
     (function fetchIPTimezone() {
       IP_TIMEZONE_STATE.fetchPromise = fetch('http://ip-api.com/json/?fields=timezone', { mode: 'cors' })
         .then(r => r.json())
