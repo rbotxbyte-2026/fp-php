@@ -3104,72 +3104,1350 @@ function getCSSMediaQueriesExtended() {
 }
 
 // ══════════════════════════════════════════
+// 71. WEBGPU ADAPTER INFO
+// ══════════════════════════════════════════
+function getWebGPU() {
+    return new Promise(function(resolve) {
+        if (!navigator.gpu) return resolve({ supported: false });
+        navigator.gpu.requestAdapter().then(function(adapter) {
+            if (!adapter) return resolve({ supported: true, adapter: null });
+            var info = adapter.info || {};
+            var features = [];
+            if (adapter.features) {
+                adapter.features.forEach(function(f) { features.push(f); });
+            }
+            var limits = {};
+            if (adapter.limits) {
+                var limitKeys = [
+                    'maxTextureDimension1D','maxTextureDimension2D','maxTextureDimension3D',
+                    'maxTextureArrayLayers','maxBindGroups','maxBindGroupsPlusVertexBuffers',
+                    'maxBindingsPerBindGroup','maxDynamicUniformBuffersPerPipelineLayout',
+                    'maxDynamicStorageBuffersPerPipelineLayout','maxSampledTexturesPerShaderStage',
+                    'maxSamplersPerShaderStage','maxStorageBuffersPerShaderStage',
+                    'maxStorageTexturesPerShaderStage','maxUniformBuffersPerShaderStage',
+                    'maxUniformBufferBindingSize','maxStorageBufferBindingSize',
+                    'minUniformBufferOffsetAlignment','minStorageBufferOffsetAlignment',
+                    'maxVertexBuffers','maxBufferSize','maxVertexAttributes',
+                    'maxVertexBufferArrayStride','maxInterStageShaderComponents',
+                    'maxInterStageShaderVariables','maxColorAttachments','maxColorAttachmentBytesPerSample',
+                    'maxComputeWorkgroupStorageSize','maxComputeInvocationsPerWorkgroup',
+                    'maxComputeWorkgroupSizeX','maxComputeWorkgroupSizeY','maxComputeWorkgroupSizeZ',
+                    'maxComputeWorkgroupsPerDimension'
+                ];
+                limitKeys.forEach(function(k) {
+                    if (adapter.limits[k] !== undefined) limits[k] = adapter.limits[k];
+                });
+            }
+            resolve({
+                supported:    true,
+                vendor:       info.vendor       || null,
+                architecture: info.architecture || null,
+                device:       info.device       || null,
+                description:  info.description  || null,
+                features:     features,
+                featureCount: features.length,
+                featureHash:  hashStr(features.slice().sort().join('|')),
+                limits:       limits,
+                limitsHash:   hashStr(JSON.stringify(limits)),
+                isFallback:   adapter.isFallbackAdapter || false,
+            });
+        }).catch(function(e) { resolve({ supported: true, error: e.message }); });
+    });
+}
+
+// ══════════════════════════════════════════
+// 72. GENERIC SENSOR API (Android/Mobile focused)
+// ══════════════════════════════════════════
+function getGenericSensors() {
+    return new Promise(function(resolve) {
+        var result = {
+            accelerometer:              { available: !!window.Accelerometer },
+            gyroscope:                  { available: !!window.Gyroscope },
+            magnetometer:               { available: !!window.Magnetometer },
+            ambientLightSensor:         { available: !!window.AmbientLightSensor },
+            linearAccelerationSensor:   { available: !!window.LinearAccelerationSensor },
+            absoluteOrientationSensor:  { available: !!window.AbsoluteOrientationSensor },
+            relativeOrientationSensor:  { available: !!window.RelativeOrientationSensor },
+            gravitySensor:              { available: !!window.GravitySensor },
+        };
+        var promises = [];
+
+        // Try to read one sample from each sensor
+        var sensorConfigs = [
+            { name: 'accelerometer',             cls: window.Accelerometer,             keys: ['x','y','z'] },
+            { name: 'gyroscope',                 cls: window.Gyroscope,                 keys: ['x','y','z'] },
+            { name: 'magnetometer',              cls: window.Magnetometer,              keys: ['x','y','z'] },
+            { name: 'ambientLightSensor',        cls: window.AmbientLightSensor,        keys: ['illuminance'] },
+            { name: 'linearAccelerationSensor',  cls: window.LinearAccelerationSensor,  keys: ['x','y','z'] },
+            { name: 'gravitySensor',             cls: window.GravitySensor,             keys: ['x','y','z'] },
+        ];
+
+        sensorConfigs.forEach(function(cfg) {
+            if (!cfg.cls) return;
+            promises.push(new Promise(function(res) {
+                try {
+                    var sensor = new cfg.cls({ frequency: 10 });
+                    var done = false;
+                    sensor.addEventListener('reading', function() {
+                        if (done) return;
+                        done = true;
+                        var reading = {};
+                        cfg.keys.forEach(function(k) { reading[k] = sensor[k]; });
+                        result[cfg.name].reading = reading;
+                        result[cfg.name].activated = true;
+                        sensor.stop();
+                        res();
+                    });
+                    sensor.addEventListener('error', function(e) {
+                        if (done) return;
+                        done = true;
+                        result[cfg.name].error = e.error ? e.error.name : 'unknown';
+                        res();
+                    });
+                    sensor.start();
+                    setTimeout(function() { if (!done) { done = true; sensor.stop(); res(); } }, 1500);
+                } catch(e) {
+                    result[cfg.name].error = e.name || e.message;
+                    res();
+                }
+            }));
+        });
+
+        // Orientation sensors (return quaternion)
+        ['absoluteOrientationSensor','relativeOrientationSensor'].forEach(function(name) {
+            var cls = name === 'absoluteOrientationSensor' ? window.AbsoluteOrientationSensor : window.RelativeOrientationSensor;
+            if (!cls) return;
+            promises.push(new Promise(function(res) {
+                try {
+                    var sensor = new cls({ frequency: 10 });
+                    var done = false;
+                    sensor.addEventListener('reading', function() {
+                        if (done) return;
+                        done = true;
+                        result[name].quaternion = sensor.quaternion ? Array.from(sensor.quaternion) : null;
+                        result[name].activated = true;
+                        sensor.stop();
+                        res();
+                    });
+                    sensor.addEventListener('error', function(e) {
+                        if (done) return;
+                        done = true;
+                        result[name].error = e.error ? e.error.name : 'unknown';
+                        res();
+                    });
+                    sensor.start();
+                    setTimeout(function() { if (!done) { done = true; sensor.stop(); res(); } }, 1500);
+                } catch(e) {
+                    result[name].error = e.name || e.message;
+                    res();
+                }
+            }));
+        });
+
+        Promise.all(promises).then(function() { resolve(result); })
+               .catch(function() { resolve(result); });
+    });
+}
+
+// ══════════════════════════════════════════
+// 73. GAMEPAD API
+// ══════════════════════════════════════════
+function getGamepads() {
+    try {
+        if (!navigator.getGamepads) return { supported: false };
+        var gamepads = navigator.getGamepads();
+        var connected = [];
+        for (var i = 0; i < gamepads.length; i++) {
+            var gp = gamepads[i];
+            if (gp) {
+                connected.push({
+                    id:        gp.id,
+                    index:     gp.index,
+                    mapping:   gp.mapping,
+                    axes:      gp.axes ? gp.axes.length : 0,
+                    buttons:   gp.buttons ? gp.buttons.length : 0,
+                    connected: gp.connected,
+                    timestamp: gp.timestamp,
+                    vibration: !!gp.vibrationActuator,
+                    haptic:    !!gp.hapticActuators,
+                });
+            }
+        }
+        return {
+            supported:      true,
+            connectedCount: connected.length,
+            gamepads:       connected,
+        };
+    } catch(e) { return { error: e.message }; }
+}
+
+// ══════════════════════════════════════════
+// 74. KEYBOARD LAYOUT API
+// ══════════════════════════════════════════
+function getKeyboardLayout() {
+    return new Promise(function(resolve) {
+        if (!navigator.keyboard || !navigator.keyboard.getLayoutMap) {
+            return resolve({ supported: false });
+        }
+        navigator.keyboard.getLayoutMap().then(function(layoutMap) {
+            var entries = {};
+            var testKeys = [
+                'KeyA','KeyB','KeyC','KeyD','KeyE','KeyF','KeyG','KeyH','KeyI','KeyJ',
+                'KeyK','KeyL','KeyM','KeyN','KeyO','KeyP','KeyQ','KeyR','KeyS','KeyT',
+                'KeyU','KeyV','KeyW','KeyX','KeyY','KeyZ',
+                'Digit0','Digit1','Digit2','Digit3','Digit4','Digit5','Digit6','Digit7','Digit8','Digit9',
+                'BracketLeft','BracketRight','Semicolon','Quote','Backquote','Backslash',
+                'Comma','Period','Slash','Minus','Equal',
+                'IntlBackslash','IntlRo','IntlYen',
+            ];
+            testKeys.forEach(function(k) {
+                var v = layoutMap.get(k);
+                if (v) entries[k] = v;
+            });
+            var sortedKeys = Object.keys(entries).sort();
+            resolve({
+                supported:   true,
+                layout:      entries,
+                entryCount:  sortedKeys.length,
+                hash:        hashStr(sortedKeys.map(function(k) { return k + '=' + entries[k]; }).join('|')),
+            });
+        }).catch(function(e) { resolve({ supported: true, error: e.message }); });
+    });
+}
+
+// ══════════════════════════════════════════
+// 75. DRM / ENCRYPTED MEDIA EXTENSIONS (EME)
+// ══════════════════════════════════════════
+function getDRM() {
+    return new Promise(function(resolve) {
+        if (!navigator.requestMediaKeySystemAccess) return resolve({ supported: false });
+        var keySystems = [
+            { name: 'Widevine',     id: 'com.widevine.alpha' },
+            { name: 'PlayReady',    id: 'com.microsoft.playready' },
+            { name: 'PlayReadySL3000', id: 'com.microsoft.playready.recommendation' },
+            { name: 'FairPlay',     id: 'com.apple.fps' },
+            { name: 'FairPlay1',    id: 'com.apple.fps.1_0' },
+            { name: 'FairPlay2',    id: 'com.apple.fps.2_0' },
+            { name: 'FairPlay3',    id: 'com.apple.fps.3_0' },
+            { name: 'ClearKey',     id: 'org.w3.clearkey' },
+            { name: 'PrimeTime',    id: 'com.adobe.primetime' },
+        ];
+        var basicConfig = [{
+            initDataTypes: ['cenc','keyids','webm'],
+            videoCapabilities: [
+                { contentType: 'video/mp4; codecs="avc1.42E01E"' },
+                { contentType: 'video/webm; codecs="vp9"' },
+            ],
+            audioCapabilities: [
+                { contentType: 'audio/mp4; codecs="mp4a.40.2"' },
+            ],
+        }];
+        var results = {};
+        var promises = keySystems.map(function(ks) {
+            return navigator.requestMediaKeySystemAccess(ks.id, basicConfig)
+                .then(function(access) {
+                    var config = access.getConfiguration();
+                    results[ks.name] = {
+                        available: true,
+                        keySystem: access.keySystem,
+                        initDataTypes: config.initDataTypes || null,
+                        videoCapabilities: config.videoCapabilities ? config.videoCapabilities.map(function(v) {
+                            return { contentType: v.contentType, robustness: v.robustness || null };
+                        }) : null,
+                        audioCapabilities: config.audioCapabilities ? config.audioCapabilities.map(function(a) {
+                            return { contentType: a.contentType, robustness: a.robustness || null };
+                        }) : null,
+                        distinctiveIdentifier: config.distinctiveIdentifier || null,
+                        persistentState: config.persistentState || null,
+                        sessionTypes: config.sessionTypes || null,
+                    };
+                })
+                .catch(function() { results[ks.name] = { available: false }; });
+        });
+        Promise.all(promises).then(function() {
+            var available = Object.keys(results).filter(function(k) { return results[k].available; });
+            resolve({
+                supported:      true,
+                keySystems:     results,
+                availableCount: available.length,
+                availableNames: available,
+                hash:           hashStr(available.sort().join('|')),
+            });
+        }).catch(function() { resolve({ supported: true, keySystems: results }); });
+    });
+}
+
+// ══════════════════════════════════════════
+// 76. WEB CODECS EXTENDED
+// ══════════════════════════════════════════
+function getWebCodecsExtended() {
+    return new Promise(function(resolve) {
+        var result = {
+            videoDecoder:  !!window.VideoDecoder,
+            videoEncoder:  !!window.VideoEncoder,
+            audioDecoder:  !!window.AudioDecoder,
+            audioEncoder:  !!window.AudioEncoder,
+            imageDecoder:  !!window.ImageDecoder,
+            encodedVideoChunk: !!window.EncodedVideoChunk,
+            encodedAudioChunk: !!window.EncodedAudioChunk,
+            videoFrame:    !!window.VideoFrame,
+            audioData:     !!window.AudioData,
+            videoColorSpace: !!window.VideoColorSpace,
+            codecs: {},
+        };
+        var promises = [];
+
+        // Probe video encoder configs
+        if (window.VideoEncoder && VideoEncoder.isConfigSupported) {
+            var videoEncoderConfigs = [
+                { codec: 'avc1.42001E', width: 640, height: 480 },
+                { codec: 'vp8', width: 640, height: 480 },
+                { codec: 'vp09.00.10.08', width: 640, height: 480 },
+                { codec: 'av01.0.04M.08', width: 640, height: 480 },
+            ];
+            videoEncoderConfigs.forEach(function(cfg) {
+                promises.push(
+                    VideoEncoder.isConfigSupported(cfg)
+                        .then(function(r) { result.codecs['enc_' + cfg.codec] = r.supported ? 'supported' : 'unsupported'; })
+                        .catch(function() { result.codecs['enc_' + cfg.codec] = 'error'; })
+                );
+            });
+        }
+
+        // Probe audio encoder configs
+        if (window.AudioEncoder && AudioEncoder.isConfigSupported) {
+            var audioEncoderConfigs = [
+                { codec: 'opus', sampleRate: 48000, numberOfChannels: 2 },
+                { codec: 'aac', sampleRate: 44100, numberOfChannels: 2 },
+                { codec: 'mp3', sampleRate: 44100, numberOfChannels: 2 },
+                { codec: 'flac', sampleRate: 44100, numberOfChannels: 2 },
+                { codec: 'vorbis', sampleRate: 44100, numberOfChannels: 2 },
+            ];
+            audioEncoderConfigs.forEach(function(cfg) {
+                promises.push(
+                    AudioEncoder.isConfigSupported(cfg)
+                        .then(function(r) { result.codecs['enc_' + cfg.codec] = r.supported ? 'supported' : 'unsupported'; })
+                        .catch(function() { result.codecs['enc_' + cfg.codec] = 'error'; })
+                );
+            });
+        }
+
+        // Probe audio decoder configs
+        if (window.AudioDecoder && AudioDecoder.isConfigSupported) {
+            var audioDecoderConfigs = [
+                { codec: 'opus', sampleRate: 48000, numberOfChannels: 2 },
+                { codec: 'mp4a.40.2', sampleRate: 44100, numberOfChannels: 2 },
+                { codec: 'mp3', sampleRate: 44100, numberOfChannels: 2 },
+                { codec: 'flac', sampleRate: 44100, numberOfChannels: 2 },
+                { codec: 'vorbis', sampleRate: 44100, numberOfChannels: 2 },
+            ];
+            audioDecoderConfigs.forEach(function(cfg) {
+                promises.push(
+                    AudioDecoder.isConfigSupported(cfg)
+                        .then(function(r) { result.codecs['dec_' + cfg.codec] = r.supported ? 'supported' : 'unsupported'; })
+                        .catch(function() { result.codecs['dec_' + cfg.codec] = 'error'; })
+                );
+            });
+        }
+
+        Promise.all(promises).then(function() { resolve(result); })
+               .catch(function() { resolve(result); });
+    });
+}
+
+// ══════════════════════════════════════════
+// 77. MEDIA RECORDER SUPPORTED TYPES
+// ══════════════════════════════════════════
+function getMediaRecorderTypes() {
+    try {
+        if (!window.MediaRecorder) return { supported: false };
+        var types = [
+            'video/webm','video/webm;codecs=vp8','video/webm;codecs=vp9',
+            'video/webm;codecs=vp8,opus','video/webm;codecs=vp9,opus',
+            'video/webm;codecs=h264','video/webm;codecs=av1',
+            'video/mp4','video/mp4;codecs=h264','video/mp4;codecs=avc1',
+            'video/mp4;codecs=av1','video/mp4;codecs=vp9',
+            'audio/webm','audio/webm;codecs=opus','audio/webm;codecs=pcm',
+            'audio/mp4','audio/mp4;codecs=mp4a.40.2','audio/mp4;codecs=opus',
+            'audio/ogg','audio/ogg;codecs=opus','audio/ogg;codecs=vorbis',
+            'audio/wav','audio/flac',
+        ];
+        var supported = {};
+        types.forEach(function(t) {
+            supported[t] = MediaRecorder.isTypeSupported(t);
+        });
+        var supportedList = Object.keys(supported).filter(function(k) { return supported[k]; });
+        return {
+            supported:      true,
+            types:          supported,
+            supportedCount: supportedList.length,
+            hash:           hashStr(supportedList.sort().join('|')),
+        };
+    } catch(e) { return { error: e.message }; }
+}
+
+// ══════════════════════════════════════════
+// 78. BLUETOOTH API
+// ══════════════════════════════════════════
+function getBluetoothInfo() {
+    return new Promise(function(resolve) {
+        var result = {
+            apiPresent:       !!navigator.bluetooth,
+            getAvailability:  !!(navigator.bluetooth && navigator.bluetooth.getAvailability),
+            getDevices:       !!(navigator.bluetooth && navigator.bluetooth.getDevices),
+            requestDevice:    !!(navigator.bluetooth && navigator.bluetooth.requestDevice),
+            available:        null,
+        };
+        if (navigator.bluetooth && navigator.bluetooth.getAvailability) {
+            navigator.bluetooth.getAvailability()
+                .then(function(avail) { result.available = avail; resolve(result); })
+                .catch(function() { resolve(result); });
+        } else {
+            resolve(result);
+        }
+    });
+}
+
+// ══════════════════════════════════════════
+// 79. USB API
+// ══════════════════════════════════════════
+function getUSBInfo() {
+    return new Promise(function(resolve) {
+        var result = {
+            apiPresent:    !!navigator.usb,
+            getDevices:    !!(navigator.usb && navigator.usb.getDevices),
+            requestDevice: !!(navigator.usb && navigator.usb.requestDevice),
+            deviceCount:   null,
+        };
+        if (navigator.usb && navigator.usb.getDevices) {
+            navigator.usb.getDevices()
+                .then(function(devices) {
+                    result.deviceCount = devices.length;
+                    result.devices = devices.map(function(d) {
+                        return {
+                            vendorId:      d.vendorId,
+                            productId:     d.productId,
+                            productName:   d.productName || null,
+                            manufacturerName: d.manufacturerName || null,
+                            serialNumber:  d.serialNumber ? hashStr(d.serialNumber) : null,
+                            deviceClass:   d.deviceClass,
+                            deviceSubclass:d.deviceSubclass,
+                            deviceProtocol:d.deviceProtocol,
+                        };
+                    });
+                    resolve(result);
+                })
+                .catch(function() { resolve(result); });
+        } else {
+            resolve(result);
+        }
+    });
+}
+
+// ══════════════════════════════════════════
+// 80. SERIAL / HID DEVICE INFO
+// ══════════════════════════════════════════
+function getSerialHIDInfo() {
+    return new Promise(function(resolve) {
+        var result = {
+            serialApiPresent: !!navigator.serial,
+            hidApiPresent:    !!navigator.hid,
+            serialDeviceCount: null,
+            hidDeviceCount:    null,
+        };
+        var promises = [];
+        if (navigator.serial && navigator.serial.getPorts) {
+            promises.push(
+                navigator.serial.getPorts()
+                    .then(function(ports) { result.serialDeviceCount = ports.length; })
+                    .catch(function() {})
+            );
+        }
+        if (navigator.hid && navigator.hid.getDevices) {
+            promises.push(
+                navigator.hid.getDevices()
+                    .then(function(devices) {
+                        result.hidDeviceCount = devices.length;
+                        result.hidDevices = devices.map(function(d) {
+                            return {
+                                vendorId:  d.vendorId,
+                                productId: d.productId,
+                                productName: d.productName || null,
+                                collections: d.collections ? d.collections.length : 0,
+                            };
+                        });
+                    })
+                    .catch(function() {})
+            );
+        }
+        Promise.all(promises).then(function() { resolve(result); })
+               .catch(function() { resolve(result); });
+    });
+}
+
+// ══════════════════════════════════════════
+// 81. CLIPBOARD API DETAILS
+// ══════════════════════════════════════════
+function getClipboardInfo() {
+    try {
+        var result = {
+            apiPresent:   !!navigator.clipboard,
+            read:         !!(navigator.clipboard && navigator.clipboard.read),
+            readText:     !!(navigator.clipboard && navigator.clipboard.readText),
+            write:        !!(navigator.clipboard && navigator.clipboard.write),
+            writeText:    !!(navigator.clipboard && navigator.clipboard.writeText),
+            clipboardItem:!!window.ClipboardItem,
+            clipboardEvent:!!window.ClipboardEvent,
+            execCommandCopy: false,
+            execCommandPaste: false,
+        };
+        try { result.execCommandCopy  = document.queryCommandSupported('copy');  } catch(e) {}
+        try { result.execCommandPaste = document.queryCommandSupported('paste'); } catch(e) {}
+
+        // Check ClipboardItem accepted types
+        if (window.ClipboardItem && ClipboardItem.supports) {
+            var clipTypes = ['text/plain','text/html','image/png','image/svg+xml','text/uri-list'];
+            result.supportedTypes = {};
+            clipTypes.forEach(function(t) {
+                try { result.supportedTypes[t] = ClipboardItem.supports(t); } catch(e) { result.supportedTypes[t] = 'error'; }
+            });
+        }
+        return result;
+    } catch(e) { return { error: e.message }; }
+}
+
+// ══════════════════════════════════════════
+// 82. INTL API EXTENDED
+// ══════════════════════════════════════════
+function getIntlExtended() {
+    try {
+        var result = {};
+
+        // ListFormat
+        try {
+            var lf = new Intl.ListFormat();
+            result.listFormatLocale = lf.resolvedOptions().locale;
+            result.listFormatType   = lf.resolvedOptions().type;
+            result.listFormatStyle  = lf.resolvedOptions().style;
+            result.listFormatTest   = lf.format(['A','B','C']);
+        } catch(e) { result.listFormat = 'unsupported'; }
+
+        // Segmenter (language-aware text segmentation)
+        try {
+            var seg = new Intl.Segmenter();
+            result.segmenterLocale      = seg.resolvedOptions().locale;
+            result.segmenterGranularity = seg.resolvedOptions().granularity;
+        } catch(e) { result.segmenter = 'unsupported'; }
+
+        // DisplayNames
+        try {
+            var dn = new Intl.DisplayNames(['en'], { type: 'language' });
+            result.displayNamesLocale = dn.resolvedOptions().locale;
+            result.displayNamesTest   = dn.of('fr');
+        } catch(e) { result.displayNames = 'unsupported'; }
+
+        // DurationFormat
+        try {
+            var df = new Intl.DurationFormat();
+            result.durationFormatLocale = df.resolvedOptions().locale;
+        } catch(e) { result.durationFormat = 'unsupported'; }
+
+        // Locale
+        try {
+            var loc = new Intl.Locale(navigator.language);
+            result.localeBaseName   = loc.baseName;
+            result.localeCalendar   = loc.calendar   || null;
+            result.localeCollation  = loc.collation   || null;
+            result.localeHourCycle  = loc.hourCycle    || null;
+            result.localeNumeric    = loc.numeric      || null;
+            result.localeCaseFirst  = loc.caseFirst    || null;
+            result.localeRegion     = loc.region       || null;
+            result.localeScript     = loc.script       || null;
+            // getTextInfo and getWeekInfo (Chromium 99+)
+            if (loc.getTextInfo) {
+                var ti = loc.getTextInfo();
+                result.textDirection = ti.direction;
+            }
+            if (loc.getWeekInfo) {
+                var wi = loc.getWeekInfo();
+                result.weekFirstDay  = wi.firstDay;
+                result.weekMinDays   = wi.minimalDays;
+                result.weekWeekend   = wi.weekend;
+            }
+        } catch(e) {}
+
+        // Supported values
+        try {
+            if (Intl.supportedValuesOf) {
+                result.calendars        = Intl.supportedValuesOf('calendar').length;
+                result.collations       = Intl.supportedValuesOf('collation').length;
+                result.currencies       = Intl.supportedValuesOf('currency').length;
+                result.numberingSystems  = Intl.supportedValuesOf('numberingSystem').length;
+                result.timeZones        = Intl.supportedValuesOf('timeZone').length;
+                result.units            = Intl.supportedValuesOf('unit').length;
+            }
+        } catch(e) {}
+
+        return result;
+    } catch(e) { return { error: e.message }; }
+}
+
+// ══════════════════════════════════════════
+// 83. CANVAS CONTEXT TYPES
+// ══════════════════════════════════════════
+function getCanvasContextTypes() {
+    try {
+        var c = document.createElement('canvas');
+        var types = ['2d','webgl','webgl2','bitmaprenderer','webgpu'];
+        var result = {};
+        types.forEach(function(t) {
+            try {
+                var ctx = c.getContext(t);
+                result[t] = !!ctx;
+            } catch(e) {
+                result[t] = false;
+            }
+        });
+        // OffscreenCanvas
+        result.offscreenCanvas = !!window.OffscreenCanvas;
+        if (window.OffscreenCanvas) {
+            try {
+                var oc = new OffscreenCanvas(1, 1);
+                result.offscreen2d    = !!oc.getContext('2d');
+                result.offscreenWebgl = !!oc.getContext('webgl');
+            } catch(e) {}
+        }
+        // ImageBitmap
+        result.createImageBitmap = !!window.createImageBitmap;
+        // ImageData
+        result.imageData = !!window.ImageData;
+        return result;
+    } catch(e) { return { error: e.message }; }
+}
+
+// ══════════════════════════════════════════
+// 84. VIBRATION API (Android)
+// ══════════════════════════════════════════
+function getVibrationInfo() {
+    return {
+        supported: !!navigator.vibrate,
+        // Some browsers restrict vibrate in non-interactive contexts — test availability
+        apiPresent: typeof navigator.vibrate === 'function',
+    };
+}
+
+// ══════════════════════════════════════════
+// 85. WEBXR DEVICE INFO
+// ══════════════════════════════════════════
+function getWebXRInfo() {
+    return new Promise(function(resolve) {
+        if (!navigator.xr) return resolve({ supported: false });
+        var result = { supported: true, modes: {} };
+        var modes = ['inline','immersive-vr','immersive-ar'];
+        var promises = modes.map(function(mode) {
+            return navigator.xr.isSessionSupported(mode)
+                .then(function(s) { result.modes[mode] = s; })
+                .catch(function() { result.modes[mode] = 'error'; });
+        });
+        Promise.all(promises).then(function() { resolve(result); })
+               .catch(function() { resolve(result); });
+    });
+}
+
+// ══════════════════════════════════════════
+// 86. WEB SHARE API DETAILS
+// ══════════════════════════════════════════
+function getWebShareInfo() {
+    try {
+        var result = {
+            share:    !!navigator.share,
+            canShare: !!navigator.canShare,
+            files:    false,
+        };
+        if (navigator.canShare) {
+            try {
+                result.text = navigator.canShare({ text: 'test' });
+                result.url  = navigator.canShare({ url: 'https://example.com' });
+                result.title = navigator.canShare({ title: 'test' });
+                // File sharing support
+                var file = new File(['test'], 'test.txt', { type: 'text/plain' });
+                result.files = navigator.canShare({ files: [file] });
+            } catch(e) { result.canShareError = e.message; }
+        }
+        return result;
+    } catch(e) { return { error: e.message }; }
+}
+
+// ══════════════════════════════════════════
+// 87. NOTIFICATION API DETAILS
+// ══════════════════════════════════════════
+function getNotificationInfo() {
+    try {
+        if (!window.Notification) return { supported: false };
+        var result = {
+            supported:     true,
+            permission:    Notification.permission,
+            maxActions:    Notification.maxActions || null,
+            requiresInteraction: 'requireInteraction' in Notification.prototype,
+            body:          'body' in Notification.prototype,
+            icon:          'icon' in Notification.prototype,
+            image:         'image' in Notification.prototype,
+            badge:         'badge' in Notification.prototype,
+            vibrate:       'vibrate' in Notification.prototype,
+            tag:           'tag' in Notification.prototype,
+            renotify:      'renotify' in Notification.prototype,
+            silent:        'silent' in Notification.prototype,
+            actions:       'actions' in Notification.prototype,
+            timestamp:     'timestamp' in Notification.prototype,
+            data:          'data' in Notification.prototype,
+        };
+        return result;
+    } catch(e) { return { error: e.message }; }
+}
+
+// ══════════════════════════════════════════
+// 88. SCREEN ORIENTATION API
+// ══════════════════════════════════════════
+function getScreenOrientationInfo() {
+    try {
+        if (!screen.orientation) return { supported: false };
+        return {
+            supported:  true,
+            type:       screen.orientation.type,
+            angle:      screen.orientation.angle,
+            lockAPI:    typeof screen.orientation.lock === 'function',
+            unlockAPI:  typeof screen.orientation.unlock === 'function',
+        };
+    } catch(e) { return { error: e.message }; }
+}
+
+// ══════════════════════════════════════════
+// 89. WAKE LOCK API DETAILS
+// ══════════════════════════════════════════
+function getWakeLockInfo() {
+    return {
+        supported:    !!navigator.wakeLock,
+        requestAPI:   !!(navigator.wakeLock && navigator.wakeLock.request),
+        wakeLockSentinel: !!window.WakeLockSentinel,
+    };
+}
+
+// ══════════════════════════════════════════
+// 90. CSS PAINT WORKLET FINGERPRINT
+// ══════════════════════════════════════════
+function getCSSPaintWorklet() {
+    try {
+        return {
+            paintWorklet:     !!(window.CSS && CSS.paintWorklet),
+            layoutWorklet:    !!(window.CSS && CSS.layoutWorklet),
+            animationWorklet: !!(window.CSS && CSS.animationWorklet),
+            registerProperty: !!(window.CSS && CSS.registerProperty),
+            highlights:       !!(window.CSS && CSS.highlights),
+            escape:           !!(window.CSS && CSS.escape),
+            number:           !!(window.CSSUnitValue),
+            typedOM:          !!(window.CSSStyleValue),
+            propertyRule:     !!window.CSSPropertyRule,
+            layerRule:        !!window.CSSLayerBlockRule,
+            counterStyle:     !!window.CSSCounterStyleRule,
+            fontPaletteValues:!!window.CSSFontPaletteValuesRule,
+        };
+    } catch(e) { return { error: e.message }; }
+}
+
+// ══════════════════════════════════════════
+// 91. MEDIA TYPE SUPPORT (canPlayType)
+// ══════════════════════════════════════════
+function getMediaTypeSupport() {
+    try {
+        var video = document.createElement('video');
+        var audio = document.createElement('audio');
+        var videoTypes = [
+            'video/mp4; codecs="avc1.42E01E"',
+            'video/mp4; codecs="avc1.42E01E, mp4a.40.2"',
+            'video/mp4; codecs="hvc1.1.6.L93.B0"',
+            'video/mp4; codecs="av01.0.05M.08"',
+            'video/webm; codecs="vp8"',
+            'video/webm; codecs="vp9"',
+            'video/webm; codecs="vp09.00.10.08"',
+            'video/webm; codecs="av01.0.05M.08"',
+            'video/ogg; codecs="theora"',
+            'video/3gpp; codecs="mp4v.20.8"',
+            'video/mp2t; codecs="avc1.42E01E"',
+        ];
+        var audioTypes = [
+            'audio/mp4; codecs="mp4a.40.2"',
+            'audio/mp4; codecs="mp4a.40.5"',
+            'audio/mp4; codecs="opus"',
+            'audio/mp4; codecs="flac"',
+            'audio/mp4; codecs="ac-3"',
+            'audio/mp4; codecs="ec-3"',
+            'audio/webm; codecs="opus"',
+            'audio/webm; codecs="vorbis"',
+            'audio/ogg; codecs="opus"',
+            'audio/ogg; codecs="vorbis"',
+            'audio/ogg; codecs="flac"',
+            'audio/flac',
+            'audio/wav; codecs="1"',
+            'audio/mpeg',
+            'audio/aac',
+        ];
+        var result = { video: {}, audio: {} };
+        videoTypes.forEach(function(t) { result.video[t] = video.canPlayType(t); });
+        audioTypes.forEach(function(t) { result.audio[t] = audio.canPlayType(t); });
+
+        var supported = Object.keys(result.video).filter(function(k) { return result.video[k]; })
+            .concat(Object.keys(result.audio).filter(function(k) { return result.audio[k]; }));
+        result.supportedCount = supported.length;
+        result.hash = hashStr(supported.sort().join('|'));
+        return result;
+    } catch(e) { return { error: e.message }; }
+}
+
+// ══════════════════════════════════════════
+// 92. PROXIMITY SENSOR (Firefox)
+// ══════════════════════════════════════════
+function getProximitySensor() {
+    return new Promise(function(resolve) {
+        var result = {
+            deviceProximity: !!window.DeviceProximityEvent,
+            userProximity:   !!window.UserProximityEvent,
+            reading:         null,
+        };
+        if (window.DeviceProximityEvent) {
+            var done = false;
+            window.addEventListener('deviceproximity', function(e) {
+                if (done) return;
+                done = true;
+                result.reading = { value: e.value, min: e.min, max: e.max };
+                resolve(result);
+            }, { once: true });
+            setTimeout(function() { if (!done) { done = true; resolve(result); } }, 1500);
+        } else {
+            resolve(result);
+        }
+    });
+}
+
+// ══════════════════════════════════════════
+// 93. PRESENTATION API
+// ══════════════════════════════════════════
+function getPresentationInfo() {
+    try {
+        return {
+            supported:       !!navigator.presentation,
+            receiver:        !!(navigator.presentation && navigator.presentation.receiver),
+            defaultRequest:  !!(navigator.presentation && navigator.presentation.defaultRequest !== undefined),
+            presentationRequest: !!window.PresentationRequest,
+            presentationConnection: !!window.PresentationConnection,
+            presentationAvailability: !!window.PresentationAvailability,
+        };
+    } catch(e) { return { error: e.message }; }
+}
+
+// ══════════════════════════════════════════
+// 94. MIDI ACCESS
+// ══════════════════════════════════════════
+function getMIDIInfo() {
+    return new Promise(function(resolve) {
+        if (!navigator.requestMIDIAccess) return resolve({ supported: false });
+        navigator.requestMIDIAccess({ sysex: false })
+            .then(function(access) {
+                var inputs = [], outputs = [];
+                access.inputs.forEach(function(input) {
+                    inputs.push({
+                        id:           input.id ? hashStr(input.id) : null,
+                        name:         input.name,
+                        manufacturer: input.manufacturer,
+                        state:        input.state,
+                        type:         input.type,
+                    });
+                });
+                access.outputs.forEach(function(output) {
+                    outputs.push({
+                        id:           output.id ? hashStr(output.id) : null,
+                        name:         output.name,
+                        manufacturer: output.manufacturer,
+                        state:        output.state,
+                        type:         output.type,
+                    });
+                });
+                resolve({
+                    supported:    true,
+                    inputCount:   inputs.length,
+                    outputCount:  outputs.length,
+                    inputs:       inputs,
+                    outputs:      outputs,
+                    sysexEnabled: access.sysexEnabled || false,
+                });
+            })
+            .catch(function(e) { resolve({ supported: true, error: e.message }); });
+    });
+}
+
+// ══════════════════════════════════════════
+// 95. WEBSOCKET PROTOCOL FINGERPRINT
+// ══════════════════════════════════════════
+function getWebSocketInfo() {
+    try {
+        var result = {
+            supported:      !!window.WebSocket,
+            binaryType:     null,
+            extensions:     null,
+            protocol:       null,
+            bufferedAmount: null,
+            CONNECTING:     window.WebSocket ? WebSocket.CONNECTING : null,
+            OPEN:           window.WebSocket ? WebSocket.OPEN       : null,
+            CLOSING:        window.WebSocket ? WebSocket.CLOSING    : null,
+            CLOSED:         window.WebSocket ? WebSocket.CLOSED     : null,
+        };
+        if (window.WebSocket) {
+            try {
+                var ws = new WebSocket('ws://localhost:0');
+                result.binaryType = ws.binaryType;
+                ws.close();
+            } catch(e) {
+                // Connection failure expected — we only check constructor defaults
+                result.binaryType = 'blob'; // WebSocket default
+                result.constructable = true;
+            }
+        }
+        return result;
+    } catch(e) { return { error: e.message }; }
+}
+
+// ══════════════════════════════════════════
+// 96. IMAGE FORMAT SUPPORT (via Image decode)
+// ══════════════════════════════════════════
+function getImageFormatSupport() {
+    return new Promise(function(resolve) {
+        var formats = {
+            webp:  'data:image/webp;base64,UklGRiQAAABXRUJQVlA4IBgAAAAwAQCdASoBAAEAAQAcJaQAA3AA/v3AgAA=',
+            avif:  'data:image/avif;base64,AAAAIGZ0eXBhdmlmAAAAAGF2aWZtaWYxbWlhZk1BMUIAAADybWV0YQAAAAAAAAAoaGRscgAAAAAAAAAAcGljdAAAAAAAAAAAAAAAAGxpYmF2aWYAAAAADnBpdG0AAAAAAAEAAAAeaWxvYwAAAABEAAABAAEAAAABAAABGgAAABcAAAAoaWluZgAAAAAAAQAAABppbmZlAgAAAAABAABhdjAxQ29sb3IAAAAAamlwcnAAAABLaXBjbwAAABRpc3BlAAAAAAAAAAEAAAABAAAAEHBpeGkAAAAAAwgICAAAAAxhdjFDgQAMAAAAABNjb2xybmNseAACAAIABoAAAAAXaXBtYQAAAAAAAAABAAEEAQKDBAAAAB9tZGF0EgAKBzgADlAgIGkyCR/wAABAAACvcA==',
+            jxl:   'data:image/jxl;base64,/woIAAAMABKIAgC4AF3lEQAAFSqjjBu8nOv58kOHxbSN6wxttW1hSj0=',
+            heic:  'data:image/heic;base64,AAAAGGZ0eXBoZWljAAAAAG1pZjFoZWlj',
+            jp2:   'data:image/jp2;base64,AAAADGpQICANCocKAAAAFGZ0eXBqcDIgAAAAAGpwMiAAAAAtanAyaAAAABZpaGRyAAAAAQAAAAEAAwcHAAAAAAAPY29scgEAAAAAABAAAA==',
+        };
+        var result = {};
+        var promises = Object.keys(formats).map(function(fmt) {
+            return new Promise(function(res) {
+                var img = new Image();
+                img.onload  = function() { result[fmt] = true;  res(); };
+                img.onerror = function() { result[fmt] = false; res(); };
+                img.src = formats[fmt];
+            });
+        });
+
+        // Also check via CSS.supports
+        try {
+            result.cssImageWebp = CSS.supports('background-image', 'url(data:image/webp;base64,UklGRiQAAABXRUJQVlA4IBgAAAAwAQCdASoBAAEAAQAcJaQAA3AA/v3AgAA=)');
+        } catch(e) {}
+
+        Promise.all(promises).then(function() {
+            result.hash = hashStr(Object.keys(result).filter(function(k) { return result[k]; }).sort().join('|'));
+            resolve(result);
+        }).catch(function() { resolve(result); });
+    });
+}
+
+// ══════════════════════════════════════════
+// 97. SPEECH RECOGNITION INFO
+// ══════════════════════════════════════════
+function getSpeechRecognitionInfo() {
+    try {
+        var SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+        if (!SR) return { supported: false };
+        var result = {
+            supported:        true,
+            prefixed:         !!window.webkitSpeechRecognition && !window.SpeechRecognition,
+            grammarList:      !!(window.SpeechGrammarList || window.webkitSpeechGrammarList),
+            speechGrammar:    !!(window.SpeechGrammar || window.webkitSpeechGrammar),
+        };
+        try {
+            var sr = new SR();
+            result.continuous          = sr.continuous;
+            result.interimResults      = sr.interimResults;
+            result.maxAlternatives     = sr.maxAlternatives;
+            result.lang                = sr.lang;
+        } catch(e) {}
+        return result;
+    } catch(e) { return { error: e.message }; }
+}
+
+// ══════════════════════════════════════════
+// 98. CREDENTIAL MANAGEMENT API
+// ══════════════════════════════════════════
+function getCredentialInfo() {
+    try {
+        if (!navigator.credentials) return { supported: false };
+        return {
+            supported:               true,
+            get:                     typeof navigator.credentials.get === 'function',
+            create:                  typeof navigator.credentials.create === 'function',
+            store:                   typeof navigator.credentials.store === 'function',
+            preventSilentAccess:     typeof navigator.credentials.preventSilentAccess === 'function',
+            passwordCredential:      !!window.PasswordCredential,
+            federatedCredential:     !!window.FederatedCredential,
+            publicKeyCredential:     !!window.PublicKeyCredential,
+            otpCredential:           !!window.OTPCredential,
+            identityCredential:      !!window.IdentityCredential,
+            digitalCredential:       !!window.DigitalCredential,
+            // WebAuthn
+            webAuthnConditionalMediation: !!(window.PublicKeyCredential && PublicKeyCredential.isConditionalMediationAvailable),
+            webAuthnUserVerifyingPlatform: !!(window.PublicKeyCredential && PublicKeyCredential.isUserVerifyingPlatformAuthenticatorAvailable),
+        };
+    } catch(e) { return { error: e.message }; }
+}
+
+// ══════════════════════════════════════════
+// 99. PAYMENT API DETAILS
+// ══════════════════════════════════════════
+function getPaymentDetails() {
+    try {
+        if (!window.PaymentRequest) return { supported: false };
+        var result = {
+            supported:        true,
+            paymentRequest:   !!window.PaymentRequest,
+            paymentResponse:  !!window.PaymentResponse,
+            paymentAddress:   !!window.PaymentAddress,
+            paymentMethodChangeEvent: !!window.PaymentMethodChangeEvent,
+            securePaymentConfirmation: !!window.SecurePaymentConfirmationRequest,
+        };
+        // Check supported methods
+        var methods = [
+            'basic-card', 'https://google.com/pay', 'https://apple.com/apple-pay',
+            'secure-payment-confirmation'
+        ];
+        result.methodSupport = {};
+        methods.forEach(function(m) {
+            try {
+                var req = new PaymentRequest([{ supportedMethods: m }], { total: { label: 'test', amount: { currency: 'USD', value: '0.01' } } });
+                result.methodSupport[m] = 'constructable';
+                // canMakePayment is async but we just check constructability
+            } catch(e) {
+                result.methodSupport[m] = 'error: ' + e.name;
+            }
+        });
+        return result;
+    } catch(e) { return { error: e.message }; }
+}
+
+// ══════════════════════════════════════════
+// 100. FILE SYSTEM ACCESS API
+// ══════════════════════════════════════════
+function getFileSystemInfo() {
+    return {
+        showOpenFilePicker:      !!window.showOpenFilePicker,
+        showSaveFilePicker:      !!window.showSaveFilePicker,
+        showDirectoryPicker:     !!window.showDirectoryPicker,
+        fileSystemHandle:        !!window.FileSystemHandle,
+        fileSystemFileHandle:    !!window.FileSystemFileHandle,
+        fileSystemDirectoryHandle: !!window.FileSystemDirectoryHandle,
+        fileSystemWritableFileStream: !!window.FileSystemWritableFileStream,
+        storageManagerGetDirectory: !!(navigator.storage && navigator.storage.getDirectory),
+        // OPFS (Origin Private File System) support
+        opfsSupported:           !!(navigator.storage && navigator.storage.getDirectory),
+    };
+}
+
+// ══════════════════════════════════════════
+// 101. CSS @supports EXTENDED
+// ══════════════════════════════════════════
+function getCSSSupportsExtended() {
+    try {
+        var s = CSS.supports.bind(CSS);
+        return {
+            // Layout
+            grid:                 s('display','grid'),
+            flexbox:              s('display','flex'),
+            subgrid:              s('grid-template-columns','subgrid'),
+            masonry:              s('grid-template-rows','masonry'),
+            containerQueries:     s('container-type','inline-size'),
+            // Modern selectors
+            hasSelector:          s('selector(:has(*))'),
+            isSelector:           s('selector(:is(*))'),
+            whereSelector:        s('selector(:where(*))'),
+            notSelector:          s('selector(:not(*))'),
+            focusVisible:         s('selector(:focus-visible)'),
+            focusWithin:          s('selector(:focus-within)'),
+            // Color
+            colorMix:             s('color','color-mix(in srgb, red, blue)'),
+            oklch:                s('color','oklch(0.5 0.2 230)'),
+            oklab:                s('color','oklab(0.5 0.1 -0.1)'),
+            lch:                  s('color','lch(50 30 200)'),
+            lab:                  s('color','lab(50 -20 30)'),
+            colorFunction:        s('color','color(display-p3 1 0 0)'),
+            lightDark:            s('color','light-dark(white, black)'),
+            relativeColor:        s('color','rgb(from red r g b / 0.5)'),
+            // Typography
+            textWrap:             s('text-wrap','balance'),
+            textWrapPretty:       s('text-wrap','pretty'),
+            initialLetter:        s('initial-letter','2'),
+            hyphenateCharacter:   s('hyphenate-character','"-"'),
+            // Scroll / View
+            scrollTimeline:       s('animation-timeline','scroll()'),
+            viewTimeline:         s('animation-timeline','view()'),
+            scrollSnapType:       s('scroll-snap-type','x mandatory'),
+            scrollDrivenAnimations: s('animation-timeline','scroll(root)'),
+            overscrollBehavior:   s('overscroll-behavior','contain'),
+            scrollbarColor:       s('scrollbar-color','red blue'),
+            scrollbarWidth:       s('scrollbar-width','thin'),
+            scrollbarGutter:      s('scrollbar-gutter','stable'),
+            // Anchor / Positioning
+            anchorPosition:       s('anchor-name','--t'),
+            popover:              s('selector([popover])'),
+            // Transform / Animation
+            translate:            s('translate','10px 20px'),
+            rotate:               s('rotate','45deg'),
+            scale:                s('scale','1.5'),
+            individualTransforms: s('rotate','45deg'),
+            // Sizing
+            aspectRatio:          s('aspect-ratio','1/1'),
+            containerUnits:       s('width','10cqw'),
+            dvh:                  s('height','100dvh'),
+            svh:                  s('height','100svh'),
+            lvh:                  s('height','100lvh'),
+            // Visual
+            backdropFilter:       s('backdrop-filter','blur(1px)'),
+            contentVisibility:    s('content-visibility','auto'),
+            contain:              s('contain','layout'),
+            viewTransition:       s('view-transition-name','test'),
+            // At-rules
+            cascade:              s('@layer test {}'),
+            startingStyle:        s('@starting-style {}'),
+            scope:                s('@scope {}'),
+            // Nesting
+            nesting:              s('selector(& > *)'),
+            // Functions
+            math:                 s('width','calc(1px + 1px)'),
+            clamp:                s('width','clamp(1px, 2px, 3px)'),
+            min:                  s('width','min(1px, 2px)'),
+            max:                  s('width','max(1px, 2px)'),
+            round:                s('width','round(1.5px, 1px)'),
+            mod:                  s('width','mod(10px, 3px)'),
+            rem:                  s('width','rem(10px, 3px)'),
+            abs:                  s('width','abs(-1px)'),
+            sign:                 s('width','sign(-1px)'),
+            trigFunctions:        s('width','sin(45deg)'),
+        };
+    } catch(e) { return { error: e.message }; }
+}
+
+// ══════════════════════════════════════════
+// 102. BACKGROUND TASK SCHEDULING
+// ══════════════════════════════════════════
+function getSchedulingInfo() {
+    return {
+        requestIdleCallback:    !!window.requestIdleCallback,
+        cancelIdleCallback:     !!window.cancelIdleCallback,
+        scheduler:              !!window.scheduler,
+        schedulerPostTask:      !!(window.scheduler && window.scheduler.postTask),
+        schedulerYield:         !!(window.scheduler && window.scheduler.yield),
+        taskController:         !!window.TaskController,
+        taskSignal:             !!window.TaskSignal,
+        taskPriorityChangeEvent:!!window.TaskPriorityChangeEvent,
+        idleDeadline:           !!window.IdleDeadline,
+        // Prioritized Task Scheduling
+        schedulingIsInputPending: !!(navigator.scheduling && navigator.scheduling.isInputPending),
+    };
+}
+
+// ══════════════════════════════════════════
+// 103. WEB LOCKS API
+// ══════════════════════════════════════════
+function getWebLocksInfo() {
+    return new Promise(function(resolve) {
+        if (!navigator.locks) return resolve({ supported: false });
+        var result = { supported: true };
+        navigator.locks.query()
+            .then(function(state) {
+                result.held    = state.held ? state.held.length : 0;
+                result.pending = state.pending ? state.pending.length : 0;
+            })
+            .catch(function(e) { result.queryError = e.message; });
+        resolve(result);
+    });
+}
+
+// ══════════════════════════════════════════
+// 104. ENCODING API
+// ══════════════════════════════════════════
+function getEncodingInfo() {
+    try {
+        var result = {
+            textEncoder:    !!window.TextEncoder,
+            textDecoder:    !!window.TextDecoder,
+            textEncoderStream: !!window.TextEncoderStream,
+            textDecoderStream: !!window.TextDecoderStream,
+        };
+        // Test supported encodings
+        if (window.TextDecoder) {
+            var encodings = [
+                'utf-8','utf-16le','utf-16be','iso-8859-1','iso-8859-2','iso-8859-15',
+                'windows-1250','windows-1251','windows-1252','windows-1256',
+                'shift_jis','euc-jp','iso-2022-jp','euc-kr','gb18030','gbk','big5',
+                'koi8-r','koi8-u','macintosh',
+            ];
+            result.supportedEncodings = {};
+            encodings.forEach(function(enc) {
+                try {
+                    new TextDecoder(enc);
+                    result.supportedEncodings[enc] = true;
+                } catch(e) {
+                    result.supportedEncodings[enc] = false;
+                }
+            });
+            var supported = Object.keys(result.supportedEncodings).filter(function(k) { return result.supportedEncodings[k]; });
+            result.supportedCount = supported.length;
+            result.hash = hashStr(supported.sort().join('|'));
+        }
+        return result;
+    } catch(e) { return { error: e.message }; }
+}
+
+// ══════════════════════════════════════════
+// 105. CRYPTO API DETAILS
+// ══════════════════════════════════════════
+function getCryptoInfo() {
+    try {
+        var result = {
+            cryptoPresent:    !!window.crypto,
+            subtlePresent:    !!(window.crypto && window.crypto.subtle),
+            randomUUID:       !!(window.crypto && window.crypto.randomUUID),
+            getRandomValues:  !!(window.crypto && window.crypto.getRandomValues),
+        };
+        if (window.crypto && window.crypto.subtle) {
+            var algos = [
+                'AES-CBC','AES-CTR','AES-GCM','AES-KW',
+                'RSA-OAEP','RSA-PSS','RSASSA-PKCS1-v1_5',
+                'ECDSA','ECDH','HMAC','HKDF','PBKDF2',
+                'SHA-1','SHA-256','SHA-384','SHA-512',
+                'Ed25519','X25519',
+            ];
+            result.algorithms = algos; // Algorithms are standard; subtle.digest etc are uniform
+        }
+        // Check specific feature: randomUUID format
+        if (window.crypto && window.crypto.randomUUID) {
+            var uuid = window.crypto.randomUUID();
+            result.uuidVersion = uuid.charAt(14); // Should be '4'
+            result.uuidLength  = uuid.length;     // Should be 36
+        }
+        return result;
+    } catch(e) { return { error: e.message }; }
+}
+
+// ══════════════════════════════════════════
+// 106. WINDOW PROPERTIES FINGERPRINT
+// ══════════════════════════════════════════
+function getWindowProperties() {
+    try {
+        var propsToCheck = [
+            'AbortController','AbortSignal','AbsoluteOrientationSensor',
+            'Accelerometer','AudioWorklet','BarcodeDetector',
+            'BackgroundFetchManager','BatteryManager','BeforeInstallPromptEvent',
+            'Bluetooth','BluetoothDevice','BluetoothRemoteGATTCharacteristic',
+            'CSSLayerBlockRule','CSSPropertyRule','CompressionStream',
+            'ContactsManager','ContentIndex','CookieChangeEvent','CookieStore',
+            'CredentialManager','DecompressionStream','DeviceMotionEventAcceleration',
+            'DocumentPictureInPicture','EyeDropper','FaceDetector',
+            'FileSystemAccess','FileSystemWritableFileStream','GravitySensor',
+            'Gyroscope','HID','HIDDevice','IdleDetector','ImageCapture',
+            'InputDeviceCapabilities','Keyboard','KeyboardLayoutMap',
+            'LaunchQueue','LinearAccelerationSensor','Magnetometer',
+            'MediaSession','NavigationPreloadManager','NavigatorLogin',
+            'NavigatorManagedData','NavigatorUAData','OTPCredential',
+            'OffscreenCanvas','PasswordCredential','PaymentInstruments',
+            'PaymentManager','PaymentRequest','PeriodicSyncManager',
+            'PermissionStatus','PictureInPictureEvent','PictureInPictureWindow',
+            'Presentation','PresentationAvailability','PresentationConnection',
+            'PresentationRequest','Sanitizer','Scheduler','Serial','SerialPort',
+            'SharedWorker','SpeechRecognition','SpeechSynthesis','StorageManager',
+            'StylePropertyMapReadOnly','SubtleCrypto','SyncManager',
+            'TaskController','TextDecoderStream','TextDetector',
+            'TextEncoderStream','TouchEvent','TrustedHTML','TrustedScript',
+            'TrustedScriptURL','TrustedTypePolicy','USB','USBDevice',
+            'VirtualKeyboard','WakeLock','WakeLockSentinel','WebSocket',
+            'WebTransport','XRSession','XRSystem',
+        ];
+        var present = [];
+        propsToCheck.forEach(function(p) {
+            if (window[p] !== undefined) present.push(p);
+        });
+        return {
+            testedCount:  propsToCheck.length,
+            presentCount: present.length,
+            present:      present,
+            hash:         hashStr(present.sort().join('|')),
+        };
+    } catch(e) { return { error: e.message }; }
+}
+
+// ══════════════════════════════════════════
 // MAIN COLLECTOR
 // ══════════════════════════════════════════
 async function collect() {
-    step('[1/21] Navigator...');
+    step('[1/35] Navigator...');
     var nav = getNavigator();
 
-    step('[2/21] Screen...');
+    step('[2/35] Screen...');
     var scr = getScreen();
 
-    step('[3/21] Canvas...');
+    step('[3/35] Canvas...');
     var canvas = getCanvas();
 
-    step('[4/21] WebGL...');
+    step('[4/35] WebGL...');
     var webgl      = getWebGL();
     var webgl2     = getWebGL2();
     var webglPrec  = getWebGLPrecisions();
 
-    step('[5/21] Audio...');
+    step('[5/35] Audio...');
     var audio        = await getAudio();
     var audioLatency = getAudioLatency();
 
-    step('[6/21] Fonts...');
+    step('[6/35] Fonts...');
     var fonts       = getFonts();
     var fontPrefs   = getFontPreferences();
     var fontsSubset = getFontsSubset();
 
-    step('[7/21] Plugins & MIME...');
+    step('[7/35] Plugins & MIME...');
     var pluginData = getPlugins();
 
-    step('[8/21] WebRTC IPs...');
+    step('[8/35] WebRTC IPs...');
     var webrtc = await getWebRTC();
 
-    step('[9/21] Refresh Rate...');
+    step('[9/35] Refresh Rate...');
     var refreshRate = await getRefreshRate();
 
-    step('[10/21] CPU/WASM...');
+    step('[10/35] CPU/WASM...');
     var cpu      = getCPU();
     var archByte = getArchitectureByte();
 
-    step('[11/21] Video Decoder...');
+    step('[11/35] Video Decoder...');
     var videoDecoder = await getVideoDecoder();
 
-    step('[12/21] Permissions & Voices...');
+    step('[12/35] Permissions & Voices...');
     var permissions     = await getPermissions();
     var extPermissions  = await getExtendedPermissions();
     var voices          = await getVoices();
     var battery         = await getBattery();
     var mediaDevices    = await getMediaDevices();
 
-    step('[13/21] Dom Blockers...');
+    step('[13/35] Dom Blockers...');
     var domBlockers = getDomBlockers();
 
-    step('[14/21] Incognito Detection...');
+    step('[14/35] Incognito Detection...');
     var incognito = await detectIncognito();
 
-    step('[15/21] Emoji / MathML / Screen Frame...');
+    step('[15/35] Emoji / MathML / Screen Frame...');
     var emojiBB     = getEmojiBoundingBox();
     var mathmlBB    = getMathMLBoundingBox();
     var screenFrame = getScreenFrame();
 
-    step('[16/21] Tampering / Vendor Flavors...');
+    step('[16/35] Tampering / Vendor Flavors...');
     var tampering     = getTampering();
     var vendorFlavors = getVendorFlavors();
     var navExtra      = getNavigatorExtra();
 
-    step('[17/21] WebGL Extended / RTC Codecs / Feature Policy...');
+    step('[17/35] WebGL Extended / RTC Codecs / Feature Policy...');
     var webglExtra      = getWebGLExtra();
     var rtcCaps         = getRTCCapabilities();
     var featurePolicy   = getFeaturePolicy();
@@ -3186,38 +4464,38 @@ async function collect() {
     var memPattern      = getMemoryPattern();
     var fontCSS         = getFontsByCSSTiming();
 
-    step('[18/21] Media Capabilities / UA High Entropy...');
+    step('[18/35] Media Capabilities / UA High Entropy...');
     var mediaCaps     = await getMediaCapabilities();
     var uaHighEntropy = await getUADataHighEntropy();
 
-    step('[19/21] Storage / Font Loading...');
+    step('[19/35] Storage / Font Loading...');
     var storageInfo = await getStorageInfo();
     var fontLoading = await getFontLoadingInfo();
 
-    step('[20/21] Security Context / Visual Viewport / JS Engine...');
+    step('[20/35] Security Context / Visual Viewport / JS Engine...');
     var securityCtx = getSecurityContext();
     var visualVP    = getVisualViewport();
     var mediaConstr = getMediaConstraints();
     var jsEngine    = getJSEngineSignals();
 
     // ═══ CreepJS-aligned fingerprints ═══
-    step('[21/24] SVG / HTML Element / DOM Rect...');
+    step('[21/35] SVG / HTML Element / DOM Rect...');
     var svgRendering   = getSVGRendering();
     var htmlElement    = getHTMLElement();
     var domRect        = getDOMRect();
     var contentWindow  = getContentWindow();
 
-    step('[22/24] Console Errors / Text Metrics...');
+    step('[22/35] Console Errors / Text Metrics...');
     var consoleErrors  = getConsoleErrors();
     var textMetrics    = getTextMetrics();
 
-    step('[23/27] Apple Pay / Service Worker...');
+    step('[23/35] Apple Pay / Service Worker...');
     var applePay       = getApplePayCapability();
     var serviceWorker  = await getServiceWorkerInfo();
     var cssMediaExt    = getCSSMediaQueriesExtended();
 
     // ═══ New Fingerprint Pro-aligned fields (2026) ═══
-    step('[24/27] Computing normalized fields...');
+    step('[24/35] Computing normalized fields...');
     // Normalized audio base latency (simple number like Fingerprint Pro)
     var audioBaseLatencySimple = (audioLatency && audioLatency.baseLatency !== undefined) ? audioLatency.baseLatency : null;
 
@@ -3230,7 +4508,64 @@ async function collect() {
     // Private Click Measurement (Apple privacy signal)
     var privateClickMeasurement = !!(window.PrivateClickMeasurement || (window.webkit && window.webkit.messageHandlers?.privateClickMeasurement));
 
-    step('[25/27] Finalising...');
+    // ═══ NEW: Additional Fingerprint Parameters ═══
+    step('[25/35] WebGPU Adapter...');
+    var webgpuInfo = await getWebGPU();
+
+    step('[26/35] Generic Sensors (Android/Mobile)...');
+    var sensorInfo = await getGenericSensors();
+
+    step('[27/35] Gamepad / Keyboard Layout / DRM...');
+    var gamepadInfo     = getGamepads();
+    var keyboardLayout  = await getKeyboardLayout();
+    var drmInfo         = await getDRM();
+
+    step('[28/35] Web Codecs / Media Recorder / Bluetooth / USB...');
+    var webCodecsInfo     = await getWebCodecsExtended();
+    var mediaRecorderInfo = getMediaRecorderTypes();
+    var bluetoothInfo     = await getBluetoothInfo();
+    var usbInfo           = await getUSBInfo();
+
+    step('[29/35] Serial/HID / Clipboard / Intl / Proximity...');
+    var serialHidInfo   = await getSerialHIDInfo();
+    var clipboardInfo   = getClipboardInfo();
+    var intlExtended    = getIntlExtended();
+    var proximityInfo   = await getProximitySensor();
+
+    step('[30/35] MIDI / WebXR / Web Share / Notification...');
+    var midiInfo          = await getMIDIInfo();
+    var webxrInfo         = await getWebXRInfo();
+    var webShareInfo      = getWebShareInfo();
+    var notificationInfo  = getNotificationInfo();
+
+    step('[31/35] Canvas Contexts / Vibration / Screen Orientation...');
+    var canvasContexts      = getCanvasContextTypes();
+    var vibrationInfo       = getVibrationInfo();
+    var screenOrientInfo    = getScreenOrientationInfo();
+    var wakeLockInfo        = getWakeLockInfo();
+
+    step('[32/35] CSS Paint Worklet / Media Types / Image Formats...');
+    var cssPaintWorklet   = getCSSPaintWorklet();
+    var mediaTypeSupport  = getMediaTypeSupport();
+    var imageFormats      = await getImageFormatSupport();
+
+    step('[33/35] Speech Recognition / Credentials / Payment / FileSystem...');
+    var speechRecogInfo   = getSpeechRecognitionInfo();
+    var credentialInfo    = getCredentialInfo();
+    var paymentDetails    = getPaymentDetails();
+    var fileSystemInfo    = getFileSystemInfo();
+
+    step('[34/35] CSS Extended / Scheduling / Encoding / Crypto / Window Props...');
+    var cssSupportsExt    = getCSSSupportsExtended();
+    var schedulingInfo    = getSchedulingInfo();
+    var encodingInfo      = getEncodingInfo();
+    var cryptoInfo        = getCryptoInfo();
+    var windowProps       = getWindowProperties();
+    var webSocketInfo     = getWebSocketInfo();
+    var presentationInfo  = getPresentationInfo();
+    var webLocksInfo      = await getWebLocksInfo();
+
+    step('[35/35] Finalising...');
     var conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
     var dtf  = Intl.DateTimeFormat().resolvedOptions();
 
@@ -3527,6 +4862,116 @@ async function collect() {
 
         // CSS Media Queries extended (CreepJS-style comprehensive)
         cssMediaQueriesExtended: cssMediaExt,
+
+        // ══ NEW: Maximum Fingerprint Parameters (2025/2026) ══
+
+        // WebGPU adapter info (GPU vendor, architecture, device, features, limits)
+        webgpu: webgpuInfo,
+
+        // Generic Sensor API (Accelerometer, Gyroscope, Magnetometer, AmbientLight, etc.)
+        genericSensors: sensorInfo,
+
+        // Gamepad API (connected controllers, axes, buttons)
+        gamepads: gamepadInfo,
+
+        // Keyboard Layout API (key mapping, layout detection)
+        keyboardLayout: keyboardLayout,
+
+        // DRM / Encrypted Media Extensions (Widevine, PlayReady, FairPlay, ClearKey)
+        drm: drmInfo,
+
+        // Web Codecs extended (VideoEncoder, AudioEncoder, AudioDecoder, ImageDecoder)
+        webCodecs: webCodecsInfo,
+
+        // MediaRecorder supported MIME types
+        mediaRecorderTypes: mediaRecorderInfo,
+
+        // Bluetooth API (availability, device enumeration)
+        bluetooth: bluetoothInfo,
+
+        // USB API (device count, vendor/product IDs)
+        usb: usbInfo,
+
+        // Serial / HID device info
+        serialHid: serialHidInfo,
+
+        // Clipboard API details (read/write, supported types)
+        clipboard: clipboardInfo,
+
+        // Intl API extended (ListFormat, Segmenter, DisplayNames, Locale details)
+        intlExtended: intlExtended,
+
+        // Proximity sensor (Firefox DeviceProximityEvent)
+        proximitySensor: proximityInfo,
+
+        // MIDI access (inputs, outputs, device names)
+        midi: midiInfo,
+
+        // WebXR device info (inline, immersive-vr, immersive-ar)
+        webxr: webxrInfo,
+
+        // Web Share API (canShare details, file support)
+        webShare: webShareInfo,
+
+        // Notification API details (permission, features, maxActions)
+        notification: notificationInfo,
+
+        // Canvas context types (2d, webgl, webgl2, bitmaprenderer, webgpu, offscreen)
+        canvasContextTypes: canvasContexts,
+
+        // Vibration API (Android)
+        vibration: vibrationInfo,
+
+        // Screen orientation API (lock, type, angle)
+        screenOrientation: screenOrientInfo,
+
+        // Wake Lock API details
+        wakeLock: wakeLockInfo,
+
+        // CSS Paint/Layout/Animation Worklet + Houdini
+        cssWorklets: cssPaintWorklet,
+
+        // Media type support (canPlayType for video/audio codecs)
+        mediaTypeSupport: mediaTypeSupport,
+
+        // Image format support (WebP, AVIF, JXL, HEIC, JP2)
+        imageFormats: imageFormats,
+
+        // Speech Recognition API details
+        speechRecognition: speechRecogInfo,
+
+        // Credential Management API (WebAuthn, PublicKey, OTP, etc.)
+        credentials: credentialInfo,
+
+        // Payment API details (methods, SecurePaymentConfirmation)
+        paymentDetails: paymentDetails,
+
+        // File System Access API (OPFS, pickers, handles)
+        fileSystemAccess: fileSystemInfo,
+
+        // CSS @supports extended (70+ modern CSS features)
+        cssSupportsExtended: cssSupportsExt,
+
+        // Background task scheduling (Scheduler, TaskController, IdleCallback)
+        scheduling: schedulingInfo,
+
+        // Text encoding support (20+ character encodings)
+        encoding: encodingInfo,
+
+        // Web Crypto API details (algorithms, randomUUID)
+        crypto: cryptoInfo,
+
+        // Window properties fingerprint (130+ APIs presence check)
+        windowProperties: windowProps,
+
+        // WebSocket protocol info
+        webSocket: webSocketInfo,
+
+        // Presentation API (external display support)
+        presentation: presentationInfo,
+
+        // Web Locks API
+        webLocks: webLocksInfo,
     };
 }
 
