@@ -1,0 +1,101 @@
+name: Fingerprint Test
+
+on:
+  workflow_dispatch:
+    inputs:
+      target_url:
+        description: 'URL to test fingerprint'
+        required: false
+        default: 'https://botxbyte.com/fp.php'
+      keep_alive:
+        description: 'Keep container alive for VNC access (minutes)'
+        required: false
+        default: '10'
+
+jobs:
+  test-fingerprint:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Load kernel modules for Redroid
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y linux-modules-extra-$(uname -r)
+          sudo modprobe binder_linux devices="binder,hwbinder,vndbinder"
+          sudo modprobe ashmem_linux || true
+
+      - name: Create profiles directory
+        run: mkdir -p docker/profiles
+
+      - name: Copy profile
+        run: cp original.json docker/profiles/
+
+      - name: Start Redroid with VNC
+        run: |
+          cd docker
+          docker-compose -f docker-compose.vnc.yml up -d redroid vnc
+          
+          # Wait for Redroid to boot
+          echo "Waiting for Redroid to boot..."
+          timeout 120 bash -c 'until docker exec docker-redroid-1 getprop sys.boot_completed 2>/dev/null | grep -q "1"; do sleep 5; done'
+          echo "Redroid booted!"
+
+      - name: Setup ngrok tunnel for VNC
+        if: ${{ github.event.inputs.keep_alive != '0' }}
+        run: |
+          # Install ngrok
+          curl -s https://ngrok-agent.s3.amazonaws.com/ngrok.asc | sudo tee /etc/apt/trusted.gpg.d/ngrok.asc >/dev/null
+          echo "deb https://ngrok-agent.s3.amazonaws.com buster main" | sudo tee /etc/apt/sources.list.d/ngrok.list
+          sudo apt-get update && sudo apt-get install -y ngrok
+          
+          # Configure authtoken
+          ngrok config add-authtoken $NGROK_AUTHTOKEN
+          
+          # Start ngrok with static domain
+          ngrok http 6080 --domain=alverta-unrigid-rylan.ngrok-free.dev --log=stdout > ngrok.log 2>&1 &
+          sleep 5
+          
+          # Static URL
+          VNC_URL="https://alverta-unrigid-rylan.ngrok-free.dev"
+          echo "=========================================="
+          echo "🖥️  VNC Access URL: $VNC_URL"
+          echo "=========================================="
+          echo "VNC_URL=$VNC_URL" >> $GITHUB_ENV
+        env:
+          NGROK_AUTHTOKEN: ${{ secrets.NGROK_AUTHTOKEN }}
+
+      - name: Run fingerprint test
+        run: |
+          cd docker
+          docker-compose -f docker-compose.vnc.yml up controller
+          
+      - name: Get results
+        run: |
+          docker cp docker-controller-1:/app/result.json ./fingerprint-result.json 2>/dev/null || true
+          if [ -f fingerprint-result.json ]; then
+            echo "Fingerprint result:"
+            cat fingerprint-result.json | jq .
+          fi
+
+      - name: Upload fingerprint result
+        uses: actions/upload-artifact@v4
+        with:
+          name: fingerprint-result
+          path: fingerprint-result.json
+        if: always()
+
+      - name: Keep alive for VNC access
+        if: ${{ github.event.inputs.keep_alive != '0' }}
+        run: |
+          echo "Container running for ${{ github.event.inputs.keep_alive }} minutes"
+          echo "VNC URL: ${{ env.VNC_URL }}"
+          sleep $(( ${{ github.event.inputs.keep_alive }} * 60 ))
+
+      - name: Cleanup
+        if: always()
+        run: |
+          cd docker
+          docker-compose -f docker-compose.vnc.yml down -v
