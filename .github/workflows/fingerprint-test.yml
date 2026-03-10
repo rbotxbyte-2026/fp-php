@@ -36,7 +36,7 @@ jobs:
       - name: Start Redroid with VNC
         run: |
           cd docker
-          docker-compose -f docker-compose.vnc.yml up -d redroid vnc
+          docker compose -f docker-compose.vnc.yml up -d redroid vnc
           
           # Wait for Redroid to boot
           echo "Waiting for Redroid to boot..."
@@ -70,7 +70,7 @@ jobs:
       - name: Run fingerprint test
         run: |
           cd docker
-          docker-compose -f docker-compose.vnc.yml up controller
+          docker compose -f docker-compose.vnc.yml up controller
           
       - name: Get results
         run: |
@@ -98,4 +98,4 @@ jobs:
         if: always()
         run: |
           cd docker
-          docker-compose -f docker-compose.vnc.yml down -v
+          docker compose -f docker-compose.vnc.yml down -v
