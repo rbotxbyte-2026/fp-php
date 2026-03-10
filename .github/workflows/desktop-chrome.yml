@@ -11,21 +11,56 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Cache apt packages
+        uses: actions/cache@v4
+        id: cache-apt
+        with:
+          path: |
+            ~/apt-cache
+          key: apt-desktop-${{ runner.os }}-v2
+          restore-keys: |
+            apt-desktop-${{ runner.os }}-
+
       - name: Install Desktop Environment
         run: |
+          # Restore cached packages if available
+          if [ -d ~/apt-cache ] && [ "$(ls -A ~/apt-cache 2>/dev/null)" ]; then
+            echo "Restoring cached apt packages..."
+            sudo cp -r ~/apt-cache/* /var/cache/apt/archives/ 2>/dev/null || true
+          fi
+          
           sudo apt-get update
           sudo apt-get install -y xfce4 xfce4-goodies x11vnc xvfb novnc websockify jq
+          
+          # Cache the downloaded packages for next run
+          mkdir -p ~/apt-cache
+          sudo cp /var/cache/apt/archives/*.deb ~/apt-cache/ 2>/dev/null || true
           
           echo "Chrome version:"
           google-chrome --version
 
+      - name: Cache ngrok
+        uses: actions/cache@v4
+        id: cache-ngrok
+        with:
+          path: |
+            /usr/bin/ngrok
+            /etc/apt/sources.list.d/ngrok.list
+            /etc/apt/trusted.gpg.d/ngrok.asc
+          key: ngrok-${{ runner.os }}-v1
+
       - name: Setup ngrok
         run: |
-          curl -sSL https://ngrok-agent.s3.amazonaws.com/ngrok.asc \
-            | sudo tee /etc/apt/trusted.gpg.d/ngrok.asc >/dev/null
-          echo "deb https://ngrok-agent.s3.amazonaws.com buster main" \
-            | sudo tee /etc/apt/sources.list.d/ngrok.list
-          sudo apt-get update && sudo apt-get install -y ngrok
+          if ! command -v ngrok &> /dev/null; then
+            echo "Installing ngrok..."
+            curl -sSL https://ngrok-agent.s3.amazonaws.com/ngrok.asc \
+              | sudo tee /etc/apt/trusted.gpg.d/ngrok.asc >/dev/null
+            echo "deb https://ngrok-agent.s3.amazonaws.com buster main" \
+              | sudo tee /etc/apt/sources.list.d/ngrok.list
+            sudo apt-get update && sudo apt-get install -y ngrok
+          else
+            echo "Using cached ngrok"
+          fi
           ngrok config add-authtoken ${{ secrets.NGROK_AUTHTOKEN }}
 
       - name: Setup Extension
