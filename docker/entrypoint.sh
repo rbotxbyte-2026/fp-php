@@ -116,7 +116,17 @@ adb -s $REDROID_HOST:$REDROID_ADB_PORT forward tcp:$CHROME_DEBUG_PORT localabstr
 # Run CDP injection
 echo ""
 echo "Running CDP injection..."
-node /app/cdp-inject.js
+SAVE_RESULT=true node /app/cdp-inject.js
+
+# Check if result was captured
+if [ -f /app/result.json ]; then
+    echo ""
+    echo "Fingerprint result captured!"
+    cat /app/result.json | head -100
+else
+    echo ""
+    echo "WARNING: No fingerprint result was captured"
+fi
 
 echo ""
 echo "========================================"

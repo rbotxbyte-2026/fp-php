@@ -75,48 +75,50 @@ jobs:
           adb connect localhost:5555
           adb -s localhost:5555 wait-for-device
           
-          echo "Downloading Chromium APK for x86_64 Android..."
+          echo "Downloading Chrome/Chromium APK for x86_64 Android..."
           
-          # Get latest Chromium snapshot version for Android x64
-          CHROMIUM_BASE="https://commondatastorage.googleapis.com/chromium-browser-snapshots/Android_x64"
-          LATEST_VERSION=$(curl -s "${CHROMIUM_BASE}/LAST_CHANGE")
-          echo "Latest Chromium version: $LATEST_VERSION"
+          # Method 1: Try Chrome from archived builds
+          echo "Trying archived Chromium build..."
+          curl -L --connect-timeout 30 --max-time 300 -o chromium.apk \
+            "https://www.googleapis.com/download/storage/v1/b/chromium-browser-snapshots/o/Android%2F1000022%2Fchrome-android.apk?alt=media" 2>/dev/null || true
           
-          # Download the APK
-          if [ -n "$LATEST_VERSION" ]; then
-            curl -L -o chromium.apk "${CHROMIUM_BASE}/${LATEST_VERSION}/ChromePublic.apk" || true
+          # Method 2: Try specific known working Chromium version
+          if [ ! -s chromium.apk ] || [ $(stat -f%z chromium.apk 2>/dev/null || stat -c%s chromium.apk) -lt 10000000 ]; then
+            echo "Trying alternative source..."
+            rm -f chromium.apk 2>/dev/null
+            # Use a prebuilt x86_64 Chrome APK from GitHub releases
+            curl -L --connect-timeout 30 --max-time 300 -o chromium.apk \
+              "https://github.com/nicholaschiang/nicholaschiang.com/releases/download/chrome/Chrome_127.0.6533.72_x86_64.apk" 2>/dev/null || true
           fi
           
-          # Fallback to alternative sources if official download failed
-          if [ ! -s chromium.apk ]; then
-            echo "Official download failed, trying alternatives..."
-            # Try Kiwi Browser (Chromium-based, supports x86_64)
-            curl -L -o chromium.apk "https://github.com/nicholaschiang/nicholaschiang.com/releases/download/chromium/Chromium_121.0.6167.101_x64.apk" 2>/dev/null || true
+          # Method 3: Try via APKCombo/APKPure redirect
+          if [ ! -s chromium.apk ] || [ $(stat -f%z chromium.apk 2>/dev/null || stat -c%s chromium.apk) -lt 10000000 ]; then
+            echo "Trying APK hosting service..."
+            rm -f chromium.apk 2>/dev/null
+            curl -L --connect-timeout 30 --max-time 300 -o chromium.apk \
+              "https://github.com/nicholaschiang/nicholaschiang.com/releases/download/brave/Brave_Browser_1.67.134_x86_64.apk" 2>/dev/null || true
           fi
           
-          if [ ! -s chromium.apk ]; then
-            # Last resort: use Fennec (Firefox) from F-Droid 
-            echo "Trying Fennec F-Droid..."
-            curl -L -o fennec.apk "https://f-droid.org/repo/org.mozilla.fennec_fdroid_121010.apk" 2>/dev/null || true
-            if [ -s fennec.apk ]; then
-              mv fennec.apk chromium.apk
-            fi
-          fi
-          
-          # Install the APK if we got one
-          if [ -s chromium.apk ]; then
+          # Install if we got a valid APK (at least 10MB)
+          APK_SIZE=$(stat -f%z chromium.apk 2>/dev/null || stat -c%s chromium.apk 2>/dev/null || echo 0)
+          if [ "$APK_SIZE" -gt 10000000 ]; then
             echo "Installing browser APK ($(du -h chromium.apk | cut -f1))..."
             adb -s localhost:5555 install -r -g chromium.apk && echo "Browser installed!" || echo "Install failed"
           else
-            echo "ERROR: Could not download any browser APK"
-            echo "Listing available apps on Redroid:"
-            adb -s localhost:5555 shell pm list packages
+            echo "No valid browser APK downloaded (size: $APK_SIZE bytes)"
+            echo "Will use pre-installed WebView shell"
           fi
+          
+          # Enable WebView DevTools on the pre-installed shell (fallback)
+          echo ""
+          echo "Enabling WebView remote debugging..."
+          adb -s localhost:5555 shell "setprop webview.enable_remote_debugging 1" || true
+          adb -s localhost:5555 shell "setprop debug.chromium.android.browser true" || true
           
           # Verify installation
           echo ""
           echo "=== Browser packages installed ==="
-          adb -s localhost:5555 shell pm list packages | grep -iE "chrom|browser|mozilla|fennec" || echo "No browser found"
+          adb -s localhost:5555 shell pm list packages | grep -iE "chrom|browser|brave" || echo "No browser found"
 
       - name: Run fingerprint test
         run: |

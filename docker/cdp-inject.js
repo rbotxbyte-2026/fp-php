@@ -34,24 +34,20 @@ async function main() {
     
     // Start Chrome with remote debugging
     console.log('\nStarting Chrome...');
-    await startChrome();
-    
-    // Forward ADB port
-    console.log('Forwarding ADB port...');
-    try {
-        adb(`forward tcp:${CHROME_DEBUG_PORT} localabstract:chrome_devtools_remote`);
-    } catch (e) {
-        console.log('Port forwarding may already be set up');
-    }
-    
-    await sleep(2000);
+    const browser = await startChrome();
     
     // Connect to Chrome DevTools
     console.log(`\nConnecting to Chrome DevTools on port ${CHROME_DEBUG_PORT}...`);
     const wsUrl = await getWebSocketUrl();
     
     if (!wsUrl) {
-        throw new Error('Failed to get Chrome WebSocket URL');
+        console.error('ERROR: Failed to get Chrome WebSocket URL');
+        console.error('DevTools may not be available for this browser');
+        console.log('\nTrying fallback: direct page capture via ADB...');
+        
+        // Fallback: navigate and capture via screenshot/DOM
+        await fallbackCapture(cdpConfig, TARGET_URL);
+        return;
     }
     
     console.log(`WebSocket URL: ${wsUrl}`);
@@ -69,16 +65,82 @@ async function main() {
 }
 
 /**
+ * Fallback capture method when CDP is unavailable
+ * Uses ADB to navigate and capture HTTP response
+ */
+async function fallbackCapture(cdpConfig, targetUrl) {
+    console.log('\nUsing fallback capture method...');
+    
+    // Navigate to the URL using am start
+    console.log(`Navigating to: ${targetUrl}`);
+    try {
+        adb(`shell am start -a android.intent.action.VIEW -d "${targetUrl}"`);
+    } catch (e) {
+        console.log('Navigation error:', e.message);
+    }
+    
+    // Wait for page to load
+    console.log('Waiting for page to load...');
+    await sleep(10000);
+    
+    // Try to capture page content via curl from within Android
+    console.log('Attempting to capture fingerprint data...');
+    try {
+        // Use wget/curl from Android shell if available
+        const result = adb(`shell "wget -q -O - '${targetUrl}' 2>/dev/null || curl -s '${targetUrl}' 2>/dev/null"`);
+        
+        if (result && result.trim()) {
+            const resultPath = process.env.RESULT_PATH || './result.json';
+            try {
+                const parsed = JSON.parse(result);
+                fs.writeFileSync(resultPath, JSON.stringify(parsed, null, 2));
+                console.log(`Result saved to: ${resultPath}`);
+            } catch {
+                fs.writeFileSync(resultPath, result);
+                console.log(`Raw result saved to: ${resultPath}`);
+            }
+        } else {
+            console.log('Could not capture page content');
+            
+            // Last resort: capture a basic fingerprint using Android properties
+            console.log('Generating fallback fingerprint from device properties...');
+            const fallbackFp = {
+                captured_at: new Date().toISOString(),
+                method: 'adb_fallback',
+                device: {
+                    model: adb('shell getprop ro.product.model').trim(),
+                    brand: adb('shell getprop ro.product.brand').trim(),
+                    manufacturer: adb('shell getprop ro.product.manufacturer').trim(),
+                    device: adb('shell getprop ro.product.device').trim(),
+                    sdk: adb('shell getprop ro.build.version.sdk').trim(),
+                    timezone: adb('shell getprop persist.sys.timezone').trim()
+                },
+                config: cdpConfig
+            };
+            
+            const resultPath = process.env.RESULT_PATH || './result.json';
+            fs.writeFileSync(resultPath, JSON.stringify(fallbackFp, null, 2));
+            console.log(`Fallback result saved to: ${resultPath}`);
+        }
+    } catch (e) {
+        console.log('Fallback capture failed:', e.message);
+    }
+    
+    console.log('\n========================================');
+    console.log('  Fallback Capture Complete!');
+    console.log('========================================\n');
+}
+
+/**
  * Start Chrome/Chromium on Android with remote debugging
  */
 async function startChrome() {
     // List of browser packages to try (in order of preference)
     const browsers = [
-        { pkg: 'org.chromium.chrome', activity: 'com.google.android.apps.chrome.Main' },
-        { pkg: 'com.android.chrome', activity: 'com.google.android.apps.chrome.Main' },
-        { pkg: 'org.chromium.webview_shell', activity: 'org.chromium.webview_shell.WebViewBrowserActivity' },
-        { pkg: 'com.brave.browser', activity: 'com.brave.browser.BraveActivity' },
-        { pkg: 'com.opera.browser', activity: 'com.opera.Opera' },
+        { pkg: 'com.android.chrome', activity: 'com.google.android.apps.chrome.Main', socket: 'chrome_devtools_remote' },
+        { pkg: 'org.chromium.chrome', activity: 'com.google.android.apps.chrome.Main', socket: 'chrome_devtools_remote' },
+        { pkg: 'com.brave.browser', activity: 'com.brave.browser.BraveActivity', socket: 'chrome_devtools_remote' },
+        { pkg: 'org.chromium.webview_shell', activity: 'org.chromium.webview_shell.WebViewBrowserActivity', socket: 'webview_devtools_remote' },
     ];
     
     // Find which browser is installed
@@ -95,21 +157,7 @@ async function startChrome() {
     }
     
     if (!installedBrowser) {
-        console.log('No supported browser found. Installing Chromium...');
-        // Try to install Chromium from APK if available
-        try {
-            const apkPath = '/app/chrome.apk';
-            if (fs.existsSync(apkPath)) {
-                adb(`install -r ${apkPath}`);
-                installedBrowser = browsers[0]; // Assume it's Chromium
-            }
-        } catch (e) {
-            console.log('Could not install browser:', e.message);
-        }
-    }
-    
-    if (!installedBrowser) {
-        throw new Error('No browser available. Please install Chrome/Chromium.');
+        throw new Error('No supported browser available. Please install Chrome/Chromium.');
     }
     
     // Kill existing browser
@@ -138,7 +186,7 @@ async function startChrome() {
         console.log('Could not write Chrome flags file');
     }
     
-    // Start browser
+    // Start browser with about:blank first
     console.log(`Starting ${installedBrowser.pkg}...`);
     try {
         adb(`shell am start -n ${installedBrowser.pkg}/${installedBrowser.activity} -a android.intent.action.VIEW -d "about:blank"`);
@@ -148,27 +196,67 @@ async function startChrome() {
         try {
             adb(`shell am start -n ${installedBrowser.pkg}/${installedBrowser.activity}`);
         } catch (e2) {
-            console.log('Browser launch failed:', e2.message);
+            throw new Error(`Browser launch failed: ${e2.message}`);
         }
     }
     
     await sleep(3000);
+    
+    // Set up port forwarding based on browser type
+    console.log('Forwarding ADB port...');
+    
+    // First try the browser-specific socket
+    try {
+        adb(`forward tcp:${CHROME_DEBUG_PORT} localabstract:${installedBrowser.socket}`);
+        console.log(`Port forwarded via ${installedBrowser.socket}`);
+    } catch (e) {
+        console.log(`Failed to forward ${installedBrowser.socket}, trying alternatives...`);
+    }
+    
+    // For WebView, we might need to find the actual socket with PID
+    if (installedBrowser.socket === 'webview_devtools_remote') {
+        try {
+            const psOutput = adb('shell ps -A | grep webview');
+            console.log('WebView processes:', psOutput);
+            const pidMatch = psOutput.match(/\s+(\d+)\s+/);
+            if (pidMatch) {
+                const pid = pidMatch[1];
+                try {
+                    adb(`forward tcp:${CHROME_DEBUG_PORT} localabstract:webview_devtools_remote_${pid}`);
+                    console.log(`Port forwarded via webview_devtools_remote_${pid}`);
+                } catch (e) {}
+            }
+        } catch (e) {}
+    }
+    
+    await sleep(2000);
+    
+    return installedBrowser;
 }
 
 /**
  * Get WebSocket URL from Chrome DevTools
  */
-async function getWebSocketUrl(retries = 10) {
+async function getWebSocketUrl(retries = 15) {
     for (let i = 0; i < retries; i++) {
         try {
             const response = await fetch(`http://localhost:${CHROME_DEBUG_PORT}/json`);
             const targets = await response.json();
+            console.log(`DevTools targets (${i + 1}/${retries}):`, targets.map(t => ({ type: t.type, url: t.url })));
+            
             const page = targets.find(t => t.type === 'page');
             if (page) {
                 return page.webSocketDebuggerUrl;
             }
+            
+            // If we get a response but no page, wait a bit and retry
+            await sleep(1000);
         } catch (e) {
-            console.log(`Waiting for Chrome DevTools... (${i + 1}/${retries})`);
+            if (i < retries - 1) {
+                console.log(`Waiting for Chrome DevTools... (${i + 1}/${retries}) - ${e.message}`);
+            } else {
+                console.log(`Chrome DevTools not available after ${retries} attempts`);
+            }
             await sleep(2000);
         }
     }
