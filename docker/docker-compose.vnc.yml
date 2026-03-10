@@ -9,28 +9,18 @@ services:
       - android-data:/data
       - ./profiles:/profiles
     command:
-      # Screen configuration (from original.json)
+      # Screen configuration
       - androidboot.redroid_width=1080
       - androidboot.redroid_height=2340
       - androidboot.redroid_dpi=440
       - androidboot.redroid_fps=60
       - androidboot.redroid_gpu_mode=guest
-      # Device identity (ro.* properties - READ ONLY, must be set at boot)
-      - ro.product.model=ONEPLUS A6010
-      - ro.product.brand=OnePlus
-      - ro.product.manufacturer=OnePlus
-      - ro.product.device=OnePlus6T
-      - ro.product.name=OnePlus6T
-      - ro.build.product=OnePlus6T
-      - ro.product.board=sdm845
-      - ro.hardware=qcom
-      - ro.build.version.release=11
-      - ro.build.version.sdk=30
     healthcheck:
-      test: ["CMD", "getprop", "sys.boot_completed"]
+      test: ["CMD-SHELL", "getprop sys.boot_completed | grep -q 1 || exit 1"]
       interval: 10s
-      timeout: 5s
+      timeout: 10s
       retries: 30
+      start_period: 30s
     networks:
       - fpnet
 

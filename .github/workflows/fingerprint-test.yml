@@ -38,10 +38,31 @@ jobs:
           cd docker
           docker compose -f docker-compose.vnc.yml up -d redroid
           
-          # Wait for Redroid to boot
+          # Wait for Redroid to boot with progress
           echo "Waiting for Redroid to boot..."
-          timeout 180 bash -c 'until docker exec docker-redroid-1 getprop sys.boot_completed 2>/dev/null | grep -q "1"; do sleep 5; done'
-          echo "Redroid booted!"
+          for i in $(seq 1 60); do
+            STATUS=$(docker exec docker-redroid-1 getprop sys.boot_completed 2>/dev/null || echo "not ready")
+            echo "Boot status ($i/60): $STATUS"
+            if [ "$STATUS" = "1" ]; then
+              echo "Redroid booted!"
+              break
+            fi
+            # Show container logs if taking too long
+            if [ $i -eq 30 ]; then
+              echo "=== Redroid logs ==="
+              docker logs docker-redroid-1 --tail 50 2>&1 || true
+              echo "==================="
+            fi
+            sleep 5
+          done
+          
+          # Final status check
+          FINAL=$(docker exec docker-redroid-1 getprop sys.boot_completed 2>/dev/null || echo "failed")
+          if [ "$FINAL" != "1" ]; then
+            echo "Redroid failed to boot. Final logs:"
+            docker logs docker-redroid-1 2>&1 || true
+            exit 1
+          fi
 
       - name: Setup ADB tunnel for remote access
         if: ${{ github.event.inputs.keep_alive != '0' }}
