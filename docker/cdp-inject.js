@@ -69,17 +69,57 @@ async function main() {
 }
 
 /**
- * Start Chrome on Android with remote debugging
+ * Start Chrome/Chromium on Android with remote debugging
  */
 async function startChrome() {
-    // Kill existing Chrome
+    // List of browser packages to try (in order of preference)
+    const browsers = [
+        { pkg: 'org.chromium.chrome', activity: 'com.google.android.apps.chrome.Main' },
+        { pkg: 'com.android.chrome', activity: 'com.google.android.apps.chrome.Main' },
+        { pkg: 'org.chromium.webview_shell', activity: 'org.chromium.webview_shell.WebViewBrowserActivity' },
+        { pkg: 'com.brave.browser', activity: 'com.brave.browser.BraveActivity' },
+        { pkg: 'com.opera.browser', activity: 'com.opera.Opera' },
+    ];
+    
+    // Find which browser is installed
+    let installedBrowser = null;
+    const packagesOutput = adb('shell pm list packages');
+    console.log('Checking installed browsers...');
+    
+    for (const browser of browsers) {
+        if (packagesOutput.includes(browser.pkg)) {
+            console.log(`Found browser: ${browser.pkg}`);
+            installedBrowser = browser;
+            break;
+        }
+    }
+    
+    if (!installedBrowser) {
+        console.log('No supported browser found. Installing Chromium...');
+        // Try to install Chromium from APK if available
+        try {
+            const apkPath = '/app/chrome.apk';
+            if (fs.existsSync(apkPath)) {
+                adb(`install -r ${apkPath}`);
+                installedBrowser = browsers[0]; // Assume it's Chromium
+            }
+        } catch (e) {
+            console.log('Could not install browser:', e.message);
+        }
+    }
+    
+    if (!installedBrowser) {
+        throw new Error('No browser available. Please install Chrome/Chromium.');
+    }
+    
+    // Kill existing browser
     try {
-        adb('shell am force-stop com.android.chrome');
+        adb(`shell am force-stop ${installedBrowser.pkg}`);
     } catch (e) {}
     
     await sleep(1000);
     
-    // Write Chrome command-line flags file
+    // Write Chrome command-line flags file (works for Chromium-based browsers)
     const chromeFlags = [
         'chrome',
         '--disable-fre',
@@ -90,23 +130,25 @@ async function startChrome() {
     ].join(' ');
     
     try {
-        // Chrome reads flags from this file on Android
         adb(`shell "echo '${chromeFlags}' > /data/local/tmp/chrome-command-line"`);
         adb('shell chmod 644 /data/local/tmp/chrome-command-line');
+        // Also set for the specific package
+        adb(`shell "echo '${chromeFlags}' > /data/local/tmp/${installedBrowser.pkg}-command-line"`);
     } catch (e) {
         console.log('Could not write Chrome flags file');
     }
     
-    // Start Chrome (without invalid am start options)
+    // Start browser
+    console.log(`Starting ${installedBrowser.pkg}...`);
     try {
-        adb('shell am start -n com.android.chrome/com.google.android.apps.chrome.Main -a android.intent.action.VIEW -d "about:blank"');
+        adb(`shell am start -n ${installedBrowser.pkg}/${installedBrowser.activity} -a android.intent.action.VIEW -d "about:blank"`);
     } catch (e) {
-        console.log('Chrome start error:', e.message);
-        // Try without extras
+        console.log('Browser start error:', e.message);
+        // Try without data
         try {
-            adb('shell am start -n com.android.chrome/com.google.android.apps.chrome.Main');
+            adb(`shell am start -n ${installedBrowser.pkg}/${installedBrowser.activity}`);
         } catch (e2) {
-            console.log('Chrome may not be installed or has different package name');
+            console.log('Browser launch failed:', e2.message);
         }
     }
     

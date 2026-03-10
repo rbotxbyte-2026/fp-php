@@ -7,10 +7,6 @@ on:
         description: 'URL to test fingerprint'
         required: false
         default: 'https://botxbyte.com/fp.php'
-      keep_alive:
-        description: 'Keep container alive for VNC access (minutes)'
-        required: false
-        default: '10'
 
 jobs:
   test-fingerprint:
@@ -47,7 +43,6 @@ jobs:
               echo "Redroid booted!"
               break
             fi
-            # Show container logs if taking too long
             if [ $i -eq 30 ]; then
               echo "=== Redroid logs ==="
               docker logs docker-redroid-1 --tail 50 2>&1 || true
@@ -64,30 +59,64 @@ jobs:
             exit 1
           fi
 
-      - name: Setup ADB tunnel for remote access
-        if: ${{ github.event.inputs.keep_alive != '0' }}
+      - name: Install Chromium on Redroid
         run: |
-          # Install ngrok
-          curl -s https://ngrok-agent.s3.amazonaws.com/ngrok.asc | sudo tee /etc/apt/trusted.gpg.d/ngrok.asc >/dev/null
-          echo "deb https://ngrok-agent.s3.amazonaws.com buster main" | sudo tee /etc/apt/sources.list.d/ngrok.list
-          sudo apt-get update && sudo apt-get install -y ngrok
+          # Install ADB
+          sudo apt-get install -y android-tools-adb
           
-          # Configure authtoken
-          ngrok config add-authtoken $NGROK_AUTHTOKEN
+          # Connect to Redroid
+          adb connect localhost:5555
+          adb -s localhost:5555 wait-for-device
           
-          # Start ngrok tunnel to ADB port
-          ngrok tcp 5555 --log=stdout > ngrok.log 2>&1 &
-          sleep 5
+          # Get root access
+          adb -s localhost:5555 root || true
+          sleep 2
+          adb disconnect localhost:5555
+          adb connect localhost:5555
+          adb -s localhost:5555 wait-for-device
           
-          # Get public URL
-          ADB_URL=$(curl -s http://localhost:4040/api/tunnels | jq -r '.tunnels[0].public_url' | sed 's/tcp:\/\///')
-          echo "=========================================="
-          echo "📱 ADB Access: adb connect $ADB_URL"
-          echo "🖥️  Then run: scrcpy"
-          echo "=========================================="
-          echo "ADB_URL=$ADB_URL" >> $GITHUB_ENV
-        env:
-          NGROK_AUTHTOKEN: ${{ secrets.NGROK_AUTHTOKEN }}
+          echo "Downloading Chromium APK for x86_64 Android..."
+          
+          # Get latest Chromium snapshot version for Android x64
+          CHROMIUM_BASE="https://commondatastorage.googleapis.com/chromium-browser-snapshots/Android_x64"
+          LATEST_VERSION=$(curl -s "${CHROMIUM_BASE}/LAST_CHANGE")
+          echo "Latest Chromium version: $LATEST_VERSION"
+          
+          # Download the APK
+          if [ -n "$LATEST_VERSION" ]; then
+            curl -L -o chromium.apk "${CHROMIUM_BASE}/${LATEST_VERSION}/ChromePublic.apk" || true
+          fi
+          
+          # Fallback to alternative sources if official download failed
+          if [ ! -s chromium.apk ]; then
+            echo "Official download failed, trying alternatives..."
+            # Try Kiwi Browser (Chromium-based, supports x86_64)
+            curl -L -o chromium.apk "https://github.com/nicholaschiang/nicholaschiang.com/releases/download/chromium/Chromium_121.0.6167.101_x64.apk" 2>/dev/null || true
+          fi
+          
+          if [ ! -s chromium.apk ]; then
+            # Last resort: use Fennec (Firefox) from F-Droid 
+            echo "Trying Fennec F-Droid..."
+            curl -L -o fennec.apk "https://f-droid.org/repo/org.mozilla.fennec_fdroid_121010.apk" 2>/dev/null || true
+            if [ -s fennec.apk ]; then
+              mv fennec.apk chromium.apk
+            fi
+          fi
+          
+          # Install the APK if we got one
+          if [ -s chromium.apk ]; then
+            echo "Installing browser APK ($(du -h chromium.apk | cut -f1))..."
+            adb -s localhost:5555 install -r -g chromium.apk && echo "Browser installed!" || echo "Install failed"
+          else
+            echo "ERROR: Could not download any browser APK"
+            echo "Listing available apps on Redroid:"
+            adb -s localhost:5555 shell pm list packages
+          fi
+          
+          # Verify installation
+          echo ""
+          echo "=== Browser packages installed ==="
+          adb -s localhost:5555 shell pm list packages | grep -iE "chrom|browser|mozilla|fennec" || echo "No browser found"
 
       - name: Run fingerprint test
         run: |
@@ -100,6 +129,10 @@ jobs:
           if [ -f fingerprint-result.json ]; then
             echo "Fingerprint result:"
             cat fingerprint-result.json | jq .
+          else
+            echo "No fingerprint result file found"
+            # Get controller logs for debugging
+            docker logs docker-controller-1 2>&1 || true
           fi
 
       - name: Upload fingerprint result
@@ -107,15 +140,7 @@ jobs:
         with:
           name: fingerprint-result
           path: fingerprint-result.json
-        if: always()
-
-      - name: Keep alive for ADB access
-        if: ${{ github.event.inputs.keep_alive != '0' }}
-        run: |
-          echo "Container running for ${{ github.event.inputs.keep_alive }} minutes"
-          echo "ADB: adb connect ${{ env.ADB_URL }}"
-          echo "Then run: scrcpy"
-          sleep $(( ${{ github.event.inputs.keep_alive }} * 60 ))
+          if-no-files-found: warn
 
       - name: Cleanup
         if: always()

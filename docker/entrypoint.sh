@@ -84,18 +84,28 @@ echo ""
 echo "Running device setup..."
 node /app/setup-device.js
 
-# Install Chrome if not installed
+# Check for browser installation
 echo ""
-echo "Checking Chrome installation..."
-chrome_installed=$(adb -s $REDROID_HOST:$REDROID_ADB_PORT shell pm list packages | grep -c "com.android.chrome" || echo "0")
-if [ "$chrome_installed" = "0" ]; then
-    echo "Chrome not installed. Please install Chrome APK manually."
-    echo "You can download from: https://www.apkmirror.com/apk/google-inc/chrome/"
+echo "Checking browser installation..."
+packages=$(adb -s $REDROID_HOST:$REDROID_ADB_PORT shell pm list packages)
+browser_found=false
+
+for pkg in "org.chromium.chrome" "com.android.chrome" "org.chromium.webview_shell" "org.mozilla.fennec_fdroid"; do
+    if echo "$packages" | grep -q "$pkg"; then
+        echo "Found browser: $pkg"
+        browser_found=true
+        break
+    fi
+done
+
+if [ "$browser_found" = "false" ]; then
+    echo "WARNING: No supported browser found!"
+    echo "The fingerprint test may fail."
     echo ""
-    echo "To install:"
-    echo "  adb install chrome-arm64.apk"
+    echo "Installed packages:"
+    echo "$packages" | head -20
 else
-    echo "Chrome is installed"
+    echo "Browser is installed"
 fi
 
 # Forward Chrome debug port
