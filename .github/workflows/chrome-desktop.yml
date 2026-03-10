@@ -44,7 +44,52 @@ jobs:
           cp -r extension/* ~/Downloads/fp-spoofer-extension/
           cp original.json ~/Downloads/
           
+          # Read dimensions from profile
+          SCREEN_WIDTH=$(jq -r '.client.screen.width // 384' original.json)
+          SCREEN_HEIGHT=$(jq -r '.client.screen.height // 832' original.json)
+          INNER_WIDTH=$(jq -r '.client.screen.innerWidth // 384' original.json)
+          INNER_HEIGHT=$(jq -r '.client.screen.innerHeight // 699' original.json)
+          
+          echo "Profile dimensions: ${SCREEN_WIDTH}x${SCREEN_HEIGHT} (inner: ${INNER_WIDTH}x${INNER_HEIGHT})"
+          
+          # Create launcher script that resizes Chrome to profile dimensions
+          cat > ~/Desktop/launch-chrome-resized.sh << 'SCRIPT'
+          #!/bin/bash
+          # Read profile dimensions
+          INNER_WIDTH=$(jq -r '.client.screen.innerWidth // 384' ~/Downloads/original.json)
+          INNER_HEIGHT=$(jq -r '.client.screen.innerHeight // 699' ~/Downloads/original.json)
+          
+          # Chrome adds ~0 to width and ~79 to height for UI (address bar, etc)
+          WINDOW_WIDTH=$INNER_WIDTH
+          WINDOW_HEIGHT=$((INNER_HEIGHT + 79))
+          
+          echo "Launching Chrome with window size: ${WINDOW_WIDTH}x${WINDOW_HEIGHT}"
+          
+          google-chrome \
+            --window-size=${WINDOW_WIDTH},${WINDOW_HEIGHT} \
+            --window-position=100,100 \
+            --no-first-run \
+            --disable-default-apps \
+            --disable-popup-blocking \
+            "about:blank" &
+          SCRIPT
+          chmod +x ~/Desktop/launch-chrome-resized.sh
+          
+          # Create desktop shortcut
+          cat > ~/Desktop/Chrome-Resized.desktop << EOF
+          [Desktop Entry]
+          Type=Application
+          Name=Chrome (Profile Size)
+          Exec=/home/runner/Desktop/launch-chrome-resized.sh
+          Icon=google-chrome
+          Terminal=false
+          EOF
+          chmod +x ~/Desktop/Chrome-Resized.desktop
+          
+          echo ""
           echo "Extension copied to: ~/Downloads/fp-spoofer-extension"
+          echo "Profile at: ~/Downloads/original.json"
+          echo "Launcher script at: ~/Desktop/launch-chrome-resized.sh"
           ls -la ~/Downloads/fp-spoofer-extension/
 
       - name: Start Desktop and VNC
@@ -84,12 +129,15 @@ jobs:
           echo ""
           echo "Instructions:"
           echo "1. Open the URL above in your browser"
-          echo "2. Open Chrome from the desktop"
+          echo "2. Double-click 'Chrome (Profile Size)' on desktop"
+          echo "   OR run: ~/Desktop/launch-chrome-resized.sh"
           echo "3. Go to chrome://extensions"
           echo "4. Enable 'Developer mode'"
           echo "5. Click 'Load unpacked'"
           echo "6. Select: /home/runner/Downloads/fp-spoofer-extension"
-          echo "7. Extension profile at: /home/runner/Downloads/original.json"
+          echo ""
+          echo "Profile: /home/runner/Downloads/original.json"
+          echo "Chrome will be resized to match profile dimensions"
           echo ""
           echo "========================================"
           
