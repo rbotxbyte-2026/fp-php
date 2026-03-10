@@ -1,17 +1,17 @@
 {
     "server": {
-        "ip": "2405:f600:8:d4f6:dcb2:58c5:3792:ec69",
+        "ip": "2405:f600:8:e0a9:985c:f5c3:3402:a232",
         "protocol": "HTTP\/1.0",
         "https": true,
         "port": "80",
-        "request_time": "2026-03-09 12:58:06",
+        "request_time": "2026-03-10 06:08:42",
         "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/145.0.0.0 Mobile Safari\/537.36",
         "accept": "*\/*",
-        "accept_language": "en-IN,en;q=0.9,gu;q=0.8,en-GB;q=0.7,en-US;q=0.6,hi;q=0.5",
+        "accept_language": "en-IN,en-GB;q=0.9,en-US;q=0.8,en;q=0.7,gu;q=0.6",
         "accept_encoding": "gzip, br",
         "connection": "close",
         "cache_control": null,
-        "dnt": "1",
+        "dnt": null,
         "upgrade_insecure": null,
         "referer": "https:\/\/botxbyte.com\/fp.php",
         "origin": "https:\/\/botxbyte.com",
@@ -28,12 +28,12 @@
         "ch_ua_bitness": null,
         "ch_ua_full_version_list": null,
         "ch_ua_model": null,
-        "x_forwarded_for": "2405:f600:8:d4f6:dcb2:58c5:3792:ec69, 162.158.155.171",
+        "x_forwarded_for": "2405:f600:8:e0a9:985c:f5c3:3402:a232, 172.70.230.48",
         "x_real_ip": null,
         "via": null,
-        "cf_connecting_ip": "2405:f600:8:d4f6:dcb2:58c5:3792:ec69",
+        "cf_connecting_ip": "2405:f600:8:e0a9:985c:f5c3:3402:a232",
         "cf_ipcountry": "IN",
-        "cf_ray": "9d9a3fcb9a663a40-EWR",
+        "cf_ray": "9da02576ecf41494-EWR",
         "cdn_loop": "cloudflare; loops=1",
         "x_forwarded_proto": "https",
         "ja3_hash": null,
@@ -43,10 +43,10 @@
         "all_headers": {
             "Cf-Visitor": "{\"scheme\":\"https\"}",
             "Cf-Ipcountry": "IN",
-            "Cf-Connecting-Ip": "2405:f600:8:d4f6:dcb2:58c5:3792:ec69",
+            "Cf-Connecting-Ip": "2405:f600:8:e0a9:985c:f5c3:3402:a232",
             "Cdn-Loop": "cloudflare; loops=1",
-            "Cf-Ray": "9d9a3fcb9a663a40-EWR",
-            "Accept-Language": "en-IN,en;q=0.9,gu;q=0.8,en-GB;q=0.7,en-US;q=0.6,hi;q=0.5",
+            "Cf-Ray": "9da02576ecf41494-EWR",
+            "Accept-Language": "en-IN,en-GB;q=0.9,en-US;q=0.8,en;q=0.7,gu;q=0.6",
             "Accept-Encoding": "gzip, br",
             "Referer": "https:\/\/botxbyte.com\/fp.php",
             "Sec-Fetch-Dest": "empty",
@@ -56,16 +56,15 @@
             "Accept": "*\/*",
             "Sec-Ch-Ua-Mobile": "?1",
             "Content-Type": "application\/json",
-            "Dnt": "1",
             "Sec-Ch-Ua": "\"Not:A-Brand\";v=\"99\", \"Google Chrome\";v=\"145\", \"Chromium\";v=\"145\"",
             "User-Agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/145.0.0.0 Mobile Safari\/537.36",
             "X-Requested-With": "XMLHttpRequest",
             "Sec-Ch-Ua-Platform": "\"Android\"",
             "Priority": "u=1, i",
-            "Content-Length": "39310",
+            "Content-Length": "44862",
             "Connection": "close",
             "X-Forwarded-Proto": "https",
-            "X-Forwarded-For": "2405:f600:8:d4f6:dcb2:58c5:3792:ec69, 162.158.155.171",
+            "X-Forwarded-For": "2405:f600:8:e0a9:985c:f5c3:3402:a232, 172.70.230.48",
             "X-Server-Addr": "107.170.48.37",
             "Host": "botxbyte.com",
             "Authorization": ""
@@ -86,7 +85,6 @@
             "Accept",
             "Sec-Ch-Ua-Mobile",
             "Content-Type",
-            "Dnt",
             "Sec-Ch-Ua",
             "User-Agent",
             "X-Requested-With",
@@ -100,7 +98,7 @@
             "Host",
             "Authorization"
         ],
-        "header_count": 28
+        "header_count": 27
     },
     "client": {
         "navigator": {
@@ -116,17 +114,16 @@
             "language": "en-IN",
             "languages": [
                 "en-IN",
-                "gu",
                 "en-GB",
                 "en-US",
                 "en",
-                "hi"
+                "gu"
             ],
             "cookieEnabled": true,
-            "doNotTrack": "1",
+            "doNotTrack": null,
             "globalPrivacyControl": null,
             "hardwareConcurrency": 8,
-            "deviceMemory": 4,
+            "deviceMemory": 8,
             "maxTouchPoints": 5,
             "pdfViewerEnabled": null,
             "webdriver": false,
@@ -135,19 +132,19 @@
             "cookieStore": true
         },
         "screen": {
-            "width": 393,
-            "height": 873,
-            "availWidth": 393,
-            "availHeight": 873,
+            "width": 384,
+            "height": 832,
+            "availWidth": 384,
+            "availHeight": 832,
             "colorDepth": 24,
             "pixelDepth": 24,
-            "devicePixelRatio": 2.75,
+            "devicePixelRatio": 2.8125,
             "orientationType": "portrait-primary",
             "orientationAngle": 0,
-            "innerWidth": 392,
-            "innerHeight": 787,
-            "outerWidth": 393,
-            "outerHeight": 873,
+            "innerWidth": 384,
+            "innerHeight": 699,
+            "outerWidth": 384,
+            "outerHeight": 832,
             "screenX": 0,
             "screenY": 0,
             "pageXOffset": 0,
@@ -161,12 +158,12 @@
             "locale": "en-GB",
             "calendar": "gregory",
             "numberingSystem": "latn",
-            "localeDateString": "09\/03\/2026",
-            "localeTimeString": "18:28:05"
+            "localeDateString": "10\/03\/2026",
+            "localeTimeString": "11:38:40"
         },
         "canvas": {
-            "hash": "52af5fa3",
-            "geometry_hash": "20d95c2d",
+            "hash": "20eb40bf",
+            "geometry_hash": "1c675ab6",
             "winding_rule": true
         },
         "webgl": {
@@ -175,29 +172,29 @@
             "renderer": "WebKit WebGL",
             "version": "WebGL 1.0 (OpenGL ES 2.0 Chromium)",
             "shadingLanguageVersion": "WebGL GLSL ES 1.0 (OpenGL ES GLSL ES 1.0 Chromium)",
-            "unmaskedVendor": "ARM",
-            "unmaskedRenderer": "Mali-G68 MC4",
+            "unmaskedVendor": "Qualcomm",
+            "unmaskedRenderer": "Adreno (TM) 630",
             "maxTextureSize": 4096,
             "maxCubeMapTextureSize": 4096,
             "maxViewportDims": [
-                16383,
-                16383
+                16384,
+                16384
             ],
             "maxVertexAttribs": 32,
-            "maxVertexUniformVectors": 4096,
-            "maxFragmentUniformVectors": 4096,
+            "maxVertexUniformVectors": 256,
+            "maxFragmentUniformVectors": 256,
             "maxCombinedTextureUnits": 96,
             "maxVertexTextureUnits": 16,
             "maxTextureImageUnits": 16,
-            "maxRenderbufferSize": 16383,
+            "maxRenderbufferSize": 16384,
             "maxVaryingVectors": 31,
             "aliasedLineWidthRange": [
                 1,
-                4095.9375
+                8
             ],
             "aliasedPointSizeRange": [
                 1,
-                1024
+                1023
             ],
             "redBits": 8,
             "greenBits": 8,
@@ -205,20 +202,25 @@
             "alphaBits": 8,
             "depthBits": 24,
             "stencilBits": 0,
-            "subpixelBits": 8,
-            "extensionCount": 18,
-            "extensionHash": "4db81847",
+            "subpixelBits": 4,
+            "extensionCount": 23,
+            "extensionHash": "79cb5ed9",
             "extensions": [
                 "ANGLE_instanced_arrays",
                 "EXT_blend_minmax",
+                "EXT_color_buffer_half_float",
                 "EXT_float_blend",
                 "EXT_texture_filter_anisotropic",
                 "EXT_sRGB",
                 "OES_element_index_uint",
                 "OES_fbo_render_mipmap",
                 "OES_standard_derivatives",
+                "OES_texture_float",
                 "OES_texture_float_linear",
+                "OES_texture_half_float",
+                "OES_texture_half_float_linear",
                 "OES_vertex_array_object",
+                "WEBGL_color_buffer_float",
                 "WEBGL_compressed_texture_astc",
                 "WEBGL_compressed_texture_etc",
                 "WEBGL_compressed_texture_etc1",
@@ -234,12 +236,12 @@
         "webgl2": {
             "supported": true,
             "maxSamples": 4,
-            "maxUniformBufferBindings": 216,
+            "maxUniformBufferBindings": 84,
             "maxTransformFeedbackSeparateComponents": 4,
-            "maxElementsVertices": 16777216,
-            "maxElementsIndices": 16777216,
-            "max3DTextureSize": 16383,
-            "maxArrayTextureLayers": 4096,
+            "maxElementsVertices": 2147483647,
+            "maxElementsIndices": 2147483647,
+            "max3DTextureSize": 2048,
+            "maxArrayTextureLayers": 2048,
             "maxColorAttachments": 8,
             "maxDrawBuffers": 8
         },
@@ -271,7 +273,7 @@
                 "Courier New"
             ],
             "count": 11,
-            "metricsHash": "1e9d30b9"
+            "metricsHash": "23adb0f9"
         },
         "features": {
             "localStorage": true,
@@ -324,23 +326,23 @@
         },
         "webrtc": {
             "ips": [
-                "192.168.1.78",
-                "2405:f600:8:d4f6:dcb2:58c5:3792:ec69",
-                "103.178.154.17"
+                "192.168.1.123",
+                "2405:f600:8:e0a9:985c:f5c3:3402:a232",
+                "103.178.154.170"
             ],
             "ipv4": [
-                "192.168.1.78",
-                "103.178.154.17"
+                "192.168.1.123",
+                "103.178.154.170"
             ],
             "ipv6": [
-                "2405:f600:8:d4f6:dcb2:58c5:3792:ec69"
+                "2405:f600:8:e0a9:985c:f5c3:3402:a232"
             ]
         },
         "battery": {
             "charging": false,
             "chargingTime": null,
-            "dischargingTime": null,
-            "level": 0.84
+            "dischargingTime": 3,
+            "level": 0.85
         },
         "mediaDevices": [
             {
@@ -370,8 +372,8 @@
             "type": "wifi"
         },
         "mediaQueries": {
-            "darkMode": true,
-            "lightMode": false,
+            "darkMode": false,
+            "lightMode": true,
             "reducedMotion": false,
             "reducedTransparency": false,
             "reducedData": false,
@@ -413,536 +415,13 @@
             "display-capture": "prompt",
             "storage-access": "granted"
         },
-        "speechVoices": [
-            {
-                "name": "Assamese India",
-                "lang": "as_IN",
-                "local": true,
-                "isDefault": true
-            },
-            {
-                "name": "Bulgarian Bulgaria",
-                "lang": "bg_BG",
-                "local": true,
-                "isDefault": false
-            },
-            {
-                "name": "Bengali Bangladesh",
-                "lang": "bn_BD",
-                "local": true,
-                "isDefault": false
-            },
-            {
-                "name": "Bengali India",
-                "lang": "bn_IN",
-                "local": true,
-                "isDefault": false
-            },
-            {
-                "name": "Bodo India",
-                "lang": "brx_IN",
-                "local": true,
-                "isDefault": false
-            },
-            {
-                "name": "Bosnian Bosnia & Herzegovina",
-                "lang": "bs_BA_#Cyrl",
-                "local": true,
-                "isDefault": false
-            },
-            {
-                "name": "Bosnian Bosnia & Herzegovina",
-                "lang": "bs_BA_#Latn",
-                "local": true,
-                "isDefault": false
-            },
-            {
-                "name": "Catalan Spain",
-                "lang": "ca_ES",
-                "local": true,
-                "isDefault": false
-            },
-            {
-                "name": "Czech Czechia",
-                "lang": "cs_CZ",
-                "local": true,
-                "isDefault": false
-            },
-            {
-                "name": "Welsh United Kingdom",
-                "lang": "cy_GB",
-                "local": true,
-                "isDefault": false
-            },
-            {
-                "name": "Danish Denmark",
-                "lang": "da_DK",
-                "local": true,
-                "isDefault": false
-            },
-            {
-                "name": "German Germany",
-                "lang": "de_DE",
-                "local": true,
-                "isDefault": false
-            },
-            {
-                "name": "Dogri India",
-                "lang": "doi_IN",
-                "local": true,
-                "isDefault": false
-            },
-            {
-                "name": "Greek Greece",
-                "lang": "el_GR",
-                "local": true,
-                "isDefault": false
-            },
-            {
-                "name": "English Australia",
-                "lang": "en_AU",
-                "local": true,
-                "isDefault": false
-            },
-            {
-                "name": "English United Kingdom",
-                "lang": "en_GB",
-                "local": true,
-                "isDefault": false
-            },
-            {
-                "name": "English India",
-                "lang": "en_IN",
-                "local": true,
-                "isDefault": false
-            },
-            {
-                "name": "English Nigeria",
-                "lang": "en_NG",
-                "local": true,
-                "isDefault": false
-            },
-            {
-                "name": "English United States",
-                "lang": "en_US",
-                "local": true,
-                "isDefault": false
-            },
-            {
-                "name": "Spanish Spain",
-                "lang": "es_ES",
-                "local": true,
-                "isDefault": false
-            },
-            {
-                "name": "Spanish United States",
-                "lang": "es_US",
-                "local": true,
-                "isDefault": false
-            },
-            {
-                "name": "Estonian Estonia",
-                "lang": "et_EE",
-                "local": true,
-                "isDefault": false
-            },
-            {
-                "name": "Finnish Finland",
-                "lang": "fi_FI",
-                "local": true,
-                "isDefault": false
-            },
-            {
-                "name": "Filipino Philippines",
-                "lang": "fil_PH",
-                "local": true,
-                "isDefault": false
-            },
-            {
-                "name": "French Canada",
-                "lang": "fr_CA",
-                "local": true,
-                "isDefault": false
-            },
-            {
-                "name": "French France",
-                "lang": "fr_FR",
-                "local": true,
-                "isDefault": false
-            },
-            {
-                "name": "Gujarati India",
-                "lang": "gu_IN",
-                "local": true,
-                "isDefault": false
-            },
-            {
-                "name": "Hebrew Israel",
-                "lang": "iw_IL",
-                "local": true,
-                "isDefault": false
-            },
-            {
-                "name": "Hindi India",
-                "lang": "hi_IN",
-                "local": true,
-                "isDefault": false
-            },
-            {
-                "name": "Croatian Croatia",
-                "lang": "hr_HR",
-                "local": true,
-                "isDefault": false
-            },
-            {
-                "name": "Hungarian Hungary",
-                "lang": "hu_HU",
-                "local": true,
-                "isDefault": false
-            },
-            {
-                "name": "Indonesian Indonesia",
-                "lang": "in_ID",
-                "local": true,
-                "isDefault": false
-            },
-            {
-                "name": "Icelandic Iceland",
-                "lang": "is_IS",
-                "local": true,
-                "isDefault": false
-            },
-            {
-                "name": "Italian Italy",
-                "lang": "it_IT",
-                "local": true,
-                "isDefault": false
-            },
-            {
-                "name": "Japanese Japan",
-                "lang": "ja_JP",
-                "local": true,
-                "isDefault": false
-            },
-            {
-                "name": "Javanese Indonesia",
-                "lang": "jv_ID",
-                "local": true,
-                "isDefault": false
-            },
-            {
-                "name": "Khmer Cambodia",
-                "lang": "km_KH",
-                "local": true,
-                "isDefault": false
-            },
-            {
-                "name": "Kannada India",
-                "lang": "kn_IN",
-                "local": true,
-                "isDefault": false
-            },
-            {
-                "name": "Korean South Korea",
-                "lang": "ko_KR",
-                "local": true,
-                "isDefault": false
-            },
-            {
-                "name": "Konkani India",
-                "lang": "kok_IN",
-                "local": true,
-                "isDefault": false
-            },
-            {
-                "name": "Kashmiri India",
-                "lang": "ks_IN_#Arab",
-                "local": true,
-                "isDefault": false
-            },
-            {
-                "name": "Lithuanian Lithuania",
-                "lang": "lt_LT",
-                "local": true,
-                "isDefault": false
-            },
-            {
-                "name": "Latvian Latvia",
-                "lang": "lv_LV",
-                "local": true,
-                "isDefault": false
-            },
-            {
-                "name": "Maithili India",
-                "lang": "mai_IN",
-                "local": true,
-                "isDefault": false
-            },
-            {
-                "name": "Malayalam India",
-                "lang": "ml_IN",
-                "local": true,
-                "isDefault": false
-            },
-            {
-                "name": "Manipuri India",
-                "lang": "mni_IN_#Beng",
-                "local": true,
-                "isDefault": false
-            },
-            {
-                "name": "Marathi India",
-                "lang": "mr_IN",
-                "local": true,
-                "isDefault": false
-            },
-            {
-                "name": "Malay Malaysia",
-                "lang": "ms_MY",
-                "local": true,
-                "isDefault": false
-            },
-            {
-                "name": "Norwegian Bokmål Norway",
-                "lang": "nb_NO",
-                "local": true,
-                "isDefault": false
-            },
-            {
-                "name": "Nepali Nepal",
-                "lang": "ne_NP",
-                "local": true,
-                "isDefault": false
-            },
-            {
-                "name": "Dutch Belgium",
-                "lang": "nl_BE",
-                "local": true,
-                "isDefault": false
-            },
-            {
-                "name": "Dutch Netherlands",
-                "lang": "nl_NL",
-                "local": true,
-                "isDefault": false
-            },
-            {
-                "name": "Odia India",
-                "lang": "or_IN",
-                "local": true,
-                "isDefault": false
-            },
-            {
-                "name": "Punjabi India",
-                "lang": "pa_IN_#Guru",
-                "local": true,
-                "isDefault": false
-            },
-            {
-                "name": "Polish Poland",
-                "lang": "pl_PL",
-                "local": true,
-                "isDefault": false
-            },
-            {
-                "name": "Portuguese Brazil",
-                "lang": "pt_BR",
-                "local": true,
-                "isDefault": false
-            },
-            {
-                "name": "Portuguese Portugal",
-                "lang": "pt_PT",
-                "local": true,
-                "isDefault": false
-            },
-            {
-                "name": "Romanian Romania",
-                "lang": "ro_RO",
-                "local": true,
-                "isDefault": false
-            },
-            {
-                "name": "Russian Russia",
-                "lang": "ru_RU",
-                "local": true,
-                "isDefault": false
-            },
-            {
-                "name": "Sanskrit India",
-                "lang": "sa_IN",
-                "local": true,
-                "isDefault": false
-            },
-            {
-                "name": "Santali India",
-                "lang": "sat_IN_#Olck",
-                "local": true,
-                "isDefault": false
-            },
-            {
-                "name": "Sindhi India",
-                "lang": "sd_IN_#Deva",
-                "local": true,
-                "isDefault": false
-            },
-            {
-                "name": "Sinhala Sri Lanka",
-                "lang": "si_LK",
-                "local": true,
-                "isDefault": false
-            },
-            {
-                "name": "Slovak Slovakia",
-                "lang": "sk_SK",
-                "local": true,
-                "isDefault": false
-            },
-            {
-                "name": "Slovenian Slovenia",
-                "lang": "sl_SI",
-                "local": true,
-                "isDefault": false
-            },
-            {
-                "name": "Albanian Albania",
-                "lang": "sq_AL",
-                "local": true,
-                "isDefault": false
-            },
-            {
-                "name": "Serbian Serbia",
-                "lang": "sr_RS_#Cyrl",
-                "local": true,
-                "isDefault": false
-            },
-            {
-                "name": "Serbian Serbia",
-                "lang": "sr_RS_#Latn",
-                "local": true,
-                "isDefault": false
-            },
-            {
-                "name": "Sundanese Indonesia",
-                "lang": "su_ID_#Latn",
-                "local": true,
-                "isDefault": false
-            },
-            {
-                "name": "Swedish Sweden",
-                "lang": "sv_SE",
-                "local": true,
-                "isDefault": false
-            },
-            {
-                "name": "Swahili Kenya",
-                "lang": "sw_KE",
-                "local": true,
-                "isDefault": false
-            },
-            {
-                "name": "Tamil India",
-                "lang": "ta_IN",
-                "local": true,
-                "isDefault": false
-            },
-            {
-                "name": "Telugu India",
-                "lang": "te_IN",
-                "local": true,
-                "isDefault": false
-            },
-            {
-                "name": "Thai Thailand",
-                "lang": "th_TH",
-                "local": true,
-                "isDefault": false
-            },
-            {
-                "name": "Turkish Turkey",
-                "lang": "tr_TR",
-                "local": true,
-                "isDefault": false
-            },
-            {
-                "name": "Ukrainian Ukraine",
-                "lang": "uk_UA",
-                "local": true,
-                "isDefault": false
-            },
-            {
-                "name": "Urdu India",
-                "lang": "ur_IN",
-                "local": true,
-                "isDefault": false
-            },
-            {
-                "name": "Urdu Pakistan",
-                "lang": "ur_PK",
-                "local": true,
-                "isDefault": false
-            },
-            {
-                "name": "Vietnamese Vietnam",
-                "lang": "vi_VN",
-                "local": true,
-                "isDefault": false
-            },
-            {
-                "name": "Cantonese Hong Kong",
-                "lang": "yue_HK_#Hant",
-                "local": true,
-                "isDefault": false
-            },
-            {
-                "name": "Chinese China",
-                "lang": "zh_CN_#Hans",
-                "local": true,
-                "isDefault": false
-            },
-            {
-                "name": "Chinese Hong Kong",
-                "lang": "zh_HK_#Hans",
-                "local": true,
-                "isDefault": false
-            },
-            {
-                "name": "Chinese Macao",
-                "lang": "zh_MO_#Hans",
-                "local": true,
-                "isDefault": false
-            },
-            {
-                "name": "Chinese Singapore",
-                "lang": "zh_SG_#Hans",
-                "local": true,
-                "isDefault": false
-            },
-            {
-                "name": "Chinese Hong Kong",
-                "lang": "zh_HK_#Hant",
-                "local": true,
-                "isDefault": false
-            },
-            {
-                "name": "Chinese Macao",
-                "lang": "zh_MO_#Hant",
-                "local": true,
-                "isDefault": false
-            },
-            {
-                "name": "Chinese Taiwan",
-                "lang": "zh_TW_#Hant",
-                "local": true,
-                "isDefault": false
-            }
-        ],
+        "speechVoices": [],
         "document": {
             "characterSet": "UTF-8",
             "contentType": "text\/html",
             "referrer": "",
             "visibilityState": "visible",
-            "historyLength": 1,
+            "historyLength": 2,
             "cookieCount": 0,
             "domainLookupTime": null,
             "URL": "https:\/\/botxbyte.com\/fp.php",
@@ -982,7 +461,7 @@
                 0.1,
                 0.1,
                 0.1,
-                0.1,
+                0.2,
                 0.1,
                 0.1,
                 0.1,
@@ -993,24 +472,24 @@
             "navigationTiming": {
                 "type": "navigate",
                 "redirectCount": 0,
-                "domInteractive": 646,
-                "domContentLoaded": 651,
-                "loadEvent": 652,
-                "ttfb": 445,
-                "transferSize": null,
-                "encodedBodySize": 38453
+                "domInteractive": 1186,
+                "domContentLoaded": 1198,
+                "loadEvent": 1199,
+                "ttfb": 500,
+                "transferSize": 52093,
+                "encodedBodySize": 51793
             },
             "memory": {
                 "jsHeapSizeLimit": 1130000000,
                 "totalJSHeapSize": 10000000,
                 "usedJSHeapSize": 10000000
             },
-            "timeOrigin": 1773061077763.8,
-            "now": 8003.399999976158
+            "timeOrigin": 1773122913591.5,
+            "now": 6798.399999856949
         },
         "stackTrace": {
             "engine": "V8(Chrome\/Node)",
-            "sample": "Error: fp |     at getStackTrace (https:\/\/botxbyte.com\/fp.php:694:21) |     at collect (https:\/\/botxbyte.com\/fp.php:3228:21)",
+            "sample": "Error: fp |     at getStackTrace (https:\/\/botxbyte.com\/fp.php:694:21) |     at collect (https:\/\/botxbyte.com\/fp.php:4510:21)",
             "lines": 4
         },
         "internals": {
@@ -1067,7 +546,7 @@
         },
         "cpu": {
             "hardwareConcurrency": 8,
-            "deviceMemory": 4,
+            "deviceMemory": 8,
             "wasm_supported": true,
             "wasm_simd": true,
             "wasm_threads": false,
@@ -1083,13 +562,13 @@
             "uaDataArch": null,
             "uaDataBitness": null,
             "uaDataPlatform": "Android",
-            "uaDataPlatformVersion": "13.0.0",
-            "uaDataModel": "21091116I"
+            "uaDataPlatformVersion": "11.0.0",
+            "uaDataModel": "ONEPLUS A6010"
         },
         "refreshRate": {
-            "measured_fps": 61,
+            "measured_fps": 60,
             "snapped_hz": 60,
-            "avg_frame_ms": 16.514
+            "avg_frame_ms": 16.656
         },
         "videoDecoder": {
             "supported": true,
@@ -1122,29 +601,29 @@
                 "motion": {
                     "x": 0,
                     "y": 0,
-                    "z": 0,
-                    "gx": -0.5,
-                    "gy": 0.8,
-                    "gz": 9.700000000000001,
+                    "z": -0.1,
+                    "gx": -0.8,
+                    "gy": 8.6,
+                    "gz": 4.5,
                     "interval": 16
                 },
                 "orientation": {
-                    "alpha": 130.5,
-                    "beta": 4.9,
-                    "gamma": 2.8000000000000003,
+                    "alpha": 0,
+                    "beta": 61.5,
+                    "gamma": 9.200000000000001,
                     "absolute": false
                 }
             },
-            "sessionDuration": 7482
+            "sessionDuration": 6192
         },
         "fontPreferences": {
-            "default": 465.65911865234375,
-            "apple": 465.65911865234375,
-            "sans": 465.65911865234375,
-            "serif": 498.6363830566406,
-            "mono": 377.8125,
-            "system": 465.65911865234375,
-            "min": 9.704545974731445
+            "default": 455.95556640625,
+            "apple": 455.95556640625,
+            "sans": 455.95556640625,
+            "serif": 498.6333312988281,
+            "mono": 377.8166809082031,
+            "system": 455.95556640625,
+            "min": 9.449999809265137
         },
         "webglPrecisions": {
             "contextAttributes": {
@@ -1162,14 +641,14 @@
             "contextAttributesHash": "13f1d07c",
             "shaderPrecisions": {
                 "VERTEX_LOW_FLOAT": {
-                    "rangeMin": 15,
-                    "rangeMax": 15,
-                    "precision": 10
+                    "rangeMin": 127,
+                    "rangeMax": 127,
+                    "precision": 23
                 },
                 "VERTEX_MEDIUM_FLOAT": {
-                    "rangeMin": 15,
-                    "rangeMax": 15,
-                    "precision": 10
+                    "rangeMin": 127,
+                    "rangeMax": 127,
+                    "precision": 23
                 },
                 "VERTEX_HIGH_FLOAT": {
                     "rangeMin": 127,
@@ -1177,18 +656,18 @@
                     "precision": 23
                 },
                 "VERTEX_LOW_INT": {
-                    "rangeMin": 15,
-                    "rangeMax": 14,
+                    "rangeMin": 31,
+                    "rangeMax": 31,
                     "precision": 0
                 },
                 "VERTEX_MEDIUM_INT": {
-                    "rangeMin": 15,
-                    "rangeMax": 14,
+                    "rangeMin": 31,
+                    "rangeMax": 31,
                     "precision": 0
                 },
                 "VERTEX_HIGH_INT": {
                     "rangeMin": 31,
-                    "rangeMax": 30,
+                    "rangeMax": 31,
                     "precision": 0
                 },
                 "FRAGMENT_LOW_FLOAT": {
@@ -1208,25 +687,25 @@
                 },
                 "FRAGMENT_LOW_INT": {
                     "rangeMin": 15,
-                    "rangeMax": 14,
+                    "rangeMax": 15,
                     "precision": 0
                 },
                 "FRAGMENT_MEDIUM_INT": {
                     "rangeMin": 15,
-                    "rangeMax": 14,
+                    "rangeMax": 15,
                     "precision": 0
                 },
                 "FRAGMENT_HIGH_INT": {
                     "rangeMin": 31,
-                    "rangeMax": 30,
+                    "rangeMax": 31,
                     "precision": 0
                 }
             },
-            "shaderPrecisionsHash": "76982640",
+            "shaderPrecisionsHash": "510ff2a0",
             "extensionPresenceHash": "46f092d0"
         },
         "audioLatency": {
-            "baseLatency": 0.005333333333333333,
+            "baseLatency": 0.003,
             "outputLatency": 0,
             "sampleRate": 48000,
             "state": "suspended",
@@ -1266,16 +745,16 @@
             }
         },
         "emojiBoundingBox": {
-            "width": 159.375,
-            "height": 150.182,
+            "width": 159.711,
+            "height": 150.044,
             "top": -9999,
-            "bottom": -9848.818,
+            "bottom": -9848.956,
             "left": -9999,
-            "right": -9839.625
+            "right": -9839.289
         },
         "mathmlBoundingBox": {
-            "width": 31.386,
-            "height": 19.955,
+            "width": 29.222,
+            "height": 17.978,
             "supported": true
         },
         "screenFrame": {
@@ -1344,7 +823,6 @@
             "unsupportedExtensions": [
                 "EXT_clip_control",
                 "EXT_color_buffer_float",
-                "EXT_color_buffer_half_float",
                 "EXT_depth_clamp",
                 "EXT_disjoint_timer_query",
                 "EXT_disjoint_timer_query_webgl2",
@@ -1356,12 +834,8 @@
                 "EXT_texture_mirror_clamp_to_edge",
                 "KHR_parallel_shader_compile",
                 "OES_draw_buffers_indexed",
-                "OES_texture_float",
-                "OES_texture_half_float",
-                "OES_texture_half_float_linear",
                 "WEBGL_blend_func_extended",
                 "WEBGL_clip_cull_distance",
-                "WEBGL_color_buffer_float",
                 "WEBGL_compressed_texture_atc",
                 "WEBGL_compressed_texture_pvrtc",
                 "WEBGL_compressed_texture_s3tc",
@@ -1370,8 +844,8 @@
                 "WEBGL_polygon_mode",
                 "WEBKIT_WEBGL_compressed_texture_pvrtc"
             ],
-            "unsupportedCount": 27,
-            "allParametersHash": "e75409c"
+            "unsupportedCount": 22,
+            "allParametersHash": "47e9739e"
         },
         "dateTimeLocale": {
             "numberFormatLocale": "en-GB",
@@ -1389,8 +863,7 @@
             "isExtended": false,
             "getScreenDetailsAPI": true,
             "screenCount": null,
-            "screens": null,
-            "screenDetailsError": "NotAllowedError"
+            "screens": null
         },
         "pwaInfo": {
             "displayMode": "browser",
@@ -1403,11 +876,6 @@
         "mediaCapabilities": {
             "supported": true,
             "codecs": {
-                "video\/webm; codecs=\"vp9\"": {
-                    "supported": false,
-                    "smooth": false,
-                    "powerEfficient": false
-                },
                 "audio\/mp4; codecs=\"mp4a.40.2\"": {
                     "supported": true,
                     "smooth": true,
@@ -1419,6 +887,11 @@
                     "powerEfficient": true
                 },
                 "video\/mp4; codecs=\"avc1.42E01E\"": {
+                    "supported": true,
+                    "smooth": true,
+                    "powerEfficient": true
+                },
+                "video\/webm; codecs=\"vp09.00.10.08\"": {
                     "supported": true,
                     "smooth": true,
                     "powerEfficient": true
@@ -1456,27 +929,27 @@
                 {
                     "mimeType": "video\/H264",
                     "clockRate": 90000,
-                    "sdpFmtpLine": "level-asymmetry-allowed=1;packetization-mode=1;profile-level-id=420015"
+                    "sdpFmtpLine": "level-asymmetry-allowed=1;packetization-mode=1;profile-level-id=42001f"
                 },
                 {
                     "mimeType": "video\/H264",
                     "clockRate": 90000,
-                    "sdpFmtpLine": "level-asymmetry-allowed=1;packetization-mode=1;profile-level-id=42e015"
+                    "sdpFmtpLine": "level-asymmetry-allowed=1;packetization-mode=1;profile-level-id=42e01f"
                 },
                 {
                     "mimeType": "video\/H264",
                     "clockRate": 90000,
-                    "sdpFmtpLine": "level-asymmetry-allowed=1;packetization-mode=1;profile-level-id=4d0015"
+                    "sdpFmtpLine": "level-asymmetry-allowed=1;packetization-mode=1;profile-level-id=4d001f"
                 },
                 {
                     "mimeType": "video\/H264",
                     "clockRate": 90000,
-                    "sdpFmtpLine": "level-asymmetry-allowed=1;packetization-mode=1;profile-level-id=640015"
+                    "sdpFmtpLine": "level-asymmetry-allowed=1;packetization-mode=1;profile-level-id=64001f"
                 },
                 {
                     "mimeType": "video\/H265",
                     "clockRate": 90000,
-                    "sdpFmtpLine": "level-id=123;profile-id=1;tier-flag=0;tx-mode=SRST"
+                    "sdpFmtpLine": "level-id=150;profile-id=1;tier-flag=0;tx-mode=SRST"
                 },
                 {
                     "mimeType": "video\/red",
@@ -1796,14 +1269,14 @@
                 }
             ],
             "mobile": true,
-            "model": "21091116I",
+            "model": "ONEPLUS A6010",
             "platform": "Android",
-            "platformVersion": "13.0.0",
+            "platformVersion": "11.0.0",
             "uaFullVersion": "145.0.7632.159"
         },
         "storageInfo": {
             "storageEstimate": {
-                "quota": 10737418240,
+                "quota": 69430758604,
                 "usage": 0,
                 "usageDetails": []
             },
@@ -1818,11 +1291,11 @@
             "loadedFamilies": 0
         },
         "hypervisorProbe": {
-            "mean_ms": 0.0425,
-            "stdDev_ms": 0.0494,
+            "mean_ms": 0.085,
+            "stdDev_ms": 0.0823,
             "min_ms": 0,
-            "max_ms": 0.1,
-            "cv_percent": 116.32,
+            "max_ms": 0.2,
+            "cv_percent": 96.84,
             "possibleVM": true
         },
         "memoryPattern": {
@@ -1831,26 +1304,26 @@
                 {
                     "pages": 1,
                     "sizeKB": 64,
-                    "allocMs": 0,
-                    "touchMs": 0.1
+                    "allocMs": 0.4,
+                    "touchMs": 0
                 },
                 {
                     "pages": 10,
                     "sizeKB": 640,
                     "allocMs": 0,
-                    "touchMs": 0
+                    "touchMs": 0.1
                 },
                 {
                     "pages": 50,
                     "sizeKB": 3200,
                     "allocMs": 0,
-                    "touchMs": 0
+                    "touchMs": 0.1
                 },
                 {
                     "pages": 100,
                     "sizeKB": 6400,
                     "allocMs": 0.1,
-                    "touchMs": 0
+                    "touchMs": 0.1
                 },
                 {
                     "pages": 256,
@@ -1859,7 +1332,7 @@
                     "touchMs": 0
                 }
             ],
-            "patternHash": "60fdd3f"
+            "patternHash": "2026c7bb"
         },
         "fontsByCSS": {
             "detected": [
@@ -1900,8 +1373,8 @@
         },
         "visualViewport": {
             "supported": true,
-            "width": 392.73,
-            "height": 787.64,
+            "width": 384,
+            "height": 699.38,
             "offsetLeft": 0,
             "offsetTop": 0,
             "pageLeft": 0,
@@ -1985,7 +1458,7 @@
             "adoptedStyleSheets": true,
             "interactionCount": true
         },
-        "audioBaseLatencySimple": 0.005333333333333333,
+        "audioBaseLatencySimple": 0.003,
         "contrastPreference": 0,
         "monochromeDepth": 0,
         "privateClickMeasurement": false,
@@ -2025,8 +1498,8 @@
             "touchStart": true
         },
         "screenResolution": [
-            873,
-            393
+            832,
+            384
         ],
         "screenFrameArray": [
             0,
@@ -2064,12 +1537,12 @@
                 },
                 "textBBox": {
                     "x": 10,
-                    "y": 134.73,
-                    "width": 81.31,
-                    "height": 19.27
+                    "y": 135.07,
+                    "width": 77.63,
+                    "height": 19.2
                 }
             },
-            "hash": "423a2772"
+            "hash": "8c74807"
         },
         "htmlElement": {
             "protoChain": [
@@ -2126,8 +1599,8 @@
                 },
                 {
                     "idx": 2,
-                    "width": 106.0653,
-                    "height": 106.0653,
+                    "width": 106.0667,
+                    "height": 106.0667,
                     "x": -10002.0332,
                     "y": -9926.5332
                 },
@@ -2140,48 +1613,48 @@
                 },
                 {
                     "idx": 4,
-                    "width": 87.1875,
-                    "height": 17.4545,
+                    "width": 87.1889,
+                    "height": 17.4222,
                     "x": -9999,
                     "y": -9798.5
                 },
                 {
                     "idx": 5,
-                    "width": 67.4091,
-                    "height": 19.2727,
-                    "x": -9911.8125,
+                    "width": 63.2944,
+                    "height": 18.8444,
+                    "x": -9911.8115,
                     "y": -9798.5
                 },
                 {
                     "idx": 6,
-                    "width": 76.8125,
-                    "height": 18.9091,
-                    "x": -9844.4033,
-                    "y": -9798.1367
+                    "width": 76.8167,
+                    "height": 18.8444,
+                    "x": -9848.5166,
+                    "y": -9798.5
                 },
                 {
                     "idx": 7,
                     "width": 100,
                     "height": 50,
                     "x": -9999,
-                    "y": -9778.8643
+                    "y": -9778.9443
                 },
                 {
                     "idx": 8,
                     "width": 120,
                     "height": 70,
                     "x": -9999,
-                    "y": -9728.8643
+                    "y": -9728.9443
                 },
                 {
                     "idx": 9,
                     "width": 100,
                     "height": 50,
                     "x": -9989,
-                    "y": -9648.8643
+                    "y": -9648.9443
                 }
             ],
-            "hash": "2c24cb0c"
+            "hash": "62948c8"
         },
         "contentWindow": {
             "features": {
@@ -2276,34 +1749,34 @@
                 {
                     "font": "Arial",
                     "size": 12,
-                    "width": 375.5156,
-                    "actualBoundingBoxAscent": 10,
-                    "actualBoundingBoxDescent": 2,
+                    "width": 343.9629,
+                    "actualBoundingBoxAscent": 11,
+                    "actualBoundingBoxDescent": 3,
                     "actualBoundingBoxLeft": null,
-                    "actualBoundingBoxRight": 375.8887,
+                    "actualBoundingBoxRight": 344.1738,
                     "fontBoundingBoxAscent": 11,
                     "fontBoundingBoxDescent": 3
                 },
                 {
                     "font": "Arial",
                     "size": 16,
-                    "width": 500.6875,
-                    "actualBoundingBoxAscent": 13,
+                    "width": 458.6172,
+                    "actualBoundingBoxAscent": 14,
                     "actualBoundingBoxDescent": 3,
                     "actualBoundingBoxLeft": null,
-                    "actualBoundingBoxRight": 500.8516,
+                    "actualBoundingBoxRight": 458.8984,
                     "fontBoundingBoxAscent": 15,
                     "fontBoundingBoxDescent": 4
                 },
                 {
                     "font": "Arial",
                     "size": 24,
-                    "width": 751.0313,
-                    "actualBoundingBoxAscent": 19,
-                    "actualBoundingBoxDescent": 4,
-                    "actualBoundingBoxLeft": -1,
-                    "actualBoundingBoxRight": 750.7773,
-                    "fontBoundingBoxAscent": 23,
+                    "width": 687.9258,
+                    "actualBoundingBoxAscent": 21,
+                    "actualBoundingBoxDescent": 5,
+                    "actualBoundingBoxLeft": null,
+                    "actualBoundingBoxRight": 687.3477,
+                    "fontBoundingBoxAscent": 22,
                     "fontBoundingBoxDescent": 6
                 },
                 {
@@ -2408,72 +1881,72 @@
                 {
                     "font": "Verdana",
                     "size": 12,
-                    "width": 375.5156,
-                    "actualBoundingBoxAscent": 10,
-                    "actualBoundingBoxDescent": 2,
+                    "width": 343.9629,
+                    "actualBoundingBoxAscent": 11,
+                    "actualBoundingBoxDescent": 3,
                     "actualBoundingBoxLeft": null,
-                    "actualBoundingBoxRight": 375.8887,
+                    "actualBoundingBoxRight": 344.1738,
                     "fontBoundingBoxAscent": 11,
                     "fontBoundingBoxDescent": 3
                 },
                 {
                     "font": "Verdana",
                     "size": 16,
-                    "width": 500.6875,
-                    "actualBoundingBoxAscent": 13,
+                    "width": 458.6172,
+                    "actualBoundingBoxAscent": 14,
                     "actualBoundingBoxDescent": 3,
                     "actualBoundingBoxLeft": null,
-                    "actualBoundingBoxRight": 500.8516,
+                    "actualBoundingBoxRight": 458.8984,
                     "fontBoundingBoxAscent": 15,
                     "fontBoundingBoxDescent": 4
                 },
                 {
                     "font": "Verdana",
                     "size": 24,
-                    "width": 751.0313,
-                    "actualBoundingBoxAscent": 19,
-                    "actualBoundingBoxDescent": 4,
-                    "actualBoundingBoxLeft": -1,
-                    "actualBoundingBoxRight": 750.7773,
-                    "fontBoundingBoxAscent": 23,
+                    "width": 687.9258,
+                    "actualBoundingBoxAscent": 21,
+                    "actualBoundingBoxDescent": 5,
+                    "actualBoundingBoxLeft": null,
+                    "actualBoundingBoxRight": 687.3477,
+                    "fontBoundingBoxAscent": 22,
                     "fontBoundingBoxDescent": 6
                 },
                 {
                     "font": "Helvetica",
                     "size": 12,
-                    "width": 375.5156,
-                    "actualBoundingBoxAscent": 10,
-                    "actualBoundingBoxDescent": 2,
+                    "width": 343.9629,
+                    "actualBoundingBoxAscent": 11,
+                    "actualBoundingBoxDescent": 3,
                     "actualBoundingBoxLeft": null,
-                    "actualBoundingBoxRight": 375.8887,
+                    "actualBoundingBoxRight": 344.1738,
                     "fontBoundingBoxAscent": 11,
                     "fontBoundingBoxDescent": 3
                 },
                 {
                     "font": "Helvetica",
                     "size": 16,
-                    "width": 500.6875,
-                    "actualBoundingBoxAscent": 13,
+                    "width": 458.6172,
+                    "actualBoundingBoxAscent": 14,
                     "actualBoundingBoxDescent": 3,
                     "actualBoundingBoxLeft": null,
-                    "actualBoundingBoxRight": 500.8516,
+                    "actualBoundingBoxRight": 458.8984,
                     "fontBoundingBoxAscent": 15,
                     "fontBoundingBoxDescent": 4
                 },
                 {
                     "font": "Helvetica",
                     "size": 24,
-                    "width": 751.0313,
-                    "actualBoundingBoxAscent": 19,
-                    "actualBoundingBoxDescent": 4,
-                    "actualBoundingBoxLeft": -1,
-                    "actualBoundingBoxRight": 750.7773,
-                    "fontBoundingBoxAscent": 23,
+                    "width": 687.9258,
+                    "actualBoundingBoxAscent": 21,
+                    "actualBoundingBoxDescent": 5,
+                    "actualBoundingBoxLeft": null,
+                    "actualBoundingBoxRight": 687.3477,
+                    "fontBoundingBoxAscent": 22,
                     "fontBoundingBoxDescent": 6
                 }
             ],
             "count": 18,
-            "hash": "286a8bf"
+            "hash": "44b5b7c8"
         },
         "applePayCapability": {
             "apiAvailable": false,
@@ -2503,8 +1976,8 @@
         },
         "cssMediaQueriesExtended": {
             "queries": {
-                "prefers-color-scheme: dark": true,
-                "prefers-color-scheme: light": false,
+                "prefers-color-scheme: dark": false,
+                "prefers-color-scheme: light": true,
                 "prefers-reduced-motion: reduce": false,
                 "prefers-reduced-motion: no-preference": true,
                 "prefers-contrast: more": false,
@@ -2546,8 +2019,715 @@
                 "scripting: none": false
             },
             "trueCount": 17,
-            "hash": "42431f88"
+            "hash": "2e0e2486"
+        },
+        "webgpu": {
+            "supported": true,
+            "adapter": null
+        },
+        "genericSensors": {
+            "accelerometer": {
+                "available": true,
+                "reading": {
+                    "x": -0.4,
+                    "y": 8.8,
+                    "z": 4.1000000000000005
+                },
+                "activated": true
+            },
+            "gyroscope": {
+                "available": true,
+                "reading": {
+                    "x": 0.010471975511965978,
+                    "y": 0,
+                    "z": 0
+                },
+                "activated": true
+            },
+            "magnetometer": {
+                "available": false
+            },
+            "ambientLightSensor": {
+                "available": false
+            },
+            "linearAccelerationSensor": {
+                "available": true,
+                "reading": {
+                    "x": 0,
+                    "y": 0,
+                    "z": 0
+                },
+                "activated": true
+            },
+            "absoluteOrientationSensor": {
+                "available": true,
+                "quaternion": [
+                    0.4469756962409582,
+                    -0.29137979061481734,
+                    -0.49581731954279723,
+                    0.6851829903263592
+                ],
+                "activated": true
+            },
+            "relativeOrientationSensor": {
+                "available": true,
+                "quaternion": [
+                    0,
+                    0,
+                    0,
+                    1
+                ],
+                "activated": true
+            },
+            "gravitySensor": {
+                "available": true,
+                "reading": {
+                    "x": -0.4,
+                    "y": 8.9,
+                    "z": 4.2
+                },
+                "activated": true
+            }
+        },
+        "gamepads": {
+            "supported": true,
+            "connectedCount": 0,
+            "gamepads": []
+        },
+        "keyboardLayout": {
+            "supported": true,
+            "layout": [],
+            "entryCount": 0,
+            "hash": "0"
+        },
+        "drm": {
+            "supported": true,
+            "keySystems": {
+                "ClearKey": {
+                    "available": true,
+                    "keySystem": "org.w3.clearkey",
+                    "initDataTypes": [
+                        "cenc",
+                        "keyids",
+                        "webm"
+                    ],
+                    "videoCapabilities": [
+                        {
+                            "contentType": "video\/mp4; codecs=\"avc1.42E01E\"",
+                            "robustness": null
+                        },
+                        {
+                            "contentType": "video\/webm; codecs=\"vp09.00.10.08\"",
+                            "robustness": null
+                        }
+                    ],
+                    "audioCapabilities": [
+                        {
+                            "contentType": "audio\/mp4; codecs=\"mp4a.40.2\"",
+                            "robustness": null
+                        }
+                    ],
+                    "distinctiveIdentifier": "not-allowed",
+                    "persistentState": "not-allowed",
+                    "sessionTypes": [
+                        "temporary"
+                    ]
+                },
+                "PlayReady": {
+                    "available": false
+                },
+                "PlayReadySL3000": {
+                    "available": false
+                },
+                "FairPlay": {
+                    "available": false
+                },
+                "FairPlay1": {
+                    "available": false
+                },
+                "FairPlay2": {
+                    "available": false
+                },
+                "FairPlay3": {
+                    "available": false
+                },
+                "PrimeTime": {
+                    "available": false
+                },
+                "Widevine": {
+                    "available": true,
+                    "keySystem": "com.widevine.alpha",
+                    "initDataTypes": [
+                        "cenc",
+                        "webm"
+                    ],
+                    "videoCapabilities": [
+                        {
+                            "contentType": "video\/mp4; codecs=\"avc1.42E01E\"",
+                            "robustness": null
+                        },
+                        {
+                            "contentType": "video\/webm; codecs=\"vp09.00.10.08\"",
+                            "robustness": null
+                        }
+                    ],
+                    "audioCapabilities": [
+                        {
+                            "contentType": "audio\/mp4; codecs=\"mp4a.40.2\"",
+                            "robustness": null
+                        }
+                    ],
+                    "distinctiveIdentifier": "required",
+                    "persistentState": "required",
+                    "sessionTypes": [
+                        "temporary"
+                    ]
+                }
+            },
+            "availableCount": 2,
+            "availableNames": [
+                "ClearKey",
+                "Widevine"
+            ],
+            "hash": "7c73cce7"
+        },
+        "webCodecs": {
+            "videoDecoder": true,
+            "videoEncoder": true,
+            "audioDecoder": true,
+            "audioEncoder": true,
+            "imageDecoder": true,
+            "encodedVideoChunk": true,
+            "encodedAudioChunk": true,
+            "videoFrame": true,
+            "audioData": true,
+            "videoColorSpace": true,
+            "codecs": {
+                "enc_avc1.42001E": "supported",
+                "enc_opus": "supported",
+                "enc_aac": "unsupported",
+                "enc_mp3": "unsupported",
+                "enc_flac": "unsupported",
+                "enc_vorbis": "unsupported",
+                "dec_opus": "supported",
+                "dec_mp4a.40.2": "supported",
+                "dec_mp3": "supported",
+                "dec_flac": "error",
+                "dec_vorbis": "error",
+                "enc_vp8": "supported",
+                "enc_vp09.00.10.08": "supported",
+                "enc_av01.0.04M.08": "supported"
+            }
+        },
+        "mediaRecorderTypes": {
+            "supported": true,
+            "types": {
+                "video\/webm": true,
+                "video\/webm;codecs=vp8": true,
+                "video\/webm;codecs=vp9": true,
+                "video\/webm;codecs=vp8,opus": true,
+                "video\/webm;codecs=vp9,opus": true,
+                "video\/webm;codecs=h264": true,
+                "video\/webm;codecs=av1": true,
+                "video\/mp4": true,
+                "video\/mp4;codecs=h264": false,
+                "video\/mp4;codecs=avc1": true,
+                "video\/mp4;codecs=av1": false,
+                "video\/mp4;codecs=vp9": true,
+                "audio\/webm": true,
+                "audio\/webm;codecs=opus": true,
+                "audio\/webm;codecs=pcm": true,
+                "audio\/mp4": true,
+                "audio\/mp4;codecs=mp4a.40.2": true,
+                "audio\/mp4;codecs=opus": true,
+                "audio\/ogg": false,
+                "audio\/ogg;codecs=opus": false,
+                "audio\/ogg;codecs=vorbis": false,
+                "audio\/wav": false,
+                "audio\/flac": false
+            },
+            "supportedCount": 16,
+            "hash": "60f14c44"
+        },
+        "bluetooth": {
+            "apiPresent": true,
+            "getAvailability": true,
+            "getDevices": false,
+            "requestDevice": true,
+            "available": true
+        },
+        "usb": {
+            "apiPresent": true,
+            "getDevices": true,
+            "requestDevice": true,
+            "deviceCount": 0,
+            "devices": []
+        },
+        "serialHid": {
+            "serialApiPresent": true,
+            "hidApiPresent": false,
+            "serialDeviceCount": 0,
+            "hidDeviceCount": null
+        },
+        "clipboard": {
+            "apiPresent": true,
+            "read": true,
+            "readText": true,
+            "write": true,
+            "writeText": true,
+            "clipboardItem": true,
+            "clipboardEvent": true,
+            "execCommandCopy": true,
+            "execCommandPaste": false,
+            "supportedTypes": {
+                "text\/plain": true,
+                "text\/html": true,
+                "image\/png": true,
+                "image\/svg+xml": true,
+                "text\/uri-list": false
+            }
+        },
+        "intlExtended": {
+            "listFormatLocale": "en-GB",
+            "listFormatType": "conjunction",
+            "listFormatStyle": "long",
+            "listFormatTest": "A, B and C",
+            "segmenterLocale": "en-GB",
+            "segmenterGranularity": "grapheme",
+            "displayNamesLocale": "en",
+            "displayNamesTest": "French",
+            "durationFormatLocale": "en-GB",
+            "localeBaseName": "en-IN",
+            "localeCalendar": null,
+            "localeCollation": null,
+            "localeHourCycle": null,
+            "localeNumeric": null,
+            "localeCaseFirst": null,
+            "localeRegion": "IN",
+            "localeScript": null,
+            "textDirection": "ltr",
+            "weekFirstDay": 7,
+            "weekWeekend": [
+                7
+            ],
+            "calendars": 18,
+            "collations": 11,
+            "currencies": 73,
+            "numberingSystems": 77,
+            "timeZones": 418,
+            "units": 45
+        },
+        "proximitySensor": {
+            "deviceProximity": false,
+            "userProximity": false,
+            "reading": null
+        },
+        "midi": {
+            "supported": true,
+            "skipped": "Permission prompt disabled"
+        },
+        "webxr": {
+            "supported": true,
+            "modes": {
+                "inline": true,
+                "immersive-vr": true,
+                "immersive-ar": true
+            }
+        },
+        "webShare": {
+            "share": true,
+            "canShare": true,
+            "files": true,
+            "text": true,
+            "url": true,
+            "title": true
+        },
+        "notification": {
+            "supported": true,
+            "permission": "default",
+            "maxActions": 2,
+            "requiresInteraction": true,
+            "body": true,
+            "icon": true,
+            "image": true,
+            "badge": true,
+            "vibrate": true,
+            "tag": true,
+            "renotify": true,
+            "silent": true,
+            "actions": true,
+            "timestamp": true,
+            "data": true
+        },
+        "canvasContextTypes": {
+            "2d": true,
+            "webgl": false,
+            "webgl2": false,
+            "bitmaprenderer": false,
+            "webgpu": false,
+            "offscreenCanvas": true,
+            "offscreen2d": true,
+            "offscreenWebgl": false,
+            "createImageBitmap": true,
+            "imageData": true
+        },
+        "vibration": {
+            "supported": true,
+            "apiPresent": true
+        },
+        "screenOrientation": {
+            "supported": true,
+            "type": "portrait-primary",
+            "angle": 0,
+            "lockAPI": true,
+            "unlockAPI": true
+        },
+        "wakeLock": {
+            "supported": true,
+            "requestAPI": true,
+            "wakeLockSentinel": true
+        },
+        "cssWorklets": {
+            "paintWorklet": true,
+            "layoutWorklet": false,
+            "animationWorklet": false,
+            "registerProperty": true,
+            "highlights": true,
+            "escape": true,
+            "number": true,
+            "typedOM": true,
+            "propertyRule": true,
+            "layerRule": true,
+            "counterStyle": true,
+            "fontPaletteValues": true
+        },
+        "mediaTypeSupport": {
+            "video": {
+                "video\/mp4; codecs=\"avc1.42E01E\"": "probably",
+                "video\/mp4; codecs=\"avc1.42E01E, mp4a.40.2\"": "probably",
+                "video\/mp4; codecs=\"hvc1.1.6.L93.B0\"": "probably",
+                "video\/mp4; codecs=\"av01.0.05M.08\"": "probably",
+                "video\/webm; codecs=\"vp8\"": "probably",
+                "video\/webm; codecs=\"vp09.00.10.08\"": "probably",
+                "video\/webm; codecs=\"av01.0.05M.08\"": "probably",
+                "video\/ogg; codecs=\"theora\"": "",
+                "video\/3gpp; codecs=\"mp4v.20.8\"": "",
+                "video\/mp2t; codecs=\"avc1.42E01E\"": ""
+            },
+            "audio": {
+                "audio\/mp4; codecs=\"mp4a.40.2\"": "probably",
+                "audio\/mp4; codecs=\"mp4a.40.5\"": "probably",
+                "audio\/mp4; codecs=\"opus\"": "probably",
+                "audio\/mp4; codecs=\"flac\"": "probably",
+                "audio\/mp4; codecs=\"ac-3\"": "",
+                "audio\/mp4; codecs=\"ec-3\"": "",
+                "audio\/webm; codecs=\"opus\"": "probably",
+                "audio\/webm; codecs=\"vorbis\"": "probably",
+                "audio\/ogg; codecs=\"opus\"": "probably",
+                "audio\/ogg; codecs=\"vorbis\"": "probably",
+                "audio\/ogg; codecs=\"flac\"": "probably",
+                "audio\/flac": "probably",
+                "audio\/wav; codecs=\"1\"": "probably",
+                "audio\/mpeg": "probably",
+                "audio\/aac": "probably"
+            },
+            "supportedCount": 20,
+            "hash": "791a6166"
+        },
+        "imageFormats": {
+            "cssImageWebp": true,
+            "webp": true,
+            "avif": true,
+            "jxl": false,
+            "heic": false,
+            "jp2": false,
+            "hash": "639ce45a"
+        },
+        "speechRecognition": {
+            "supported": true,
+            "prefixed": false,
+            "grammarList": true,
+            "speechGrammar": true,
+            "continuous": false,
+            "interimResults": false,
+            "maxAlternatives": 1,
+            "lang": ""
+        },
+        "credentials": {
+            "supported": true,
+            "get": true,
+            "create": true,
+            "store": true,
+            "preventSilentAccess": true,
+            "passwordCredential": true,
+            "federatedCredential": true,
+            "publicKeyCredential": true,
+            "otpCredential": true,
+            "identityCredential": true,
+            "digitalCredential": true,
+            "webAuthnConditionalMediation": true,
+            "webAuthnUserVerifyingPlatform": true
+        },
+        "paymentDetails": {
+            "supported": true,
+            "paymentRequest": true,
+            "paymentResponse": true,
+            "paymentAddress": true,
+            "paymentMethodChangeEvent": true,
+            "securePaymentConfirmation": false,
+            "methodSupport": {
+                "basic-card": "constructable",
+                "secure-payment-confirmation": "constructable"
+            }
+        },
+        "fileSystemAccess": {
+            "showOpenFilePicker": true,
+            "showSaveFilePicker": true,
+            "showDirectoryPicker": true,
+            "fileSystemHandle": true,
+            "fileSystemFileHandle": true,
+            "fileSystemDirectoryHandle": true,
+            "fileSystemWritableFileStream": true,
+            "storageManagerGetDirectory": true,
+            "opfsSupported": true
+        },
+        "cssSupportsExtended": {
+            "grid": true,
+            "flexbox": true,
+            "subgrid": true,
+            "masonry": false,
+            "containerQueries": true,
+            "hasSelector": true,
+            "isSelector": true,
+            "whereSelector": true,
+            "notSelector": true,
+            "focusVisible": true,
+            "focusWithin": true,
+            "colorMix": true,
+            "oklch": true,
+            "oklab": true,
+            "lch": true,
+            "lab": true,
+            "colorFunction": true,
+            "lightDark": true,
+            "relativeColor": true,
+            "textWrap": true,
+            "textWrapPretty": true,
+            "initialLetter": true,
+            "hyphenateCharacter": true,
+            "scrollTimeline": true,
+            "viewTimeline": true,
+            "scrollSnapType": true,
+            "scrollDrivenAnimations": true,
+            "overscrollBehavior": true,
+            "scrollbarColor": true,
+            "scrollbarWidth": true,
+            "scrollbarGutter": true,
+            "anchorPosition": true,
+            "popover": true,
+            "translate": true,
+            "rotate": true,
+            "scale": true,
+            "individualTransforms": true,
+            "aspectRatio": true,
+            "containerUnits": true,
+            "dvh": true,
+            "svh": true,
+            "lvh": true,
+            "backdropFilter": true,
+            "contentVisibility": true,
+            "contain": true,
+            "viewTransition": true,
+            "cascade": false,
+            "startingStyle": false,
+            "scope": false,
+            "nesting": true,
+            "math": true,
+            "clamp": true,
+            "min": true,
+            "max": true,
+            "round": true,
+            "mod": true,
+            "rem": true,
+            "abs": true,
+            "sign": false,
+            "trigFunctions": false
+        },
+        "scheduling": {
+            "requestIdleCallback": true,
+            "cancelIdleCallback": true,
+            "scheduler": true,
+            "schedulerPostTask": true,
+            "schedulerYield": true,
+            "taskController": true,
+            "taskSignal": true,
+            "taskPriorityChangeEvent": true,
+            "idleDeadline": true,
+            "schedulingIsInputPending": true
+        },
+        "encoding": {
+            "textEncoder": true,
+            "textDecoder": true,
+            "textEncoderStream": true,
+            "textDecoderStream": true,
+            "supportedEncodings": {
+                "utf-8": true,
+                "utf-16le": true,
+                "utf-16be": true,
+                "iso-8859-1": true,
+                "iso-8859-2": true,
+                "iso-8859-15": true,
+                "windows-1250": true,
+                "windows-1251": true,
+                "windows-1252": true,
+                "windows-1256": true,
+                "shift_jis": true,
+                "euc-jp": true,
+                "iso-2022-jp": true,
+                "euc-kr": true,
+                "gb18030": true,
+                "gbk": true,
+                "big5": true,
+                "koi8-r": true,
+                "koi8-u": true,
+                "macintosh": true
+            },
+            "supportedCount": 20,
+            "hash": "68ec67c7"
+        },
+        "crypto": {
+            "cryptoPresent": true,
+            "subtlePresent": true,
+            "randomUUID": true,
+            "getRandomValues": true,
+            "algorithms": [
+                "AES-CBC",
+                "AES-CTR",
+                "AES-GCM",
+                "AES-KW",
+                "RSA-OAEP",
+                "RSA-PSS",
+                "RSASSA-PKCS1-v1_5",
+                "ECDSA",
+                "ECDH",
+                "HMAC",
+                "HKDF",
+                "PBKDF2",
+                "SHA-1",
+                "SHA-256",
+                "SHA-384",
+                "SHA-512",
+                "Ed25519",
+                "X25519"
+            ],
+            "uuidVersion": "4",
+            "uuidLength": 36
+        },
+        "windowProperties": {
+            "testedCount": 87,
+            "presentCount": 75,
+            "present": [
+                "AbortController",
+                "AbortSignal",
+                "AbsoluteOrientationSensor",
+                "Accelerometer",
+                "AudioWorklet",
+                "BackgroundFetchManager",
+                "BarcodeDetector",
+                "BatteryManager",
+                "BeforeInstallPromptEvent",
+                "Bluetooth",
+                "BluetoothDevice",
+                "BluetoothRemoteGATTCharacteristic",
+                "CSSLayerBlockRule",
+                "CSSPropertyRule",
+                "CompressionStream",
+                "ContactsManager",
+                "ContentIndex",
+                "CookieChangeEvent",
+                "CookieStore",
+                "DecompressionStream",
+                "DeviceMotionEventAcceleration",
+                "FileSystemWritableFileStream",
+                "GravitySensor",
+                "Gyroscope",
+                "IdleDetector",
+                "ImageCapture",
+                "InputDeviceCapabilities",
+                "Keyboard",
+                "KeyboardLayoutMap",
+                "LaunchQueue",
+                "LinearAccelerationSensor",
+                "MediaSession",
+                "NavigationPreloadManager",
+                "NavigatorLogin",
+                "NavigatorManagedData",
+                "NavigatorUAData",
+                "OTPCredential",
+                "OffscreenCanvas",
+                "PasswordCredential",
+                "PaymentManager",
+                "PaymentRequest",
+                "PeriodicSyncManager",
+                "PermissionStatus",
+                "PictureInPictureEvent",
+                "PictureInPictureWindow",
+                "Presentation",
+                "PresentationAvailability",
+                "PresentationConnection",
+                "PresentationRequest",
+                "Scheduler",
+                "Serial",
+                "SerialPort",
+                "SpeechRecognition",
+                "SpeechSynthesis",
+                "StorageManager",
+                "StylePropertyMapReadOnly",
+                "SubtleCrypto",
+                "SyncManager",
+                "TaskController",
+                "TextDecoderStream",
+                "TextEncoderStream",
+                "TouchEvent",
+                "TrustedHTML",
+                "TrustedScript",
+                "TrustedScriptURL",
+                "TrustedTypePolicy",
+                "USB",
+                "USBDevice",
+                "VirtualKeyboard",
+                "WakeLock",
+                "WakeLockSentinel",
+                "WebSocket",
+                "WebTransport",
+                "XRSession",
+                "XRSystem"
+            ],
+            "hash": "1a1c0c48"
+        },
+        "webSocket": {
+            "supported": true,
+            "binaryType": "blob",
+            "extensions": null,
+            "protocol": null,
+            "bufferedAmount": null,
+            "CONNECTING": 0,
+            "OPEN": 1,
+            "CLOSING": 2,
+            "CLOSED": 3,
+            "constructable": true
+        },
+        "presentation": {
+            "supported": true,
+            "receiver": false,
+            "defaultRequest": true,
+            "presentationRequest": true,
+            "presentationConnection": true,
+            "presentationAvailability": true
+        },
+        "webLocks": {
+            "supported": true
         }
     },
-    "generated": "2026-03-09T12:58:06+00:00"
+    "generated": "2026-03-10T06:08:42+00:00"
 }
