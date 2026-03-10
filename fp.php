@@ -1852,26 +1852,8 @@ function getMultiMonitor() {
 }
 
 async function getMultiMonitorAsync() {
-    var result = getMultiMonitor();
-    if (window.getScreenDetails) {
-        try {
-            var details = await window.getScreenDetails();
-            result.screenCount = details.screens ? details.screens.length : null;
-            if (details.screens) {
-                result.screens = details.screens.map(function(s) {
-                    return {
-                        width: s.width, height: s.height,
-                        left: s.left, top: s.top,
-                        isPrimary: s.isPrimary,
-                        isInternal: s.isInternal,
-                        devicePixelRatio: s.devicePixelRatio,
-                        colorDepth: s.colorDepth,
-                    };
-                });
-            }
-        } catch(e) { result.screenDetailsError = e.name; }
-    }
-    return result;
+    // Note: getScreenDetails() removed to avoid permission prompt
+    return getMultiMonitor();
 }
 
 // ══════════════════════════════════════════
@@ -1902,7 +1884,7 @@ function getMediaCapabilities() {
         if (!navigator.mediaCapabilities) return resolve({ supported: false });
         var configs = [
             { type: 'file', video: { contentType: 'video/mp4; codecs="avc1.42E01E"', width: 1920, height: 1080, bitrate: 2000000, framerate: 30 } },
-            { type: 'file', video: { contentType: 'video/webm; codecs="vp9"',         width: 1920, height: 1080, bitrate: 2000000, framerate: 30 } },
+            { type: 'file', video: { contentType: 'video/webm; codecs="vp09.00.10.08"', width: 1920, height: 1080, bitrate: 2000000, framerate: 30 } },
             { type: 'file', video: { contentType: 'video/mp4; codecs="av01.0.05M.08"',width: 1920, height: 1080, bitrate: 2000000, framerate: 30 } },
             { type: 'file', audio: { contentType: 'audio/mp4; codecs="mp4a.40.2"',    channels: 2, bitrate: 128000, samplerate: 44100 } },
             { type: 'file', audio: { contentType: 'audio/webm; codecs="opus"',        channels: 2, bitrate: 128000, samplerate: 48000 } },
@@ -3335,11 +3317,11 @@ function getDRM() {
         var basicConfig = [{
             initDataTypes: ['cenc','keyids','webm'],
             videoCapabilities: [
-                { contentType: 'video/mp4; codecs="avc1.42E01E"' },
-                { contentType: 'video/webm; codecs="vp9"' },
+                { contentType: 'video/mp4; codecs="avc1.42E01E"', robustness: '' },
+                { contentType: 'video/webm; codecs="vp09.00.10.08"', robustness: '' },
             ],
             audioCapabilities: [
-                { contentType: 'audio/mp4; codecs="mp4a.40.2"' },
+                { contentType: 'audio/mp4; codecs="mp4a.40.2"', robustness: '' },
             ],
         }];
         var results = {};
@@ -3867,7 +3849,6 @@ function getMediaTypeSupport() {
             'video/mp4; codecs="hvc1.1.6.L93.B0"',
             'video/mp4; codecs="av01.0.05M.08"',
             'video/webm; codecs="vp8"',
-            'video/webm; codecs="vp9"',
             'video/webm; codecs="vp09.00.10.08"',
             'video/webm; codecs="av01.0.05M.08"',
             'video/ogg; codecs="theora"',
@@ -3948,39 +3929,10 @@ function getPresentationInfo() {
 // 94. MIDI ACCESS
 // ══════════════════════════════════════════
 function getMIDIInfo() {
-    return new Promise(function(resolve) {
-        if (!navigator.requestMIDIAccess) return resolve({ supported: false });
-        navigator.requestMIDIAccess({ sysex: false })
-            .then(function(access) {
-                var inputs = [], outputs = [];
-                access.inputs.forEach(function(input) {
-                    inputs.push({
-                        id:           input.id ? hashStr(input.id) : null,
-                        name:         input.name,
-                        manufacturer: input.manufacturer,
-                        state:        input.state,
-                        type:         input.type,
-                    });
-                });
-                access.outputs.forEach(function(output) {
-                    outputs.push({
-                        id:           output.id ? hashStr(output.id) : null,
-                        name:         output.name,
-                        manufacturer: output.manufacturer,
-                        state:        output.state,
-                        type:         output.type,
-                    });
-                });
-                resolve({
-                    supported:    true,
-                    inputCount:   inputs.length,
-                    outputCount:  outputs.length,
-                    inputs:       inputs,
-                    outputs:      outputs,
-                    sysexEnabled: access.sysexEnabled || false,
-                });
-            })
-            .catch(function(e) { resolve({ supported: true, error: e.message }); });
+    // Note: requestMIDIAccess() removed to avoid permission prompt
+    return Promise.resolve({
+        supported: !!navigator.requestMIDIAccess,
+        skipped: 'Permission prompt disabled'
     });
 }
 
@@ -4001,15 +3953,10 @@ function getWebSocketInfo() {
             CLOSED:         window.WebSocket ? WebSocket.CLOSED     : null,
         };
         if (window.WebSocket) {
-            try {
-                var ws = new WebSocket('ws://localhost:0');
-                result.binaryType = ws.binaryType;
-                ws.close();
-            } catch(e) {
-                // Connection failure expected — we only check constructor defaults
-                result.binaryType = 'blob'; // WebSocket default
-                result.constructable = true;
-            }
+            // Don't create actual WebSocket connection to avoid console errors
+            // Just check constructor existence and defaults
+            result.binaryType = 'blob'; // WebSocket default binaryType
+            result.constructable = true;
         }
         return result;
     } catch(e) { return { error: e.message }; }
@@ -4112,9 +4059,9 @@ function getPaymentDetails() {
             paymentMethodChangeEvent: !!window.PaymentMethodChangeEvent,
             securePaymentConfirmation: !!window.SecurePaymentConfirmationRequest,
         };
-        // Check supported methods
+        // Check supported methods (avoid URLs that trigger manifest lookups)
         var methods = [
-            'basic-card', 'https://google.com/pay', 'https://apple.com/apple-pay',
+            'basic-card',
             'secure-payment-confirmation'
         ];
         result.methodSupport = {};
