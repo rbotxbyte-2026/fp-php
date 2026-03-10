@@ -537,9 +537,50 @@ const EMBEDDED_DEFAULT_PROFILE = {"server":{"ip":"2405:f600:8:e0a9:985c:f5c3:340
     configurable: true
   });
 
-  // 2. Console-based detection - DON'T neuter console as it causes behavioral detection
-  // Just let console work normally - the size-based detection evasion above is sufficient
-  // Neutering console breaks legitimate logging and triggers tampering detection
+  // 2. Console-based devtools detection evasion
+  // Fingerprint.com uses: console.log({ get x() { devtoolsOpen = true; }})
+  // When DevTools is open, console formats objects and calls getters
+  // We intercept console methods to serialize objects WITHOUT calling getters
+  const safeStringify = (obj) => {
+    if (obj === null) return 'null';
+    if (obj === undefined) return 'undefined';
+    if (typeof obj !== 'object') return String(obj);
+    try {
+      // Use a simple approach - just return [object Object] for detection objects
+      // This prevents getter-based detection
+      return Object.prototype.toString.call(obj);
+    } catch (e) {
+      return '[object Object]';
+    }
+  };
+
+  // Wrap console methods to prevent getter-based detection
+  const consoleMethods = ['log', 'info', 'warn', 'error', 'debug', 'dir', 'dirxml', 'table'];
+  const _originalConsole = {};
+  
+  for (const method of consoleMethods) {
+    if (console[method]) {
+      _originalConsole[method] = console[method].bind(console);
+      console[method] = makeNative(function(...args) {
+        // Check if any arg has suspicious getters (detection trap)
+        const safeArgs = args.map(arg => {
+          if (arg !== null && typeof arg === 'object' && !Array.isArray(arg)) {
+            try {
+              const desc = Object.getOwnPropertyDescriptors(arg);
+              const hasGetterTrap = Object.values(desc).some(d => typeof d.get === 'function');
+              if (hasGetterTrap) {
+                // Don't format this object - return a safe placeholder
+                // This prevents the getter from being called
+                return '[FP Safe: object]';
+              }
+            } catch (e) {}
+          }
+          return arg;
+        });
+        return _originalConsole[method](...safeArgs);
+      }, method);
+    }
+  }
 
   // 3. Element-based detection (devtools-detector library)
   // Detection creates elements and checks if DevTools modifies them
@@ -558,10 +599,31 @@ const EMBEDDED_DEFAULT_PROFILE = {"server":{"ip":"2405:f600:8:e0a9:985c:f5c3:340
   
   // 5. RegExp-based detection
   // Detection uses: /./[Symbol.toStringTag] with console.log
+  // Override RegExp toString behavior used in detection
   const originalRegExpToString = RegExp.prototype.toString;
+  try {
+    const regexpDescriptor = Object.getOwnPropertyDescriptor(RegExp.prototype, Symbol.toStringTag);
+    if (!regexpDescriptor) {
+      Object.defineProperty(RegExp.prototype, Symbol.toStringTag, {
+        get: makeNative(function() { return 'RegExp'; }, 'get toStringTag'),
+        configurable: true
+      });
+    }
+  } catch (e) {}
   
-  // 6. Debugger timing detection - neutralize debugger statement effects
-  // We can't fully prevent this if DevTools is actually open
+  // 6. Debugger timing detection - prevent Function constructor debugger trick
+  // Detection: new Function('debugger')() or (() => {}).constructor('debugger')()
+  const originalFunction = window.Function;
+  window.Function = makeNative(function(...args) {
+    // Check if this is a debugger-based detection
+    const bodyArg = args[args.length - 1];
+    if (typeof bodyArg === 'string' && /^\s*debugger\s*;?\s*$/.test(bodyArg)) {
+      // Return a no-op function instead
+      return function() {};
+    }
+    return new originalFunction(...args);
+  }, 'Function');
+  window.Function.prototype = originalFunction.prototype;
   
   // 7. Block Firebug/debug markers  
   try { delete window.Firebug; } catch (e) {}
