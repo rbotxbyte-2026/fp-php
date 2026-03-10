@@ -1187,26 +1187,30 @@ const EMBEDDED_DEFAULT_PROFILE = {"server":{"ip":"2405:f600:8:e0a9:985c:f5c3:340
   }
   
   // Fetch timezone from IP - runs immediately
+  // Use HTTPS APIs only to avoid mixed content errors on HTTPS pages
   if (spoofConfig && spoofConfig.server && spoofConfig.server.ipTimezoneEnabled !== false) {
     (function fetchIPTimezone() {
-      IP_TIMEZONE_STATE.fetchPromise = fetch('http://ip-api.com/json/?fields=timezone', { mode: 'cors' })
+      // Primary: worldtimeapi.org (HTTPS)
+      IP_TIMEZONE_STATE.fetchPromise = fetch('https://worldtimeapi.org/api/ip', { mode: 'cors' })
         .then(r => r.json())
         .then(data => {
           if (data && data.timezone) {
             IP_TIMEZONE_STATE.timezone = data.timezone;
             IP_TIMEZONE_STATE.timezoneOffset = getTimezoneOffsetFromIANA(data.timezone);
             IP_TIMEZONE_STATE.fetched = true;
+            console.log('[FP Spoofer] IP timezone detected:', data.timezone);
           }
         })
         .catch(() => {
-          // Fallback to worldtimeapi
-          return fetch('https://worldtimeapi.org/api/ip', { mode: 'cors' })
-            .then(r => r.json())
-            .then(data => {
-              if (data && data.timezone) {
-                IP_TIMEZONE_STATE.timezone = data.timezone;
-                IP_TIMEZONE_STATE.timezoneOffset = getTimezoneOffsetFromIANA(data.timezone);
+          // Fallback: ipapi.co (HTTPS)
+          return fetch('https://ipapi.co/timezone/', { mode: 'cors' })
+            .then(r => r.text())
+            .then(timezone => {
+              if (timezone && timezone.includes('/')) {
+                IP_TIMEZONE_STATE.timezone = timezone.trim();
+                IP_TIMEZONE_STATE.timezoneOffset = getTimezoneOffsetFromIANA(timezone.trim());
                 IP_TIMEZONE_STATE.fetched = true;
+                console.log('[FP Spoofer] IP timezone detected (fallback):', timezone.trim());
               }
             })
             .catch(() => {
@@ -1779,7 +1783,8 @@ const EMBEDDED_DEFAULT_PROFILE = {"server":{"ip":"2405:f600:8:e0a9:985c:f5c3:340
     fakeContext.lineWidth = makeNative(function() {}, 'lineWidth');
     fakeContext.polygonOffset = makeNative(function() {}, 'polygonOffset');
     
-    // Add WebGL constants to the context
+    // Add WebGL constants to the context - only if not already defined on prototype
+    // Using Object.defineProperty to avoid read-only errors from prototype chain
     const webglConstants = {
       DEPTH_BUFFER_BIT: 256, COLOR_BUFFER_BIT: 16384, STENCIL_BUFFER_BIT: 1024,
       POINTS: 0, LINES: 1, LINE_LOOP: 2, LINE_STRIP: 3, TRIANGLES: 4, TRIANGLE_STRIP: 5, TRIANGLE_FAN: 6,
@@ -1812,7 +1817,14 @@ const EMBEDDED_DEFAULT_PROFILE = {"server":{"ip":"2405:f600:8:e0a9:985c:f5c3:340
       UNPACK_FLIP_Y_WEBGL: 37440, UNPACK_PREMULTIPLY_ALPHA_WEBGL: 37441
     };
     
-    Object.assign(fakeContext, webglConstants);
+    // Only add constants that don't exist on proto (avoids read-only errors)
+    for (const [key, value] of Object.entries(webglConstants)) {
+      if (!(key in fakeContext)) {
+        try {
+          Object.defineProperty(fakeContext, key, { value, writable: false, enumerable: true, configurable: false });
+        } catch (e) { /* Already exists on prototype - skip */ }
+      }
+    }
     
     return fakeContext;
   }
