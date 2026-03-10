@@ -112,40 +112,29 @@
   // This is the key detection for "undetectedChromedriver"
   // fingerprint.com looks for CDP-injected execute_cdp_cmd signatures
   
-  // 5a. Block CDP Runtime.evaluate detection
+  // 5a. Block CDP Runtime.evaluate detection - only on window object
   // When UC uses CDP, it leaves trace in window.cdc_adoQpoasnfa76pfcZLmcfl_
-  // Already handled above, but also block its getter/setter patterns
   try {
-    // Prevent CDP from setting properties with specific pattern
+    // Only block known automation property patterns on window
     const originalDefineProperty = Object.defineProperty;
     Object.defineProperty = function(obj, prop, desc) {
-      // Block CDP-style property injection
-      if (typeof prop === 'string') {
-        const lower = prop.toLowerCase();
-        if (prop.match(/^[\$]?cdc_/i) || 
-            prop.match(/^[\$]?[a-z]{26}_$/i) ||
-            lower.includes('webdriver') ||
-            lower.includes('selenium') ||
-            lower.includes('driver')) {
-          // Silently fail
-          return obj;
+      // Only block on window object
+      if (obj === window && typeof prop === 'string') {
+        // Block CDC patterns and exact automation markers
+        if (prop.match(/^[\$]?cdc_/i) || prop.match(/^[\$]?[a-z]{26}_$/i)) {
+          return obj; // Silently fail
         }
       }
       return originalDefineProperty(obj, prop, desc);
     };
   } catch (e) {}
   
-  // 5b. Patch window.callPhantom and phantom patterns
-  Object.defineProperty(window, 'callPhantom', { 
-    get: () => undefined, 
-    set: () => {},
-    configurable: false 
-  });
-  Object.defineProperty(window, '_phantom', { 
-    get: () => undefined, 
-    set: () => {},
-    configurable: false 
-  });
+  // 5b. Delete phantom properties if they exist (don't define them!)
+  // Real browsers don't have callPhantom/_phantom at all
+  // Defining them (even as undefined) makes fingerprint.com think it's PhantomJS
+  try { delete window.callPhantom; } catch (e) {}
+  try { delete window._phantom; } catch (e) {}
+  try { delete window.phantom; } catch (e) {}
   
   // 5c. Block debugger statement detection (UC uses CDP Debugger.enable)
   // fingerprint.com times debugger statements to detect automation
