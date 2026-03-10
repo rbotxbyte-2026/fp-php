@@ -11,22 +11,12 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Install Chrome and Desktop
+      - name: Install Desktop Environment
         run: |
-          # Install desktop environment and VNC
           sudo apt-get update
-          sudo apt-get install -y \
-            xfce4 xfce4-goodies \
-            x11vnc xvfb \
-            novnc websockify \
-            wget curl unzip
+          sudo apt-get install -y xfce4 xfce4-goodies x11vnc xvfb novnc websockify jq
           
-          # Install Chrome (branded)
-          wget -q -O chrome.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-          sudo apt-get install -y ./chrome.deb
-          rm chrome.deb
-          
-          echo "Chrome installed:"
+          echo "Chrome version:"
           google-chrome --version
 
       - name: Setup ngrok
@@ -38,114 +28,48 @@ jobs:
           sudo apt-get update && sudo apt-get install -y ngrok
           ngrok config add-authtoken ${{ secrets.NGROK_AUTHTOKEN }}
 
-      - name: Copy extension to Downloads
+      - name: Setup Extension
         run: |
           mkdir -p ~/Downloads/fp-spoofer-extension
           mkdir -p ~/Desktop
           cp -r extension/* ~/Downloads/fp-spoofer-extension/
           cp original.json ~/Downloads/
           
-          echo "Extension copied (includes bundled default profile)"
-          
-          # Read dimensions from profile
-          SCREEN_WIDTH=$(jq -r '.client.screen.width // 384' original.json)
-          SCREEN_HEIGHT=$(jq -r '.client.screen.height // 832' original.json)
-          INNER_WIDTH=$(jq -r '.client.screen.innerWidth // 384' original.json)
-          INNER_HEIGHT=$(jq -r '.client.screen.innerHeight // 699' original.json)
-          
-          echo "Profile dimensions: ${SCREEN_WIDTH}x${SCREEN_HEIGHT} (inner: ${INNER_WIDTH}x${INNER_HEIGHT})"
-          
-          # Create launcher script that resizes Chrome to profile dimensions
-          echo '#!/bin/bash' > ~/Desktop/launch-chrome-resized.sh
-          echo 'INNER_WIDTH=$(jq -r ".client.screen.innerWidth // 384" ~/Downloads/original.json)' >> ~/Desktop/launch-chrome-resized.sh
-          echo 'INNER_HEIGHT=$(jq -r ".client.screen.innerHeight // 699" ~/Downloads/original.json)' >> ~/Desktop/launch-chrome-resized.sh
-          echo 'WINDOW_WIDTH=$INNER_WIDTH' >> ~/Desktop/launch-chrome-resized.sh
-          echo 'WINDOW_HEIGHT=$((INNER_HEIGHT + 79))' >> ~/Desktop/launch-chrome-resized.sh
-          echo 'echo "Launching Chrome with window size: ${WINDOW_WIDTH}x${WINDOW_HEIGHT}"' >> ~/Desktop/launch-chrome-resized.sh
-          echo 'google-chrome --window-size=${WINDOW_WIDTH},${WINDOW_HEIGHT} --window-position=100,100 --no-first-run --disable-default-apps --disable-popup-blocking "about:blank" &' >> ~/Desktop/launch-chrome-resized.sh
-          chmod +x ~/Desktop/launch-chrome-resized.sh
-          
-          # Create desktop shortcut
-          echo '[Desktop Entry]' > ~/Desktop/Chrome-Resized.desktop
-          echo 'Type=Application' >> ~/Desktop/Chrome-Resized.desktop
-          echo 'Name=Chrome (Profile Size)' >> ~/Desktop/Chrome-Resized.desktop
-          echo 'Exec=/home/runner/Desktop/launch-chrome-resized.sh' >> ~/Desktop/Chrome-Resized.desktop
-          echo 'Icon=google-chrome' >> ~/Desktop/Chrome-Resized.desktop
-          echo 'Terminal=false' >> ~/Desktop/Chrome-Resized.desktop
-          chmod +x ~/Desktop/Chrome-Resized.desktop
-          
-          echo ""
-          echo "Extension copied to: ~/Downloads/fp-spoofer-extension"
-          echo "Profile at: ~/Downloads/original.json"
-          echo "Launcher script at: ~/Desktop/launch-chrome-resized.sh"
-          ls -la ~/Downloads/fp-spoofer-extension/
+          # Simple Chrome desktop shortcut
+          echo '[Desktop Entry]' > ~/Desktop/Chrome.desktop
+          echo 'Type=Application' >> ~/Desktop/Chrome.desktop
+          echo 'Name=Google Chrome' >> ~/Desktop/Chrome.desktop
+          echo 'Exec=google-chrome --no-first-run' >> ~/Desktop/Chrome.desktop
+          echo 'Icon=google-chrome' >> ~/Desktop/Chrome.desktop
+          echo 'Terminal=false' >> ~/Desktop/Chrome.desktop
+          chmod +x ~/Desktop/Chrome.desktop
 
       - name: Start Desktop and VNC
         run: |
-          # Start virtual display
           export DISPLAY=:99
           Xvfb :99 -screen 0 1920x1080x24 &
           sleep 2
-          
-          # Start XFCE desktop
           startxfce4 &
           sleep 3
-          
-          # Start VNC server
           x11vnc -display :99 -forever -shared -rfbport 5900 -bg -nopw
-          
-          # Start noVNC
           /usr/share/novnc/utils/novnc_proxy --vnc localhost:5900 --listen 6080 &
           sleep 2
-          
-          echo "noVNC started on port 6080"
 
       - name: Start ngrok tunnel
         run: |
-          # Read dimensions from profile for display
-          INNER_WIDTH=$(jq -r '.client.screen.innerWidth // 384' original.json)
-          INNER_HEIGHT=$(jq -r '.client.screen.innerHeight // 699' original.json)
-          WINDOW_HEIGHT=$((INNER_HEIGHT + 79))
-          
-          # Start ngrok in background
           ngrok http 6080 --log=stdout > ngrok.log 2>&1 &
           sleep 5
-          
-          # Get public URL
           NGROK_URL=$(curl -s http://localhost:4040/api/tunnels | jq -r '.tunnels[0].public_url')
           
           echo "========================================"
-          echo "  REMOTE DESKTOP ACCESS"
+          echo "  noVNC: $NGROK_URL"
           echo "========================================"
           echo ""
-          echo "noVNC URL: $NGROK_URL"
+          echo "Extension: /home/runner/Downloads/fp-spoofer-extension"
+          echo ""
+          echo "In terminal run: google-chrome"
           echo ""
           echo "========================================"
-          echo "  OPEN CHROME (copy-paste in terminal):"
-          echo "========================================"
-          echo ""
-          echo "google-chrome --window-size=${INNER_WIDTH},${WINDOW_HEIGHT} --window-position=100,100 --no-first-run --disable-default-apps about:blank &"
-          echo ""
-          echo "========================================"
-          echo ""
-          echo "Extension path: /home/runner/Downloads/fp-spoofer-extension"
-          echo "Profile path:   /home/runner/Downloads/original.json"
-          echo ""
-          echo "After Chrome opens:"
-          echo "1. Go to chrome://extensions"
-          echo "2. Enable 'Developer mode' (top right)"
-          echo "3. Click 'Load unpacked'"
-          echo "4. Select: /home/runner/Downloads/fp-spoofer-extension"
-          echo ""
-          echo "========================================"
-          echo ""
-          echo "========================================"
-          
-          # Keep alive for 30 minutes
-          echo "Session will stay active for 30 minutes..."
 
       - name: Keep session alive
-        run: |
-          # Keep the workflow running for 30 minutes
-          sleep 1800
-          echo "Session ended"
+        run: sleep 1800
