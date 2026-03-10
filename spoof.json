@@ -1,13 +1,13 @@
 {
   "server": {
-    "ip": "2405:f600:8:e0a9:d596:64b:d7de:540d",
+    "ip": "172.183.134.183",
     "protocol": "HTTP/1.0",
     "https": true,
     "port": "80",
-    "request_time": "2026-03-10 07:10:08",
-    "user_agent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Mobile Safari/537.36",
+    "request_time": "2026-03-10 10:28:58",
+    "user_agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36",
     "accept": "*/*",
-    "accept_language": "en-IN,en-GB;q=0.9,en-US;q=0.8,en;q=0.7,gu;q=0.6",
+    "accept_language": "en-US,en;q=0.9",
     "accept_encoding": "gzip, br",
     "connection": "close",
     "cache_control": null,
@@ -22,18 +22,18 @@
     "sec_fetch_dest": "empty",
     "sec_fetch_user": null,
     "ch_ua": "\"Not:A-Brand\";v=\"99\", \"Google Chrome\";v=\"145\", \"Chromium\";v=\"145\"",
-    "ch_ua_mobile": "?1",
-    "ch_ua_platform": "\"Android\"",
+    "ch_ua_mobile": "?0",
+    "ch_ua_platform": "\"Linux\"",
     "ch_ua_arch": null,
     "ch_ua_bitness": null,
     "ch_ua_full_version_list": null,
     "ch_ua_model": null,
-    "x_forwarded_for": "2405:f600:8:e0a9:d596:64b:d7de:540d, 162.158.62.21",
+    "x_forwarded_for": "172.183.134.183, 104.23.190.217",
     "x_real_ip": null,
     "via": null,
-    "cf_connecting_ip": "2405:f600:8:e0a9:d596:64b:d7de:540d",
-    "cf_ipcountry": "IN",
-    "cf_ray": "9da07f77c8ed5857-EWR",
+    "cf_connecting_ip": "172.183.134.183",
+    "cf_ipcountry": "US",
+    "cf_ray": "9da1a2b8fdb810c0-EWR",
     "cdn_loop": "cloudflare; loops=1",
     "x_forwarded_proto": "https",
     "ja3_hash": null,
@@ -42,11 +42,11 @@
     "tls_client_hello_hex": null,
     "all_headers": {
       "Cf-Visitor": "{\"scheme\":\"https\"}",
-      "Cf-Ipcountry": "IN",
-      "Cf-Connecting-Ip": "2405:f600:8:e0a9:d596:64b:d7de:540d",
+      "Cf-Ipcountry": "US",
+      "Cf-Connecting-Ip": "172.183.134.183",
       "Cdn-Loop": "cloudflare; loops=1",
-      "Cf-Ray": "9da07f77c8ed5857-EWR",
-      "Accept-Language": "en-IN,en-GB;q=0.9,en-US;q=0.8,en;q=0.7,gu;q=0.6",
+      "Cf-Ray": "9da1a2b8fdb810c0-EWR",
+      "Accept-Language": "en-US,en;q=0.9",
       "Accept-Encoding": "gzip, br",
       "Referer": "https://botxbyte.com/fp.php",
       "Sec-Fetch-Dest": "empty",
@@ -54,17 +54,17 @@
       "Sec-Fetch-Site": "same-origin",
       "Origin": "https://botxbyte.com",
       "Accept": "*/*",
-      "Sec-Ch-Ua-Mobile": "?1",
+      "Sec-Ch-Ua-Mobile": "?0",
       "Content-Type": "application/json",
       "Sec-Ch-Ua": "\"Not:A-Brand\";v=\"99\", \"Google Chrome\";v=\"145\", \"Chromium\";v=\"145\"",
-      "User-Agent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Mobile Safari/537.36",
+      "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36",
       "X-Requested-With": "XMLHttpRequest",
-      "Sec-Ch-Ua-Platform": "\"Android\"",
+      "Sec-Ch-Ua-Platform": "\"Linux\"",
       "Priority": "u=1, i",
-      "Content-Length": "47256",
+      "Content-Length": "44590",
       "Connection": "close",
       "X-Forwarded-Proto": "https",
-      "X-Forwarded-For": "2405:f600:8:e0a9:d596:64b:d7de:540d, 162.158.62.21",
+      "X-Forwarded-For": "172.183.134.183, 104.23.190.217",
       "X-Server-Addr": "107.170.48.37",
       "Host": "botxbyte.com",
       "Authorization": ""
@@ -102,209 +102,198 @@
   },
   "client": {
     "navigator": {
-      "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Mobile Safari/537.36",
-      "appVersion": "5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Mobile Safari/537.36",
+      "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36",
+      "appVersion": "5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36",
       "appName": "Netscape",
       "appCodeName": "Mozilla",
       "product": "Gecko",
       "productSub": "20030107",
-      "platform": "Linux armv81",
+      "platform": "Linux x86_64",
       "vendor": "Google Inc.",
       "vendorSub": "",
-      "language": "en-IN",
+      "language": "en-US",
       "languages": [
-        "en-IN",
-        "en-GB",
         "en-US",
-        "en",
-        "gu"
+        "en"
       ],
       "cookieEnabled": true,
       "doNotTrack": null,
       "globalPrivacyControl": null,
-      "hardwareConcurrency": 8,
+      "hardwareConcurrency": 4,
       "deviceMemory": 8,
-      "maxTouchPoints": 5,
-      "pdfViewerEnabled": null,
+      "maxTouchPoints": 0,
+      "pdfViewerEnabled": true,
       "webdriver": false,
       "onLine": true,
       "javaEnabled": false,
       "cookieStore": true
     },
     "screen": {
-      "width": 384,
-      "height": 832,
-      "availWidth": 384,
-      "availHeight": 832,
+      "width": 1920,
+      "height": 1080,
+      "availWidth": 1920,
+      "availHeight": 1053,
       "colorDepth": 24,
       "pixelDepth": 24,
-      "devicePixelRatio": 2.8125,
-      "orientationType": "portrait-primary",
+      "devicePixelRatio": 1,
+      "orientationType": "landscape-primary",
       "orientationAngle": 0,
-      "innerWidth": 384,
-      "innerHeight": 699,
-      "outerWidth": 384,
-      "outerHeight": 832,
-      "screenX": 0,
-      "screenY": 0,
+      "innerWidth": 1126,
+      "innerHeight": 681,
+      "outerWidth": 1136,
+      "outerHeight": 778,
+      "screenX": 100,
+      "screenY": 100,
       "pageXOffset": 0,
       "pageYOffset": 0,
       "scrollbarWidth": 0,
       "isFullscreen": false
     },
     "locale": {
-      "timezone": "Asia/Calcutta",
-      "timezoneOffset": -330,
-      "locale": "en-GB",
+      "timezone": "UTC",
+      "timezoneOffset": 0,
+      "locale": "en-US",
       "calendar": "gregory",
       "numberingSystem": "latn",
-      "localeDateString": "10/03/2026",
-      "localeTimeString": "12:40:08"
+      "localeDateString": "3/10/2026",
+      "localeTimeString": "10:28:58 AM"
     },
     "canvas": {
-      "hash": "7ecb5be6",
-      "geometry_hash": "189e07f6",
+      "hash": "54891a77",
+      "geometry_hash": "4adf79d9",
       "winding_rule": true
     },
     "webgl": {
-      "supported": true,
-      "vendor": "WebKit",
-      "renderer": "WebKit WebGL",
-      "version": "WebGL 1.0 (OpenGL ES 2.0 Chromium)",
-      "shadingLanguageVersion": "WebGL GLSL ES 1.0 (OpenGL ES GLSL ES 1.0 Chromium)",
-      "unmaskedVendor": "Qualcomm",
-      "unmaskedRenderer": "Adreno (TM) 630",
-      "maxTextureSize": 4096,
-      "maxCubeMapTextureSize": 16384,
-      "maxViewportDims": [
-        16384,
-        16384
-      ],
-      "maxVertexAttribs": 16,
-      "maxVertexUniformVectors": 1024,
-      "maxFragmentUniformVectors": 1024,
-      "maxCombinedTextureUnits": 32,
-      "maxVertexTextureUnits": 16,
-      "maxTextureImageUnits": 16,
-      "maxRenderbufferSize": 16384,
-      "maxVaryingVectors": 30,
-      "aliasedLineWidthRange": [
-        1,
-        1
-      ],
-      "aliasedPointSizeRange": [
-        1,
-        511
-      ],
-      "redBits": 8,
-      "greenBits": 8,
-      "blueBits": 8,
-      "alphaBits": 8,
-      "depthBits": 24,
-      "stencilBits": 0,
-      "subpixelBits": 4,
-      "extensionCount": 39,
-      "extensionHash": "4e69110f",
-      "extensions": [
-        "ANGLE_instanced_arrays",
-        "EXT_blend_minmax",
-        "EXT_clip_control",
-        "EXT_color_buffer_half_float",
-        "EXT_depth_clamp",
-        "EXT_disjoint_timer_query",
-        "EXT_float_blend",
-        "EXT_frag_depth",
-        "EXT_polygon_offset_clamp",
-        "EXT_shader_texture_lod",
-        "EXT_texture_compression_bptc",
-        "EXT_texture_compression_rgtc",
-        "EXT_texture_filter_anisotropic",
-        "EXT_texture_mirror_clamp_to_edge",
-        "EXT_sRGB",
-        "KHR_parallel_shader_compile",
-        "OES_element_index_uint",
-        "OES_fbo_render_mipmap",
-        "OES_standard_derivatives",
-        "OES_texture_float",
-        "OES_texture_float_linear",
-        "OES_texture_half_float",
-        "OES_texture_half_float_linear",
-        "OES_vertex_array_object",
-        "WEBGL_blend_func_extended",
-        "WEBGL_color_buffer_float",
-        "WEBGL_compressed_texture_astc",
-        "WEBGL_compressed_texture_etc",
-        "WEBGL_compressed_texture_etc1",
-        "WEBGL_compressed_texture_pvrtc",
-        "WEBGL_compressed_texture_s3tc",
-        "WEBGL_compressed_texture_s3tc_srgb",
-        "WEBGL_debug_renderer_info",
-        "WEBGL_debug_shaders",
-        "WEBGL_depth_texture",
-        "WEBGL_draw_buffers",
-        "WEBGL_lose_context",
-        "WEBGL_multi_draw",
-        "WEBGL_polygon_mode"
-      ],
-      "shaderRenderHash": "1280848c",
-      "rasterizationMethod": "hardware"
+      "supported": false
     },
     "webgl2": {
-      "supported": true,
-      "maxSamples": 4,
-      "maxUniformBufferBindings": null,
-      "maxTransformFeedbackSeparateComponents": 4,
-      "maxElementsVertices": null,
-      "maxElementsIndices": null,
-      "max3DTextureSize": null,
-      "maxArrayTextureLayers": null,
-      "maxColorAttachments": 8,
-      "maxDrawBuffers": 8
+      "supported": false
     },
     "audio": {
       "sampleRate": 44100,
-      "sampleRateLive": 48000,
-      "hash": "14653955",
-      "fullHash": "7d48bdef",
-      "value": 124.08075650253159,
+      "sampleRateLive": 44100,
+      "hash": "1dd39556",
+      "fullHash": "6f09ce35",
+      "value": 124.04347527516074,
       "maxChannelCount": 2,
       "contextState": "suspended",
       "numberOfChannels": 1,
       "duration": 1
     },
-    "plugins": [],
-    "mimeTypes": [],
+    "plugins": [
+      {
+        "name": "PDF Viewer",
+        "filename": "internal-pdf-viewer",
+        "description": "Portable Document Format",
+        "mimes": [
+          {
+            "type": "application/pdf",
+            "description": "Portable Document Format",
+            "suffixes": "pdf"
+          },
+          {
+            "type": "text/pdf",
+            "description": "Portable Document Format",
+            "suffixes": "pdf"
+          }
+        ]
+      },
+      {
+        "name": "Chrome PDF Viewer",
+        "filename": "internal-pdf-viewer",
+        "description": "Portable Document Format",
+        "mimes": [
+          {
+            "type": "application/pdf",
+            "description": "Portable Document Format",
+            "suffixes": "pdf"
+          },
+          {
+            "type": "text/pdf",
+            "description": "Portable Document Format",
+            "suffixes": "pdf"
+          }
+        ]
+      },
+      {
+        "name": "Chromium PDF Viewer",
+        "filename": "internal-pdf-viewer",
+        "description": "Portable Document Format",
+        "mimes": [
+          {
+            "type": "application/pdf",
+            "description": "Portable Document Format",
+            "suffixes": "pdf"
+          },
+          {
+            "type": "text/pdf",
+            "description": "Portable Document Format",
+            "suffixes": "pdf"
+          }
+        ]
+      },
+      {
+        "name": "Microsoft Edge PDF Viewer",
+        "filename": "internal-pdf-viewer",
+        "description": "Portable Document Format",
+        "mimes": [
+          {
+            "type": "application/pdf",
+            "description": "Portable Document Format",
+            "suffixes": "pdf"
+          },
+          {
+            "type": "text/pdf",
+            "description": "Portable Document Format",
+            "suffixes": "pdf"
+          }
+        ]
+      },
+      {
+        "name": "WebKit built-in PDF",
+        "filename": "internal-pdf-viewer",
+        "description": "Portable Document Format",
+        "mimes": [
+          {
+            "type": "application/pdf",
+            "description": "Portable Document Format",
+            "suffixes": "pdf"
+          },
+          {
+            "type": "text/pdf",
+            "description": "Portable Document Format",
+            "suffixes": "pdf"
+          }
+        ]
+      }
+    ],
+    "mimeTypes": [
+      {
+        "type": "application/pdf",
+        "description": "Portable Document Format",
+        "suffixes": "pdf",
+        "enabledPlugin": "PDF Viewer"
+      },
+      {
+        "type": "text/pdf",
+        "description": "Portable Document Format",
+        "suffixes": "pdf",
+        "enabledPlugin": "PDF Viewer"
+      }
+    ],
     "fonts": {
       "detected": [
         "Arial",
         "Courier",
         "Courier New",
-        "Georgia",
-        "Impact",
-        "Symbol",
-        "Tahoma",
         "Times New Roman",
-        "Verdana",
-        "Webdings",
-        "Wingdings",
         "Helvetica",
-        "Geneva",
-        "Optima",
-        "Futura",
-        "Baskerville",
-        "Didot",
-        "Palatino",
-        "Avenir",
-        "Superclarendon",
-        "Rockwell",
-        "Herculanum",
-        "Papyrus",
-        "Copperplate",
-        "Monaco",
-        "Courier New"
+        "Courier New",
+        "Lato",
+        "Ubuntu"
       ],
-      "count": 26,
-      "metricsHash": "24a67c0b"
+      "count": 8,
+      "metricsHash": "a456533"
     },
     "features": {
       "localStorage": true,
@@ -314,15 +303,15 @@
       "caches": true,
       "serviceWorker": true,
       "webWorker": true,
-      "sharedWorker": false,
+      "sharedWorker": true,
       "webSocket": true,
       "webRTC": true,
       "fetch": true,
-      "bluetooth": true,
+      "bluetooth": false,
       "usb": true,
       "nfc": false,
       "serial": true,
-      "hid": false,
+      "hid": true,
       "xr": true,
       "gamepad": true,
       "geolocation": true,
@@ -338,10 +327,10 @@
       "wakeLock": true,
       "pictureInPicture": true,
       "clipboard": true,
-      "share": true,
-      "contacts": true,
+      "share": false,
+      "contacts": false,
       "fileSystem": true,
-      "eyeDropper": false,
+      "eyeDropper": true,
       "pointerEvents": true,
       "touchEvents": true,
       "wasm": true,
@@ -356,42 +345,27 @@
       "requestIdleCallback": true
     },
     "webrtc": {
-      "ips": [],
-      "ipv4": [],
+      "ips": [
+        "172.183.134.183"
+      ],
+      "ipv4": [
+        "172.183.134.183"
+      ],
       "ipv6": []
     },
     "battery": {
-      "charging": false,
-      "chargingTime": null,
-      "dischargingTime": 3,
-      "level": 0.85
+      "charging": true,
+      "chargingTime": 0,
+      "dischargingTime": null,
+      "level": 1
     },
-    "mediaDevices": [
-      {
-        "kind": "audioinput",
-        "label": "(requires permission)",
-        "deviceId": null,
-        "groupId": null
-      },
-      {
-        "kind": "videoinput",
-        "label": "(requires permission)",
-        "deviceId": null,
-        "groupId": null
-      },
-      {
-        "kind": "audiooutput",
-        "label": "(requires permission)",
-        "deviceId": null,
-        "groupId": null
-      }
-    ],
+    "mediaDevices": [],
     "network": {
       "effectiveType": "4g",
-      "downlink": 1.55,
-      "rtt": 50,
+      "downlink": 10,
+      "rtt": 0,
       "saveData": false,
-      "type": "wifi"
+      "type": null
     },
     "mediaQueries": {
       "darkMode": false,
@@ -402,11 +376,11 @@
       "highContrast": false,
       "invertedColors": false,
       "hdr": false,
-      "coarsePointer": true,
-      "finePointer": false,
+      "coarsePointer": false,
+      "finePointer": true,
       "noPointer": false,
-      "hover": false,
-      "anyHover": false,
+      "hover": true,
+      "anyHover": true,
       "colorGamutSRGB": true,
       "colorGamutP3": false,
       "colorGamutRec2020": false,
@@ -415,6 +389,9 @@
       "overflowInline": true
     },
     "permissions": {
+      "ambient-light-sensor": "unsupported",
+      "nfc": "unsupported",
+      "window-placement": "unsupported",
       "geolocation": "prompt",
       "notifications": "prompt",
       "camera": "prompt",
@@ -429,15 +406,127 @@
       "magnetometer": "granted",
       "midi": "prompt",
       "background-fetch": "granted",
-      "nfc": "prompt",
       "screen-wake-lock": "granted",
       "idle-detection": "prompt",
       "display-capture": "prompt",
-      "storage-access": "granted",
-      "ambient-light-sensor": "unsupported",
-      "window-placement": "unsupported"
+      "storage-access": "granted"
     },
-    "speechVoices": [],
+    "speechVoices": [
+      {
+        "name": "Google Deutsch",
+        "lang": "de-DE",
+        "local": false,
+        "isDefault": true
+      },
+      {
+        "name": "Google US English",
+        "lang": "en-US",
+        "local": false,
+        "isDefault": false
+      },
+      {
+        "name": "Google UK English Female",
+        "lang": "en-GB",
+        "local": false,
+        "isDefault": false
+      },
+      {
+        "name": "Google UK English Male",
+        "lang": "en-GB",
+        "local": false,
+        "isDefault": false
+      },
+      {
+        "name": "Google espaÃ±ol",
+        "lang": "es-ES",
+        "local": false,
+        "isDefault": false
+      },
+      {
+        "name": "Google espaÃ±ol de Estados Unidos",
+        "lang": "es-US",
+        "local": false,
+        "isDefault": false
+      },
+      {
+        "name": "Google franÃ§ais",
+        "lang": "fr-FR",
+        "local": false,
+        "isDefault": false
+      },
+      {
+        "name": "Google à¤¹à¤¿à¤¨à¥à¤¦à¥",
+        "lang": "hi-IN",
+        "local": false,
+        "isDefault": false
+      },
+      {
+        "name": "Google Bahasa Indonesia",
+        "lang": "id-ID",
+        "local": false,
+        "isDefault": false
+      },
+      {
+        "name": "Google italiano",
+        "lang": "it-IT",
+        "local": false,
+        "isDefault": false
+      },
+      {
+        "name": "Google æ¥æ¬èª",
+        "lang": "ja-JP",
+        "local": false,
+        "isDefault": false
+      },
+      {
+        "name": "Google íêµ­ì",
+        "lang": "ko-KR",
+        "local": false,
+        "isDefault": false
+      },
+      {
+        "name": "Google Nederlands",
+        "lang": "nl-NL",
+        "local": false,
+        "isDefault": false
+      },
+      {
+        "name": "Google polski",
+        "lang": "pl-PL",
+        "local": false,
+        "isDefault": false
+      },
+      {
+        "name": "Google portuguÃªs do Brasil",
+        "lang": "pt-BR",
+        "local": false,
+        "isDefault": false
+      },
+      {
+        "name": "Google ÑÑÑÑÐºÐ¸Ð¹",
+        "lang": "ru-RU",
+        "local": false,
+        "isDefault": false
+      },
+      {
+        "name": "GoogleÂ æ®éè¯ï¼ä¸­å½å¤§éï¼",
+        "lang": "zh-CN",
+        "local": false,
+        "isDefault": false
+      },
+      {
+        "name": "GoogleÂ ç²¤èªï¼é¦æ¸¯ï¼",
+        "lang": "zh-HK",
+        "local": false,
+        "isDefault": false
+      },
+      {
+        "name": "Google åèªï¼èºç£ï¼",
+        "lang": "zh-TW",
+        "local": false,
+        "isDefault": false
+      }
+    ],
     "document": {
       "characterSet": "UTF-8",
       "contentType": "text/html",
@@ -492,22 +581,22 @@
         0.1
       ],
       "navigationTiming": {
-        "type": "reload",
+        "type": "navigate",
         "redirectCount": 0,
-        "domInteractive": 432,
-        "domContentLoaded": 433,
-        "loadEvent": 433,
-        "ttfb": 347,
-        "transferSize": 52045,
-        "encodedBodySize": 51745
+        "domInteractive": 301,
+        "domContentLoaded": 303,
+        "loadEvent": 304,
+        "ttfb": 190,
+        "transferSize": 52057,
+        "encodedBodySize": 51757
       },
       "memory": {
-        "jsHeapSizeLimit": 1130000000,
-        "totalJSHeapSize": 10000000,
-        "usedJSHeapSize": 10000000
+        "jsHeapSizeLimit": 4294967296,
+        "totalJSHeapSize": 31130856,
+        "usedJSHeapSize": 29895812
       },
-      "timeOrigin": 1773122913591.5,
-      "now": 4257.5
+      "timeOrigin": 1773138530824.6,
+      "now": 7566.699999999953
     },
     "stackTrace": {
       "engine": "V8(Chrome/Node)",
@@ -564,28 +653,28 @@
       "backgroundColor": "rgba(0, 0, 0, 0)",
       "lineHeight": "normal",
       "boxSizing": "border-box",
-      "nativeScrollbarWidth": 0
+      "nativeScrollbarWidth": 15
     },
     "cpu": {
-      "hardwareConcurrency": 8,
+      "hardwareConcurrency": 4,
       "deviceMemory": 8,
       "wasm_supported": true,
       "wasm_simd": true,
       "wasm_threads": false,
       "wasm_bulk_memory": true,
       "wasm_sat_float": false,
-      "estimated_arch": "ARM64_NEON"
+      "estimated_arch": "x86_64_with_SIMD"
     },
     "architecture": {
       "byte": -1,
       "method": "int8_probe",
       "float32Byte0": 0,
       "wasmMemRead": "error",
-      "uaDataArch": null,
-      "uaDataBitness": null,
-      "uaDataPlatform": "Android",
-      "uaDataPlatformVersion": "11.0.0",
-      "uaDataModel": "ONEPLUS A6010"
+      "uaDataArch": "x86",
+      "uaDataBitness": "64",
+      "uaDataPlatform": "Linux",
+      "uaDataPlatformVersion": null,
+      "uaDataModel": null
     },
     "refreshRate": {
       "measured_fps": 60,
@@ -596,7 +685,7 @@
       "supported": true,
       "codecs": {
         "h264": "supported",
-        "h265": "supported",
+        "h265": "unsupported",
         "vp8": "supported",
         "vp9": "supported",
         "av1": "supported"
@@ -604,10 +693,10 @@
     },
     "behavioral": {
       "mouse": {
-        "sampleCount": 10,
-        "avgVelocity": 0.0785,
-        "maxVelocity": 0.1339,
-        "angleVariance": 180
+        "sampleCount": 11,
+        "avgVelocity": 2.1273,
+        "maxVelocity": 9.6359,
+        "angleVariance": 351.87
       },
       "keyboard": null,
       "scroll": {
@@ -626,115 +715,39 @@
       },
       "sensors": {
         "motion": {
-          "x": 0,
-          "y": 0,
-          "z": -0.1,
-          "gx": -0.8,
-          "gy": 8.6,
-          "gz": 4.5,
+          "x": null,
+          "y": null,
+          "z": null,
+          "gx": null,
+          "gy": null,
+          "gz": null,
           "interval": 16
         },
         "orientation": {
-          "alpha": 0,
-          "beta": 61.5,
-          "gamma": 9.200000000000001,
+          "alpha": null,
+          "beta": null,
+          "gamma": null,
           "absolute": false
         }
       },
-      "sessionDuration": 4255
+      "sessionDuration": 7335
     },
     "fontPreferences": {
-      "default": 455.95556640625,
-      "apple": 455.95556640625,
-      "sans": 455.95556640625,
-      "serif": 498.6333312988281,
-      "mono": 377.8166809082031,
-      "system": 455.95556640625,
-      "min": 9.449999809265137
+      "default": 431.84375,
+      "apple": 413.375,
+      "sans": 431.84375,
+      "serif": 413.375,
+      "mono": 374.46875,
+      "system": 507.59375,
+      "min": 9
     },
     "webglPrecisions": {
-      "contextAttributes": {
-        "alpha": true,
-        "antialias": true,
-        "depth": true,
-        "desynchronized": false,
-        "failIfMajorPerformanceCaveat": false,
-        "powerPreference": "default",
-        "premultipliedAlpha": true,
-        "preserveDrawingBuffer": false,
-        "stencil": false,
-        "xrCompatible": false
-      },
-      "contextAttributesHash": "13f1d07c",
-      "shaderPrecisions": {
-        "VERTEX_LOW_FLOAT": {
-          "rangeMin": 127,
-          "rangeMax": 127,
-          "precision": 23
-        },
-        "VERTEX_MEDIUM_FLOAT": {
-          "rangeMin": 127,
-          "rangeMax": 127,
-          "precision": 23
-        },
-        "VERTEX_HIGH_FLOAT": {
-          "rangeMin": 127,
-          "rangeMax": 127,
-          "precision": 23
-        },
-        "VERTEX_LOW_INT": {
-          "rangeMin": 31,
-          "rangeMax": 30,
-          "precision": 0
-        },
-        "VERTEX_MEDIUM_INT": {
-          "rangeMin": 31,
-          "rangeMax": 30,
-          "precision": 0
-        },
-        "VERTEX_HIGH_INT": {
-          "rangeMin": 31,
-          "rangeMax": 30,
-          "precision": 0
-        },
-        "FRAGMENT_LOW_FLOAT": {
-          "rangeMin": 127,
-          "rangeMax": 127,
-          "precision": 23
-        },
-        "FRAGMENT_MEDIUM_FLOAT": {
-          "rangeMin": 127,
-          "rangeMax": 127,
-          "precision": 23
-        },
-        "FRAGMENT_HIGH_FLOAT": {
-          "rangeMin": 127,
-          "rangeMax": 127,
-          "precision": 23
-        },
-        "FRAGMENT_LOW_INT": {
-          "rangeMin": 31,
-          "rangeMax": 30,
-          "precision": 0
-        },
-        "FRAGMENT_MEDIUM_INT": {
-          "rangeMin": 31,
-          "rangeMax": 30,
-          "precision": 0
-        },
-        "FRAGMENT_HIGH_INT": {
-          "rangeMin": 31,
-          "rangeMax": 30,
-          "precision": 0
-        }
-      },
-      "shaderPrecisionsHash": "386364c0",
-      "extensionPresenceHash": "46f092ef"
+      "supported": false
     },
     "audioLatency": {
-      "baseLatency": 0.003,
+      "baseLatency": 0.01,
       "outputLatency": 0,
-      "sampleRate": 48000,
+      "sampleRate": 44100,
       "state": "suspended",
       "maxChannelCount": 2,
       "channelCount": 2,
@@ -772,24 +785,24 @@
       }
     },
     "emojiBoundingBox": {
-      "width": 159.711,
-      "height": 150.044,
+      "width": 159.719,
+      "height": 150,
       "top": -9999,
-      "bottom": -9848.956,
+      "bottom": -9849,
       "left": -9999,
-      "right": -9839.289
+      "right": -9839.281
     },
     "mathmlBoundingBox": {
-      "width": 29.222,
-      "height": 17.978,
+      "width": 33.109,
+      "height": 18,
       "supported": true
     },
     "screenFrame": {
-      "top": 0,
-      "left": 0,
-      "right": 0,
-      "bottom": 0,
-      "availTop": null,
+      "top": 100,
+      "left": 100,
+      "right": 684,
+      "bottom": 202,
+      "availTop": 27,
       "availLeft": null
     },
     "colorProfile": {
@@ -822,13 +835,13 @@
           "version": "145"
         }
       ],
-      "uaData_mobile": true,
-      "uaData_platform": "Android",
+      "uaData_mobile": false,
+      "uaData_platform": "Linux",
       "privateClickMeasurement": false,
       "webkitMessageHandlers": null,
       "connection_saveData": false,
-      "mimeTypesLength": 0,
-      "pluginsLength": 0
+      "mimeTypesLength": 2,
+      "pluginsLength": 5
     },
     "incognito": {
       "isPrivate": false,
@@ -836,9 +849,9 @@
       "confidence": "low"
     },
     "tampering": {
-      "anomalyScore": 30,
+      "anomalyScore": 15,
       "signals": [
-        "chrome_no_plugins",
+        "no_chrome_runtime",
         "toString_error"
       ],
       "webdriver": false,
@@ -848,28 +861,19 @@
     },
     "mathHash": "100ac6dd",
     "webglExtra": {
-      "unsupportedExtensions": [
-        "EXT_color_buffer_float",
-        "EXT_disjoint_timer_query_webgl2",
-        "OES_draw_buffers_indexed",
-        "WEBGL_clip_cull_distance",
-        "WEBGL_compressed_texture_atc",
-        "WEBKIT_WEBGL_compressed_texture_pvrtc"
-      ],
-      "unsupportedCount": 6,
-      "allParametersHash": "21f50376"
+      "supported": false
     },
     "dateTimeLocale": {
-      "numberFormatLocale": "en-GB",
+      "numberFormatLocale": "en-US",
       "numberingSystem": "latn",
       "formattedTestNumber": "1,234,567.89",
-      "dateTimeLocale": "en-GB",
+      "dateTimeLocale": "en-US",
       "dateTimeCalendar": "gregory",
-      "dateTimeTimeZone": "Asia/Calcutta",
-      "relativeTimeLocale": "en-GB",
-      "collatorLocale": "en-GB",
-      "pluralRulesLocale": "en-GB",
-      "localeHash": "32e75347"
+      "dateTimeTimeZone": "UTC",
+      "relativeTimeLocale": "en-US",
+      "collatorLocale": "en-US",
+      "pluralRulesLocale": "en-US",
+      "localeHash": "2ebe2fc1"
     },
     "multiMonitor": {
       "isExtended": false,
@@ -901,12 +905,12 @@
         "video/mp4; codecs=\"avc1.42E01E\"": {
           "supported": true,
           "smooth": true,
-          "powerEfficient": true
+          "powerEfficient": false
         },
         "video/webm; codecs=\"vp09.00.10.08\"": {
           "supported": true,
           "smooth": true,
-          "powerEfficient": true
+          "powerEfficient": false
         },
         "video/mp4; codecs=\"av01.0.05M.08\"": {
           "supported": true,
@@ -929,6 +933,36 @@
           "sdpFmtpLine": null
         },
         {
+          "mimeType": "video/H264",
+          "clockRate": 90000,
+          "sdpFmtpLine": "level-asymmetry-allowed=1;packetization-mode=1;profile-level-id=42001f"
+        },
+        {
+          "mimeType": "video/H264",
+          "clockRate": 90000,
+          "sdpFmtpLine": "level-asymmetry-allowed=1;packetization-mode=0;profile-level-id=42001f"
+        },
+        {
+          "mimeType": "video/H264",
+          "clockRate": 90000,
+          "sdpFmtpLine": "level-asymmetry-allowed=1;packetization-mode=1;profile-level-id=42e01f"
+        },
+        {
+          "mimeType": "video/H264",
+          "clockRate": 90000,
+          "sdpFmtpLine": "level-asymmetry-allowed=1;packetization-mode=0;profile-level-id=42e01f"
+        },
+        {
+          "mimeType": "video/H264",
+          "clockRate": 90000,
+          "sdpFmtpLine": "level-asymmetry-allowed=1;packetization-mode=1;profile-level-id=4d001f"
+        },
+        {
+          "mimeType": "video/H264",
+          "clockRate": 90000,
+          "sdpFmtpLine": "level-asymmetry-allowed=1;packetization-mode=0;profile-level-id=4d001f"
+        },
+        {
           "mimeType": "video/AV1",
           "clockRate": 90000,
           "sdpFmtpLine": "level-idx=5;profile=0;tier=0"
@@ -939,29 +973,9 @@
           "sdpFmtpLine": "profile-id=0"
         },
         {
-          "mimeType": "video/H264",
+          "mimeType": "video/VP9",
           "clockRate": 90000,
-          "sdpFmtpLine": "level-asymmetry-allowed=1;packetization-mode=1;profile-level-id=42001f"
-        },
-        {
-          "mimeType": "video/H264",
-          "clockRate": 90000,
-          "sdpFmtpLine": "level-asymmetry-allowed=1;packetization-mode=1;profile-level-id=42e01f"
-        },
-        {
-          "mimeType": "video/H264",
-          "clockRate": 90000,
-          "sdpFmtpLine": "level-asymmetry-allowed=1;packetization-mode=1;profile-level-id=4d001f"
-        },
-        {
-          "mimeType": "video/H264",
-          "clockRate": 90000,
-          "sdpFmtpLine": "level-asymmetry-allowed=1;packetization-mode=1;profile-level-id=64001f"
-        },
-        {
-          "mimeType": "video/H265",
-          "clockRate": 90000,
-          "sdpFmtpLine": "level-id=150;profile-id=1;tier-flag=0;tx-mode=SRST"
+          "sdpFmtpLine": "profile-id=2"
         },
         {
           "mimeType": "video/red",
@@ -1016,7 +1030,7 @@
           "channels": 1
         }
       ],
-      "videoCount": 11,
+      "videoCount": 13,
       "audioCount": 8
     },
     "perfObserverTypes": {
@@ -1047,10 +1061,11 @@
         "cross-origin-isolated",
         "screen-wake-lock",
         "on-device-speech-recognition",
+        "translator",
         "publickey-credentials-get",
         "shared-storage-select-url",
         "ch-ua-arch",
-        "bluetooth",
+        "compute-pressure",
         "ch-prefers-reduced-transparency",
         "deferred-fetch",
         "usb",
@@ -1068,6 +1083,7 @@
         "ch-ect",
         "autoplay",
         "camera",
+        "language-detector",
         "private-state-token-issuance",
         "digital-credentials-get",
         "accelerometer",
@@ -1076,6 +1092,8 @@
         "private-aggregation",
         "interest-cohort",
         "ch-viewport-height",
+        "captured-surface-control",
+        "local-fonts",
         "ch-ua-platform",
         "midi",
         "ch-ua-full-version",
@@ -1106,6 +1124,8 @@
         "fullscreen",
         "identity-credentials-get",
         "private-state-token-redemption",
+        "hid",
+        "summarizer",
         "ch-ua-bitness",
         "storage-access",
         "sync-xhr",
@@ -1117,14 +1137,14 @@
         "clipboard-write",
         "microphone"
       ],
-      "allowedCount": 74,
+      "allowedCount": 80,
       "featureStates": {
         "camera": true,
         "microphone": true,
         "geolocation": true,
         "payment": true,
         "usb": true,
-        "bluetooth": true,
+        "bluetooth": false,
         "accelerometer": true,
         "gyroscope": true,
         "magnetometer": true,
@@ -1155,7 +1175,7 @@
       "schedulerPostTask": true,
       "taskController": true,
       "idleDetector": true,
-      "documentPiP": false,
+      "documentPiP": true,
       "storageManager": true,
       "fileSystemAccess": true,
       "accessHandle": true,
@@ -1168,13 +1188,13 @@
       "keyboardAPI": true,
       "presentationAPI": true,
       "midiAccess": true,
-      "digitalGoods": true,
+      "digitalGoods": false,
       "userActivation": true,
       "windowControlsOverlay": true,
       "cookieStore": true,
       "backgroundFetch": true,
       "periodicSync": true,
-      "contentIndex": true,
+      "contentIndex": false,
       "paymentHandler": false,
       "canvasRoundRect": true,
       "canvasReset": true,
@@ -1183,13 +1203,13 @@
       "fontFaceSet": true,
       "cssTypedOM": true,
       "cssLayoutWorklet": false,
-      "eyeDropper": false,
+      "eyeDropper": true,
       "getScreenDetails": true,
       "virtualKeyboard": true,
       "handwriting": false,
       "ink": true,
       "serial": true,
-      "hid": false,
+      "hid": true,
       "userAgentData": true
     },
     "userActivation": {
@@ -1199,59 +1219,59 @@
     },
     "networkExtended": {
       "effectiveType": "4g",
-      "downlink": 1.55,
+      "downlink": 10,
       "downlinkMax": null,
-      "rtt": 50,
+      "rtt": null,
       "saveData": false,
-      "type": "wifi",
+      "type": null,
       "onchange": true
     },
     "eventCounts": {
       "supported": true,
       "counts": {
-        "auxclick": 0,
-        "beforeinput": 0,
-        "click": 0,
-        "compositionend": 0,
-        "compositionstart": 0,
-        "compositionupdate": 0,
-        "contextmenu": 0,
-        "dblclick": 0,
-        "dragend": 0,
-        "dragenter": 0,
-        "dragleave": 0,
-        "dragover": 0,
-        "dragstart": 0,
-        "drop": 0,
-        "gotpointercapture": 0,
+        "pointerdown": 0,
+        "touchend": 0,
         "input": 0,
         "keydown": 0,
-        "keypress": 0,
-        "keyup": 0,
-        "lostpointercapture": 0,
-        "mousedown": 0,
-        "mouseenter": 0,
         "mouseleave": 0,
-        "mouseout": 0,
-        "mouseover": 0,
-        "mouseup": 0,
+        "mouseenter": 0,
+        "drop": 0,
+        "beforeinput": 0,
+        "pointerenter": 5,
+        "dragend": 0,
         "pointercancel": 0,
-        "pointerdown": 0,
-        "pointerenter": 0,
-        "pointerleave": 0,
-        "pointerout": 0,
-        "pointerover": 0,
+        "compositionupdate": 0,
+        "mousedown": 0,
+        "dragleave": 0,
+        "dragover": 0,
+        "mouseup": 0,
+        "pointerover": 4,
+        "lostpointercapture": 0,
+        "mouseover": 4,
+        "gotpointercapture": 0,
+        "dblclick": 0,
+        "keyup": 0,
+        "keypress": 0,
         "pointerup": 0,
+        "compositionstart": 0,
+        "auxclick": 0,
+        "dragstart": 0,
+        "touchstart": 0,
+        "compositionend": 0,
+        "pointerout": 3,
+        "dragenter": 0,
         "touchcancel": 0,
-        "touchend": 0,
-        "touchstart": 0
+        "click": 0,
+        "contextmenu": 0,
+        "mouseout": 3,
+        "pointerleave": 2
       },
-      "totalEvents": 0
+      "totalEvents": 21
     },
     "uaHighEntropy": {
       "supported": true,
-      "architecture": null,
-      "bitness": null,
+      "architecture": "x86",
+      "bitness": "64",
       "brands": [
         {
           "brand": "Not:A-Brand",
@@ -1280,15 +1300,15 @@
           "version": "145.0.7632.159"
         }
       ],
-      "mobile": true,
-      "model": "ONEPLUS A6010",
-      "platform": "Android",
-      "platformVersion": "11.0.0",
+      "mobile": null,
+      "model": null,
+      "platform": "Linux",
+      "platformVersion": null,
       "uaFullVersion": "145.0.7632.159"
     },
     "storageInfo": {
       "storageEstimate": {
-        "quota": 147064317542,
+        "quota": 92936513126,
         "usage": 0,
         "usageDetails": []
       },
@@ -1303,11 +1323,11 @@
       "loadedFamilies": 0
     },
     "hypervisorProbe": {
-      "mean_ms": 0.015,
-      "stdDev_ms": 0.0357,
+      "mean_ms": 0.01,
+      "stdDev_ms": 0.03,
       "min_ms": 0,
       "max_ms": 0.1,
-      "cv_percent": 238.05,
+      "cv_percent": 300,
       "possibleVM": true
     },
     "memoryPattern": {
@@ -1323,53 +1343,51 @@
           "pages": 10,
           "sizeKB": 640,
           "allocMs": 0,
-          "touchMs": 0.1
+          "touchMs": 0
         },
         {
           "pages": 50,
           "sizeKB": 3200,
           "allocMs": 0,
-          "touchMs": 0
+          "touchMs": 0.3
         },
         {
           "pages": 100,
           "sizeKB": 6400,
-          "allocMs": 0,
-          "touchMs": 0
+          "allocMs": 0.1,
+          "touchMs": 0.2
         },
         {
           "pages": 256,
           "sizeKB": 16384,
           "allocMs": 0,
-          "touchMs": 0
+          "touchMs": 0.6
         }
       ],
-      "patternHash": "2ed65e02"
+      "patternHash": "60fdd3f"
     },
     "fontsByCSS": {
       "detected": [
         "Arial",
-        "Georgia",
         "Helvetica",
-        "Verdana",
         "Times New Roman",
         "Courier New",
-        "Baskerville"
+        "Lato"
       ],
-      "count": 7,
+      "count": 5,
       "method": "css_offsetWidth"
     },
     "extendedPermissions": {
       "supported": true,
       "permissions": {
-        "window-management": "denied",
         "push": "unsupported",
         "speaker-selection": "unsupported",
-        "local-fonts": "unsupported",
-        "captured-surface-control": "unsupported",
-        "keyboard-lock": "unsupported",
-        "pointer-lock": "unsupported",
-        "fullscreen": "unsupported"
+        "fullscreen": "unsupported",
+        "window-management": "prompt",
+        "local-fonts": "prompt",
+        "captured-surface-control": "prompt",
+        "keyboard-lock": "granted",
+        "pointer-lock": "granted"
       }
     },
     "securityContext": {
@@ -1385,8 +1403,8 @@
     },
     "visualViewport": {
       "supported": true,
-      "width": 384,
-      "height": 699.38,
+      "width": 1126,
+      "height": 681,
       "offsetLeft": 0,
       "offsetTop": 0,
       "pageLeft": 0,
@@ -1470,7 +1488,7 @@
       "adoptedStyleSheets": true,
       "interactionCount": true
     },
-    "audioBaseLatencySimple": 0.003,
+    "audioBaseLatencySimple": 0.01,
     "contrastPreference": 0,
     "monochromeDepth": 0,
     "privateClickMeasurement": false,
@@ -1478,14 +1496,11 @@
       "detected": [
         "Arial",
         "Courier New",
-        "Georgia",
         "Helvetica",
-        "Times New Roman",
-        "Verdana",
-        "Monaco"
+        "Times New Roman"
       ],
-      "count": 7,
-      "hash": "7ac74e34",
+      "count": 4,
+      "hash": "123d3df0",
       "testedSubset": [
         "Arial Unicode MS",
         "Gill Sans",
@@ -1506,19 +1521,19 @@
     },
     "invertedColors": false,
     "touchSupport": {
-      "maxTouchPoints": 5,
+      "maxTouchPoints": 0,
       "touchEvent": true,
-      "touchStart": true
+      "touchStart": false
     },
     "screenResolution": [
-      832,
-      384
+      1080,
+      1920
     ],
     "screenFrameArray": [
-      0,
-      0,
-      0,
-      0
+      100,
+      684,
+      202,
+      100
     ],
     "reducedTransparency": false,
     "reducedMotion": false,
@@ -1551,11 +1566,11 @@
         "textBBox": {
           "x": 10,
           "y": 135,
-          "width": 79.84,
-          "height": 18.5
+          "width": 82.84,
+          "height": 19
         }
       },
-      "hash": "76be8fb5"
+      "hash": "44c6c1d7"
     },
     "htmlElement": {
       "protoChain": [
@@ -1605,15 +1620,15 @@
         },
         {
           "idx": 1,
-          "width": 100,
-          "height": 50,
+          "width": 100.5,
+          "height": 50.5,
           "x": -9999,
-          "y": -9999
+          "y": -9949
         },
         {
           "idx": 2,
-          "width": 106.0667,
-          "height": 106.0667,
+          "width": 106.0664,
+          "height": 106.0664,
           "x": -10002.0332,
           "y": -9926.5332
         },
@@ -1626,23 +1641,23 @@
         },
         {
           "idx": 4,
-          "width": 87.1889,
-          "height": 17.4222,
+          "width": 86.4219,
+          "height": 18,
           "x": -9999,
           "y": -9798.5
         },
         {
           "idx": 5,
-          "width": 63.2944,
-          "height": 18.8444,
-          "x": -9911.8115,
+          "width": 63.1563,
+          "height": 17,
+          "x": -9912.5781,
           "y": -9798.5
         },
         {
           "idx": 6,
-          "width": 67.4297,
-          "height": 18,
-          "x": -9849.4375,
+          "width": 67.4375,
+          "height": 17,
+          "x": -9849.4219,
           "y": -9798.5
         },
         {
@@ -1650,24 +1665,24 @@
           "width": 100,
           "height": 50,
           "x": -9999,
-          "y": -9999
+          "y": -9779.5
         },
         {
           "idx": 8,
           "width": 120,
           "height": 70,
           "x": -9999,
-          "y": -9728.9443
+          "y": -9729.5
         },
         {
           "idx": 9,
           "width": 100,
           "height": 50,
-          "x": -9999,
-          "y": -9999
+          "x": -9989,
+          "y": -9649.5
         }
       ],
-      "hash": "1193dae2"
+      "hash": "76558221"
     },
     "contentWindow": {
       "features": {
@@ -1763,10 +1778,10 @@
           "font": "Arial",
           "size": 12,
           "width": 347.0566,
-          "actualBoundingBoxAscent": 9.3809,
-          "actualBoundingBoxDescent": 2.5254,
-          "actualBoundingBoxLeft": -0.2813,
-          "actualBoundingBoxRight": 346.3184,
+          "actualBoundingBoxAscent": 9,
+          "actualBoundingBoxDescent": 3,
+          "actualBoundingBoxLeft": null,
+          "actualBoundingBoxRight": 347.3867,
           "fontBoundingBoxAscent": 11,
           "fontBoundingBoxDescent": 3
         },
@@ -1774,10 +1789,10 @@
           "font": "Arial",
           "size": 16,
           "width": 462.7422,
-          "actualBoundingBoxAscent": 12.5078,
-          "actualBoundingBoxDescent": 3.3672,
-          "actualBoundingBoxLeft": -0.375,
-          "actualBoundingBoxRight": 461.7578,
+          "actualBoundingBoxAscent": 12,
+          "actualBoundingBoxDescent": 3,
+          "actualBoundingBoxLeft": null,
+          "actualBoundingBoxRight": 462.5156,
           "fontBoundingBoxAscent": 14,
           "fontBoundingBoxDescent": 3
         },
@@ -1785,10 +1800,10 @@
           "font": "Arial",
           "size": 24,
           "width": 694.1133,
-          "actualBoundingBoxAscent": 18.7617,
-          "actualBoundingBoxDescent": 5.0508,
-          "actualBoundingBoxLeft": -0.5625,
-          "actualBoundingBoxRight": 692.6367,
+          "actualBoundingBoxAscent": 17,
+          "actualBoundingBoxDescent": 5,
+          "actualBoundingBoxLeft": null,
+          "actualBoundingBoxRight": 693.7734,
           "fontBoundingBoxAscent": 22,
           "fontBoundingBoxDescent": 5
         },
@@ -1796,10 +1811,10 @@
           "font": "Times New Roman",
           "size": 12,
           "width": 318.3281,
-          "actualBoundingBoxAscent": 8.6133,
-          "actualBoundingBoxDescent": 2.5898,
-          "actualBoundingBoxLeft": -0.3633,
-          "actualBoundingBoxRight": 317.9121,
+          "actualBoundingBoxAscent": 10,
+          "actualBoundingBoxDescent": 3,
+          "actualBoundingBoxLeft": null,
+          "actualBoundingBoxRight": 318.332,
           "fontBoundingBoxAscent": 11,
           "fontBoundingBoxDescent": 3
         },
@@ -1807,10 +1822,10 @@
           "font": "Times New Roman",
           "size": 16,
           "width": 424.4375,
-          "actualBoundingBoxAscent": 11.4844,
-          "actualBoundingBoxDescent": 3.4531,
-          "actualBoundingBoxLeft": -0.4844,
-          "actualBoundingBoxRight": 423.8828,
+          "actualBoundingBoxAscent": 13,
+          "actualBoundingBoxDescent": 4,
+          "actualBoundingBoxLeft": null,
+          "actualBoundingBoxRight": 424.1094,
           "fontBoundingBoxAscent": 14,
           "fontBoundingBoxDescent": 3
         },
@@ -1818,10 +1833,10 @@
           "font": "Times New Roman",
           "size": 24,
           "width": 636.6563,
-          "actualBoundingBoxAscent": 17.2266,
-          "actualBoundingBoxDescent": 5.1797,
-          "actualBoundingBoxLeft": -0.7266,
-          "actualBoundingBoxRight": 635.8242,
+          "actualBoundingBoxAscent": 17,
+          "actualBoundingBoxDescent": 5,
+          "actualBoundingBoxLeft": null,
+          "actualBoundingBoxRight": 636.6641,
           "fontBoundingBoxAscent": 21,
           "fontBoundingBoxDescent": 5
         },
@@ -1829,10 +1844,10 @@
           "font": "Courier New",
           "size": 12,
           "width": 424.8691,
-          "actualBoundingBoxAscent": 7.9746,
-          "actualBoundingBoxDescent": 2.2617,
-          "actualBoundingBoxLeft": -0.8379,
-          "actualBoundingBoxRight": 423.7852,
+          "actualBoundingBoxAscent": 9,
+          "actualBoundingBoxDescent": 3,
+          "actualBoundingBoxLeft": null,
+          "actualBoundingBoxRight": 425.668,
           "fontBoundingBoxAscent": 10,
           "fontBoundingBoxDescent": 4
         },
@@ -1840,10 +1855,10 @@
           "font": "Courier New",
           "size": 16,
           "width": 566.4922,
-          "actualBoundingBoxAscent": 10.6328,
-          "actualBoundingBoxDescent": 3.0156,
-          "actualBoundingBoxLeft": -1.1172,
-          "actualBoundingBoxRight": 565.0469,
+          "actualBoundingBoxAscent": 12,
+          "actualBoundingBoxDescent": 3,
+          "actualBoundingBoxLeft": null,
+          "actualBoundingBoxRight": 566.8906,
           "fontBoundingBoxAscent": 13,
           "fontBoundingBoxDescent": 5
         },
@@ -1851,87 +1866,87 @@
           "font": "Courier New",
           "size": 24,
           "width": 849.7383,
-          "actualBoundingBoxAscent": 15.9492,
-          "actualBoundingBoxDescent": 4.5234,
-          "actualBoundingBoxLeft": -1.6758,
-          "actualBoundingBoxRight": 847.5703,
+          "actualBoundingBoxAscent": 18,
+          "actualBoundingBoxDescent": 5,
+          "actualBoundingBoxLeft": null,
+          "actualBoundingBoxRight": 850.3359,
           "fontBoundingBoxAscent": 20,
           "fontBoundingBoxDescent": 7
         },
         {
           "font": "Georgia",
           "size": 12,
-          "width": 343.6289,
-          "actualBoundingBoxAscent": 9.0762,
-          "actualBoundingBoxDescent": 2.6016,
-          "actualBoundingBoxLeft": -0.0879,
-          "actualBoundingBoxRight": 342.9902,
+          "width": 318.3281,
+          "actualBoundingBoxAscent": 10,
+          "actualBoundingBoxDescent": 3,
+          "actualBoundingBoxLeft": null,
+          "actualBoundingBoxRight": 318.332,
           "fontBoundingBoxAscent": 11,
           "fontBoundingBoxDescent": 3
         },
         {
           "font": "Georgia",
           "size": 16,
-          "width": 458.1719,
-          "actualBoundingBoxAscent": 12.1016,
-          "actualBoundingBoxDescent": 3.4688,
-          "actualBoundingBoxLeft": -0.1172,
-          "actualBoundingBoxRight": 457.3203,
-          "fontBoundingBoxAscent": 15,
-          "fontBoundingBoxDescent": 4
+          "width": 424.4375,
+          "actualBoundingBoxAscent": 13,
+          "actualBoundingBoxDescent": 4,
+          "actualBoundingBoxLeft": null,
+          "actualBoundingBoxRight": 424.1094,
+          "fontBoundingBoxAscent": 14,
+          "fontBoundingBoxDescent": 3
         },
         {
           "font": "Georgia",
           "size": 24,
-          "width": 687.2578,
-          "actualBoundingBoxAscent": 18.1523,
-          "actualBoundingBoxDescent": 5.2031,
-          "actualBoundingBoxLeft": -0.1758,
-          "actualBoundingBoxRight": 685.9805,
-          "fontBoundingBoxAscent": 22,
+          "width": 636.6563,
+          "actualBoundingBoxAscent": 17,
+          "actualBoundingBoxDescent": 5,
+          "actualBoundingBoxLeft": null,
+          "actualBoundingBoxRight": 636.6641,
+          "fontBoundingBoxAscent": 21,
           "fontBoundingBoxDescent": 5
         },
         {
           "font": "Verdana",
           "size": 12,
-          "width": 399.6738,
-          "actualBoundingBoxAscent": 9.2344,
-          "actualBoundingBoxDescent": 2.4785,
+          "width": 318.3281,
+          "actualBoundingBoxAscent": 10,
+          "actualBoundingBoxDescent": 3,
           "actualBoundingBoxLeft": null,
-          "actualBoundingBoxRight": 398.8008,
-          "fontBoundingBoxAscent": 12,
+          "actualBoundingBoxRight": 318.332,
+          "fontBoundingBoxAscent": 11,
           "fontBoundingBoxDescent": 3
         },
         {
           "font": "Verdana",
           "size": 16,
-          "width": 532.8984,
-          "actualBoundingBoxAscent": 12.3125,
-          "actualBoundingBoxDescent": 3.3047,
+          "width": 424.4375,
+          "actualBoundingBoxAscent": 13,
+          "actualBoundingBoxDescent": 4,
           "actualBoundingBoxLeft": null,
-          "actualBoundingBoxRight": 531.7344,
-          "fontBoundingBoxAscent": 16,
+          "actualBoundingBoxRight": 424.1094,
+          "fontBoundingBoxAscent": 14,
           "fontBoundingBoxDescent": 3
         },
         {
           "font": "Verdana",
           "size": 24,
-          "width": 799.3477,
-          "actualBoundingBoxAscent": 18.4688,
-          "actualBoundingBoxDescent": 4.957,
+          "width": 636.6563,
+          "actualBoundingBoxAscent": 17,
+          "actualBoundingBoxDescent": 5,
           "actualBoundingBoxLeft": null,
-          "actualBoundingBoxRight": 797.6016,
-          "fontBoundingBoxAscent": 24,
+          "actualBoundingBoxRight": 636.6641,
+          "fontBoundingBoxAscent": 21,
           "fontBoundingBoxDescent": 5
         },
         {
           "font": "Helvetica",
           "size": 12,
           "width": 347.0566,
-          "actualBoundingBoxAscent": 9.3047,
-          "actualBoundingBoxDescent": 2.6543,
-          "actualBoundingBoxLeft": -0.1934,
-          "actualBoundingBoxRight": 346.6055,
+          "actualBoundingBoxAscent": 9,
+          "actualBoundingBoxDescent": 3,
+          "actualBoundingBoxLeft": null,
+          "actualBoundingBoxRight": 347.3867,
           "fontBoundingBoxAscent": 11,
           "fontBoundingBoxDescent": 3
         },
@@ -1939,27 +1954,27 @@
           "font": "Helvetica",
           "size": 16,
           "width": 462.7422,
-          "actualBoundingBoxAscent": 12.4063,
-          "actualBoundingBoxDescent": 3.5391,
-          "actualBoundingBoxLeft": -0.2578,
-          "actualBoundingBoxRight": 462.1406,
+          "actualBoundingBoxAscent": 12,
+          "actualBoundingBoxDescent": 3,
+          "actualBoundingBoxLeft": null,
+          "actualBoundingBoxRight": 462.5156,
           "fontBoundingBoxAscent": 14,
-          "fontBoundingBoxDescent": 4
+          "fontBoundingBoxDescent": 3
         },
         {
           "font": "Helvetica",
           "size": 24,
           "width": 694.1133,
-          "actualBoundingBoxAscent": 18.6094,
-          "actualBoundingBoxDescent": 5.3086,
-          "actualBoundingBoxLeft": -0.3867,
-          "actualBoundingBoxRight": 693.2109,
+          "actualBoundingBoxAscent": 17,
+          "actualBoundingBoxDescent": 5,
+          "actualBoundingBoxLeft": null,
+          "actualBoundingBoxRight": 693.7734,
           "fontBoundingBoxAscent": 22,
-          "fontBoundingBoxDescent": 6
+          "fontBoundingBoxDescent": 5
         }
       ],
       "count": 18,
-      "hash": "7c9efa4b"
+      "hash": "640af81c"
     },
     "applePayCapability": {
       "apiAvailable": false,
@@ -2002,22 +2017,22 @@
         "inverted-colors: none": false,
         "forced-colors: active": false,
         "forced-colors: none": true,
-        "any-hover: hover": false,
-        "any-hover: none": true,
-        "hover: hover": false,
-        "hover: none": true,
-        "any-pointer: fine": false,
-        "any-pointer: coarse": true,
+        "any-hover: hover": true,
+        "any-hover: none": false,
+        "hover: hover": true,
+        "hover: none": false,
+        "any-pointer: fine": true,
+        "any-pointer: coarse": false,
         "any-pointer: none": false,
-        "pointer: fine": false,
-        "pointer: coarse": true,
+        "pointer: fine": true,
+        "pointer: coarse": false,
         "pointer: none": false,
         "display-mode: fullscreen": false,
         "display-mode: standalone": false,
         "display-mode: minimal-ui": false,
         "display-mode: browser": true,
-        "orientation: portrait": true,
-        "orientation: landscape": false,
+        "orientation: portrait": false,
+        "orientation: landscape": true,
         "color-gamut: srgb": true,
         "color-gamut: p3": false,
         "color-gamut: rec2020": false,
@@ -2032,75 +2047,11 @@
         "scripting: none": false
       },
       "trueCount": 17,
-      "hash": "2e0e2486"
+      "hash": "7fd6ae30"
     },
     "webgpu": {
       "supported": true,
-      "vendor": "apple",
-      "architecture": "metal-3",
-      "device": null,
-      "description": null,
-      "features": [
-        "depth32float-stencil8",
-        "rg11b10ufloat-renderable",
-        "texture-formats-tier1",
-        "bgra8unorm-storage",
-        "texture-compression-bc",
-        "dual-source-blending",
-        "core-features-and-limits",
-        "float32-filterable",
-        "indirect-first-instance",
-        "texture-compression-astc-sliced-3d",
-        "float32-blendable",
-        "texture-compression-astc",
-        "texture-compression-etc2",
-        "depth-clip-control",
-        "texture-compression-bc-sliced-3d",
-        "timestamp-query",
-        "shader-f16",
-        "texture-formats-tier2",
-        "clip-distances",
-        "primitive-index",
-        "texture-component-swizzle",
-        "subgroups"
-      ],
-      "featureCount": 22,
-      "featureHash": "1ea46d8f",
-      "limits": {
-        "maxTextureDimension1D": 16384,
-        "maxTextureDimension2D": 16384,
-        "maxTextureDimension3D": 2048,
-        "maxTextureArrayLayers": 2048,
-        "maxBindGroups": 4,
-        "maxBindGroupsPlusVertexBuffers": 24,
-        "maxBindingsPerBindGroup": 1000,
-        "maxDynamicUniformBuffersPerPipelineLayout": 10,
-        "maxDynamicStorageBuffersPerPipelineLayout": 8,
-        "maxSampledTexturesPerShaderStage": 16,
-        "maxSamplersPerShaderStage": 16,
-        "maxStorageBuffersPerShaderStage": 10,
-        "maxStorageTexturesPerShaderStage": 8,
-        "maxUniformBuffersPerShaderStage": 12,
-        "maxUniformBufferBindingSize": 65536,
-        "maxStorageBufferBindingSize": 4294967292,
-        "minUniformBufferOffsetAlignment": 256,
-        "minStorageBufferOffsetAlignment": 256,
-        "maxVertexBuffers": 8,
-        "maxBufferSize": 4294967296,
-        "maxVertexAttributes": 30,
-        "maxVertexBufferArrayStride": 2048,
-        "maxInterStageShaderVariables": 28,
-        "maxColorAttachments": 8,
-        "maxColorAttachmentBytesPerSample": 128,
-        "maxComputeWorkgroupStorageSize": 32768,
-        "maxComputeInvocationsPerWorkgroup": 1024,
-        "maxComputeWorkgroupSizeX": 1024,
-        "maxComputeWorkgroupSizeY": 1024,
-        "maxComputeWorkgroupSizeZ": 64,
-        "maxComputeWorkgroupsPerDimension": 65535
-      },
-      "limitsHash": "76a9a1cb",
-      "isFallback": false
+      "adapter": null
     },
     "genericSensors": {
       "accelerometer": {
@@ -2189,10 +2140,10 @@
         "Slash": "/",
         "Minus": "-",
         "Equal": "=",
-        "IntlBackslash": "§"
+        "IntlBackslash": "<"
       },
       "entryCount": 48,
-      "hash": "4bcfc301"
+      "hash": "6f9454b4"
     },
     "drm": {
       "supported": true,
@@ -2332,7 +2283,7 @@
         "audio/webm;codecs=opus": true,
         "audio/webm;codecs=pcm": true,
         "audio/mp4": true,
-        "audio/mp4;codecs=mp4a.40.2": true,
+        "audio/mp4;codecs=mp4a.40.2": false,
         "audio/mp4;codecs=opus": true,
         "audio/ogg": false,
         "audio/ogg;codecs=opus": false,
@@ -2340,15 +2291,15 @@
         "audio/wav": false,
         "audio/flac": false
       },
-      "supportedCount": 16,
-      "hash": "60f14c44"
+      "supportedCount": 15,
+      "hash": "3626f4c9"
     },
     "bluetooth": {
-      "apiPresent": true,
-      "getAvailability": true,
+      "apiPresent": false,
+      "getAvailability": false,
       "getDevices": false,
-      "requestDevice": true,
-      "available": true
+      "requestDevice": false,
+      "available": null
     },
     "usb": {
       "apiPresent": true,
@@ -2359,9 +2310,10 @@
     },
     "serialHid": {
       "serialApiPresent": true,
-      "hidApiPresent": false,
+      "hidApiPresent": true,
       "serialDeviceCount": 0,
-      "hidDeviceCount": null
+      "hidDeviceCount": 0,
+      "hidDevices": []
     },
     "clipboard": {
       "apiPresent": true,
@@ -2382,26 +2334,27 @@
       }
     },
     "intlExtended": {
-      "listFormatLocale": "en-GB",
+      "listFormatLocale": "en-US",
       "listFormatType": "conjunction",
       "listFormatStyle": "long",
-      "listFormatTest": "A, B and C",
-      "segmenterLocale": "en-GB",
+      "listFormatTest": "A, B, and C",
+      "segmenterLocale": "en-US",
       "segmenterGranularity": "grapheme",
       "displayNamesLocale": "en",
       "displayNamesTest": "French",
-      "durationFormatLocale": "en-GB",
-      "localeBaseName": "en-IN",
+      "durationFormatLocale": "en-US",
+      "localeBaseName": "en-US",
       "localeCalendar": null,
       "localeCollation": null,
       "localeHourCycle": null,
       "localeNumeric": null,
       "localeCaseFirst": null,
-      "localeRegion": "IN",
+      "localeRegion": "US",
       "localeScript": null,
       "textDirection": "ltr",
       "weekFirstDay": 7,
       "weekWeekend": [
+        6,
         7
       ],
       "calendars": 18,
@@ -2424,17 +2377,14 @@
       "supported": true,
       "modes": {
         "inline": true,
-        "immersive-vr": true,
-        "immersive-ar": true
+        "immersive-vr": false,
+        "immersive-ar": false
       }
     },
     "webShare": {
-      "share": true,
-      "canShare": true,
-      "files": true,
-      "text": true,
-      "url": true,
-      "title": true
+      "share": false,
+      "canShare": false,
+      "files": false
     },
     "notification": {
       "supported": true,
@@ -2443,7 +2393,7 @@
       "requiresInteraction": true,
       "body": true,
       "icon": true,
-      "image": false,
+      "image": true,
       "badge": true,
       "vibrate": true,
       "tag": true,
@@ -2471,7 +2421,7 @@
     },
     "screenOrientation": {
       "supported": true,
-      "type": "portrait-primary",
+      "type": "landscape-primary",
       "angle": 0,
       "lockAPI": true,
       "unlockAPI": true
@@ -2499,7 +2449,7 @@
       "video": {
         "video/mp4; codecs=\"avc1.42E01E\"": "probably",
         "video/mp4; codecs=\"avc1.42E01E, mp4a.40.2\"": "probably",
-        "video/mp4; codecs=\"hvc1.1.6.L93.B0\"": "probably",
+        "video/mp4; codecs=\"hvc1.1.6.L93.B0\"": "",
         "video/mp4; codecs=\"av01.0.05M.08\"": "probably",
         "video/webm; codecs=\"vp8\"": "probably",
         "video/webm; codecs=\"vp09.00.10.08\"": "probably",
@@ -2525,8 +2475,8 @@
         "audio/mpeg": "probably",
         "audio/aac": "probably"
       },
-      "supportedCount": 20,
-      "hash": "791a6166"
+      "supportedCount": 19,
+      "hash": "341cc7b9"
     },
     "imageFormats": {
       "cssImageWebp": true,
@@ -2719,7 +2669,7 @@
     },
     "windowProperties": {
       "testedCount": 87,
-      "presentCount": 76,
+      "presentCount": 74,
       "present": [
         "AbortController",
         "AbortSignal",
@@ -2727,20 +2677,17 @@
         "Accelerometer",
         "AudioWorklet",
         "BackgroundFetchManager",
-        "BarcodeDetector",
         "BatteryManager",
         "BeforeInstallPromptEvent",
-        "Bluetooth",
-        "BluetoothDevice",
-        "BluetoothRemoteGATTCharacteristic",
         "CSSLayerBlockRule",
         "CSSPropertyRule",
         "CompressionStream",
-        "ContentIndex",
         "CookieChangeEvent",
         "CookieStore",
         "DecompressionStream",
         "DeviceMotionEventAcceleration",
+        "DocumentPictureInPicture",
+        "EyeDropper",
         "FileSystemWritableFileStream",
         "GravitySensor",
         "Gyroscope",
@@ -2774,6 +2721,7 @@
         "Scheduler",
         "Serial",
         "SerialPort",
+        "SharedWorker",
         "SpeechRecognition",
         "SpeechSynthesis",
         "StorageManager",
@@ -2798,7 +2746,7 @@
         "XRSession",
         "XRSystem"
       ],
-      "hash": "549b88c2"
+      "hash": "1fd1ae70"
     },
     "webSocket": {
       "supported": true,
@@ -2824,5 +2772,5 @@
       "supported": true
     }
   },
-  "generated": "2026-03-10T07:10:08+00:00"
+  "generated": "2026-03-10T10:28:58+00:00"
 }
