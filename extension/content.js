@@ -1817,32 +1817,26 @@ const EMBEDDED_DEFAULT_PROFILE = {"server":{"ip":"2405:f600:8:e0a9:985c:f5c3:340
     return fakeContext;
   }
   
-  // Check if we have valid WebGL profile data to spoof
+  // Check if we have valid WebGL profile data to spoof (with specific values)
+  // Note: Even if hasWebGLProfile is false, we still use fake WebGL with defaults
   const hasWebGLProfile = webgl.supported === true || webgl.unmaskedRenderer || webgl.unmaskedVendor;
-  console.log('[FP Spoofer] hasWebGLProfile:', hasWebGLProfile);
+  console.log('[FP Spoofer] hasWebGLProfile:', hasWebGLProfile, 'webgl:', JSON.stringify(webgl));
   
-  // Override getContext to ALWAYS return fake WebGL when we have profile data
-  // This bypasses broken software rendering on headless browsers (GitHub Actions)
+  // ALWAYS return fake WebGL context - bypasses broken software rendering on headless
+  // Real browser WebGL detection fails on GitHub Actions, so we always use fake
   const originalGetContext = HTMLCanvasElement.prototype.getContext;
   HTMLCanvasElement.prototype.getContext = makeNative(function(contextType, contextAttributes) {
     const isWebGLContext = contextType === 'webgl' || contextType === 'experimental-webgl' || contextType === 'webgl2';
     
-    // If we have WebGL profile data, ALWAYS return fake context for consistency
-    // This ensures headless browsers (GitHub Actions) get working fake WebGL instead of broken software rendering
-    if (isWebGLContext && hasWebGLProfile) {
-      console.log('[FP Spoofer] Using fake WebGL context (profile has WebGL data)');
+    // ALWAYS return fake WebGL context for consistency across all environments
+    // This ensures headless browsers (GitHub Actions) get working fake WebGL
+    if (isWebGLContext) {
+      console.log('[FP Spoofer] Using fake WebGL context for:', contextType);
       return createFakeWebGLContext(this, contextType);
     }
     
-    // No profile data - try real context, fallback to fake if that fails too
-    const realContext = originalGetContext.call(this, contextType, contextAttributes);
-    
-    if (!realContext && isWebGLContext) {
-      console.log('[FP Spoofer] Real WebGL unavailable, using fake context');
-      return createFakeWebGLContext(this, contextType);
-    }
-    
-    return realContext;
+    // For non-WebGL contexts (2d, bitmaprenderer, etc.), use real implementation
+    return originalGetContext.call(this, contextType, contextAttributes);
   }, 'getContext');
   
   // Also spoof OffscreenCanvas.getContext for WebGL (fingerprinters use this too)
@@ -1851,23 +1845,15 @@ const EMBEDDED_DEFAULT_PROFILE = {"server":{"ip":"2405:f600:8:e0a9:985c:f5c3:340
     OffscreenCanvas.prototype.getContext = makeNative(function(contextType, contextAttributes) {
       const isWebGLContext = contextType === 'webgl' || contextType === 'experimental-webgl' || contextType === 'webgl2';
       
-      // If we have WebGL profile data, return fake context
-      if (isWebGLContext && hasWebGLProfile) {
+      // ALWAYS return fake WebGL context
+      if (isWebGLContext) {
         console.log('[FP Spoofer] Using fake WebGL context for OffscreenCanvas');
-        // Create a fake canvas-like object for OffscreenCanvas
         const fakeCanvas = { width: this.width || 300, height: this.height || 150 };
         return createFakeWebGLContext(fakeCanvas, contextType);
       }
       
-      // Fallback to real context
-      const realContext = originalOffscreenGetContext.call(this, contextType, contextAttributes);
-      
-      if (!realContext && isWebGLContext) {
-        const fakeCanvas = { width: this.width || 300, height: this.height || 150 };
-        return createFakeWebGLContext(fakeCanvas, contextType);
-      }
-      
-      return realContext;
+      // For non-WebGL contexts, use real implementation
+      return originalOffscreenGetContext.call(this, contextType, contextAttributes);
     }, 'getContext');
   }
   
