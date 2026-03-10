@@ -1,0 +1,52 @@
+version: '3.8'
+
+services:
+  # Android Redroid Container
+  redroid:
+    image: redroid/redroid:11.0.0-latest
+    privileged: true
+    ports:
+      - "5555:5555"     # ADB
+      - "5900:5900"     # VNC (optional)
+    volumes:
+      - android-data:/data
+      - ./profiles:/profiles
+    command:
+      # Default screen config - will be overridden by setup script
+      - androidboot.redroid_width=1080
+      - androidboot.redroid_height=2340
+      - androidboot.redroid_dpi=440
+      - androidboot.redroid_fps=60
+      - androidboot.redroid_gpu_mode=guest
+    healthcheck:
+      test: ["CMD", "getprop", "sys.boot_completed"]
+      interval: 10s
+      timeout: 5s
+      retries: 30
+
+  # Controller - Sets up device and runs automation
+  controller:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      redroid:
+        condition: service_healthy
+    volumes:
+      - ./profiles:/app/profiles
+      - ../original.json:/app/profiles/original.json:ro
+    environment:
+      - PROFILE_PATH=/app/profiles/original.json
+      - REDROID_HOST=redroid
+      - REDROID_ADB_PORT=5555
+      - CHROME_DEBUG_PORT=9222
+      - TARGET_URL=${TARGET_URL:-https://botxbyte.com/fp.php}
+    networks:
+      - fpnet
+
+networks:
+  fpnet:
+    driver: bridge
+
+volumes:
+  android-data:
