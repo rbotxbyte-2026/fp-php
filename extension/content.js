@@ -1778,8 +1778,9 @@ const EMBEDDED_DEFAULT_PROFILE = {"server":{"ip":"2405:f600:8:e0a9:985c:f5c3:340
     return realContext;
   }, 'getContext');
   
-  // Also spoof existing WebGLRenderingContext methods for when real context exists
-  if (webgl.vendor || webgl.renderer || webgl.unmaskedVendor || webgl.unmaskedRenderer) {
+  // ALWAYS spoof WebGLRenderingContext methods - use profile data or good defaults
+  // This ensures WebGL works even when real GPU is unavailable (headless)
+  {
     // Store original getParameter
     const getParameterOriginal = WebGLRenderingContext.prototype.getParameter;
     
@@ -1817,9 +1818,18 @@ const EMBEDDED_DEFAULT_PROFILE = {"server":{"ip":"2405:f600:8:e0a9:985c:f5c3:340
       return getParameterOriginal.call(this, param);
     }, 'getParameter');
 
-    // Also spoof getExtension to return proper debug renderer info
+    // Spoof getExtension to return fake debug_renderer_info when real one unavailable
+    const fakeDebugRendererInfoExt = {
+      UNMASKED_VENDOR_WEBGL: UNMASKED_VENDOR_WEBGL,
+      UNMASKED_RENDERER_WEBGL: UNMASKED_RENDERER_WEBGL
+    };
+    
     const getExtensionOriginal = WebGLRenderingContext.prototype.getExtension;
     WebGLRenderingContext.prototype.getExtension = makeNative(function(name) {
+      // Always return fake debug_renderer_info so unmasked vendor/renderer work
+      if (name === 'WEBGL_debug_renderer_info') {
+        return fakeDebugRendererInfoExt;
+      }
       const ext = getExtensionOriginal.call(this, name);
       return ext;
     }, 'getExtension');
@@ -1851,6 +1861,10 @@ const EMBEDDED_DEFAULT_PROFILE = {"server":{"ip":"2405:f600:8:e0a9:985c:f5c3:340
       
       const getExtension2Original = WebGL2RenderingContext.prototype.getExtension;
       WebGL2RenderingContext.prototype.getExtension = makeNative(function(name) {
+        // Always return fake debug_renderer_info for WebGL2 too
+        if (name === 'WEBGL_debug_renderer_info') {
+          return fakeDebugRendererInfoExt;
+        }
         return getExtension2Original.call(this, name);
       }, 'getExtension');
     }

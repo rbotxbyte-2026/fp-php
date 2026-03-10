@@ -1,10 +1,10 @@
 {
   "server": {
-    "ip": "64.236.177.102",
+    "ip": "52.159.227.9",
     "protocol": "HTTP/1.0",
     "https": true,
     "port": "80",
-    "request_time": "2026-03-10 17:13:34",
+    "request_time": "2026-03-10 17:54:29",
     "user_agent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Mobile Safari/537.36",
     "accept": "*/*",
     "accept_language": "en-IN,en-GB;q=0.9,en-US;q=0.8,en;q=0.7,gu;q=0.6",
@@ -28,12 +28,12 @@
     "ch_ua_bitness": null,
     "ch_ua_full_version_list": null,
     "ch_ua_model": null,
-    "x_forwarded_for": "64.236.177.102, 162.158.62.21",
+    "x_forwarded_for": "52.159.227.9, 172.70.111.165",
     "x_real_ip": null,
     "via": null,
-    "cf_connecting_ip": "64.236.177.102",
+    "cf_connecting_ip": "52.159.227.9",
     "cf_ipcountry": "US",
-    "cf_ray": "9da3f365caf372ea-EWR",
+    "cf_ray": "9da42f53ff9d78eb-EWR",
     "cdn_loop": "cloudflare; loops=1",
     "x_forwarded_proto": "https",
     "ja3_hash": null,
@@ -43,9 +43,9 @@
     "all_headers": {
       "Cf-Visitor": "{\"scheme\":\"https\"}",
       "Cf-Ipcountry": "US",
-      "Cf-Connecting-Ip": "64.236.177.102",
+      "Cf-Connecting-Ip": "52.159.227.9",
       "Cdn-Loop": "cloudflare; loops=1",
-      "Cf-Ray": "9da3f365caf372ea-EWR",
+      "Cf-Ray": "9da42f53ff9d78eb-EWR",
       "Accept-Language": "en-IN,en-GB;q=0.9,en-US;q=0.8,en;q=0.7,gu;q=0.6",
       "Accept-Encoding": "gzip, br",
       "Referer": "https://botxbyte.com/fp.php",
@@ -61,10 +61,10 @@
       "X-Requested-With": "XMLHttpRequest",
       "Sec-Ch-Ua-Platform": "\"Android\"",
       "Priority": "u=1, i",
-      "Content-Length": "41444",
+      "Content-Length": "42929",
       "Connection": "close",
       "X-Forwarded-Proto": "https",
-      "X-Forwarded-For": "64.236.177.102, 162.158.62.21",
+      "X-Forwarded-For": "52.159.227.9, 172.70.111.165",
       "X-Server-Addr": "107.170.48.37",
       "Host": "botxbyte.com",
       "Authorization": ""
@@ -103,7 +103,7 @@
   "client": {
     "navigator": {
       "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Mobile Safari/537.36",
-      "appVersion": "5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Mobile Safari/537.36",
+      "appVersion": "5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36",
       "appName": "Netscape",
       "appCodeName": "Mozilla",
       "product": "Gecko",
@@ -125,7 +125,7 @@
       "hardwareConcurrency": 8,
       "deviceMemory": 8,
       "maxTouchPoints": 5,
-      "pdfViewerEnabled": null,
+      "pdfViewerEnabled": true,
       "onLine": true,
       "javaEnabled": false,
       "cookieStore": true
@@ -133,32 +133,32 @@
     "screen": {
       "width": 384,
       "height": 832,
-      "availWidth": 384,
-      "availHeight": 832,
+      "availWidth": 1920,
+      "availHeight": 1053,
       "colorDepth": 24,
       "pixelDepth": 24,
-      "devicePixelRatio": 2.8125,
-      "orientationType": "portrait-primary",
+      "devicePixelRatio": 1,
+      "orientationType": "landscape-primary",
       "orientationAngle": 0,
       "innerWidth": 384,
       "innerHeight": 699,
       "outerWidth": 384,
-      "outerHeight": 832,
-      "screenX": 0,
-      "screenY": 0,
+      "outerHeight": 778,
+      "screenX": 10,
+      "screenY": 37,
       "pageXOffset": 0,
       "pageYOffset": 0,
       "scrollbarWidth": 0,
       "isFullscreen": false
     },
     "locale": {
-      "timezone": "Asia/Calcutta",
-      "timezoneOffset": -330,
-      "locale": "en-GB",
+      "timezone": "UTC",
+      "timezoneOffset": 0,
+      "locale": "en-US",
       "calendar": "gregory",
       "numberingSystem": "latn",
-      "localeDateString": "10/03/2026",
-      "localeTimeString": "22:43:34"
+      "localeDateString": "3/10/2026",
+      "localeTimeString": "5:54:29 PM"
     },
     "canvas": {
       "hash": "54891a77",
@@ -166,17 +166,17 @@
       "winding_rule": true
     },
     "webgl": {
-      "error": "Cannot set property canvas of #<WebGLRenderingContext> which has only a getter"
+      "supported": false
     },
     "webgl2": {
-      "error": "Cannot set property canvas of #<WebGL2RenderingContext> which has only a getter"
+      "supported": false
     },
     "audio": {
       "sampleRate": 44100,
-      "sampleRateLive": 48000,
-      "hash": "b717709",
-      "fullHash": "578a0aeb",
-      "value": 124.08075626414939,
+      "sampleRateLive": 44100,
+      "hash": "1dd39556",
+      "fullHash": "6f09ce35",
+      "value": 124.04347527516074,
       "maxChannelCount": 2,
       "contextState": "suspended",
       "numberOfChannels": 1,
@@ -206,7 +206,7 @@
       "caches": true,
       "serviceWorker": true,
       "webWorker": true,
-      "sharedWorker": false,
+      "sharedWorker": true,
       "webSocket": true,
       "webRTC": true,
       "fetch": true,
@@ -214,7 +214,7 @@
       "usb": true,
       "nfc": false,
       "serial": true,
-      "hid": false,
+      "hid": true,
       "xr": true,
       "gamepad": true,
       "geolocation": true,
@@ -230,10 +230,10 @@
       "wakeLock": true,
       "pictureInPicture": true,
       "clipboard": true,
-      "share": true,
-      "contacts": true,
+      "share": false,
+      "contacts": false,
       "fileSystem": true,
-      "eyeDropper": false,
+      "eyeDropper": true,
       "pointerEvents": true,
       "touchEvents": true,
       "wasm": true,
@@ -248,23 +248,27 @@
       "requestIdleCallback": true
     },
     "webrtc": {
-      "ips": [],
-      "ipv4": [],
+      "ips": [
+        "52.159.227.9"
+      ],
+      "ipv4": [
+        "52.159.227.9"
+      ],
       "ipv6": []
     },
     "battery": {
-      "charging": false,
-      "chargingTime": null,
-      "dischargingTime": 3,
-      "level": 0.85
+      "charging": true,
+      "chargingTime": 0,
+      "dischargingTime": null,
+      "level": 1
     },
     "mediaDevices": [],
     "network": {
       "effectiveType": "4g",
-      "downlink": 1.55,
-      "rtt": 50,
+      "downlink": 10,
+      "rtt": 0,
       "saveData": false,
-      "type": "wifi"
+      "type": null
     },
     "mediaQueries": {
       "darkMode": false,
@@ -275,11 +279,11 @@
       "highContrast": false,
       "invertedColors": false,
       "hdr": false,
-      "coarsePointer": true,
-      "finePointer": false,
+      "coarsePointer": false,
+      "finePointer": true,
       "noPointer": false,
-      "hover": false,
-      "anyHover": false,
+      "hover": true,
+      "anyHover": true,
       "colorGamutSRGB": true,
       "colorGamutP3": false,
       "colorGamutRec2020": false,
@@ -288,6 +292,9 @@
       "overflowInline": true
     },
     "permissions": {
+      "ambient-light-sensor": "unsupported",
+      "nfc": "unsupported",
+      "window-placement": "unsupported",
       "geolocation": "prompt",
       "notifications": "prompt",
       "camera": "prompt",
@@ -302,21 +309,133 @@
       "magnetometer": "granted",
       "midi": "prompt",
       "background-fetch": "granted",
-      "nfc": "prompt",
       "screen-wake-lock": "granted",
       "idle-detection": "prompt",
       "display-capture": "prompt",
-      "storage-access": "granted",
-      "ambient-light-sensor": "unsupported",
-      "window-placement": "unsupported"
+      "storage-access": "granted"
     },
-    "speechVoices": [],
+    "speechVoices": [
+      {
+        "name": "Google Deutsch",
+        "lang": "de-DE",
+        "local": false,
+        "isDefault": true
+      },
+      {
+        "name": "Google US English",
+        "lang": "en-US",
+        "local": false,
+        "isDefault": false
+      },
+      {
+        "name": "Google UK English Female",
+        "lang": "en-GB",
+        "local": false,
+        "isDefault": false
+      },
+      {
+        "name": "Google UK English Male",
+        "lang": "en-GB",
+        "local": false,
+        "isDefault": false
+      },
+      {
+        "name": "Google espaÃ±ol",
+        "lang": "es-ES",
+        "local": false,
+        "isDefault": false
+      },
+      {
+        "name": "Google espaÃ±ol de Estados Unidos",
+        "lang": "es-US",
+        "local": false,
+        "isDefault": false
+      },
+      {
+        "name": "Google franÃ§ais",
+        "lang": "fr-FR",
+        "local": false,
+        "isDefault": false
+      },
+      {
+        "name": "Google à¤¹à¤¿à¤¨à¥à¤¦à¥",
+        "lang": "hi-IN",
+        "local": false,
+        "isDefault": false
+      },
+      {
+        "name": "Google Bahasa Indonesia",
+        "lang": "id-ID",
+        "local": false,
+        "isDefault": false
+      },
+      {
+        "name": "Google italiano",
+        "lang": "it-IT",
+        "local": false,
+        "isDefault": false
+      },
+      {
+        "name": "Google æ¥æ¬èª",
+        "lang": "ja-JP",
+        "local": false,
+        "isDefault": false
+      },
+      {
+        "name": "Google íêµ­ì",
+        "lang": "ko-KR",
+        "local": false,
+        "isDefault": false
+      },
+      {
+        "name": "Google Nederlands",
+        "lang": "nl-NL",
+        "local": false,
+        "isDefault": false
+      },
+      {
+        "name": "Google polski",
+        "lang": "pl-PL",
+        "local": false,
+        "isDefault": false
+      },
+      {
+        "name": "Google portuguÃªs do Brasil",
+        "lang": "pt-BR",
+        "local": false,
+        "isDefault": false
+      },
+      {
+        "name": "Google ÑÑÑÑÐºÐ¸Ð¹",
+        "lang": "ru-RU",
+        "local": false,
+        "isDefault": false
+      },
+      {
+        "name": "GoogleÂ æ®éè¯ï¼ä¸­å½å¤§éï¼",
+        "lang": "zh-CN",
+        "local": false,
+        "isDefault": false
+      },
+      {
+        "name": "GoogleÂ ç²¤èªï¼é¦æ¸¯ï¼",
+        "lang": "zh-HK",
+        "local": false,
+        "isDefault": false
+      },
+      {
+        "name": "Google åèªï¼èºç£ï¼",
+        "lang": "zh-TW",
+        "local": false,
+        "isDefault": false
+      }
+    ],
     "document": {
       "characterSet": "UTF-8",
       "contentType": "text/html",
       "referrer": "",
       "visibilityState": "visible",
-      "historyLength": 2,
+      "historyLength": 4,
       "cookieCount": 0,
       "domainLookupTime": null,
       "URL": "https://botxbyte.com/fp.php",
@@ -367,20 +486,20 @@
       "navigationTiming": {
         "type": "navigate",
         "redirectCount": 0,
-        "domInteractive": 477,
-        "domContentLoaded": 479,
-        "loadEvent": 480,
-        "ttfb": 145,
+        "domInteractive": 186,
+        "domContentLoaded": 188,
+        "loadEvent": 189,
+        "ttfb": 128,
         "transferSize": 52057,
         "encodedBodySize": 51757
       },
       "memory": {
-        "jsHeapSizeLimit": 1130000000,
-        "totalJSHeapSize": 10000000,
-        "usedJSHeapSize": 10000000
+        "jsHeapSizeLimit": 4294967296,
+        "totalJSHeapSize": 6203708,
+        "usedJSHeapSize": 3590880
       },
-      "timeOrigin": 1773122913591.5,
-      "now": 5705.09999999986
+      "timeOrigin": 1773165261746.4,
+      "now": 7366.79999999993
     },
     "stackTrace": {
       "engine": "V8(Chrome/Node)",
@@ -454,16 +573,16 @@
       "method": "int8_probe",
       "float32Byte0": 0,
       "wasmMemRead": "error",
-      "uaDataArch": null,
-      "uaDataBitness": null,
-      "uaDataPlatform": "Android",
-      "uaDataPlatformVersion": "11.0.0",
-      "uaDataModel": "ONEPLUS A6010"
+      "uaDataArch": "x86",
+      "uaDataBitness": "64",
+      "uaDataPlatform": "Linux",
+      "uaDataPlatformVersion": null,
+      "uaDataModel": null
     },
     "refreshRate": {
       "measured_fps": 60,
       "snapped_hz": 60,
-      "avg_frame_ms": 16.669
+      "avg_frame_ms": 16.661
     },
     "videoDecoder": {
       "supported": true,
@@ -476,7 +595,12 @@
       }
     },
     "behavioral": {
-      "mouse": null,
+      "mouse": {
+        "sampleCount": 40,
+        "avgVelocity": 0.7682,
+        "maxVelocity": 2.4822,
+        "angleVariance": 284.04
+      },
       "keyboard": null,
       "scroll": {
         "eventCount": 0,
@@ -509,24 +633,24 @@
           "absolute": false
         }
       },
-      "sessionDuration": 5698
+      "sessionDuration": 7204
     },
     "fontPreferences": {
-      "default": 455.95556640625,
-      "apple": 455.95556640625,
-      "sans": 455.95556640625,
-      "serif": 498.6333312988281,
-      "mono": 377.8166809082031,
-      "system": 455.95556640625,
-      "min": 9.449999809265137
+      "default": 431.84375,
+      "apple": 413.375,
+      "sans": 431.84375,
+      "serif": 413.375,
+      "mono": 374.46875,
+      "system": 507.59375,
+      "min": 9
     },
     "webglPrecisions": {
-      "error": "Cannot set property canvas of #<WebGLRenderingContext> which has only a getter"
+      "supported": false
     },
     "audioLatency": {
-      "baseLatency": 0.003,
+      "baseLatency": 0.01,
       "outputLatency": 0,
-      "sampleRate": 48000,
+      "sampleRate": 44100,
       "state": "suspended",
       "maxChannelCount": 2,
       "channelCount": 2,
@@ -564,23 +688,23 @@
       }
     },
     "emojiBoundingBox": {
-      "width": 159.711,
-      "height": 150.044,
+      "width": 159.719,
+      "height": 150,
       "top": -9999,
-      "bottom": -9848.956,
+      "bottom": -9849,
       "left": -9999,
-      "right": -9839.289
+      "right": -9839.281
     },
     "mathmlBoundingBox": {
-      "width": 29.222,
-      "height": 17.978,
+      "width": 33.109,
+      "height": 18,
       "supported": true
     },
     "screenFrame": {
-      "top": 0,
-      "left": 0,
+      "top": 37,
+      "left": 10,
       "right": 0,
-      "bottom": 0,
+      "bottom": 17,
       "availTop": null,
       "availLeft": null
     },
@@ -614,8 +738,8 @@
           "version": "145"
         }
       ],
-      "uaData_mobile": true,
-      "uaData_platform": "Android",
+      "uaData_mobile": false,
+      "uaData_platform": "Linux",
       "privateClickMeasurement": false,
       "webkitMessageHandlers": null,
       "connection_saveData": false,
@@ -638,19 +762,19 @@
     },
     "mathHash": "100ac6dd",
     "webglExtra": {
-      "error": "Cannot set property canvas of #<WebGLRenderingContext> which has only a getter"
+      "supported": false
     },
     "dateTimeLocale": {
-      "numberFormatLocale": "en-GB",
+      "numberFormatLocale": "en-US",
       "numberingSystem": "latn",
       "formattedTestNumber": "1,234,567.89",
-      "dateTimeLocale": "en-GB",
+      "dateTimeLocale": "en-US",
       "dateTimeCalendar": "gregory",
-      "dateTimeTimeZone": "Asia/Calcutta",
-      "relativeTimeLocale": "en-GB",
-      "collatorLocale": "en-GB",
-      "pluralRulesLocale": "en-GB",
-      "localeHash": "32e75347"
+      "dateTimeTimeZone": "UTC",
+      "relativeTimeLocale": "en-US",
+      "collatorLocale": "en-US",
+      "pluralRulesLocale": "en-US",
+      "localeHash": "2ebe2fc1"
     },
     "multiMonitor": {
       "isExtended": false,
@@ -710,6 +834,36 @@
           "sdpFmtpLine": null
         },
         {
+          "mimeType": "video/H264",
+          "clockRate": 90000,
+          "sdpFmtpLine": "level-asymmetry-allowed=1;packetization-mode=1;profile-level-id=42001f"
+        },
+        {
+          "mimeType": "video/H264",
+          "clockRate": 90000,
+          "sdpFmtpLine": "level-asymmetry-allowed=1;packetization-mode=0;profile-level-id=42001f"
+        },
+        {
+          "mimeType": "video/H264",
+          "clockRate": 90000,
+          "sdpFmtpLine": "level-asymmetry-allowed=1;packetization-mode=1;profile-level-id=42e01f"
+        },
+        {
+          "mimeType": "video/H264",
+          "clockRate": 90000,
+          "sdpFmtpLine": "level-asymmetry-allowed=1;packetization-mode=0;profile-level-id=42e01f"
+        },
+        {
+          "mimeType": "video/H264",
+          "clockRate": 90000,
+          "sdpFmtpLine": "level-asymmetry-allowed=1;packetization-mode=1;profile-level-id=4d001f"
+        },
+        {
+          "mimeType": "video/H264",
+          "clockRate": 90000,
+          "sdpFmtpLine": "level-asymmetry-allowed=1;packetization-mode=0;profile-level-id=4d001f"
+        },
+        {
           "mimeType": "video/AV1",
           "clockRate": 90000,
           "sdpFmtpLine": "level-idx=5;profile=0;tier=0"
@@ -720,29 +874,9 @@
           "sdpFmtpLine": "profile-id=0"
         },
         {
-          "mimeType": "video/H264",
+          "mimeType": "video/VP9",
           "clockRate": 90000,
-          "sdpFmtpLine": "level-asymmetry-allowed=1;packetization-mode=1;profile-level-id=42001f"
-        },
-        {
-          "mimeType": "video/H264",
-          "clockRate": 90000,
-          "sdpFmtpLine": "level-asymmetry-allowed=1;packetization-mode=1;profile-level-id=42e01f"
-        },
-        {
-          "mimeType": "video/H264",
-          "clockRate": 90000,
-          "sdpFmtpLine": "level-asymmetry-allowed=1;packetization-mode=1;profile-level-id=4d001f"
-        },
-        {
-          "mimeType": "video/H264",
-          "clockRate": 90000,
-          "sdpFmtpLine": "level-asymmetry-allowed=1;packetization-mode=1;profile-level-id=64001f"
-        },
-        {
-          "mimeType": "video/H265",
-          "clockRate": 90000,
-          "sdpFmtpLine": "level-id=150;profile-id=1;tier-flag=0;tx-mode=SRST"
+          "sdpFmtpLine": "profile-id=2"
         },
         {
           "mimeType": "video/red",
@@ -797,7 +931,7 @@
           "channels": 1
         }
       ],
-      "videoCount": 11,
+      "videoCount": 13,
       "audioCount": 8
     },
     "perfObserverTypes": {
@@ -828,10 +962,11 @@
         "cross-origin-isolated",
         "screen-wake-lock",
         "on-device-speech-recognition",
+        "translator",
         "publickey-credentials-get",
         "shared-storage-select-url",
         "ch-ua-arch",
-        "bluetooth",
+        "compute-pressure",
         "ch-prefers-reduced-transparency",
         "deferred-fetch",
         "usb",
@@ -849,6 +984,7 @@
         "ch-ect",
         "autoplay",
         "camera",
+        "language-detector",
         "private-state-token-issuance",
         "digital-credentials-get",
         "accelerometer",
@@ -857,6 +993,8 @@
         "private-aggregation",
         "interest-cohort",
         "ch-viewport-height",
+        "captured-surface-control",
+        "local-fonts",
         "ch-ua-platform",
         "midi",
         "ch-ua-full-version",
@@ -887,6 +1025,8 @@
         "fullscreen",
         "identity-credentials-get",
         "private-state-token-redemption",
+        "hid",
+        "summarizer",
         "ch-ua-bitness",
         "storage-access",
         "sync-xhr",
@@ -898,14 +1038,14 @@
         "clipboard-write",
         "microphone"
       ],
-      "allowedCount": 74,
+      "allowedCount": 80,
       "featureStates": {
         "camera": true,
         "microphone": true,
         "geolocation": true,
         "payment": true,
         "usb": true,
-        "bluetooth": true,
+        "bluetooth": false,
         "accelerometer": true,
         "gyroscope": true,
         "magnetometer": true,
@@ -936,7 +1076,7 @@
       "schedulerPostTask": true,
       "taskController": true,
       "idleDetector": true,
-      "documentPiP": false,
+      "documentPiP": true,
       "storageManager": true,
       "fileSystemAccess": true,
       "accessHandle": true,
@@ -949,13 +1089,13 @@
       "keyboardAPI": true,
       "presentationAPI": true,
       "midiAccess": true,
-      "digitalGoods": true,
+      "digitalGoods": false,
       "userActivation": true,
       "windowControlsOverlay": true,
       "cookieStore": true,
       "backgroundFetch": true,
       "periodicSync": true,
-      "contentIndex": true,
+      "contentIndex": false,
       "paymentHandler": false,
       "canvasRoundRect": true,
       "canvasReset": true,
@@ -964,13 +1104,13 @@
       "fontFaceSet": true,
       "cssTypedOM": true,
       "cssLayoutWorklet": false,
-      "eyeDropper": false,
+      "eyeDropper": true,
       "getScreenDetails": true,
       "virtualKeyboard": true,
       "handwriting": false,
       "ink": true,
       "serial": true,
-      "hid": false,
+      "hid": true,
       "userAgentData": true
     },
     "userActivation": {
@@ -980,11 +1120,11 @@
     },
     "networkExtended": {
       "effectiveType": "4g",
-      "downlink": 1.55,
+      "downlink": 10,
       "downlinkMax": null,
-      "rtt": 50,
+      "rtt": null,
       "saveData": false,
-      "type": "wifi",
+      "type": null,
       "onchange": true
     },
     "eventCounts": {
@@ -998,7 +1138,7 @@
         "mouseenter": 0,
         "drop": 0,
         "beforeinput": 0,
-        "pointerenter": 0,
+        "pointerenter": 7,
         "dragend": 0,
         "pointercancel": 0,
         "compositionupdate": 0,
@@ -1006,9 +1146,9 @@
         "dragleave": 0,
         "dragover": 0,
         "mouseup": 0,
-        "pointerover": 0,
+        "pointerover": 8,
         "lostpointercapture": 0,
-        "mouseover": 0,
+        "mouseover": 8,
         "gotpointercapture": 0,
         "dblclick": 0,
         "keyup": 0,
@@ -1019,20 +1159,20 @@
         "dragstart": 0,
         "touchstart": 0,
         "compositionend": 0,
-        "pointerout": 0,
+        "pointerout": 7,
         "dragenter": 0,
         "touchcancel": 0,
         "click": 0,
         "contextmenu": 0,
-        "mouseout": 0,
-        "pointerleave": 0
+        "mouseout": 7,
+        "pointerleave": 5
       },
-      "totalEvents": 0
+      "totalEvents": 42
     },
     "uaHighEntropy": {
       "supported": true,
-      "architecture": null,
-      "bitness": null,
+      "architecture": "x86",
+      "bitness": "64",
       "brands": [
         {
           "brand": "Not:A-Brand",
@@ -1054,18 +1194,18 @@
         },
         {
           "brand": "Google Chrome",
-          "version": "145.0.7632.159"
+          "version": "145.0.7632.116"
         },
         {
           "brand": "Chromium",
-          "version": "145.0.7632.159"
+          "version": "145.0.7632.116"
         }
       ],
-      "mobile": true,
-      "model": "ONEPLUS A6010",
-      "platform": "Android",
-      "platformVersion": "11.0.0",
-      "uaFullVersion": "145.0.7632.159"
+      "mobile": null,
+      "model": null,
+      "platform": "Linux",
+      "platformVersion": null,
+      "uaFullVersion": "145.0.7632.116"
     },
     "storageInfo": {
       "storageEstimate": {
@@ -1084,11 +1224,11 @@
       "loadedFamilies": 0
     },
     "hypervisorProbe": {
-      "mean_ms": 0.0075,
-      "stdDev_ms": 0.0263,
+      "mean_ms": 0.01,
+      "stdDev_ms": 0.03,
       "min_ms": 0,
       "max_ms": 0.1,
-      "cv_percent": 351.19,
+      "cv_percent": 300,
       "possibleVM": true
     },
     "memoryPattern": {
@@ -1098,12 +1238,12 @@
           "pages": 1,
           "sizeKB": 64,
           "allocMs": 0,
-          "touchMs": 0.1
+          "touchMs": 0
         },
         {
           "pages": 10,
           "sizeKB": 640,
-          "allocMs": 0,
+          "allocMs": 0.1,
           "touchMs": 0
         },
         {
@@ -1122,35 +1262,33 @@
           "pages": 256,
           "sizeKB": 16384,
           "allocMs": 0,
-          "touchMs": 0.2
+          "touchMs": 0.3
         }
       ],
-      "patternHash": "2ed65e02"
+      "patternHash": "21d37fff"
     },
     "fontsByCSS": {
       "detected": [
         "Arial",
-        "Georgia",
         "Helvetica",
-        "Verdana",
         "Times New Roman",
         "Courier New",
-        "Baskerville"
+        "Lato"
       ],
-      "count": 7,
+      "count": 5,
       "method": "css_offsetWidth"
     },
     "extendedPermissions": {
       "supported": true,
       "permissions": {
-        "window-management": "denied",
         "push": "unsupported",
         "speaker-selection": "unsupported",
-        "local-fonts": "unsupported",
-        "captured-surface-control": "unsupported",
-        "keyboard-lock": "unsupported",
-        "pointer-lock": "unsupported",
-        "fullscreen": "unsupported"
+        "fullscreen": "unsupported",
+        "window-management": "prompt",
+        "local-fonts": "prompt",
+        "captured-surface-control": "prompt",
+        "keyboard-lock": "granted",
+        "pointer-lock": "granted"
       }
     },
     "securityContext": {
@@ -1166,8 +1304,8 @@
     },
     "visualViewport": {
       "supported": true,
-      "width": 384,
-      "height": 699.38,
+      "width": 935,
+      "height": 936,
       "offsetLeft": 0,
       "offsetTop": 0,
       "pageLeft": 0,
@@ -1251,7 +1389,7 @@
       "adoptedStyleSheets": true,
       "interactionCount": true
     },
-    "audioBaseLatencySimple": 0.003,
+    "audioBaseLatencySimple": 0.01,
     "contrastPreference": 0,
     "monochromeDepth": 0,
     "privateClickMeasurement": false,
@@ -1286,17 +1424,17 @@
     "touchSupport": {
       "maxTouchPoints": 5,
       "touchEvent": true,
-      "touchStart": true
+      "touchStart": false
     },
     "screenResolution": [
       832,
       384
     ],
     "screenFrameArray": [
+      37,
       0,
-      0,
-      0,
-      0
+      17,
+      10
     ],
     "reducedTransparency": false,
     "reducedMotion": false,
@@ -1383,15 +1521,15 @@
         },
         {
           "idx": 1,
-          "width": 100,
-          "height": 50,
+          "width": 100.5,
+          "height": 50.5,
           "x": -9999,
-          "y": -9999
+          "y": -9949
         },
         {
           "idx": 2,
-          "width": 106.0667,
-          "height": 106.0667,
+          "width": 106.0664,
+          "height": 106.0664,
           "x": -10002.0332,
           "y": -9926.5332
         },
@@ -1404,16 +1542,16 @@
         },
         {
           "idx": 4,
-          "width": 87.1889,
-          "height": 17.4222,
+          "width": 86.4219,
+          "height": 18,
           "x": -9999,
           "y": -9798.5
         },
         {
           "idx": 5,
-          "width": 63.2944,
-          "height": 18.8444,
-          "x": -9911.8115,
+          "width": 63.1563,
+          "height": 17,
+          "x": -9912.5781,
           "y": -9798.5
         },
         {
@@ -1428,24 +1566,24 @@
           "width": 100,
           "height": 50,
           "x": -9999,
-          "y": -9999
+          "y": -9779.5
         },
         {
           "idx": 8,
           "width": 120,
           "height": 70,
           "x": -9999,
-          "y": -9728.9443
+          "y": -9729.5
         },
         {
           "idx": 9,
           "width": 100,
           "height": 50,
-          "x": -9999,
-          "y": -9999
+          "x": -9989,
+          "y": -9649.5
         }
       ],
-      "hash": "47b40f3c"
+      "hash": "76558221"
     },
     "contentWindow": {
       "features": {
@@ -1780,15 +1918,15 @@
         "inverted-colors: none": false,
         "forced-colors: active": false,
         "forced-colors: none": true,
-        "any-hover: hover": false,
-        "any-hover: none": true,
-        "hover: hover": false,
-        "hover: none": true,
-        "any-pointer: fine": false,
-        "any-pointer: coarse": true,
+        "any-hover: hover": true,
+        "any-hover: none": false,
+        "hover: hover": true,
+        "hover: none": false,
+        "any-pointer: fine": true,
+        "any-pointer: coarse": false,
         "any-pointer: none": false,
-        "pointer: fine": false,
-        "pointer: coarse": true,
+        "pointer: fine": true,
+        "pointer: coarse": false,
         "pointer: none": false,
         "display-mode: fullscreen": false,
         "display-mode: standalone": false,
@@ -1810,7 +1948,7 @@
         "scripting: none": false
       },
       "trueCount": 17,
-      "hash": "2e0e2486"
+      "hash": "1c635a2c"
     },
     "webgpu": {
       "supported": true,
@@ -2073,9 +2211,10 @@
     },
     "serialHid": {
       "serialApiPresent": true,
-      "hidApiPresent": false,
+      "hidApiPresent": true,
       "serialDeviceCount": 0,
-      "hidDeviceCount": null
+      "hidDeviceCount": 0,
+      "hidDevices": []
     },
     "clipboard": {
       "apiPresent": true,
@@ -2138,17 +2277,14 @@
       "supported": true,
       "modes": {
         "inline": true,
-        "immersive-vr": true,
-        "immersive-ar": true
+        "immersive-vr": false,
+        "immersive-ar": false
       }
     },
     "webShare": {
-      "share": true,
-      "canShare": true,
-      "files": true,
-      "text": true,
-      "url": true,
-      "title": true
+      "share": false,
+      "canShare": false,
+      "files": false
     },
     "notification": {
       "supported": true,
@@ -2185,7 +2321,7 @@
     },
     "screenOrientation": {
       "supported": true,
-      "type": "portrait-primary",
+      "type": "landscape-primary",
       "angle": 0,
       "lockAPI": true,
       "unlockAPI": true
@@ -2433,7 +2569,7 @@
     },
     "windowProperties": {
       "testedCount": 87,
-      "presentCount": 72,
+      "presentCount": 74,
       "present": [
         "AbortController",
         "AbortSignal",
@@ -2446,11 +2582,12 @@
         "CSSLayerBlockRule",
         "CSSPropertyRule",
         "CompressionStream",
-        "ContentIndex",
         "CookieChangeEvent",
         "CookieStore",
         "DecompressionStream",
         "DeviceMotionEventAcceleration",
+        "DocumentPictureInPicture",
+        "EyeDropper",
         "FileSystemWritableFileStream",
         "GravitySensor",
         "Gyroscope",
@@ -2484,6 +2621,7 @@
         "Scheduler",
         "Serial",
         "SerialPort",
+        "SharedWorker",
         "SpeechRecognition",
         "SpeechSynthesis",
         "StorageManager",
@@ -2508,7 +2646,7 @@
         "XRSession",
         "XRSystem"
       ],
-      "hash": "4083f60d"
+      "hash": "1fd1ae70"
     },
     "webSocket": {
       "supported": true,
@@ -2534,5 +2672,5 @@
       "supported": true
     }
   },
-  "generated": "2026-03-10T17:13:34+00:00"
+  "generated": "2026-03-10T17:54:29+00:00"
 }
