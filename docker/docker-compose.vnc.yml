@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   # Android Redroid Container
   redroid:
@@ -23,43 +21,6 @@ services:
       retries: 30
     networks:
       - fpnet
-
-  # VNC Server using scrcpy-web
-  vnc:
-    image: emptysaucepan/scrcpy-web:latest
-    depends_on:
-      redroid:
-        condition: service_healthy
-    environment:
-      - SCRCPY_SERVER_PORT=5555
-      - SCRCPY_DEVICE_HOST=redroid
-      - SCRCPY_OPTS=--max-size=1080 --bit-rate=2M
-    ports:
-      - "6080:8000"     # noVNC web UI
-    networks:
-      - fpnet
-
-  # Alternative: Simple noVNC + scrcpy setup
-  scrcpy-vnc:
-    image: ghcr.io/neocturne/scrcpy-docker:latest
-    depends_on:
-      redroid:
-        condition: service_healthy
-    environment:
-      - ADB_SERVER_HOST=redroid
-      - ADB_SERVER_PORT=5555
-    command: >
-      sh -c "
-        adb connect redroid:5555 &&
-        adb wait-for-device &&
-        scrcpy --tcpip=redroid:5555 --record=/output/screen.mp4 --no-display
-      "
-    volumes:
-      - ./output:/output
-    networks:
-      - fpnet
-    profiles:
-      - record  # Only start with --profile record
 
   # Controller - Sets up device and runs automation
   controller:

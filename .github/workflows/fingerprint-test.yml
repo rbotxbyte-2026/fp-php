@@ -33,17 +33,17 @@ jobs:
       - name: Copy profile
         run: cp original.json docker/profiles/
 
-      - name: Start Redroid with VNC
+      - name: Start Redroid
         run: |
           cd docker
-          docker compose -f docker-compose.vnc.yml up -d redroid vnc
+          docker compose -f docker-compose.vnc.yml up -d redroid
           
           # Wait for Redroid to boot
           echo "Waiting for Redroid to boot..."
-          timeout 120 bash -c 'until docker exec docker-redroid-1 getprop sys.boot_completed 2>/dev/null | grep -q "1"; do sleep 5; done'
+          timeout 180 bash -c 'until docker exec docker-redroid-1 getprop sys.boot_completed 2>/dev/null | grep -q "1"; do sleep 5; done'
           echo "Redroid booted!"
 
-      - name: Setup ngrok tunnel for VNC
+      - name: Setup ADB tunnel for remote access
         if: ${{ github.event.inputs.keep_alive != '0' }}
         run: |
           # Install ngrok
@@ -54,16 +54,17 @@ jobs:
           # Configure authtoken
           ngrok config add-authtoken $NGROK_AUTHTOKEN
           
-          # Start ngrok with static domain
-          ngrok http 6080 --domain=alverta-unrigid-rylan.ngrok-free.dev --log=stdout > ngrok.log 2>&1 &
+          # Start ngrok tunnel to ADB port
+          ngrok tcp 5555 --log=stdout > ngrok.log 2>&1 &
           sleep 5
           
-          # Static URL
-          VNC_URL="https://alverta-unrigid-rylan.ngrok-free.dev"
+          # Get public URL
+          ADB_URL=$(curl -s http://localhost:4040/api/tunnels | jq -r '.tunnels[0].public_url' | sed 's/tcp:\/\///')
           echo "=========================================="
-          echo "🖥️  VNC Access URL: $VNC_URL"
+          echo "📱 ADB Access: adb connect $ADB_URL"
+          echo "🖥️  Then run: scrcpy"
           echo "=========================================="
-          echo "VNC_URL=$VNC_URL" >> $GITHUB_ENV
+          echo "ADB_URL=$ADB_URL" >> $GITHUB_ENV
         env:
           NGROK_AUTHTOKEN: ${{ secrets.NGROK_AUTHTOKEN }}
 
@@ -87,11 +88,12 @@ jobs:
           path: fingerprint-result.json
         if: always()
 
-      - name: Keep alive for VNC access
+      - name: Keep alive for ADB access
         if: ${{ github.event.inputs.keep_alive != '0' }}
         run: |
           echo "Container running for ${{ github.event.inputs.keep_alive }} minutes"
-          echo "VNC URL: ${{ env.VNC_URL }}"
+          echo "ADB: adb connect ${{ env.ADB_URL }}"
+          echo "Then run: scrcpy"
           sleep $(( ${{ github.event.inputs.keep_alive }} * 60 ))
 
       - name: Cleanup
