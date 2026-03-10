@@ -1401,36 +1401,76 @@ const EMBEDDED_DEFAULT_PROFILE = {"server":{"ip":"2405:f600:8:e0a9:985c:f5c3:340
   }
 
   // ============================================
-  // CANVAS SPOOFING
+  // CANVAS SPOOFING (Using Proxy pattern like Canvas Defender)
   // ============================================
 
-  if (canvas.hash) {
-    const originalToDataURL = HTMLCanvasElement.prototype.toDataURL;
-    const originalToBlob = HTMLCanvasElement.prototype.toBlob;
+  {
+    // Store originals before any modification
     const originalGetImageData = CanvasRenderingContext2D.prototype.getImageData;
-
-    const seed = canvas.hash.split('').reduce((a, b) => a + b.charCodeAt(0), 0);
-
-    function addNoise(data, seed) {
-      for (let i = 0; i < data.length; i += 4) {
-        const noise = ((seed * (i + 1) * 9301 + 49297) % 233280) % 3 - 1;
-        data[i] = Math.max(0, Math.min(255, data[i] + noise));
+    
+    // Generate deterministic noise shifts based on profile hash
+    const canvasHash = canvas.hash || 'default';
+    const seed = canvasHash.split('').reduce((a, b) => a + b.charCodeAt(0), 0);
+    const shift = {
+      r: ((seed * 9301 + 49297) % 233280) % 10 - 5,
+      g: ((seed * 9302 + 49298) % 233280) % 10 - 5,
+      b: ((seed * 9303 + 49299) % 233280) % 10 - 5,
+      a: 0 // Don't modify alpha to avoid transparency issues
+    };
+    
+    // Noisify function - adds noise to canvas using 2D context
+    const noisify = function(canvas, context) {
+      if (!context || !canvas) return;
+      
+      const width = canvas.width;
+      const height = canvas.height;
+      
+      if (width && height && width > 0 && height > 0) {
+        try {
+          const imageData = originalGetImageData.call(context, 0, 0, width, height);
+          const data = imageData.data;
+          
+          // Add noise to each pixel
+          for (let i = 0; i < data.length; i += 4) {
+            data[i + 0] = Math.max(0, Math.min(255, data[i + 0] + shift.r));     // R
+            data[i + 1] = Math.max(0, Math.min(255, data[i + 1] + shift.g));     // G
+            data[i + 2] = Math.max(0, Math.min(255, data[i + 2] + shift.b));     // B
+            // data[i + 3] unchanged (alpha)
+          }
+          
+          context.putImageData(imageData, 0, 0);
+        } catch (e) {
+          // Canvas might be tainted or empty - ignore
+        }
       }
-    }
-
-    CanvasRenderingContext2D.prototype.getImageData = makeNative(function(sx, sy, sw, sh) {
-      const imageData = originalGetImageData.call(this, sx, sy, sw, sh);
-      addNoise(imageData.data, seed);
-      return imageData;
-    }, 'getImageData');
-
-    HTMLCanvasElement.prototype.toDataURL = makeNative(function(...args) {
-      return originalToDataURL.apply(this, args);
-    }, 'toDataURL');
-
-    HTMLCanvasElement.prototype.toBlob = makeNative(function(...args) {
-      return originalToBlob.apply(this, args);
-    }, 'toBlob');
+    };
+    
+    // Use Proxy pattern for toBlob
+    HTMLCanvasElement.prototype.toBlob = new Proxy(HTMLCanvasElement.prototype.toBlob, {
+      apply(target, self, args) {
+        // Noisify canvas before extracting blob
+        noisify(self, self.getContext('2d'));
+        return Reflect.apply(target, self, args);
+      }
+    });
+    
+    // Use Proxy pattern for toDataURL
+    HTMLCanvasElement.prototype.toDataURL = new Proxy(HTMLCanvasElement.prototype.toDataURL, {
+      apply(target, self, args) {
+        // Noisify canvas before extracting data URL
+        noisify(self, self.getContext('2d'));
+        return Reflect.apply(target, self, args);
+      }
+    });
+    
+    // Use Proxy pattern for getImageData
+    CanvasRenderingContext2D.prototype.getImageData = new Proxy(originalGetImageData, {
+      apply(target, self, args) {
+        // Noisify canvas before returning image data
+        noisify(self.canvas, self);
+        return Reflect.apply(target, self, args);
+      }
+    });
   }
 
   // ============================================
@@ -1514,11 +1554,16 @@ const EMBEDDED_DEFAULT_PROFILE = {"server":{"ip":"2405:f600:8:e0a9:985c:f5c3:340
     
     // Create fake context with all necessary methods
     // Use Object.create to set proper prototype chain so instanceof checks pass
-    const ContextPrototype = isWebGL2 && typeof WebGL2RenderingContext !== 'undefined' 
-      ? WebGL2RenderingContext.prototype 
-      : WebGLRenderingContext.prototype;
+    // Check if WebGL constructors exist first
+    let ContextPrototype = null;
+    if (isWebGL2 && typeof WebGL2RenderingContext !== 'undefined') {
+      ContextPrototype = WebGL2RenderingContext.prototype;
+    } else if (typeof WebGLRenderingContext !== 'undefined') {
+      ContextPrototype = WebGLRenderingContext.prototype;
+    }
     
-    const fakeContext = Object.create(ContextPrototype);
+    // Create fake context - if no prototype available, use plain object
+    const fakeContext = ContextPrototype ? Object.create(ContextPrototype) : {};
     
     // Set basic properties using defineProperty (prototype has read-only getters)
     Object.defineProperty(fakeContext, 'canvas', { value: canvas, writable: false, configurable: true });
@@ -1780,7 +1825,8 @@ const EMBEDDED_DEFAULT_PROFILE = {"server":{"ip":"2405:f600:8:e0a9:985c:f5c3:340
   
   // ALWAYS spoof WebGLRenderingContext methods - use profile data or good defaults
   // This ensures WebGL works even when real GPU is unavailable (headless)
-  {
+  // Guard against environments where WebGL doesn't exist at all
+  if (typeof WebGLRenderingContext !== 'undefined') {
     // Store original getParameter
     const getParameterOriginal = WebGLRenderingContext.prototype.getParameter;
     
@@ -3253,6 +3299,63 @@ const EMBEDDED_DEFAULT_PROFILE = {"server":{"ip":"2405:f600:8:e0a9:985c:f5c3:340
   if (canvasData.geometry_hash !== undefined) {
     // Store geometry hash for reference
     window.__FP_CANVAS_GEOMETRY_HASH__ = canvasData.geometry_hash;
+  }
+
+  // ============================================
+  // CROSS-FRAME PROTECTION (Like Canvas Defender)
+  // ============================================
+  
+  {
+    const FRAME_MARKER = 'fp-spoofer-frame-protected';
+    
+    // Mark this document as protected
+    if (document.documentElement) {
+      document.documentElement.setAttribute(FRAME_MARKER, '');
+    }
+    
+    // Listen for iframe requests to propagate spoofed methods
+    window.addEventListener('message', function(e) {
+      if (e.data && e.data === FRAME_MARKER) {
+        e.preventDefault();
+        e.stopPropagation();
+        
+        // Propagate spoofed prototypes to requesting frame
+        if (e.source) {
+          try {
+            // Canvas spoofing
+            if (e.source.CanvasRenderingContext2D) {
+              e.source.CanvasRenderingContext2D.prototype.getImageData = CanvasRenderingContext2D.prototype.getImageData;
+            }
+            if (e.source.HTMLCanvasElement) {
+              e.source.HTMLCanvasElement.prototype.toBlob = HTMLCanvasElement.prototype.toBlob;
+              e.source.HTMLCanvasElement.prototype.toDataURL = HTMLCanvasElement.prototype.toDataURL;
+              e.source.HTMLCanvasElement.prototype.getContext = HTMLCanvasElement.prototype.getContext;
+            }
+            // WebGL spoofing
+            if (e.source.WebGLRenderingContext && typeof WebGLRenderingContext !== 'undefined') {
+              e.source.WebGLRenderingContext.prototype.getParameter = WebGLRenderingContext.prototype.getParameter;
+              e.source.WebGLRenderingContext.prototype.getExtension = WebGLRenderingContext.prototype.getExtension;
+            }
+          } catch (err) {
+            // Cross-origin frame - silently ignore
+          }
+        }
+      }
+    }, false);
+    
+    // Request spoofed methods from parent if we're in a sandboxed iframe
+    if (document.documentElement && document.documentElement.getAttribute(FRAME_MARKER) === null) {
+      try {
+        if (parent && parent !== window) {
+          parent.postMessage(FRAME_MARKER, '*');
+        }
+        if (window.top && window.top !== window) {
+          window.top.postMessage(FRAME_MARKER, '*');
+        }
+      } catch (e) {
+        // Cross-origin - ignore
+      }
+    }
   }
 
   // ============================================

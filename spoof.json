@@ -1,10 +1,10 @@
 {
   "server": {
-    "ip": "52.159.227.9",
+    "ip": "40.76.239.97",
     "protocol": "HTTP/1.0",
     "https": true,
     "port": "80",
-    "request_time": "2026-03-10 17:54:29",
+    "request_time": "2026-03-10 18:09:42",
     "user_agent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Mobile Safari/537.36",
     "accept": "*/*",
     "accept_language": "en-IN,en-GB;q=0.9,en-US;q=0.8,en;q=0.7,gu;q=0.6",
@@ -28,12 +28,12 @@
     "ch_ua_bitness": null,
     "ch_ua_full_version_list": null,
     "ch_ua_model": null,
-    "x_forwarded_for": "52.159.227.9, 172.70.111.165",
+    "x_forwarded_for": "40.76.239.97, 162.158.155.172",
     "x_real_ip": null,
     "via": null,
-    "cf_connecting_ip": "52.159.227.9",
+    "cf_connecting_ip": "40.76.239.97",
     "cf_ipcountry": "US",
-    "cf_ray": "9da42f53ff9d78eb-EWR",
+    "cf_ray": "9da445a1c8e35e67-EWR",
     "cdn_loop": "cloudflare; loops=1",
     "x_forwarded_proto": "https",
     "ja3_hash": null,
@@ -43,9 +43,9 @@
     "all_headers": {
       "Cf-Visitor": "{\"scheme\":\"https\"}",
       "Cf-Ipcountry": "US",
-      "Cf-Connecting-Ip": "52.159.227.9",
+      "Cf-Connecting-Ip": "40.76.239.97",
       "Cdn-Loop": "cloudflare; loops=1",
-      "Cf-Ray": "9da42f53ff9d78eb-EWR",
+      "Cf-Ray": "9da445a1c8e35e67-EWR",
       "Accept-Language": "en-IN,en-GB;q=0.9,en-US;q=0.8,en;q=0.7,gu;q=0.6",
       "Accept-Encoding": "gzip, br",
       "Referer": "https://botxbyte.com/fp.php",
@@ -61,10 +61,10 @@
       "X-Requested-With": "XMLHttpRequest",
       "Sec-Ch-Ua-Platform": "\"Android\"",
       "Priority": "u=1, i",
-      "Content-Length": "42929",
+      "Content-Length": "42827",
       "Connection": "close",
       "X-Forwarded-Proto": "https",
-      "X-Forwarded-For": "52.159.227.9, 172.70.111.165",
+      "X-Forwarded-For": "40.76.239.97, 162.158.155.172",
       "X-Server-Addr": "107.170.48.37",
       "Host": "botxbyte.com",
       "Authorization": ""
@@ -103,7 +103,7 @@
   "client": {
     "navigator": {
       "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Mobile Safari/537.36",
-      "appVersion": "5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36",
+      "appVersion": "5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Mobile Safari/537.36",
       "appName": "Netscape",
       "appCodeName": "Mozilla",
       "product": "Gecko",
@@ -125,7 +125,7 @@
       "hardwareConcurrency": 8,
       "deviceMemory": 8,
       "maxTouchPoints": 5,
-      "pdfViewerEnabled": true,
+      "pdfViewerEnabled": null,
       "onLine": true,
       "javaEnabled": false,
       "cookieStore": true
@@ -133,19 +133,19 @@
     "screen": {
       "width": 384,
       "height": 832,
-      "availWidth": 1920,
-      "availHeight": 1053,
+      "availWidth": 384,
+      "availHeight": 832,
       "colorDepth": 24,
       "pixelDepth": 24,
-      "devicePixelRatio": 1,
-      "orientationType": "landscape-primary",
+      "devicePixelRatio": 2.8125,
+      "orientationType": "portrait-primary",
       "orientationAngle": 0,
       "innerWidth": 384,
       "innerHeight": 699,
       "outerWidth": 384,
-      "outerHeight": 778,
-      "screenX": 10,
-      "screenY": 37,
+      "outerHeight": 832,
+      "screenX": 0,
+      "screenY": 0,
       "pageXOffset": 0,
       "pageYOffset": 0,
       "scrollbarWidth": 0,
@@ -158,7 +158,7 @@
       "calendar": "gregory",
       "numberingSystem": "latn",
       "localeDateString": "3/10/2026",
-      "localeTimeString": "5:54:29 PM"
+      "localeTimeString": "6:09:42 PM"
     },
     "canvas": {
       "hash": "54891a77",
@@ -214,7 +214,7 @@
       "usb": true,
       "nfc": false,
       "serial": true,
-      "hid": true,
+      "hid": false,
       "xr": true,
       "gamepad": true,
       "geolocation": true,
@@ -249,10 +249,10 @@
     },
     "webrtc": {
       "ips": [
-        "52.159.227.9"
+        "40.76.239.97"
       ],
       "ipv4": [
-        "52.159.227.9"
+        "40.76.239.97"
       ],
       "ipv6": []
     },
@@ -435,7 +435,7 @@
       "contentType": "text/html",
       "referrer": "",
       "visibilityState": "visible",
-      "historyLength": 4,
+      "historyLength": 5,
       "cookieCount": 0,
       "domainLookupTime": null,
       "URL": "https://botxbyte.com/fp.php",
@@ -486,20 +486,20 @@
       "navigationTiming": {
         "type": "navigate",
         "redirectCount": 0,
-        "domInteractive": 186,
-        "domContentLoaded": 188,
-        "loadEvent": 189,
-        "ttfb": 128,
+        "domInteractive": 284,
+        "domContentLoaded": 290,
+        "loadEvent": 290,
+        "ttfb": 146,
         "transferSize": 52057,
         "encodedBodySize": 51757
       },
       "memory": {
         "jsHeapSizeLimit": 4294967296,
-        "totalJSHeapSize": 6203708,
-        "usedJSHeapSize": 3590880
+        "totalJSHeapSize": 5679820,
+        "usedJSHeapSize": 3554360
       },
-      "timeOrigin": 1773165261746.4,
-      "now": 7366.79999999993
+      "timeOrigin": 1773166174680.5,
+      "now": 7942
     },
     "stackTrace": {
       "engine": "V8(Chrome/Node)",
@@ -582,7 +582,7 @@
     "refreshRate": {
       "measured_fps": 60,
       "snapped_hz": 60,
-      "avg_frame_ms": 16.661
+      "avg_frame_ms": 16.662
     },
     "videoDecoder": {
       "supported": true,
@@ -595,12 +595,7 @@
       }
     },
     "behavioral": {
-      "mouse": {
-        "sampleCount": 40,
-        "avgVelocity": 0.7682,
-        "maxVelocity": 2.4822,
-        "angleVariance": 284.04
-      },
+      "mouse": null,
       "keyboard": null,
       "scroll": {
         "eventCount": 0,
@@ -633,7 +628,7 @@
           "absolute": false
         }
       },
-      "sessionDuration": 7204
+      "sessionDuration": 7741
     },
     "fontPreferences": {
       "default": 431.84375,
@@ -701,10 +696,10 @@
       "supported": true
     },
     "screenFrame": {
-      "top": 37,
-      "left": 10,
+      "top": 0,
+      "left": 0,
       "right": 0,
-      "bottom": 17,
+      "bottom": 0,
       "availTop": null,
       "availLeft": null
     },
@@ -1110,7 +1105,7 @@
       "handwriting": false,
       "ink": true,
       "serial": true,
-      "hid": true,
+      "hid": false,
       "userAgentData": true
     },
     "userActivation": {
@@ -1138,7 +1133,7 @@
         "mouseenter": 0,
         "drop": 0,
         "beforeinput": 0,
-        "pointerenter": 7,
+        "pointerenter": 6,
         "dragend": 0,
         "pointercancel": 0,
         "compositionupdate": 0,
@@ -1146,9 +1141,9 @@
         "dragleave": 0,
         "dragover": 0,
         "mouseup": 0,
-        "pointerover": 8,
+        "pointerover": 6,
         "lostpointercapture": 0,
-        "mouseover": 8,
+        "mouseover": 6,
         "gotpointercapture": 0,
         "dblclick": 0,
         "keyup": 0,
@@ -1159,15 +1154,15 @@
         "dragstart": 0,
         "touchstart": 0,
         "compositionend": 0,
-        "pointerout": 7,
+        "pointerout": 5,
         "dragenter": 0,
         "touchcancel": 0,
         "click": 0,
         "contextmenu": 0,
-        "mouseout": 7,
-        "pointerleave": 5
+        "mouseout": 5,
+        "pointerleave": 3
       },
-      "totalEvents": 42
+      "totalEvents": 31
     },
     "uaHighEntropy": {
       "supported": true,
@@ -1219,17 +1214,17 @@
     },
     "fontLoading": {
       "supported": true,
-      "readyTimeMs": 0,
+      "readyTimeMs": 0.1,
       "status": "loaded",
       "loadedFamilies": 0
     },
     "hypervisorProbe": {
-      "mean_ms": 0.01,
-      "stdDev_ms": 0.03,
+      "mean_ms": 0,
+      "stdDev_ms": 0,
       "min_ms": 0,
-      "max_ms": 0.1,
-      "cv_percent": 300,
-      "possibleVM": true
+      "max_ms": 0,
+      "cv_percent": 0,
+      "possibleVM": false
     },
     "memoryPattern": {
       "supported": true,
@@ -1238,12 +1233,12 @@
           "pages": 1,
           "sizeKB": 64,
           "allocMs": 0,
-          "touchMs": 0
+          "touchMs": 0.1
         },
         {
           "pages": 10,
           "sizeKB": 640,
-          "allocMs": 0.1,
+          "allocMs": 0,
           "touchMs": 0
         },
         {
@@ -1262,10 +1257,10 @@
           "pages": 256,
           "sizeKB": 16384,
           "allocMs": 0,
-          "touchMs": 0.3
+          "touchMs": 0.2
         }
       ],
-      "patternHash": "21d37fff"
+      "patternHash": "2ed65e02"
     },
     "fontsByCSS": {
       "detected": [
@@ -1304,8 +1299,8 @@
     },
     "visualViewport": {
       "supported": true,
-      "width": 935,
-      "height": 936,
+      "width": 384,
+      "height": 699.38,
       "offsetLeft": 0,
       "offsetTop": 0,
       "pageLeft": 0,
@@ -1431,10 +1426,10 @@
       384
     ],
     "screenFrameArray": [
-      37,
       0,
-      17,
-      10
+      0,
+      0,
+      0
     ],
     "reducedTransparency": false,
     "reducedMotion": false,
@@ -2211,10 +2206,9 @@
     },
     "serialHid": {
       "serialApiPresent": true,
-      "hidApiPresent": true,
+      "hidApiPresent": false,
       "serialDeviceCount": 0,
-      "hidDeviceCount": 0,
-      "hidDevices": []
+      "hidDeviceCount": null
     },
     "clipboard": {
       "apiPresent": true,
@@ -2321,7 +2315,7 @@
     },
     "screenOrientation": {
       "supported": true,
-      "type": "landscape-primary",
+      "type": "portrait-primary",
       "angle": 0,
       "lockAPI": true,
       "unlockAPI": true
@@ -2672,5 +2666,5 @@
       "supported": true
     }
   },
-  "generated": "2026-03-10T17:54:29+00:00"
+  "generated": "2026-03-10T18:09:42+00:00"
 }
