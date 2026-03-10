@@ -39,15 +39,15 @@ jobs:
           RANDOM_PROFILE="chrome_profile_$(head /dev/urandom | tr -dc 'a-z0-9' | head -c 12)"
           mkdir -p "/tmp/$RANDOM_PROFILE"
           
-          # Chrome desktop shortcut with random profile and extension pre-loaded
+          # Chrome desktop shortcut with random profile
           cat > ~/Desktop/Chrome.desktop << EOF
-          [Desktop Entry]
-          Type=Application
-          Name=Google Chrome (Spoofed)
-          Exec=google-chrome --no-first-run --user-data-dir=/tmp/$RANDOM_PROFILE --disable-extensions-except=$HOME/Downloads/fp-spoofer-extension --load-extension=$HOME/Downloads/fp-spoofer-extension
-          Icon=google-chrome
-          Terminal=false
-          EOF
+[Desktop Entry]
+Type=Application
+Name=Google Chrome
+Exec=google-chrome --no-first-run --user-data-dir=/tmp/$RANDOM_PROFILE
+Icon=google-chrome
+Terminal=false
+EOF
           chmod +x ~/Desktop/Chrome.desktop
           
           echo "Random profile: /tmp/$RANDOM_PROFILE"
