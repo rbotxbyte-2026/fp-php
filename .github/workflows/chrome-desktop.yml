@@ -1,0 +1,103 @@
+name: Chrome Desktop with Extension
+
+on:
+  workflow_dispatch:
+
+jobs:
+  chrome-desktop:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install Chrome and Desktop
+        run: |
+          # Install desktop environment and VNC
+          sudo apt-get update
+          sudo apt-get install -y \
+            xfce4 xfce4-goodies \
+            x11vnc xvfb \
+            novnc websockify \
+            wget curl unzip
+          
+          # Install Chrome (branded)
+          wget -q -O chrome.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+          sudo apt-get install -y ./chrome.deb
+          rm chrome.deb
+          
+          echo "Chrome installed:"
+          google-chrome --version
+
+      - name: Setup ngrok
+        run: |
+          curl -sSL https://ngrok-agent.s3.amazonaws.com/ngrok.asc \
+            | sudo tee /etc/apt/trusted.gpg.d/ngrok.asc >/dev/null
+          echo "deb https://ngrok-agent.s3.amazonaws.com buster main" \
+            | sudo tee /etc/apt/sources.list.d/ngrok.list
+          sudo apt-get update && sudo apt-get install -y ngrok
+          ngrok config add-authtoken ${{ secrets.NGROK_AUTH_TOKEN }}
+
+      - name: Copy extension to Downloads
+        run: |
+          mkdir -p ~/Downloads/fp-spoofer-extension
+          cp -r extension/* ~/Downloads/fp-spoofer-extension/
+          cp original.json ~/Downloads/
+          
+          echo "Extension copied to: ~/Downloads/fp-spoofer-extension"
+          ls -la ~/Downloads/fp-spoofer-extension/
+
+      - name: Start Desktop and VNC
+        run: |
+          # Start virtual display
+          export DISPLAY=:99
+          Xvfb :99 -screen 0 1920x1080x24 &
+          sleep 2
+          
+          # Start XFCE desktop
+          startxfce4 &
+          sleep 3
+          
+          # Start VNC server
+          x11vnc -display :99 -forever -shared -rfbport 5900 -bg -nopw
+          
+          # Start noVNC
+          /usr/share/novnc/utils/novnc_proxy --vnc localhost:5900 --listen 6080 &
+          sleep 2
+          
+          echo "noVNC started on port 6080"
+
+      - name: Start ngrok tunnel
+        run: |
+          # Start ngrok in background
+          ngrok http 6080 --log=stdout > ngrok.log 2>&1 &
+          sleep 5
+          
+          # Get public URL
+          NGROK_URL=$(curl -s http://localhost:4040/api/tunnels | jq -r '.tunnels[0].public_url')
+          
+          echo "========================================"
+          echo "  REMOTE DESKTOP ACCESS"
+          echo "========================================"
+          echo ""
+          echo "noVNC URL: $NGROK_URL"
+          echo ""
+          echo "Instructions:"
+          echo "1. Open the URL above in your browser"
+          echo "2. Open Chrome from the desktop"
+          echo "3. Go to chrome://extensions"
+          echo "4. Enable 'Developer mode'"
+          echo "5. Click 'Load unpacked'"
+          echo "6. Select: /home/runner/Downloads/fp-spoofer-extension"
+          echo "7. Extension profile at: /home/runner/Downloads/original.json"
+          echo ""
+          echo "========================================"
+          
+          # Keep alive for 30 minutes
+          echo "Session will stay active for 30 minutes..."
+
+      - name: Keep session alive
+        run: |
+          # Keep the workflow running for 30 minutes
+          sleep 1800
+          echo "Session ended"
