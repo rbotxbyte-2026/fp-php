@@ -1,10 +1,10 @@
 {
   "server": {
-    "ip": "52.154.19.233",
+    "ip": "68.220.59.244",
     "protocol": "HTTP/1.0",
     "https": true,
     "port": "80",
-    "request_time": "2026-03-10 11:12:03",
+    "request_time": "2026-03-10 11:35:39",
     "user_agent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Mobile Safari/537.36",
     "accept": "*/*",
     "accept_language": "en-IN,en-GB;q=0.9,en-US;q=0.8,en;q=0.7,gu;q=0.6",
@@ -28,12 +28,12 @@
     "ch_ua_bitness": null,
     "ch_ua_full_version_list": null,
     "ch_ua_model": null,
-    "x_forwarded_for": "52.154.19.233, 104.23.253.55",
+    "x_forwarded_for": "68.220.59.244, 172.70.230.48",
     "x_real_ip": null,
     "via": null,
-    "cf_connecting_ip": "52.154.19.233",
+    "cf_connecting_ip": "68.220.59.244",
     "cf_ipcountry": "US",
-    "cf_ray": "9da1e1d3fd1f8158-EWR",
+    "cf_ray": "9da20468bba8c52e-EWR",
     "cdn_loop": "cloudflare; loops=1",
     "x_forwarded_proto": "https",
     "ja3_hash": null,
@@ -43,9 +43,9 @@
     "all_headers": {
       "Cf-Visitor": "{\"scheme\":\"https\"}",
       "Cf-Ipcountry": "US",
-      "Cf-Connecting-Ip": "52.154.19.233",
+      "Cf-Connecting-Ip": "68.220.59.244",
       "Cdn-Loop": "cloudflare; loops=1",
-      "Cf-Ray": "9da1e1d3fd1f8158-EWR",
+      "Cf-Ray": "9da20468bba8c52e-EWR",
       "Accept-Language": "en-IN,en-GB;q=0.9,en-US;q=0.8,en;q=0.7,gu;q=0.6",
       "Accept-Encoding": "gzip, br",
       "Referer": "https://botxbyte.com/fp.php",
@@ -61,10 +61,10 @@
       "X-Requested-With": "XMLHttpRequest",
       "Sec-Ch-Ua-Platform": "\"Android\"",
       "Priority": "u=1, i",
-      "Content-Length": "41206",
+      "Content-Length": "41196",
       "Connection": "close",
       "X-Forwarded-Proto": "https",
-      "X-Forwarded-For": "52.154.19.233, 104.23.253.55",
+      "X-Forwarded-For": "68.220.59.244, 172.70.230.48",
       "X-Server-Addr": "107.170.48.37",
       "Host": "botxbyte.com",
       "Authorization": ""
@@ -159,7 +159,7 @@
       "calendar": "gregory",
       "numberingSystem": "latn",
       "localeDateString": "10/03/2026",
-      "localeTimeString": "16:42:03"
+      "localeTimeString": "17:05:39"
     },
     "canvas": {
       "hash": "54891a77",
@@ -357,7 +357,7 @@
         0.1,
         0.1,
         0.1,
-        0.1,
+        0.8,
         0.1,
         0.1,
         0.1,
@@ -368,12 +368,12 @@
       "navigationTiming": {
         "type": "navigate",
         "redirectCount": 0,
-        "domInteractive": 379,
-        "domContentLoaded": 465,
-        "loadEvent": 465,
-        "ttfb": 238,
-        "transferSize": 52057,
-        "encodedBodySize": 51757
+        "domInteractive": 465,
+        "domContentLoaded": 468,
+        "loadEvent": 468,
+        "ttfb": 148,
+        "transferSize": 52045,
+        "encodedBodySize": 51745
       },
       "memory": {
         "jsHeapSizeLimit": 1130000000,
@@ -381,7 +381,7 @@
         "usedJSHeapSize": 10000000
       },
       "timeOrigin": 1773122913591.5,
-      "now": 4527.5
+      "now": 5395.200000000012
     },
     "stackTrace": {
       "engine": "V8(Chrome/Node)",
@@ -510,7 +510,7 @@
           "absolute": false
         }
       },
-      "sessionDuration": 4522
+      "sessionDuration": 5388
     },
     "fontPreferences": {
       "default": 455.95556640625,
@@ -629,10 +629,9 @@
       "confidence": "low"
     },
     "tampering": {
-      "anomalyScore": 30,
+      "anomalyScore": 20,
       "signals": [
-        "chrome_no_plugins",
-        "toString_error"
+        "chrome_no_plugins"
       ],
       "webdriver": false,
       "inIframe": false,
@@ -1100,8 +1099,8 @@
         {
           "pages": 1,
           "sizeKB": 64,
-          "allocMs": 0.1,
-          "touchMs": 0
+          "allocMs": 0,
+          "touchMs": 0.1
         },
         {
           "pages": 10,
@@ -1113,22 +1112,22 @@
           "pages": 50,
           "sizeKB": 3200,
           "allocMs": 0,
-          "touchMs": 0.1
+          "touchMs": 0.2
         },
         {
           "pages": 100,
           "sizeKB": 6400,
           "allocMs": 0,
-          "touchMs": 0.1
+          "touchMs": 0
         },
         {
           "pages": 256,
           "sizeKB": 16384,
-          "allocMs": 0.1,
-          "touchMs": 0.2
+          "allocMs": 0,
+          "touchMs": 0.4
         }
       ],
-      "patternHash": "57af5cbc"
+      "patternHash": "2ed65e02"
     },
     "fontsByCSS": {
       "detected": [
@@ -2537,5 +2536,5 @@
       "supported": true
     }
   },
-  "generated": "2026-03-10T11:12:03+00:00"
+  "generated": "2026-03-10T11:35:39+00:00"
 }
