@@ -178,23 +178,21 @@ chrome.runtime.onStartup.addListener(async () => {
 chrome.runtime.onInstalled.addListener(async () => {
   const data = await chrome.storage.local.get(['spoofEnabled', 'spoofProfile']);
   
-  // Auto-load default profile if no config exists
+  // If no profile exists, create one from embedded defaults (sync with content.js)
   if (!data.spoofProfile) {
-    try {
-      const response = await fetch(chrome.runtime.getURL('default-profile.json'));
-      if (response.ok) {
-        const defaultProfile = await response.json();
-        await chrome.storage.local.set({
-          spoofProfile: defaultProfile,
-          spoofEnabled: true
-        });
-        await updateHeaderRules(defaultProfile, true);
-        updateBadge(true);
-        console.log('[FP Spoofer] Auto-loaded default profile');
-        return;
-      }
-    } catch (e) {
-      console.log('[FP Spoofer] No default profile found:', e);
+    console.log('[FP Spoofer] No profile in storage, using embedded default');
+    // The embedded profile in content.js will handle client-side
+    // We need to set up header rules using the same embedded profile
+    const embeddedProfile = getEmbeddedProfile();
+    if (embeddedProfile) {
+      await chrome.storage.local.set({
+        spoofProfile: embeddedProfile,
+        spoofEnabled: true
+      });
+      await updateHeaderRules(embeddedProfile, true);
+      updateBadge(true);
+      console.log('[FP Spoofer] Initialized with embedded profile');
+      return;
     }
   }
   
@@ -203,6 +201,11 @@ chrome.runtime.onInstalled.addListener(async () => {
   
   console.log('[FP Spoofer] Extension installed/updated');
 });
+
+// Embedded profile (must match content.js EMBEDDED_DEFAULT_PROFILE)
+function getEmbeddedProfile() {
+  return {"server":{"ip":"2405:f600:8:e0a9:985c:f5c3:3402:a232","protocol":"HTTP/1.0","https":true,"port":"80","request_time":"2026-03-10 06:08:42","user_agent":"Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Mobile Safari/537.36","accept":"*/*","accept_language":"en-IN,en-GB;q=0.9,en-US;q=0.8,en;q=0.7,gu;q=0.6","ch_ua":"\"Not:A-Brand\";v=\"99\", \"Google Chrome\";v=\"145\", \"Chromium\";v=\"145\"","ch_ua_mobile":"?1","ch_ua_platform":"\"Android\""},"client":{"navigator":{"userAgent":"Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Mobile Safari/537.36","platform":"Linux armv81","language":"en-IN","languages":["en-IN","en-GB","en-US","en","gu"],"hardwareConcurrency":8,"deviceMemory":8,"maxTouchPoints":5},"screen":{"width":384,"height":832,"innerWidth":384,"innerHeight":699},"behavioral":{"mouse":null}}};
+}
 
 // Listen for messages from content scripts
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
