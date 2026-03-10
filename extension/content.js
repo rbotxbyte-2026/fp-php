@@ -1349,20 +1349,280 @@ const EMBEDDED_DEFAULT_PROFILE = {"server":{"ip":"2405:f600:8:e0a9:985c:f5c3:340
   }
 
   // ============================================
-  // WEBGL SPOOFING (Fixed - don't break context)
+  // WEBGL SPOOFING (Complete - with fake context fallback)
   // ============================================
 
-  if (webgl.vendor || webgl.renderer || webgl.unmaskedVendor || webgl.unmaskedRenderer) {
-    const UNMASKED_VENDOR_WEBGL = 37445;
-    const UNMASKED_RENDERER_WEBGL = 37446;
-    const GL_VENDOR = 7936;
-    const GL_RENDERER = 7937;
-    const GL_VERSION = 7938;
-    const GL_SHADING_LANGUAGE_VERSION = 35724;
-    const GL_MAX_TEXTURE_SIZE = 3379;
-    const GL_MAX_RENDERBUFFER_SIZE = 34024;
-    const GL_MAX_VIEWPORT_DIMS = 3386;
+  // WebGL constants
+  const UNMASKED_VENDOR_WEBGL = 37445;
+  const UNMASKED_RENDERER_WEBGL = 37446;
+  const GL_VENDOR = 7936;
+  const GL_RENDERER = 7937;
+  const GL_VERSION = 7938;
+  const GL_SHADING_LANGUAGE_VERSION = 35724;
+  const GL_MAX_TEXTURE_SIZE = 3379;
+  const GL_MAX_RENDERBUFFER_SIZE = 34024;
+  const GL_MAX_VIEWPORT_DIMS = 3386;
+  const GL_MAX_VERTEX_ATTRIBS = 34921;
+  const GL_MAX_VERTEX_UNIFORM_VECTORS = 36347;
+  const GL_MAX_VARYING_VECTORS = 36348;
+  const GL_MAX_COMBINED_TEXTURE_IMAGE_UNITS = 35661;
+  const GL_MAX_VERTEX_TEXTURE_IMAGE_UNITS = 35660;
+  const GL_MAX_TEXTURE_IMAGE_UNITS = 34930;
+  const GL_MAX_FRAGMENT_UNIFORM_VECTORS = 36349;
+  const GL_ALIASED_LINE_WIDTH_RANGE = 33902;
+  const GL_ALIASED_POINT_SIZE_RANGE = 33901;
+  const GL_DEPTH_BITS = 3414;
+  const GL_STENCIL_BITS = 3415;
+  const GL_MAX_CUBE_MAP_TEXTURE_SIZE = 34076;
+  
+  // Create a comprehensive fake WebGL context for when no GPU is available
+  function createFakeWebGLContext(canvas, contextType) {
+    const isWebGL2 = contextType === 'webgl2';
     
+    // Fake extension object for WEBGL_debug_renderer_info
+    const fakeDebugRendererInfo = {
+      UNMASKED_VENDOR_WEBGL: UNMASKED_VENDOR_WEBGL,
+      UNMASKED_RENDERER_WEBGL: UNMASKED_RENDERER_WEBGL
+    };
+    
+    // Common extensions that mobile devices support
+    const supportedExtensions = [
+      'WEBGL_debug_renderer_info',
+      'WEBGL_lose_context',
+      'OES_texture_float',
+      'OES_texture_half_float',
+      'OES_element_index_uint',
+      'OES_standard_derivatives',
+      'EXT_shader_texture_lod',
+      'WEBGL_compressed_texture_astc',
+      'WEBGL_compressed_texture_etc',
+      'EXT_color_buffer_float',
+      'OES_vertex_array_object',
+      'ANGLE_instanced_arrays'
+    ];
+    
+    // Create fake context with all necessary methods
+    const fakeContext = {
+      canvas: canvas,
+      drawingBufferWidth: canvas.width || 300,
+      drawingBufferHeight: canvas.height || 150,
+      
+      getParameter: makeNative(function(param) {
+        switch(param) {
+          case UNMASKED_VENDOR_WEBGL:
+            return webgl.unmaskedVendor || 'Qualcomm';
+          case UNMASKED_RENDERER_WEBGL:
+            return webgl.unmaskedRenderer || 'Adreno (TM) 630';
+          case GL_VENDOR:
+            return webgl.vendor || 'WebKit';
+          case GL_RENDERER:
+            return webgl.renderer || 'WebKit WebGL';
+          case GL_VERSION:
+            return webgl.version || (isWebGL2 ? 'WebGL 2.0 (OpenGL ES 3.0 Chromium)' : 'WebGL 1.0 (OpenGL ES 2.0 Chromium)');
+          case GL_SHADING_LANGUAGE_VERSION:
+            return webgl.shadingLanguageVersion || (isWebGL2 ? 'WebGL GLSL ES 3.00 (OpenGL ES GLSL ES 3.0 Chromium)' : 'WebGL GLSL ES 1.0 (OpenGL ES GLSL ES 1.0 Chromium)');
+          case GL_MAX_TEXTURE_SIZE:
+            return webgl.maxTextureSize || 16384;
+          case GL_MAX_RENDERBUFFER_SIZE:
+            return webgl.maxRenderbufferSize || 16384;
+          case GL_MAX_VIEWPORT_DIMS:
+            return new Int32Array(webgl.maxViewportDims || [16384, 16384]);
+          case GL_MAX_VERTEX_ATTRIBS:
+            return 16;
+          case GL_MAX_VERTEX_UNIFORM_VECTORS:
+            return 256;
+          case GL_MAX_VARYING_VECTORS:
+            return 30;
+          case GL_MAX_COMBINED_TEXTURE_IMAGE_UNITS:
+            return 32;
+          case GL_MAX_VERTEX_TEXTURE_IMAGE_UNITS:
+            return 16;
+          case GL_MAX_TEXTURE_IMAGE_UNITS:
+            return 16;
+          case GL_MAX_FRAGMENT_UNIFORM_VECTORS:
+            return 224;
+          case GL_ALIASED_LINE_WIDTH_RANGE:
+            return new Float32Array([1, 1]);
+          case GL_ALIASED_POINT_SIZE_RANGE:
+            return new Float32Array([1, 1024]);
+          case GL_DEPTH_BITS:
+            return 24;
+          case GL_STENCIL_BITS:
+            return 8;
+          case GL_MAX_CUBE_MAP_TEXTURE_SIZE:
+            return 16384;
+          default:
+            return null;
+        }
+      }, 'getParameter'),
+      
+      getExtension: makeNative(function(name) {
+        if (name === 'WEBGL_debug_renderer_info') {
+          return fakeDebugRendererInfo;
+        }
+        if (supportedExtensions.includes(name)) {
+          // Return a minimal fake extension object
+          return {};
+        }
+        return null;
+      }, 'getExtension'),
+      
+      getSupportedExtensions: makeNative(function() {
+        return supportedExtensions;
+      }, 'getSupportedExtensions'),
+      
+      getContextAttributes: makeNative(function() {
+        return {
+          alpha: true,
+          antialias: true,
+          depth: true,
+          desynchronized: false,
+          failIfMajorPerformanceCaveat: false,
+          powerPreference: 'default',
+          premultipliedAlpha: true,
+          preserveDrawingBuffer: false,
+          stencil: false,
+          xrCompatible: false
+        };
+      }, 'getContextAttributes'),
+      
+      isContextLost: makeNative(function() {
+        return false;
+      }, 'isContextLost'),
+      
+      getShaderPrecisionFormat: makeNative(function(shaderType, precisionType) {
+        return {
+          rangeMin: 127,
+          rangeMax: 127,
+          precision: 23
+        };
+      }, 'getShaderPrecisionFormat'),
+      
+      // Stub methods that fingerprinters might call
+      createShader: makeNative(function() { return {}; }, 'createShader'),
+      shaderSource: makeNative(function() {}, 'shaderSource'),
+      compileShader: makeNative(function() {}, 'compileShader'),
+      getShaderParameter: makeNative(function() { return true; }, 'getShaderParameter'),
+      createProgram: makeNative(function() { return {}; }, 'createProgram'),
+      attachShader: makeNative(function() {}, 'attachShader'),
+      linkProgram: makeNative(function() {}, 'linkProgram'),
+      getProgramParameter: makeNative(function() { return true; }, 'getProgramParameter'),
+      useProgram: makeNative(function() {}, 'useProgram'),
+      createBuffer: makeNative(function() { return {}; }, 'createBuffer'),
+      bindBuffer: makeNative(function() {}, 'bindBuffer'),
+      bufferData: makeNative(function() {}, 'bufferData'),
+      enableVertexAttribArray: makeNative(function() {}, 'enableVertexAttribArray'),
+      vertexAttribPointer: makeNative(function() {}, 'vertexAttribPointer'),
+      getAttribLocation: makeNative(function() { return 0; }, 'getAttribLocation'),
+      getUniformLocation: makeNative(function() { return {}; }, 'getUniformLocation'),
+      uniform1f: makeNative(function() {}, 'uniform1f'),
+      uniform2f: makeNative(function() {}, 'uniform2f'),
+      uniform3f: makeNative(function() {}, 'uniform3f'),
+      uniform4f: makeNative(function() {}, 'uniform4f'),
+      uniformMatrix4fv: makeNative(function() {}, 'uniformMatrix4fv'),
+      drawArrays: makeNative(function() {}, 'drawArrays'),
+      drawElements: makeNative(function() {}, 'drawElements'),
+      viewport: makeNative(function() {}, 'viewport'),
+      clear: makeNative(function() {}, 'clear'),
+      clearColor: makeNative(function() {}, 'clearColor'),
+      clearDepth: makeNative(function() {}, 'clearDepth'),
+      enable: makeNative(function() {}, 'enable'),
+      disable: makeNative(function() {}, 'disable'),
+      depthFunc: makeNative(function() {}, 'depthFunc'),
+      blendFunc: makeNative(function() {}, 'blendFunc'),
+      createTexture: makeNative(function() { return {}; }, 'createTexture'),
+      bindTexture: makeNative(function() {}, 'bindTexture'),
+      texImage2D: makeNative(function() {}, 'texImage2D'),
+      texParameteri: makeNative(function() {}, 'texParameteri'),
+      activeTexture: makeNative(function() {}, 'activeTexture'),
+      generateMipmap: makeNative(function() {}, 'generateMipmap'),
+      pixelStorei: makeNative(function() {}, 'pixelStorei'),
+      createFramebuffer: makeNative(function() { return {}; }, 'createFramebuffer'),
+      bindFramebuffer: makeNative(function() {}, 'bindFramebuffer'),
+      framebufferTexture2D: makeNative(function() {}, 'framebufferTexture2D'),
+      checkFramebufferStatus: makeNative(function() { return 36053; }, 'checkFramebufferStatus'), // GL_FRAMEBUFFER_COMPLETE
+      readPixels: makeNative(function(x, y, width, height, format, type, pixels) {
+        // Fill with deterministic data based on profile
+        if (pixels) {
+          const seed = (webgl.unmaskedRenderer || 'Adreno').charCodeAt(0);
+          for (let i = 0; i < pixels.length; i++) {
+            pixels[i] = (seed * (i + 1) * 17) % 256;
+          }
+        }
+      }, 'readPixels'),
+      getError: makeNative(function() { return 0; }, 'getError'), // GL_NO_ERROR
+      finish: makeNative(function() {}, 'finish'),
+      flush: makeNative(function() {}, 'flush'),
+      deleteShader: makeNative(function() {}, 'deleteShader'),
+      deleteProgram: makeNative(function() {}, 'deleteProgram'),
+      deleteBuffer: makeNative(function() {}, 'deleteBuffer'),
+      deleteTexture: makeNative(function() {}, 'deleteTexture'),
+      deleteFramebuffer: makeNative(function() {}, 'deleteFramebuffer'),
+      scissor: makeNative(function() {}, 'scissor'),
+      colorMask: makeNative(function() {}, 'colorMask'),
+      depthMask: makeNative(function() {}, 'depthMask'),
+      stencilMask: makeNative(function() {}, 'stencilMask'),
+      cullFace: makeNative(function() {}, 'cullFace'),
+      frontFace: makeNative(function() {}, 'frontFace'),
+      lineWidth: makeNative(function() {}, 'lineWidth'),
+      polygonOffset: makeNative(function() {}, 'polygonOffset')
+    };
+    
+    // Add WebGL constants to the context
+    const webglConstants = {
+      DEPTH_BUFFER_BIT: 256, COLOR_BUFFER_BIT: 16384, STENCIL_BUFFER_BIT: 1024,
+      POINTS: 0, LINES: 1, LINE_LOOP: 2, LINE_STRIP: 3, TRIANGLES: 4, TRIANGLE_STRIP: 5, TRIANGLE_FAN: 6,
+      ZERO: 0, ONE: 1, SRC_COLOR: 768, ONE_MINUS_SRC_COLOR: 769, SRC_ALPHA: 770, ONE_MINUS_SRC_ALPHA: 771,
+      DST_ALPHA: 772, ONE_MINUS_DST_ALPHA: 773, DST_COLOR: 774, ONE_MINUS_DST_COLOR: 775,
+      FUNC_ADD: 32774, BLEND_EQUATION: 32777, BLEND_EQUATION_RGB: 32777, BLEND_EQUATION_ALPHA: 34877,
+      FUNC_SUBTRACT: 32778, FUNC_REVERSE_SUBTRACT: 32779,
+      BLEND_DST_RGB: 32968, BLEND_SRC_RGB: 32969, BLEND_DST_ALPHA: 32970, BLEND_SRC_ALPHA: 32971,
+      CONSTANT_COLOR: 32769, ONE_MINUS_CONSTANT_COLOR: 32770, CONSTANT_ALPHA: 32771, ONE_MINUS_CONSTANT_ALPHA: 32772,
+      BLEND_COLOR: 32773, ARRAY_BUFFER: 34962, ELEMENT_ARRAY_BUFFER: 34963,
+      ARRAY_BUFFER_BINDING: 34964, ELEMENT_ARRAY_BUFFER_BINDING: 34965,
+      STREAM_DRAW: 35040, STATIC_DRAW: 35044, DYNAMIC_DRAW: 35048,
+      BUFFER_SIZE: 34660, BUFFER_USAGE: 34661,
+      CURRENT_VERTEX_ATTRIB: 34342, FRONT: 1028, BACK: 1029, FRONT_AND_BACK: 1032,
+      TEXTURE_2D: 3553, CULL_FACE: 2884, BLEND: 3042, DITHER: 3024, STENCIL_TEST: 2960, DEPTH_TEST: 2929,
+      SCISSOR_TEST: 3089, POLYGON_OFFSET_FILL: 32823, SAMPLE_ALPHA_TO_COVERAGE: 32926, SAMPLE_COVERAGE: 32928,
+      TEXTURE0: 33984, TEXTURE1: 33985, TEXTURE2: 33986, TEXTURE3: 33987,
+      VERTEX_SHADER: 35633, FRAGMENT_SHADER: 35632,
+      FLOAT: 5126, UNSIGNED_BYTE: 5121, UNSIGNED_SHORT: 5123, UNSIGNED_INT: 5125,
+      RGBA: 6408, RGB: 6407, ALPHA: 6406, LUMINANCE: 6409, LUMINANCE_ALPHA: 6410,
+      NEAREST: 9728, LINEAR: 9729, NEAREST_MIPMAP_NEAREST: 9984, LINEAR_MIPMAP_NEAREST: 9985,
+      NEAREST_MIPMAP_LINEAR: 9986, LINEAR_MIPMAP_LINEAR: 9987,
+      TEXTURE_MAG_FILTER: 10240, TEXTURE_MIN_FILTER: 10241, TEXTURE_WRAP_S: 10242, TEXTURE_WRAP_T: 10243,
+      REPEAT: 10497, CLAMP_TO_EDGE: 33071, MIRRORED_REPEAT: 33648,
+      FRAMEBUFFER: 36160, RENDERBUFFER: 36161, FRAMEBUFFER_COMPLETE: 36053,
+      COLOR_ATTACHMENT0: 36064, DEPTH_ATTACHMENT: 36096, STENCIL_ATTACHMENT: 36128,
+      NONE: 0, NO_ERROR: 0, INVALID_ENUM: 1280, INVALID_VALUE: 1281, INVALID_OPERATION: 1282,
+      OUT_OF_MEMORY: 1285, CONTEXT_LOST_WEBGL: 37442,
+      UNPACK_ALIGNMENT: 3317, PACK_ALIGNMENT: 3333,
+      UNPACK_FLIP_Y_WEBGL: 37440, UNPACK_PREMULTIPLY_ALPHA_WEBGL: 37441
+    };
+    
+    Object.assign(fakeContext, webglConstants);
+    
+    return fakeContext;
+  }
+  
+  // Override getContext to return fake WebGL when real one fails
+  const originalGetContext = HTMLCanvasElement.prototype.getContext;
+  HTMLCanvasElement.prototype.getContext = makeNative(function(contextType, contextAttributes) {
+    // Try to get real context first
+    const realContext = originalGetContext.call(this, contextType, contextAttributes);
+    
+    // If WebGL context failed and we have webgl settings, return fake context
+    if (!realContext && (contextType === 'webgl' || contextType === 'experimental-webgl' || contextType === 'webgl2')) {
+      console.log('[FP Spoofer] Real WebGL unavailable, using fake context');
+      return createFakeWebGLContext(this, contextType);
+    }
+    
+    return realContext;
+  }, 'getContext');
+  
+  // Also spoof existing WebGLRenderingContext methods for when real context exists
+  if (webgl.vendor || webgl.renderer || webgl.unmaskedVendor || webgl.unmaskedRenderer) {
     // Store original getParameter
     const getParameterOriginal = WebGLRenderingContext.prototype.getParameter;
     
@@ -1397,7 +1657,6 @@ const EMBEDDED_DEFAULT_PROFILE = {"server":{"ip":"2405:f600:8:e0a9:985c:f5c3:340
       }
       
       // IMPORTANT: Pass through ALL other params to real implementation
-      // Don't return null - that breaks WebGL!
       return getParameterOriginal.call(this, param);
     }, 'getParameter');
 
@@ -1405,7 +1664,6 @@ const EMBEDDED_DEFAULT_PROFILE = {"server":{"ip":"2405:f600:8:e0a9:985c:f5c3:340
     const getExtensionOriginal = WebGLRenderingContext.prototype.getExtension;
     WebGLRenderingContext.prototype.getExtension = makeNative(function(name) {
       const ext = getExtensionOriginal.call(this, name);
-      // Return the extension as-is, our getParameter already handles the values
       return ext;
     }, 'getExtension');
 
@@ -1431,7 +1689,6 @@ const EMBEDDED_DEFAULT_PROFILE = {"server":{"ip":"2405:f600:8:e0a9:985c:f5c3:340
           return webgl.shadingLanguageVersion;
         }
         
-        // Pass through all other params
         return getParameter2Original.call(this, param);
       }, 'getParameter');
       
