@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "FP Spoofer",
-  "version": "1.1.5",
+  "version": "1.1.6",
   "description": "Import and spoof browser fingerprint values",
   "permissions": [
     "storage",
@@ -28,12 +28,6 @@
       "run_at": "document_start",
       "all_frames": true,
       "world": "MAIN"
-    }
-  ],
-  "web_accessible_resources": [
-    {
-      "resources": ["default-profile.json"],
-      "matches": ["<all_urls>"]
     }
   ]
 }
