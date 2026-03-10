@@ -8,6 +8,37 @@
 (function earlyAntiDetection() {
   'use strict';
   
+  // 0. V8 Stack Trace Sanitization - MUST be first
+  // This catches ALL Error stack traces at the V8 engine level
+  // fingerprint.com analyzes stack traces to detect automation
+  const originalPrepareStackTrace = Error.prepareStackTrace;
+  Error.prepareStackTrace = function(error, structuredStackTrace) {
+    // Filter out any automation-related frames
+    const filtered = structuredStackTrace.filter(frame => {
+      try {
+        const fileName = frame.getFileName() || '';
+        const funcName = frame.getFunctionName() || '';
+        const lower = (fileName + funcName).toLowerCase();
+        return !lower.includes('chromedriver') &&
+               !lower.includes('webdriver') &&
+               !lower.includes('selenium') &&
+               !lower.includes('puppeteer') &&
+               !lower.includes('playwright') &&
+               !lower.includes('chrome-extension://') &&
+               !lower.includes('cdc_') &&
+               !lower.includes('__driver');
+      } catch (e) {
+        return true;
+      }
+    });
+    
+    if (originalPrepareStackTrace) {
+      return originalPrepareStackTrace(error, filtered);
+    }
+    // Default V8 format
+    return error.toString() + '\n' + filtered.map(f => '    at ' + f.toString()).join('\n');
+  };
+  
   // 1. IMMEDIATELY delete all cdc_ variables (ChromeDriver signature)
   // These are injected by ChromeDriver before page scripts run
   const windowKeys = Object.keys(window);
@@ -21,17 +52,33 @@
   // On real browsers: undefined. On ChromeDriver: true. On undetected-chromedriver: false
   // We need UNDEFINED to pass fingerprint.com
   try {
+    // Delete from prototype first
+    delete Navigator.prototype.webdriver;
+    
     Object.defineProperty(Navigator.prototype, 'webdriver', {
       get: function() { return undefined; },
       configurable: true,
-      enumerable: true
+      enumerable: false  // Real Chrome doesn't enumerate webdriver
     });
     // Also on navigator instance
+    delete navigator.webdriver;
     Object.defineProperty(navigator, 'webdriver', {
       get: function() { return undefined; },
       configurable: true,
-      enumerable: true
+      enumerable: false
     });
+  } catch (e) {}
+  
+  // 2b. Fix 'webdriver' in navigator check (UC-specific detection)
+  // fingerprint.com does: 'webdriver' in navigator
+  try {
+    const originalHasOwnProperty = Object.prototype.hasOwnProperty;
+    Object.prototype.hasOwnProperty = function(prop) {
+      if (prop === 'webdriver' && (this === navigator || this === Navigator.prototype)) {
+        return false;
+      }
+      return originalHasOwnProperty.call(this, prop);
+    };
   } catch (e) {}
   
   // 3. Continuously monitor and delete cdc_ variables
@@ -60,6 +107,49 @@
     }
     return keys;
   };
+  
+  // 5. CDP (Chrome DevTools Protocol) Detection Evasion
+  // This is the key detection for "undetectedChromedriver"
+  // fingerprint.com looks for CDP-injected execute_cdp_cmd signatures
+  
+  // 5a. Block CDP Runtime.evaluate detection
+  // When UC uses CDP, it leaves trace in window.cdc_adoQpoasnfa76pfcZLmcfl_
+  // Already handled above, but also block its getter/setter patterns
+  try {
+    // Prevent CDP from setting properties with specific pattern
+    const originalDefineProperty = Object.defineProperty;
+    Object.defineProperty = function(obj, prop, desc) {
+      // Block CDP-style property injection
+      if (typeof prop === 'string') {
+        const lower = prop.toLowerCase();
+        if (prop.match(/^[\$]?cdc_/i) || 
+            prop.match(/^[\$]?[a-z]{26}_$/i) ||
+            lower.includes('webdriver') ||
+            lower.includes('selenium') ||
+            lower.includes('driver')) {
+          // Silently fail
+          return obj;
+        }
+      }
+      return originalDefineProperty(obj, prop, desc);
+    };
+  } catch (e) {}
+  
+  // 5b. Patch window.callPhantom and phantom patterns
+  Object.defineProperty(window, 'callPhantom', { 
+    get: () => undefined, 
+    set: () => {},
+    configurable: false 
+  });
+  Object.defineProperty(window, '_phantom', { 
+    get: () => undefined, 
+    set: () => {},
+    configurable: false 
+  });
+  
+  // 5c. Block debugger statement detection (UC uses CDP Debugger.enable)
+  // fingerprint.com times debugger statements to detect automation
+  // We can't fully block this but we can make it less detectable
   
 })();
 
