@@ -51,33 +51,65 @@
   // 2. IMMEDIATELY fix navigator.webdriver BEFORE anything else
   // On real browsers: undefined. On ChromeDriver: true. On undetected-chromedriver: false
   // We need UNDEFINED to pass fingerprint.com
+  const origNavigator = navigator;
   try {
     // Delete from prototype first
     delete Navigator.prototype.webdriver;
+    delete origNavigator.webdriver;
     
-    Object.defineProperty(Navigator.prototype, 'webdriver', {
-      get: function() { return undefined; },
-      configurable: true,
-      enumerable: false  // Real Chrome doesn't enumerate webdriver
-    });
-    // Also on navigator instance
-    delete navigator.webdriver;
-    Object.defineProperty(navigator, 'webdriver', {
-      get: function() { return undefined; },
-      configurable: true,
-      enumerable: false
-    });
+    // Critical: Don't define a getter, completely remove the property
+    // This makes "webdriver in navigator" return false
+    // The trick is to NOT define it at all - real Chrome doesn't have it
+    
+    // Monitor and continuously remove if CDP re-adds it
+    const removeWebdriver = () => {
+      try {
+        const desc = Object.getOwnPropertyDescriptor(origNavigator, 'webdriver');
+        if (desc !== undefined) {
+          delete origNavigator.webdriver;
+        }
+        const protoDesc = Object.getOwnPropertyDescriptor(Navigator.prototype, 'webdriver');
+        if (protoDesc !== undefined) {
+          delete Navigator.prototype.webdriver;
+        }
+      } catch (e) {}
+    };
+    
+    // Run immediately and frequently
+    removeWebdriver();
+    const wdInterval = setInterval(removeWebdriver, 5);
+    setTimeout(() => clearInterval(wdInterval), 3000);
+    
   } catch (e) {}
   
-  // 2b. Fix 'webdriver' in navigator check (UC-specific detection)
-  // fingerprint.com does: 'webdriver' in navigator
+  // 2b. Fix hasOwnProperty for webdriver check
   try {
     const originalHasOwnProperty = Object.prototype.hasOwnProperty;
     Object.prototype.hasOwnProperty = function(prop) {
-      if (prop === 'webdriver' && (this === navigator || this === Navigator.prototype)) {
+      if (prop === 'webdriver' && (this === origNavigator || this === Navigator.prototype)) {
         return false;
       }
       return originalHasOwnProperty.call(this, prop);
+    };
+  } catch (e) {}
+  
+  // 2c. Also hide from getOwnPropertyNames/getOwnPropertyDescriptor
+  try {
+    const origGetOwnPropertyDescriptor = Object.getOwnPropertyDescriptor;
+    Object.getOwnPropertyDescriptor = function(obj, prop) {
+      if (prop === 'webdriver' && (obj === origNavigator || obj === Navigator.prototype)) {
+        return undefined;
+      }
+      return origGetOwnPropertyDescriptor(obj, prop);
+    };
+    
+    const origGetOwnPropertyNames = Object.getOwnPropertyNames;
+    Object.getOwnPropertyNames = function(obj) {
+      const names = origGetOwnPropertyNames(obj);
+      if (obj === origNavigator || obj === Navigator.prototype) {
+        return names.filter(n => n !== 'webdriver');
+      }
+      return names;
     };
   } catch (e) {}
   
@@ -114,10 +146,16 @@
   
   // 5a. Block CDP Runtime.evaluate detection - only on window object
   // When UC uses CDP, it leaves trace in window.cdc_adoQpoasnfa76pfcZLmcfl_
+  // Also block webdriver property being set on navigator (UC does this via CDP)
   try {
     // Only block known automation property patterns on window
     const originalDefineProperty = Object.defineProperty;
     Object.defineProperty = function(obj, prop, desc) {
+      // Block webdriver property being set on navigator
+      if ((obj === origNavigator || obj === Navigator.prototype) && prop === 'webdriver') {
+        // Silently ignore - don't let UC set webdriver
+        return obj;
+      }
       // Only block on window object
       if (obj === window && typeof prop === 'string') {
         // Block CDC patterns and exact automation markers
@@ -485,8 +523,14 @@ const EMBEDDED_DEFAULT_PROFILE = {"server":{"ip":"2405:f600:8:e0a9:985c:f5c3:340
   }
 
   // More sophisticated toString override with prototype chain awareness
+  // CRITICAL: Must handle all edge cases to avoid toString_error tampering signal
   const customToString = function toString() {
-    // Handle bound functions and proxies
+    // Handle null/undefined context (prevent TypeError)
+    if (this === null || this === undefined) {
+      // Real Function.prototype.toString throws TypeError for null/undefined
+      throw new TypeError('Function.prototype.toString requires that \'this\' be a Function');
+    }
+    
     const target = this;
     
     // Check our spoofed functions first
@@ -494,10 +538,19 @@ const EMBEDDED_DEFAULT_PROFILE = {"server":{"ip":"2405:f600:8:e0a9:985c:f5c3:340
       return nativeFunctionNames.get(target);
     }
     
+    // For non-function types, throw proper error like native would
+    if (typeof target !== 'function') {
+      throw new TypeError('Function.prototype.toString requires that \'this\' be a Function');
+    }
+    
     // Use original toString for everything else
     try {
       return _originals.toString.call(target);
     } catch (e) {
+      // Only use fallback if original truly fails
+      if (typeof target === 'function' && target.name) {
+        return `function ${target.name}() { [native code] }`;
+      }
       return 'function () { [native code] }';
     }
   };
@@ -907,29 +960,47 @@ const EMBEDDED_DEFAULT_PROFILE = {"server":{"ip":"2405:f600:8:e0a9:985c:f5c3:340
     // On real desktop Chrome without extensions, chrome.runtime should have specific structure
     
     if (isMobileProfile) {
-      // Mobile Chrome - minimal chrome object
-      // Delete desktop-only methods that would indicate spoofing
+      // Mobile Chrome - needs chrome.runtime to exist but be minimal
+      // fingerprint.com flags "no_chrome_runtime" when chrome.runtime is undefined
+      // Mobile Chrome DOES have chrome.runtime, just with limited API
       try { delete window.chrome.csi; } catch (e) {}
       try { delete window.chrome.loadTimes; } catch (e) {}
       
-      // Mobile Chrome without extensions has chrome.runtime as undefined
-      // But with extension loaded, it has limited runtime
-      // fingerprint.com flags "no_chrome_runtime" for mobile which is actually normal
-      // The trick is to have a minimal runtime that looks real
-      if (typeof chrome.runtime === 'undefined' || !chrome.runtime) {
-        Object.defineProperty(window.chrome, 'runtime', {
-          value: {
-            // Minimal runtime - only what extensions need
-            // Real mobile Chrome has no sendMessage/connect in content scripts
-            id: undefined, // Extensions have ID, websites don't see it
-            getURL: undefined,
-            getManifest: undefined
-          },
-          writable: false,
-          configurable: true,
-          enumerable: true
-        });
-      }
+      // CRITICAL: Mobile Chrome has chrome.runtime with at least these properties
+      // The detection looks for the presence of runtime, not its methods
+      const mobileRuntime = {};
+      Object.defineProperty(mobileRuntime, 'id', { value: undefined, enumerable: true });
+      Object.defineProperty(mobileRuntime, 'OnInstalledReason', { 
+        value: { INSTALL: 'install', UPDATE: 'update', CHROME_UPDATE: 'chrome_update', SHARED_MODULE_UPDATE: 'shared_module_update' },
+        enumerable: true 
+      });
+      Object.defineProperty(mobileRuntime, 'OnRestartRequiredReason', { 
+        value: { APP_UPDATE: 'app_update', OS_UPDATE: 'os_update', PERIODIC: 'periodic' },
+        enumerable: true 
+      });
+      Object.defineProperty(mobileRuntime, 'PlatformArch', { 
+        value: { ARM: 'arm', ARM64: 'arm64', X86_32: 'x86-32', X86_64: 'x86-64', MIPS: 'mips', MIPS64: 'mips64' },
+        enumerable: true 
+      });
+      Object.defineProperty(mobileRuntime, 'PlatformNaclArch', { 
+        value: { ARM: 'arm', X86_32: 'x86-32', X86_64: 'x86-64', MIPS: 'mips', MIPS64: 'mips64' },
+        enumerable: true 
+      });
+      Object.defineProperty(mobileRuntime, 'PlatformOs', { 
+        value: { MAC: 'mac', WIN: 'win', ANDROID: 'android', CROS: 'cros', LINUX: 'linux', OPENBSD: 'openbsd', FUCHSIA: 'fuchsia' },
+        enumerable: true 
+      });
+      Object.defineProperty(mobileRuntime, 'RequestUpdateCheckStatus', { 
+        value: { THROTTLED: 'throttled', NO_UPDATE: 'no_update', UPDATE_AVAILABLE: 'update_available' },
+        enumerable: true 
+      });
+      
+      Object.defineProperty(window.chrome, 'runtime', {
+        value: mobileRuntime,
+        writable: false,
+        configurable: true,
+        enumerable: true
+      });
       
       // Mobile should have app object with limited API
       if (!window.chrome.app) {
