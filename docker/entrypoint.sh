@@ -62,7 +62,22 @@ done
 # Get root access
 echo "Getting root access..."
 adb -s $REDROID_HOST:$REDROID_ADB_PORT root 2>/dev/null || true
+sleep 3
+
+# Reconnect after root (connection drops when adbd restarts)
+echo "Reconnecting to ADB after root..."
+adb disconnect $REDROID_HOST:$REDROID_ADB_PORT 2>/dev/null || true
 sleep 2
+retry=0
+while [ $retry -lt 30 ]; do
+    if adb connect $REDROID_HOST:$REDROID_ADB_PORT 2>/dev/null | grep -q "connected"; then
+        echo "ADB reconnected successfully"
+        break
+    fi
+    echo "Reconnecting... ($((retry+1))/30)"
+    sleep 2
+    retry=$((retry+1))
+done
 
 # Run device setup (ADB properties)
 echo ""

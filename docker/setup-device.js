@@ -24,17 +24,15 @@ async function main() {
     console.log('\nExtracted device info:');
     console.log(JSON.stringify(deviceInfo, null, 2));
     
-    // Connect to ADB
+    // Connect to ADB (may already be connected from entrypoint)
     await waitForAdb();
-    await waitForBoot();
     
-    // Get root access
-    console.log('\nGetting root access...');
+    // Verify device is responsive
     try {
-        adb('root');
-        await sleep(2000);
+        const devices = adb('devices', { ignoreError: true });
+        console.log('Connected devices:', devices);
     } catch (e) {
-        console.log('Root access may not be available, continuing...');
+        console.log('Could not list devices');
     }
     
     // Set device properties
