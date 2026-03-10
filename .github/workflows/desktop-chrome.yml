@@ -40,14 +40,12 @@ jobs:
           mkdir -p "/tmp/$RANDOM_PROFILE"
           
           # Chrome desktop shortcut with random profile
-          cat > ~/Desktop/Chrome.desktop << EOF
-[Desktop Entry]
-Type=Application
-Name=Google Chrome
-Exec=google-chrome --no-first-run --user-data-dir=/tmp/$RANDOM_PROFILE
-Icon=google-chrome
-Terminal=false
-EOF
+          echo '[Desktop Entry]' > ~/Desktop/Chrome.desktop
+          echo 'Type=Application' >> ~/Desktop/Chrome.desktop
+          echo 'Name=Google Chrome' >> ~/Desktop/Chrome.desktop
+          echo "Exec=google-chrome --no-first-run --user-data-dir=/tmp/$RANDOM_PROFILE" >> ~/Desktop/Chrome.desktop
+          echo 'Icon=google-chrome' >> ~/Desktop/Chrome.desktop
+          echo 'Terminal=false' >> ~/Desktop/Chrome.desktop
           chmod +x ~/Desktop/Chrome.desktop
           
           echo "Random profile: /tmp/$RANDOM_PROFILE"
