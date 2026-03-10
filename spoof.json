@@ -1,10 +1,10 @@
 {
   "server": {
-    "ip": "68.220.59.244",
+    "ip": "135.232.208.115",
     "protocol": "HTTP/1.0",
     "https": true,
     "port": "80",
-    "request_time": "2026-03-10 11:35:39",
+    "request_time": "2026-03-10 11:48:50",
     "user_agent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Mobile Safari/537.36",
     "accept": "*/*",
     "accept_language": "en-IN,en-GB;q=0.9,en-US;q=0.8,en;q=0.7,gu;q=0.6",
@@ -28,12 +28,12 @@
     "ch_ua_bitness": null,
     "ch_ua_full_version_list": null,
     "ch_ua_model": null,
-    "x_forwarded_for": "68.220.59.244, 172.70.230.48",
+    "x_forwarded_for": "135.232.208.115, 162.158.158.192",
     "x_real_ip": null,
     "via": null,
-    "cf_connecting_ip": "68.220.59.244",
+    "cf_connecting_ip": "135.232.208.115",
     "cf_ipcountry": "US",
-    "cf_ray": "9da20468bba8c52e-EWR",
+    "cf_ray": "9da217b49872ef0a-EWR",
     "cdn_loop": "cloudflare; loops=1",
     "x_forwarded_proto": "https",
     "ja3_hash": null,
@@ -43,9 +43,9 @@
     "all_headers": {
       "Cf-Visitor": "{\"scheme\":\"https\"}",
       "Cf-Ipcountry": "US",
-      "Cf-Connecting-Ip": "68.220.59.244",
+      "Cf-Connecting-Ip": "135.232.208.115",
       "Cdn-Loop": "cloudflare; loops=1",
-      "Cf-Ray": "9da20468bba8c52e-EWR",
+      "Cf-Ray": "9da217b49872ef0a-EWR",
       "Accept-Language": "en-IN,en-GB;q=0.9,en-US;q=0.8,en;q=0.7,gu;q=0.6",
       "Accept-Encoding": "gzip, br",
       "Referer": "https://botxbyte.com/fp.php",
@@ -61,10 +61,10 @@
       "X-Requested-With": "XMLHttpRequest",
       "Sec-Ch-Ua-Platform": "\"Android\"",
       "Priority": "u=1, i",
-      "Content-Length": "41196",
+      "Content-Length": "41160",
       "Connection": "close",
       "X-Forwarded-Proto": "https",
-      "X-Forwarded-For": "68.220.59.244, 172.70.230.48",
+      "X-Forwarded-For": "135.232.208.115, 162.158.158.192",
       "X-Server-Addr": "107.170.48.37",
       "Host": "botxbyte.com",
       "Authorization": ""
@@ -126,7 +126,6 @@
       "deviceMemory": 8,
       "maxTouchPoints": 5,
       "pdfViewerEnabled": null,
-      "webdriver": false,
       "onLine": true,
       "javaEnabled": false,
       "cookieStore": true
@@ -159,7 +158,7 @@
       "calendar": "gregory",
       "numberingSystem": "latn",
       "localeDateString": "10/03/2026",
-      "localeTimeString": "17:05:39"
+      "localeTimeString": "17:18:49"
     },
     "canvas": {
       "hash": "54891a77",
@@ -357,7 +356,7 @@
         0.1,
         0.1,
         0.1,
-        0.8,
+        0.1,
         0.1,
         0.1,
         0.1,
@@ -368,12 +367,12 @@
       "navigationTiming": {
         "type": "navigate",
         "redirectCount": 0,
-        "domInteractive": 465,
-        "domContentLoaded": 468,
-        "loadEvent": 468,
-        "ttfb": 148,
-        "transferSize": 52045,
-        "encodedBodySize": 51745
+        "domInteractive": 342,
+        "domContentLoaded": 345,
+        "loadEvent": 345,
+        "ttfb": 183,
+        "transferSize": 52057,
+        "encodedBodySize": 51757
       },
       "memory": {
         "jsHeapSizeLimit": 1130000000,
@@ -381,7 +380,7 @@
         "usedJSHeapSize": 10000000
       },
       "timeOrigin": 1773122913591.5,
-      "now": 5395.200000000012
+      "now": 5134.299999999988
     },
     "stackTrace": {
       "engine": "V8(Chrome/Node)",
@@ -464,7 +463,7 @@
     "refreshRate": {
       "measured_fps": 60,
       "snapped_hz": 60,
-      "avg_frame_ms": 16.666
+      "avg_frame_ms": 16.669
     },
     "videoDecoder": {
       "supported": true,
@@ -510,7 +509,7 @@
           "absolute": false
         }
       },
-      "sessionDuration": 5388
+      "sessionDuration": 5129
     },
     "fontPreferences": {
       "default": 455.95556640625,
@@ -633,7 +632,6 @@
       "signals": [
         "chrome_no_plugins"
       ],
-      "webdriver": false,
       "inIframe": false,
       "devtoolsOpen": false,
       "antiDetectBrowser": false
@@ -1086,11 +1084,11 @@
       "loadedFamilies": 0
     },
     "hypervisorProbe": {
-      "mean_ms": 0.0075,
-      "stdDev_ms": 0.0263,
+      "mean_ms": 0.0125,
+      "stdDev_ms": 0.0331,
       "min_ms": 0,
       "max_ms": 0.1,
-      "cv_percent": 351.19,
+      "cv_percent": 264.58,
       "possibleVM": true
     },
     "memoryPattern": {
@@ -1100,7 +1098,7 @@
           "pages": 1,
           "sizeKB": 64,
           "allocMs": 0,
-          "touchMs": 0.1
+          "touchMs": 0
         },
         {
           "pages": 10,
@@ -1118,13 +1116,13 @@
           "pages": 100,
           "sizeKB": 6400,
           "allocMs": 0,
-          "touchMs": 0
+          "touchMs": 0.1
         },
         {
           "pages": 256,
           "sizeKB": 16384,
           "allocMs": 0,
-          "touchMs": 0.4
+          "touchMs": 0.2
         }
       ],
       "patternHash": "2ed65e02"
@@ -2536,5 +2534,5 @@
       "supported": true
     }
   },
-  "generated": "2026-03-10T11:35:39+00:00"
+  "generated": "2026-03-10T11:48:50+00:00"
 }
