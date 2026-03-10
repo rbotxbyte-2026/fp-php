@@ -69,7 +69,7 @@ async function main() {
 }
 
 /**
- * Start Chrome on Android
+ * Start Chrome on Android with remote debugging
  */
 async function startChrome() {
     // Kill existing Chrome
@@ -79,22 +79,34 @@ async function startChrome() {
     
     await sleep(1000);
     
-    // Start Chrome with flags
+    // Write Chrome command-line flags file
     const chromeFlags = [
+        'chrome',
         '--disable-fre',
-        '--no-first-run',
+        '--no-first-run', 
         '--disable-notifications',
         '--disable-popup-blocking',
+        '--remote-debugging-port=9222'
     ].join(' ');
     
     try {
-        adb(`shell am start -n com.android.chrome/com.google.android.apps.chrome.Main ${chromeFlags}`);
+        // Chrome reads flags from this file on Android
+        adb(`shell "echo '${chromeFlags}' > /data/local/tmp/chrome-command-line"`);
+        adb('shell chmod 644 /data/local/tmp/chrome-command-line');
     } catch (e) {
-        // Try alternative Chrome package
+        console.log('Could not write Chrome flags file');
+    }
+    
+    // Start Chrome (without invalid am start options)
+    try {
+        adb('shell am start -n com.android.chrome/com.google.android.apps.chrome.Main -a android.intent.action.VIEW -d "about:blank"');
+    } catch (e) {
+        console.log('Chrome start error:', e.message);
+        // Try without extras
         try {
-            adb('shell am start -n com.chrome.canary/com.google.android.apps.chrome.Main');
+            adb('shell am start -n com.android.chrome/com.google.android.apps.chrome.Main');
         } catch (e2) {
-            adb('shell am start -n org.chromium.chrome/org.chromium.chrome.browser.ChromeTabbedActivity');
+            console.log('Chrome may not be installed or has different package name');
         }
     }
     

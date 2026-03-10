@@ -35,44 +35,20 @@ async function main() {
         console.log('Could not list devices');
     }
     
-    // Set device properties
-    console.log('\n--- Setting Device Properties ---\n');
+    // Note: ro.* properties are READ-ONLY and must be set via Redroid boot params
+    // Only persist.* properties can be changed at runtime
+    console.log('\n--- Setting Runtime Properties (persist.*) ---\n');
+    console.log('Note: ro.* properties are read-only. Use docker-compose boot params for device identity.\n');
     
-    const properties = {
-        // Device Identity
-        'ro.product.model': deviceInfo.model,
-        'ro.product.brand': deviceInfo.brand,
-        'ro.product.manufacturer': deviceInfo.manufacturer,
-        'ro.product.device': deviceInfo.device,
-        'ro.product.name': deviceInfo.product,
-        'ro.build.product': deviceInfo.product,
-        
-        // Hardware
-        'ro.product.board': deviceInfo.board,
-        'ro.hardware': deviceInfo.hardware,
-        'ro.arch': 'arm64',
-        
-        // OS Version
-        'ro.build.version.release': deviceInfo.androidVersion,
-        'ro.build.version.sdk': deviceInfo.sdkVersion,
-        'ro.build.version.incremental': `${deviceInfo.brand}${Date.now()}`,
-        
-        // Build Info
-        'ro.build.display.id': `${deviceInfo.brand}/${deviceInfo.device}/${deviceInfo.androidVersion}`,
-        'ro.build.fingerprint': `${deviceInfo.brand}/${deviceInfo.product}/${deviceInfo.device}:${deviceInfo.androidVersion}/${deviceInfo.sdkVersion}/${Date.now()}:user/release-keys`,
-        
-        // Locale & Timezone (persist.sys for runtime changes)
+    const persistProperties = {
+        // Locale & Timezone (these CAN be changed at runtime)
         'persist.sys.timezone': deviceInfo.timezone,
         'persist.sys.locale': deviceInfo.locale,
         'persist.sys.language': deviceInfo.language,
         'persist.sys.country': deviceInfo.country,
-        
-        // Additional properties
-        'ro.setupwizard.mode': 'OPTIONAL',
-        'ro.com.google.gmsversion': `${deviceInfo.androidVersion}_202403`,
     };
     
-    for (const [prop, value] of Object.entries(properties)) {
+    for (const [prop, value] of Object.entries(persistProperties)) {
         try {
             console.log(`Setting ${prop} = ${value}`);
             adb(`shell setprop ${prop} "${value}"`);
