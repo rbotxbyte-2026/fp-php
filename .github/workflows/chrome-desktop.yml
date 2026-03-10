@@ -114,6 +114,11 @@ jobs:
 
       - name: Start ngrok tunnel
         run: |
+          # Read dimensions from profile for display
+          INNER_WIDTH=$(jq -r '.client.screen.innerWidth // 384' original.json)
+          INNER_HEIGHT=$(jq -r '.client.screen.innerHeight // 699' original.json)
+          WINDOW_HEIGHT=$((INNER_HEIGHT + 79))
+          
           # Start ngrok in background
           ngrok http 6080 --log=stdout > ngrok.log 2>&1 &
           sleep 5
@@ -127,17 +132,24 @@ jobs:
           echo ""
           echo "noVNC URL: $NGROK_URL"
           echo ""
-          echo "Instructions:"
-          echo "1. Open the URL above in your browser"
-          echo "2. Double-click 'Chrome (Profile Size)' on desktop"
-          echo "   OR run: ~/Desktop/launch-chrome-resized.sh"
-          echo "3. Go to chrome://extensions"
-          echo "4. Enable 'Developer mode'"
-          echo "5. Click 'Load unpacked'"
-          echo "6. Select: /home/runner/Downloads/fp-spoofer-extension"
+          echo "========================================"
+          echo "  OPEN CHROME (copy-paste in terminal):"
+          echo "========================================"
           echo ""
-          echo "Profile: /home/runner/Downloads/original.json"
-          echo "Chrome will be resized to match profile dimensions"
+          echo "google-chrome --window-size=${INNER_WIDTH},${WINDOW_HEIGHT} --window-position=100,100 --no-first-run --disable-default-apps about:blank &"
+          echo ""
+          echo "========================================"
+          echo ""
+          echo "Extension path: /home/runner/Downloads/fp-spoofer-extension"
+          echo "Profile path:   /home/runner/Downloads/original.json"
+          echo ""
+          echo "After Chrome opens:"
+          echo "1. Go to chrome://extensions"
+          echo "2. Enable 'Developer mode' (top right)"
+          echo "3. Click 'Load unpacked'"
+          echo "4. Select: /home/runner/Downloads/fp-spoofer-extension"
+          echo ""
+          echo "========================================"
           echo ""
           echo "========================================"
           
