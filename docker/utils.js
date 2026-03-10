@@ -19,7 +19,8 @@ function loadProfile(profilePath) {
 function adb(command, options = {}) {
     const host = process.env.REDROID_HOST || 'localhost';
     const port = process.env.REDROID_ADB_PORT || '5555';
-    const fullCmd = `adb -H ${host} -P 5037 ${command}`;
+    // Use -s for direct device connection
+    const fullCmd = `adb -s ${host}:${port} ${command}`;
     
     if (options.async) {
         return new Promise((resolve, reject) => {
@@ -49,13 +50,19 @@ async function waitForAdb(maxRetries = 30) {
     
     for (let i = 0; i < maxRetries; i++) {
         try {
-            execSync(`adb connect ${host}:${port}`, { encoding: 'utf8', timeout: 5000 });
-            const devices = execSync('adb devices', { encoding: 'utf8' });
-            if (devices.includes(host)) {
+            // Try to connect
+            execSync(`adb connect ${host}:${port}`, { encoding: 'utf8', timeout: 5000, stdio: 'pipe' });
+            await sleep(500);
+            
+            // Check if connected
+            const devices = execSync('adb devices', { encoding: 'utf8', stdio: 'pipe' });
+            if (devices.includes(host) && !devices.includes('offline')) {
                 console.log('ADB connected successfully');
                 return true;
             }
-        } catch (e) {}
+        } catch (e) {
+            // Ignore errors, keep retrying
+        }
         
         console.log(`Waiting for ADB... (${i + 1}/${maxRetries})`);
         await sleep(2000);
