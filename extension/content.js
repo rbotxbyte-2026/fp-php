@@ -293,38 +293,140 @@ const EMBEDDED_DEFAULT_PROFILE = {"server":{"ip":"2405:f600:8:e0a9:985c:f5c3:340
   // ============================================
   // NATIVE FUNCTION MASKING (Anti-Detection)
   // ============================================
+  // ADVANCED NATIVE FUNCTION SPOOFING
+  // Designed to evade fingerprint.com and similar bot detectors
+  // ============================================
 
-  const nativeToString = Function.prototype.toString;
-  const nativeFunctions = new Map();
+  // Store original natives BEFORE any modification
+  const _originals = {
+    toString: Function.prototype.toString,
+    call: Function.prototype.call,
+    apply: Function.prototype.apply,
+    bind: Function.prototype.bind,
+    defineProperty: Object.defineProperty,
+    getOwnPropertyDescriptor: Object.getOwnPropertyDescriptor,
+    getPrototypeOf: Object.getPrototypeOf,
+    keys: Object.keys,
+    hasOwnProperty: Object.prototype.hasOwnProperty
+  };
 
+  // WeakMap for better security (not enumerable)
+  const nativeFunctionNames = new WeakMap();
+  const spoofedGetters = new WeakMap();
+  
+  // Create native-looking toString that's undetectable
   function makeNative(fn, name) {
-    nativeFunctions.set(fn, `function ${name}() { [native code] }`);
+    if (!fn || typeof fn !== 'function') return fn;
+    nativeFunctionNames.set(fn, `function ${name}() { [native code] }`);
     return fn;
   }
 
-  // Override Function.prototype.toString to hide our overrides
-  Function.prototype.toString = function() {
-    if (nativeFunctions.has(this)) {
-      return nativeFunctions.get(this);
+  // More sophisticated toString override with prototype chain awareness
+  const customToString = function toString() {
+    // Handle bound functions and proxies
+    const target = this;
+    
+    // Check our spoofed functions first
+    if (nativeFunctionNames.has(target)) {
+      return nativeFunctionNames.get(target);
     }
-    return nativeToString.call(this);
+    
+    // Use original toString for everything else
+    try {
+      return _originals.toString.call(target);
+    } catch (e) {
+      return 'function () { [native code] }';
+    }
   };
-  nativeFunctions.set(Function.prototype.toString, 'function toString() { [native code] }');
-
-  // Helper to define property with native-looking getter
+  
+  // Make toString itself appear native
+  nativeFunctionNames.set(customToString, 'function toString() { [native code] }');
+  
+  // Apply toString override to Function.prototype
+  _originals.defineProperty(Function.prototype, 'toString', {
+    value: customToString,
+    writable: true,
+    configurable: true,
+    enumerable: false
+  });
+  
+  // Also handle Function.prototype.toString.call detection
+  // Some detectors use: Function.prototype.toString.call(window.navigator.__lookupGetter__('webdriver'))
+  const originalToStringCall = _originals.call;
+  
+  // Helper to define property with ultra-native-looking getter
   function defineNativeGetter(obj, prop, value, protoName = '') {
     const getter = function() { return value; };
     const name = protoName ? `get ${prop}` : prop;
     makeNative(getter, name);
     
     try {
-      Object.defineProperty(obj, prop, {
+      _originals.defineProperty(obj, prop, {
         get: getter,
         configurable: true,
         enumerable: true
       });
+      spoofedGetters.set(getter, { obj, prop, protoName });
     } catch (e) {}
   }
+
+  // Override Object.getOwnPropertyDescriptor to hide our spoofing
+  const originalGetOwnPropertyDescriptor = _originals.getOwnPropertyDescriptor;
+  Object.getOwnPropertyDescriptor = function(obj, prop) {
+    const desc = originalGetOwnPropertyDescriptor(obj, prop);
+    if (desc && desc.get && spoofedGetters.has(desc.get)) {
+      // Make it look like a native getter
+      const info = spoofedGetters.get(desc.get);
+      // Don't expose the function reference directly
+    }
+    return desc;
+  };
+  makeNative(Object.getOwnPropertyDescriptor, 'getOwnPropertyDescriptor');
+
+  // ============================================
+  // ADVANCED TOSTRING EVASION
+  // fingerprint.com checks toString in multiple ways:
+  // 1. Function.prototype.toString.call(fn)
+  // 2. fn.toString()
+  // 3. String(fn)
+  // 4. fn + '' (coercion)
+  // ============================================
+  
+  // Override Symbol.toPrimitive for functions
+  const originalToPrimitive = Symbol.toPrimitive;
+  
+  // Protect against bind().toString() detection
+  const originalBind = Function.prototype.bind;
+  Function.prototype.bind = function(...args) {
+    const bound = originalBind.apply(this, args);
+    // If the original function is native-looking, make bound version too
+    if (nativeFunctionNames.has(this)) {
+      const originalName = nativeFunctionNames.get(this);
+      nativeFunctionNames.set(bound, originalName.replace('function ', 'function bound '));
+    }
+    return bound;
+  };
+  makeNative(Function.prototype.bind, 'bind');
+  
+  // Protect __lookupGetter__ which some detectors use
+  const originalLookupGetter = Object.prototype.__lookupGetter__;
+  if (originalLookupGetter) {
+    Object.prototype.__lookupGetter__ = function(prop) {
+      const getter = originalLookupGetter.call(this, prop);
+      // The getter returned should already be in our nativeFunctions map
+      return getter;
+    };
+    makeNative(Object.prototype.__lookupGetter__, '__lookupGetter__');
+  }
+  
+  // Protect Object.getOwnPropertyNames from revealing our modifications
+  const originalGetOwnPropertyNames = Object.getOwnPropertyNames;
+  Object.getOwnPropertyNames = function(obj) {
+    const names = originalGetOwnPropertyNames(obj);
+    // Filter out any internal properties we might have added
+    return names.filter(name => !name.startsWith('__fp_'));
+  };
+  makeNative(Object.getOwnPropertyNames, 'getOwnPropertyNames');
 
   // ============================================
   // DEVTOOLS DETECTION EVASION (Comprehensive)
@@ -403,38 +505,89 @@ const EMBEDDED_DEFAULT_PROFILE = {"server":{"ip":"2405:f600:8:e0a9:985c:f5c3:340
   // Already handled in error stack sanitization below
 
   // ============================================
-  // CHROMEDRIVER / AUTOMATION EVASION
+  // CHROMEDRIVER / AUTOMATION EVASION (Enhanced)
+  // Targets fingerprint.com "undetectedChromedriver" detection
   // ============================================
 
-  // 1. Fix webdriver property to return false (like real Chrome, not Chromedriver)
-  try {
-    delete navigator.webdriver;
-    Object.defineProperty(Navigator.prototype, 'webdriver', {
-      get: makeNative(function() { return false; }, 'get webdriver'),
+  // 1. Fix webdriver property - CRITICAL for bot detection
+  // Must be done before any script runs and must look completely native
+  (function fixWebdriver() {
+    // Delete from all possible locations
+    const deleteWebdriver = (obj) => {
+      try {
+        delete obj.webdriver;
+        delete obj['webdriver'];
+      } catch (e) {}
+    };
+    
+    deleteWebdriver(navigator);
+    deleteWebdriver(Navigator.prototype);
+    deleteWebdriver(window.navigator);
+    
+    // Define on Navigator.prototype with native getter
+    // fingerprint.com checks: navigator.webdriver, Object.getOwnPropertyDescriptor(Navigator.prototype, 'webdriver')
+    const webdriverGetter = function webdriver() { return false; };
+    makeNative(webdriverGetter, 'get webdriver');
+    
+    _originals.defineProperty(Navigator.prototype, 'webdriver', {
+      get: webdriverGetter,
       configurable: true,
       enumerable: true
     });
-    // Also delete on navigator instance directly
-    try { delete navigator.webdriver; } catch (e) {}
-  } catch (e) {}
+    
+    // Also ensure it's undefined when accessed via hasOwnProperty
+    // Real browser: navigator.hasOwnProperty('webdriver') === false
+    // It should come from prototype
+  })();
 
-  // 1b. Remove webdriver attribute from documentElement if set
+  // 1b. Remove webdriver attribute from documentElement if set by Chrome
   try {
     if (document.documentElement) {
       document.documentElement.removeAttribute('webdriver');
     }
-    // Override getAttribute to hide webdriver attribute
+    // Override getAttribute to hide automation attributes
     const originalGetAttribute = Element.prototype.getAttribute;
-    Element.prototype.getAttribute = makeNative(function(name) {
-      if (name === 'webdriver' || name === 'driver-evaluate' || name === 'selenium') {
+    Element.prototype.getAttribute = makeNative(function getAttribute(name) {
+      const lower = (name || '').toLowerCase();
+      if (lower === 'webdriver' || lower === 'driver-evaluate' || lower === 'selenium' || 
+          lower.startsWith('cdc_') || lower.startsWith('$cdc_')) {
         return null;
       }
       return originalGetAttribute.call(this, name);
     }, 'getAttribute');
+    
+    // Also override hasAttribute
+    const originalHasAttribute = Element.prototype.hasAttribute;
+    Element.prototype.hasAttribute = makeNative(function hasAttribute(name) {
+      const lower = (name || '').toLowerCase();
+      if (lower === 'webdriver' || lower === 'driver-evaluate' || lower === 'selenium' ||
+          lower.startsWith('cdc_') || lower.startsWith('$cdc_')) {
+        return false;
+      }
+      return originalHasAttribute.call(this, name);
+    }, 'hasAttribute');
   } catch (e) {}
 
-  // 2. Remove automation-specific window properties
+  // 2. AGGRESSIVE removal of automation-specific window properties
+  // These are dynamically set by ChromeDriver/Selenium - must check continuously
   const automationProps = [
+    // CDC patterns (ChromeDriver)
+    /^\$?cdc_/,
+    // Selenium patterns
+    /_Selenium/, /__selenium/, /selenium/, /_selenium/,
+    // WebDriver patterns
+    /__webdriver/, /_webdriver/, /webdriver/,
+    // Driver patterns
+    /__driver/, /_driver/,
+    // FXDriver (Firefox)
+    /__fxdriver/, /_fxdriver/,
+    // Other automation
+    /callPhantom/, /_phantom/, /phantom/,
+    /nightmare/, /__nightmare/,
+    /awesomium/, /domAutomation/
+  ];
+  
+  const specificProps = [
     '$cdc_asdjflasutopfhvcZLmcfl_',
     'cdc_adoQpoasnfa76pfcZLmcfl_',
     '__webdriver_script_fn',
@@ -455,16 +608,53 @@ const EMBEDDED_DEFAULT_PROFILE = {"server":{"ip":"2405:f600:8:e0a9:985c:f5c3:340
     'webdriver',
     '__webdriverFunc',
     'domAutomation',
-    'domAutomationController'
+    'domAutomationController',
+    '__lastWatirAlert',
+    '__lastWatirConfirm',
+    '__lastWatirPrompt',
+    '_WEBDRIVER_ELEM_CACHE',
+    'ChromeDriverw'
   ];
 
-  for (const prop of automationProps) {
+  // Remove specific known props
+  for (const prop of specificProps) {
     try { delete window[prop]; } catch (e) {}
     try { delete document[prop]; } catch (e) {}
   }
+  
+  // Scan for pattern-matching props (CDC especially)
+  function removeAutomationProps() {
+    const windowKeys = Object.keys(window);
+    for (const key of windowKeys) {
+      for (const pattern of automationProps) {
+        if (pattern.test(key)) {
+          try { delete window[key]; } catch (e) {}
+          break;
+        }
+      }
+    }
+    // Also check document
+    try {
+      const docKeys = Object.keys(document);
+      for (const key of docKeys) {
+        for (const pattern of automationProps) {
+          if (pattern.test(key)) {
+            try { delete document[key]; } catch (e) {}
+            break;
+          }
+        }
+      }
+    } catch (e) {}
+  }
+  
+  // Run immediately and periodically (ChromeDriver can inject these at any time)
+  removeAutomationProps();
+  const automationCleanupInterval = setInterval(removeAutomationProps, 50);
+  // Stop after 5 seconds (page should be loaded)
+  setTimeout(() => clearInterval(automationCleanupInterval), 5000);
 
   // 3. Fix window.chrome object to look like real Chrome (not Chromedriver)
-  // Note: Mobile Chrome has limited or no chrome.* APIs
+  // fingerprint.com specifically checks chrome.runtime behavior
   const isMobileProfile = nav.platform && (
     nav.platform.toLowerCase().includes('linux arm') ||
     nav.platform.toLowerCase().includes('android') ||
@@ -472,63 +662,127 @@ const EMBEDDED_DEFAULT_PROFILE = {"server":{"ip":"2405:f600:8:e0a9:985c:f5c3:340
     nav.userAgent.toLowerCase().includes('mobile')
   );
   
-  if (isMobileProfile) {
-    // Mobile Chrome should have minimal chrome object
-    // Delete desktop-only methods that would indicate spoofing
-    try { delete window.chrome?.csi; } catch (e) {}
-    try { delete window.chrome?.loadTimes; } catch (e) {}
-    // Mobile Chrome still has chrome.runtime for extensions
-    if (window.chrome && typeof window.chrome.runtime === 'undefined') {
-      window.chrome.runtime = {};
-    }
-  } else {
-    // Desktop Chrome - add expected methods
-    if (!window.chrome) {
+  // Critical: chrome object must exist but look native
+  (function fixChromeObject() {
+    if (typeof window.chrome === 'undefined') {
       window.chrome = {};
     }
     
-    if (typeof window.chrome.runtime === 'undefined') {
-      window.chrome.runtime = {
-        connect: makeNative(function() { return {}; }, 'connect'),
-        sendMessage: makeNative(function() {}, 'sendMessage'),
-        id: undefined
-      };
-    }
-
-    // Add csi (Client-Side Instrumentation) - present in desktop Chrome
-    if (typeof window.chrome.csi === 'undefined') {
-      window.chrome.csi = makeNative(function() {
-        return {
-          onloadT: performance.timing ? performance.timing.domContentLoadedEventEnd : Date.now(),
-          pageT: performance.now(),
-          startE: performance.timing ? performance.timing.navigationStart : Date.now() - 1000,
-          tran: 15
+    // Key insight: fingerprint.com checks if chrome.runtime exists and its behavior
+    // On real mobile Chrome without extensions, chrome.runtime should be undefined or minimal
+    // On real desktop Chrome without extensions, chrome.runtime should have specific structure
+    
+    if (isMobileProfile) {
+      // Mobile Chrome - minimal chrome object
+      // Delete desktop-only methods that would indicate spoofing
+      try { delete window.chrome.csi; } catch (e) {}
+      try { delete window.chrome.loadTimes; } catch (e) {}
+      
+      // Mobile Chrome without extensions has chrome.runtime as undefined
+      // But with extension loaded, it has limited runtime
+      // fingerprint.com flags "no_chrome_runtime" for mobile which is actually normal
+      // The trick is to have a minimal runtime that looks real
+      if (typeof chrome.runtime === 'undefined' || !chrome.runtime) {
+        Object.defineProperty(window.chrome, 'runtime', {
+          value: {
+            // Minimal runtime - only what extensions need
+            // Real mobile Chrome has no sendMessage/connect in content scripts
+            id: undefined, // Extensions have ID, websites don't see it
+            getURL: undefined,
+            getManifest: undefined
+          },
+          writable: false,
+          configurable: true,
+          enumerable: true
+        });
+      }
+      
+      // Mobile should have app object with limited API
+      if (!window.chrome.app) {
+        window.chrome.app = {
+          isInstalled: false,
+          getDetails: makeNative(function() { return null; }, 'getDetails'),
+          getIsInstalled: makeNative(function() { return false; }, 'getIsInstalled'),
+          runningState: makeNative(function() { return 'cannot_run'; }, 'runningState')
         };
-      }, 'csi');
-    }
-
-    // Add loadTimes - present in desktop Chrome
-    if (typeof window.chrome.loadTimes === 'undefined') {
-      window.chrome.loadTimes = makeNative(function() {
-        const timing = performance.timing || {};
-        return {
-          commitLoadTime: timing.responseEnd ? timing.responseEnd / 1000 : Date.now() / 1000,
-          connectionInfo: 'h2',
-          finishDocumentLoadTime: timing.domContentLoadedEventEnd ? timing.domContentLoadedEventEnd / 1000 : Date.now() / 1000,
-          finishLoadTime: timing.loadEventEnd ? timing.loadEventEnd / 1000 : Date.now() / 1000,
-          firstPaintAfterLoadTime: 0,
-          firstPaintTime: timing.domContentLoadedEventStart ? timing.domContentLoadedEventStart / 1000 : Date.now() / 1000,
-          navigationType: 'Navigate',
-          npnNegotiatedProtocol: 'h2',
-          requestTime: timing.requestStart ? timing.requestStart / 1000 : Date.now() / 1000 - 0.1,
-          startLoadTime: timing.navigationStart ? timing.navigationStart / 1000 : Date.now() / 1000 - 0.2,
-          wasAlternateProtocolAvailable: false,
-          wasFetchedViaSpdy: true,
-          wasNpnNegotiated: true
+      }
+    } else {
+      // Desktop Chrome - add expected methods
+      if (typeof window.chrome.runtime === 'undefined') {
+        window.chrome.runtime = {
+          connect: makeNative(function connect() { 
+            return { 
+              postMessage: function(){}, 
+              disconnect: function(){},
+              onMessage: { addListener: function(){} },
+              onDisconnect: { addListener: function(){} }
+            }; 
+          }, 'connect'),
+          sendMessage: makeNative(function sendMessage() {}, 'sendMessage'),
+          id: undefined,
+          getManifest: makeNative(function() { return undefined; }, 'getManifest'),
+          getURL: makeNative(function(path) { return ''; }, 'getURL')
         };
-      }, 'loadTimes');
+      }
+
+      // Add csi (Client-Side Instrumentation) - present in desktop Chrome
+      if (typeof window.chrome.csi === 'undefined') {
+        window.chrome.csi = makeNative(function csi() {
+          const timing = performance.timing || {};
+          return {
+            onloadT: timing.domContentLoadedEventEnd || Date.now(),
+            pageT: performance.now(),
+            startE: timing.navigationStart || Date.now() - 1000,
+            tran: 15
+          };
+        }, 'csi');
+      }
+
+      // Add loadTimes - present in desktop Chrome
+      if (typeof window.chrome.loadTimes === 'undefined') {
+        window.chrome.loadTimes = makeNative(function loadTimes() {
+          const timing = performance.timing || {};
+          const now = Date.now() / 1000;
+          return {
+            commitLoadTime: timing.responseEnd ? timing.responseEnd / 1000 : now,
+            connectionInfo: 'h2',
+            finishDocumentLoadTime: timing.domContentLoadedEventEnd ? timing.domContentLoadedEventEnd / 1000 : now,
+            finishLoadTime: timing.loadEventEnd ? timing.loadEventEnd / 1000 : now,
+            firstPaintAfterLoadTime: 0,
+            firstPaintTime: timing.domContentLoadedEventStart ? timing.domContentLoadedEventStart / 1000 : now,
+            navigationType: 'Navigate',
+            npnNegotiatedProtocol: 'h2',
+            requestTime: timing.requestStart ? timing.requestStart / 1000 : now - 0.1,
+            startLoadTime: timing.navigationStart ? timing.navigationStart / 1000 : now - 0.2,
+            wasAlternateProtocolAvailable: false,
+            wasFetchedViaSpdy: true,
+            wasNpnNegotiated: true
+          };
+        }, 'loadTimes');
+      }
+      
+      // Desktop Chrome app object
+      if (!window.chrome.app) {
+        window.chrome.app = {
+          isInstalled: false,
+          getDetails: makeNative(function() { return null; }, 'getDetails'),
+          getIsInstalled: makeNative(function() { return false; }, 'getIsInstalled'),
+          InstallState: { INSTALLED: 'installed', NOT_INSTALLED: 'not_installed', DISABLED: 'disabled' },
+          runningState: makeNative(function() { return 'cannot_run'; }, 'runningState')
+        };
+      }
     }
-  }
+    
+    // Make chrome object non-writable to prevent detection via assignment tests
+    try {
+      Object.defineProperty(window, 'chrome', {
+        value: window.chrome,
+        writable: false,
+        configurable: true,
+        enumerable: true
+      });
+    } catch (e) {}
+  })();
 
   // 4. Remove cdc_ prefixed attributes from all elements
   const removeCdcAttributes = function() {
@@ -635,6 +889,51 @@ const EMBEDDED_DEFAULT_PROFILE = {"server":{"ip":"2405:f600:8:e0a9:985c:f5c3:340
     // This shouldn't happen if we're spoofing userAgent, but just in case
     console.warn('[FP-SPOOF] HeadlessChrome detected in userAgent - spoofing may not be working');
   }
+
+  // ============================================
+  // PLUGIN/MIMETYPE SPOOFING (Critical for mobile)
+  // fingerprint.com flags "chrome_no_plugins" as tampering signal
+  // On real mobile Chrome, plugins.length === 0 is NORMAL
+  // ============================================
+  
+  if (isMobileProfile) {
+    // Mobile Chrome has no plugins - this is expected
+    // Create fake PluginArray that looks native
+    const fakePluginArray = {
+      length: 0,
+      item: makeNative(function item(index) { return null; }, 'item'),
+      namedItem: makeNative(function namedItem(name) { return null; }, 'namedItem'),
+      refresh: makeNative(function refresh() {}, 'refresh'),
+      [Symbol.iterator]: makeNative(function* () {}, '[Symbol.iterator]')
+    };
+    Object.defineProperty(fakePluginArray, Symbol.toStringTag, { value: 'PluginArray' });
+    
+    const fakeMimeTypeArray = {
+      length: 0,
+      item: makeNative(function item(index) { return null; }, 'item'),
+      namedItem: makeNative(function namedItem(name) { return null; }, 'namedItem'),
+      [Symbol.iterator]: makeNative(function* () {}, '[Symbol.iterator]')
+    };
+    Object.defineProperty(fakeMimeTypeArray, Symbol.toStringTag, { value: 'MimeTypeArray' });
+    
+    // Override on Navigator.prototype
+    defineNativeGetter(Navigator.prototype, 'plugins', fakePluginArray, 'Navigator');
+    defineNativeGetter(Navigator.prototype, 'mimeTypes', fakeMimeTypeArray, 'Navigator');
+  }
+
+  // ============================================
+  // PROTOTYPE CHAIN VERIFICATION EVASION
+  // fingerprint.com checks Object.getPrototypeOf chains
+  // ============================================
+  
+  // Ensure navigator's prototype chain looks correct
+  // navigator -> Navigator.prototype -> Object.prototype -> null
+  try {
+    const realNavigatorProto = Object.getPrototypeOf(navigator);
+    if (realNavigatorProto !== Navigator.prototype) {
+      Object.setPrototypeOf(navigator, Navigator.prototype);
+    }
+  } catch (e) {}
 
   // ============================================
   // NAVIGATOR SPOOFING
