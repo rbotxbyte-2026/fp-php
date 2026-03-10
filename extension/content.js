@@ -1435,10 +1435,10 @@ const EMBEDDED_DEFAULT_PROFILE = {"server":{"ip":"2405:f600:8:e0a9:985c:f5c3:340
     
     const fakeContext = Object.create(ContextPrototype);
     
-    // Set basic properties
-    fakeContext.canvas = canvas;
-    fakeContext.drawingBufferWidth = canvas.width || 300;
-    fakeContext.drawingBufferHeight = canvas.height || 150;
+    // Set basic properties using defineProperty (prototype has read-only getters)
+    Object.defineProperty(fakeContext, 'canvas', { value: canvas, writable: false, configurable: true });
+    Object.defineProperty(fakeContext, 'drawingBufferWidth', { value: canvas.width || 300, writable: false, configurable: true });
+    Object.defineProperty(fakeContext, 'drawingBufferHeight', { value: canvas.height || 150, writable: false, configurable: true });
     
     // Override getParameter with our values
     fakeContext.getParameter = makeNative(function(param) {

@@ -1,10 +1,10 @@
 {
   "server": {
-    "ip": "172.182.226.16",
+    "ip": "64.236.177.102",
     "protocol": "HTTP/1.0",
     "https": true,
     "port": "80",
-    "request_time": "2026-03-10 16:20:44",
+    "request_time": "2026-03-10 17:13:34",
     "user_agent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Mobile Safari/537.36",
     "accept": "*/*",
     "accept_language": "en-IN,en-GB;q=0.9,en-US;q=0.8,en;q=0.7,gu;q=0.6",
@@ -28,12 +28,12 @@
     "ch_ua_bitness": null,
     "ch_ua_full_version_list": null,
     "ch_ua_model": null,
-    "x_forwarded_for": "172.182.226.16, 172.70.230.49",
+    "x_forwarded_for": "64.236.177.102, 162.158.62.21",
     "x_real_ip": null,
     "via": null,
-    "cf_connecting_ip": "172.182.226.16",
+    "cf_connecting_ip": "64.236.177.102",
     "cf_ipcountry": "US",
-    "cf_ray": "9da3a603ad364747-EWR",
+    "cf_ray": "9da3f365caf372ea-EWR",
     "cdn_loop": "cloudflare; loops=1",
     "x_forwarded_proto": "https",
     "ja3_hash": null,
@@ -43,9 +43,9 @@
     "all_headers": {
       "Cf-Visitor": "{\"scheme\":\"https\"}",
       "Cf-Ipcountry": "US",
-      "Cf-Connecting-Ip": "172.182.226.16",
+      "Cf-Connecting-Ip": "64.236.177.102",
       "Cdn-Loop": "cloudflare; loops=1",
-      "Cf-Ray": "9da3a603ad364747-EWR",
+      "Cf-Ray": "9da3f365caf372ea-EWR",
       "Accept-Language": "en-IN,en-GB;q=0.9,en-US;q=0.8,en;q=0.7,gu;q=0.6",
       "Accept-Encoding": "gzip, br",
       "Referer": "https://botxbyte.com/fp.php",
@@ -61,10 +61,10 @@
       "X-Requested-With": "XMLHttpRequest",
       "Sec-Ch-Ua-Platform": "\"Android\"",
       "Priority": "u=1, i",
-      "Content-Length": "44541",
+      "Content-Length": "41444",
       "Connection": "close",
       "X-Forwarded-Proto": "https",
-      "X-Forwarded-For": "172.182.226.16, 172.70.230.49",
+      "X-Forwarded-For": "64.236.177.102, 162.158.62.21",
       "X-Server-Addr": "107.170.48.37",
       "Host": "botxbyte.com",
       "Authorization": ""
@@ -158,7 +158,7 @@
       "calendar": "gregory",
       "numberingSystem": "latn",
       "localeDateString": "10/03/2026",
-      "localeTimeString": "21:50:44"
+      "localeTimeString": "22:43:34"
     },
     "canvas": {
       "hash": "54891a77",
@@ -166,74 +166,10 @@
       "winding_rule": true
     },
     "webgl": {
-      "supported": true,
-      "vendor": null,
-      "renderer": null,
-      "version": null,
-      "shadingLanguageVersion": null,
-      "unmaskedVendor": "Qualcomm",
-      "unmaskedRenderer": "Adreno (TM) 630",
-      "maxTextureSize": null,
-      "maxCubeMapTextureSize": null,
-      "maxViewportDims": [],
-      "maxVertexAttribs": null,
-      "maxVertexUniformVectors": null,
-      "maxFragmentUniformVectors": null,
-      "maxCombinedTextureUnits": null,
-      "maxVertexTextureUnits": null,
-      "maxTextureImageUnits": null,
-      "maxRenderbufferSize": null,
-      "maxVaryingVectors": null,
-      "aliasedLineWidthRange": [],
-      "aliasedPointSizeRange": [],
-      "redBits": null,
-      "greenBits": null,
-      "blueBits": null,
-      "alphaBits": null,
-      "depthBits": null,
-      "stencilBits": null,
-      "subpixelBits": null,
-      "extensionCount": 23,
-      "extensionHash": "79cb5ed9",
-      "extensions": [
-        "ANGLE_instanced_arrays",
-        "EXT_blend_minmax",
-        "EXT_color_buffer_half_float",
-        "EXT_float_blend",
-        "EXT_texture_filter_anisotropic",
-        "EXT_sRGB",
-        "OES_element_index_uint",
-        "OES_fbo_render_mipmap",
-        "OES_standard_derivatives",
-        "OES_texture_float",
-        "OES_texture_float_linear",
-        "OES_texture_half_float",
-        "OES_texture_half_float_linear",
-        "OES_vertex_array_object",
-        "WEBGL_color_buffer_float",
-        "WEBGL_compressed_texture_astc",
-        "WEBGL_compressed_texture_etc",
-        "WEBGL_compressed_texture_etc1",
-        "WEBGL_debug_renderer_info",
-        "WEBGL_debug_shaders",
-        "WEBGL_depth_texture",
-        "WEBGL_lose_context",
-        "WEBGL_multi_draw"
-      ],
-      "shaderRenderHash": "698d5c8d",
-      "rasterizationMethod": "hardware"
+      "error": "Cannot set property canvas of #<WebGLRenderingContext> which has only a getter"
     },
     "webgl2": {
-      "supported": true,
-      "maxSamples": null,
-      "maxUniformBufferBindings": null,
-      "maxTransformFeedbackSeparateComponents": null,
-      "maxElementsVertices": null,
-      "maxElementsIndices": null,
-      "max3DTextureSize": null,
-      "maxArrayTextureLayers": null,
-      "maxColorAttachments": null,
-      "maxDrawBuffers": null
+      "error": "Cannot set property canvas of #<WebGL2RenderingContext> which has only a getter"
     },
     "audio": {
       "sampleRate": 44100,
@@ -431,10 +367,10 @@
       "navigationTiming": {
         "type": "navigate",
         "redirectCount": 0,
-        "domInteractive": 536,
-        "domContentLoaded": 539,
-        "loadEvent": 539,
-        "ttfb": 223,
+        "domInteractive": 477,
+        "domContentLoaded": 479,
+        "loadEvent": 480,
+        "ttfb": 145,
         "transferSize": 52057,
         "encodedBodySize": 51757
       },
@@ -444,7 +380,7 @@
         "usedJSHeapSize": 10000000
       },
       "timeOrigin": 1773122913591.5,
-      "now": 5706.5
+      "now": 5705.09999999986
     },
     "stackTrace": {
       "engine": "V8(Chrome/Node)",
@@ -573,7 +509,7 @@
           "absolute": false
         }
       },
-      "sessionDuration": 5702
+      "sessionDuration": 5698
     },
     "fontPreferences": {
       "default": 455.95556640625,
@@ -585,83 +521,7 @@
       "min": 9.449999809265137
     },
     "webglPrecisions": {
-      "contextAttributes": {
-        "alpha": true,
-        "antialias": true,
-        "depth": true,
-        "desynchronized": false,
-        "failIfMajorPerformanceCaveat": false,
-        "powerPreference": "default",
-        "premultipliedAlpha": true,
-        "preserveDrawingBuffer": false,
-        "stencil": false,
-        "xrCompatible": false
-      },
-      "contextAttributesHash": "13f1d07c",
-      "shaderPrecisions": {
-        "VERTEX_LOW_FLOAT": {
-          "rangeMin": 127,
-          "rangeMax": 127,
-          "precision": 23
-        },
-        "VERTEX_MEDIUM_FLOAT": {
-          "rangeMin": 127,
-          "rangeMax": 127,
-          "precision": 23
-        },
-        "VERTEX_HIGH_FLOAT": {
-          "rangeMin": 127,
-          "rangeMax": 127,
-          "precision": 23
-        },
-        "VERTEX_LOW_INT": {
-          "rangeMin": 127,
-          "rangeMax": 127,
-          "precision": 23
-        },
-        "VERTEX_MEDIUM_INT": {
-          "rangeMin": 127,
-          "rangeMax": 127,
-          "precision": 23
-        },
-        "VERTEX_HIGH_INT": {
-          "rangeMin": 127,
-          "rangeMax": 127,
-          "precision": 23
-        },
-        "FRAGMENT_LOW_FLOAT": {
-          "rangeMin": 127,
-          "rangeMax": 127,
-          "precision": 23
-        },
-        "FRAGMENT_MEDIUM_FLOAT": {
-          "rangeMin": 127,
-          "rangeMax": 127,
-          "precision": 23
-        },
-        "FRAGMENT_HIGH_FLOAT": {
-          "rangeMin": 127,
-          "rangeMax": 127,
-          "precision": 23
-        },
-        "FRAGMENT_LOW_INT": {
-          "rangeMin": 127,
-          "rangeMax": 127,
-          "precision": 23
-        },
-        "FRAGMENT_MEDIUM_INT": {
-          "rangeMin": 127,
-          "rangeMax": 127,
-          "precision": 23
-        },
-        "FRAGMENT_HIGH_INT": {
-          "rangeMin": 127,
-          "rangeMax": 127,
-          "precision": 23
-        }
-      },
-      "shaderPrecisionsHash": "70f3c0",
-      "extensionPresenceHash": "46f092d0"
+      "error": "Cannot set property canvas of #<WebGLRenderingContext> which has only a getter"
     },
     "audioLatency": {
       "baseLatency": 0.003,
@@ -778,32 +638,7 @@
     },
     "mathHash": "100ac6dd",
     "webglExtra": {
-      "unsupportedExtensions": [
-        "EXT_clip_control",
-        "EXT_color_buffer_float",
-        "EXT_depth_clamp",
-        "EXT_disjoint_timer_query",
-        "EXT_disjoint_timer_query_webgl2",
-        "EXT_frag_depth",
-        "EXT_polygon_offset_clamp",
-        "EXT_shader_texture_lod",
-        "EXT_texture_compression_bptc",
-        "EXT_texture_compression_rgtc",
-        "EXT_texture_mirror_clamp_to_edge",
-        "KHR_parallel_shader_compile",
-        "OES_draw_buffers_indexed",
-        "WEBGL_blend_func_extended",
-        "WEBGL_clip_cull_distance",
-        "WEBGL_compressed_texture_atc",
-        "WEBGL_compressed_texture_pvrtc",
-        "WEBGL_compressed_texture_s3tc",
-        "WEBGL_compressed_texture_s3tc_srgb",
-        "WEBGL_draw_buffers",
-        "WEBGL_polygon_mode",
-        "WEBKIT_WEBGL_compressed_texture_pvrtc"
-      ],
-      "unsupportedCount": 22,
-      "allParametersHash": "0"
+      "error": "Cannot set property canvas of #<WebGLRenderingContext> which has only a getter"
     },
     "dateTimeLocale": {
       "numberFormatLocale": "en-GB",
@@ -1249,11 +1084,11 @@
       "loadedFamilies": 0
     },
     "hypervisorProbe": {
-      "mean_ms": 0.0125,
-      "stdDev_ms": 0.0331,
+      "mean_ms": 0.0075,
+      "stdDev_ms": 0.0263,
       "min_ms": 0,
       "max_ms": 0.1,
-      "cv_percent": 264.58,
+      "cv_percent": 351.19,
       "possibleVM": true
     },
     "memoryPattern": {
@@ -1262,8 +1097,8 @@
         {
           "pages": 1,
           "sizeKB": 64,
-          "allocMs": 0.1,
-          "touchMs": 0
+          "allocMs": 0,
+          "touchMs": 0.1
         },
         {
           "pages": 10,
@@ -1275,22 +1110,22 @@
           "pages": 50,
           "sizeKB": 3200,
           "allocMs": 0,
-          "touchMs": 0.2
+          "touchMs": 0.1
         },
         {
           "pages": 100,
           "sizeKB": 6400,
           "allocMs": 0,
-          "touchMs": 0.1
+          "touchMs": 0.2
         },
         {
           "pages": 256,
           "sizeKB": 16384,
           "allocMs": 0,
-          "touchMs": 0.4
+          "touchMs": 0.2
         }
       ],
-      "patternHash": "57af5c9d"
+      "patternHash": "2ed65e02"
     },
     "fontsByCSS": {
       "detected": [
@@ -2334,8 +2169,8 @@
     },
     "canvasContextTypes": {
       "2d": true,
-      "webgl": true,
-      "webgl2": true,
+      "webgl": false,
+      "webgl2": false,
       "bitmaprenderer": false,
       "webgpu": false,
       "offscreenCanvas": true,
@@ -2699,5 +2534,5 @@
       "supported": true
     }
   },
-  "generated": "2026-03-10T16:20:44+00:00"
+  "generated": "2026-03-10T17:13:34+00:00"
 }
