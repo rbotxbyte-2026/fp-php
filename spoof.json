@@ -1,10 +1,10 @@
 {
   "server": {
-    "ip": "135.232.208.115",
+    "ip": "52.161.82.112",
     "protocol": "HTTP/1.0",
     "https": true,
     "port": "80",
-    "request_time": "2026-03-10 11:48:50",
+    "request_time": "2026-03-10 16:05:44",
     "user_agent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Mobile Safari/537.36",
     "accept": "*/*",
     "accept_language": "en-IN,en-GB;q=0.9,en-US;q=0.8,en;q=0.7,gu;q=0.6",
@@ -28,12 +28,12 @@
     "ch_ua_bitness": null,
     "ch_ua_full_version_list": null,
     "ch_ua_model": null,
-    "x_forwarded_for": "135.232.208.115, 162.158.158.192",
+    "x_forwarded_for": "52.161.82.112, 172.71.203.106",
     "x_real_ip": null,
     "via": null,
-    "cf_connecting_ip": "135.232.208.115",
+    "cf_connecting_ip": "52.161.82.112",
     "cf_ipcountry": "US",
-    "cf_ray": "9da217b49872ef0a-EWR",
+    "cf_ray": "9da3900adc6910c5-EWR",
     "cdn_loop": "cloudflare; loops=1",
     "x_forwarded_proto": "https",
     "ja3_hash": null,
@@ -43,9 +43,9 @@
     "all_headers": {
       "Cf-Visitor": "{\"scheme\":\"https\"}",
       "Cf-Ipcountry": "US",
-      "Cf-Connecting-Ip": "135.232.208.115",
+      "Cf-Connecting-Ip": "52.161.82.112",
       "Cdn-Loop": "cloudflare; loops=1",
-      "Cf-Ray": "9da217b49872ef0a-EWR",
+      "Cf-Ray": "9da3900adc6910c5-EWR",
       "Accept-Language": "en-IN,en-GB;q=0.9,en-US;q=0.8,en;q=0.7,gu;q=0.6",
       "Accept-Encoding": "gzip, br",
       "Referer": "https://botxbyte.com/fp.php",
@@ -61,10 +61,10 @@
       "X-Requested-With": "XMLHttpRequest",
       "Sec-Ch-Ua-Platform": "\"Android\"",
       "Priority": "u=1, i",
-      "Content-Length": "41160",
+      "Content-Length": "44546",
       "Connection": "close",
       "X-Forwarded-Proto": "https",
-      "X-Forwarded-For": "135.232.208.115, 162.158.158.192",
+      "X-Forwarded-For": "52.161.82.112, 172.71.203.106",
       "X-Server-Addr": "107.170.48.37",
       "Host": "botxbyte.com",
       "Authorization": ""
@@ -158,7 +158,7 @@
       "calendar": "gregory",
       "numberingSystem": "latn",
       "localeDateString": "10/03/2026",
-      "localeTimeString": "17:18:49"
+      "localeTimeString": "21:35:44"
     },
     "canvas": {
       "hash": "54891a77",
@@ -166,10 +166,63 @@
       "winding_rule": true
     },
     "webgl": {
-      "supported": false
+      "supported": true,
+      "vendor": null,
+      "renderer": null,
+      "version": null,
+      "shadingLanguageVersion": null,
+      "unmaskedVendor": "Qualcomm",
+      "unmaskedRenderer": "Adreno (TM) 630",
+      "maxTextureSize": null,
+      "maxCubeMapTextureSize": null,
+      "maxViewportDims": [],
+      "maxVertexAttribs": null,
+      "maxVertexUniformVectors": null,
+      "maxFragmentUniformVectors": null,
+      "maxCombinedTextureUnits": null,
+      "maxVertexTextureUnits": null,
+      "maxTextureImageUnits": null,
+      "maxRenderbufferSize": null,
+      "maxVaryingVectors": null,
+      "aliasedLineWidthRange": [],
+      "aliasedPointSizeRange": [],
+      "redBits": null,
+      "greenBits": null,
+      "blueBits": null,
+      "alphaBits": null,
+      "depthBits": null,
+      "stencilBits": null,
+      "subpixelBits": null,
+      "extensionCount": 12,
+      "extensionHash": "348aa78e",
+      "extensions": [
+        "WEBGL_debug_renderer_info",
+        "WEBGL_lose_context",
+        "OES_texture_float",
+        "OES_texture_half_float",
+        "OES_element_index_uint",
+        "OES_standard_derivatives",
+        "EXT_shader_texture_lod",
+        "WEBGL_compressed_texture_astc",
+        "WEBGL_compressed_texture_etc",
+        "EXT_color_buffer_float",
+        "OES_vertex_array_object",
+        "ANGLE_instanced_arrays"
+      ],
+      "shaderRenderHash": "698d5c8d",
+      "rasterizationMethod": "hardware"
     },
     "webgl2": {
-      "supported": false
+      "supported": true,
+      "maxSamples": null,
+      "maxUniformBufferBindings": null,
+      "maxTransformFeedbackSeparateComponents": null,
+      "maxElementsVertices": null,
+      "maxElementsIndices": null,
+      "max3DTextureSize": null,
+      "maxArrayTextureLayers": null,
+      "maxColorAttachments": null,
+      "maxDrawBuffers": null
     },
     "audio": {
       "sampleRate": 44100,
@@ -367,10 +420,10 @@
       "navigationTiming": {
         "type": "navigate",
         "redirectCount": 0,
-        "domInteractive": 342,
-        "domContentLoaded": 345,
-        "loadEvent": 345,
-        "ttfb": 183,
+        "domInteractive": 623,
+        "domContentLoaded": 626,
+        "loadEvent": 627,
+        "ttfb": 217,
         "transferSize": 52057,
         "encodedBodySize": 51757
       },
@@ -380,7 +433,7 @@
         "usedJSHeapSize": 10000000
       },
       "timeOrigin": 1773122913591.5,
-      "now": 5134.299999999988
+      "now": 6589.200000000012
     },
     "stackTrace": {
       "engine": "V8(Chrome/Node)",
@@ -463,7 +516,7 @@
     "refreshRate": {
       "measured_fps": 60,
       "snapped_hz": 60,
-      "avg_frame_ms": 16.669
+      "avg_frame_ms": 16.663
     },
     "videoDecoder": {
       "supported": true,
@@ -509,7 +562,7 @@
           "absolute": false
         }
       },
-      "sessionDuration": 5129
+      "sessionDuration": 6584
     },
     "fontPreferences": {
       "default": 455.95556640625,
@@ -521,7 +574,83 @@
       "min": 9.449999809265137
     },
     "webglPrecisions": {
-      "supported": false
+      "contextAttributes": {
+        "alpha": true,
+        "antialias": true,
+        "depth": true,
+        "desynchronized": false,
+        "failIfMajorPerformanceCaveat": false,
+        "powerPreference": "default",
+        "premultipliedAlpha": true,
+        "preserveDrawingBuffer": false,
+        "stencil": false,
+        "xrCompatible": false
+      },
+      "contextAttributesHash": "13f1d07c",
+      "shaderPrecisions": {
+        "VERTEX_LOW_FLOAT": {
+          "rangeMin": 127,
+          "rangeMax": 127,
+          "precision": 23
+        },
+        "VERTEX_MEDIUM_FLOAT": {
+          "rangeMin": 127,
+          "rangeMax": 127,
+          "precision": 23
+        },
+        "VERTEX_HIGH_FLOAT": {
+          "rangeMin": 127,
+          "rangeMax": 127,
+          "precision": 23
+        },
+        "VERTEX_LOW_INT": {
+          "rangeMin": 127,
+          "rangeMax": 127,
+          "precision": 23
+        },
+        "VERTEX_MEDIUM_INT": {
+          "rangeMin": 127,
+          "rangeMax": 127,
+          "precision": 23
+        },
+        "VERTEX_HIGH_INT": {
+          "rangeMin": 127,
+          "rangeMax": 127,
+          "precision": 23
+        },
+        "FRAGMENT_LOW_FLOAT": {
+          "rangeMin": 127,
+          "rangeMax": 127,
+          "precision": 23
+        },
+        "FRAGMENT_MEDIUM_FLOAT": {
+          "rangeMin": 127,
+          "rangeMax": 127,
+          "precision": 23
+        },
+        "FRAGMENT_HIGH_FLOAT": {
+          "rangeMin": 127,
+          "rangeMax": 127,
+          "precision": 23
+        },
+        "FRAGMENT_LOW_INT": {
+          "rangeMin": 127,
+          "rangeMax": 127,
+          "precision": 23
+        },
+        "FRAGMENT_MEDIUM_INT": {
+          "rangeMin": 127,
+          "rangeMax": 127,
+          "precision": 23
+        },
+        "FRAGMENT_HIGH_INT": {
+          "rangeMin": 127,
+          "rangeMax": 127,
+          "precision": 23
+        }
+      },
+      "shaderPrecisionsHash": "70f3c0",
+      "extensionPresenceHash": "10ecb8f"
     },
     "audioLatency": {
       "baseLatency": 0.003,
@@ -638,7 +767,43 @@
     },
     "mathHash": "100ac6dd",
     "webglExtra": {
-      "supported": false
+      "unsupportedExtensions": [
+        "EXT_blend_minmax",
+        "EXT_clip_control",
+        "EXT_color_buffer_half_float",
+        "EXT_depth_clamp",
+        "EXT_disjoint_timer_query",
+        "EXT_disjoint_timer_query_webgl2",
+        "EXT_float_blend",
+        "EXT_frag_depth",
+        "EXT_polygon_offset_clamp",
+        "EXT_sRGB",
+        "EXT_texture_compression_bptc",
+        "EXT_texture_compression_rgtc",
+        "EXT_texture_filter_anisotropic",
+        "EXT_texture_mirror_clamp_to_edge",
+        "KHR_parallel_shader_compile",
+        "OES_draw_buffers_indexed",
+        "OES_fbo_render_mipmap",
+        "OES_texture_float_linear",
+        "OES_texture_half_float_linear",
+        "WEBGL_blend_func_extended",
+        "WEBGL_clip_cull_distance",
+        "WEBGL_color_buffer_float",
+        "WEBGL_compressed_texture_atc",
+        "WEBGL_compressed_texture_etc1",
+        "WEBGL_compressed_texture_pvrtc",
+        "WEBGL_compressed_texture_s3tc",
+        "WEBGL_compressed_texture_s3tc_srgb",
+        "WEBGL_debug_shaders",
+        "WEBGL_depth_texture",
+        "WEBGL_draw_buffers",
+        "WEBGL_multi_draw",
+        "WEBGL_polygon_mode",
+        "WEBKIT_WEBGL_compressed_texture_pvrtc"
+      ],
+      "unsupportedCount": 33,
+      "allParametersHash": "0"
     },
     "dateTimeLocale": {
       "numberFormatLocale": "en-GB",
@@ -1084,11 +1249,11 @@
       "loadedFamilies": 0
     },
     "hypervisorProbe": {
-      "mean_ms": 0.0125,
-      "stdDev_ms": 0.0331,
+      "mean_ms": 0.01,
+      "stdDev_ms": 0.03,
       "min_ms": 0,
       "max_ms": 0.1,
-      "cv_percent": 264.58,
+      "cv_percent": 300,
       "possibleVM": true
     },
     "memoryPattern": {
@@ -1109,23 +1274,23 @@
         {
           "pages": 50,
           "sizeKB": 3200,
-          "allocMs": 0,
+          "allocMs": 0.1,
           "touchMs": 0.2
         },
         {
           "pages": 100,
           "sizeKB": 6400,
           "allocMs": 0,
-          "touchMs": 0.1
+          "touchMs": 0.4
         },
         {
           "pages": 256,
           "sizeKB": 16384,
           "allocMs": 0,
-          "touchMs": 0.2
+          "touchMs": 0.5
         }
       ],
-      "patternHash": "2ed65e02"
+      "patternHash": "2724b8a3"
     },
     "fontsByCSS": {
       "detected": [
@@ -2169,8 +2334,8 @@
     },
     "canvasContextTypes": {
       "2d": true,
-      "webgl": false,
-      "webgl2": false,
+      "webgl": true,
+      "webgl2": true,
       "bitmaprenderer": false,
       "webgpu": false,
       "offscreenCanvas": true,
@@ -2534,5 +2699,5 @@
       "supported": true
     }
   },
-  "generated": "2026-03-10T11:48:50+00:00"
+  "generated": "2026-03-10T16:05:44+00:00"
 }

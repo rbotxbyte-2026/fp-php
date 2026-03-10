@@ -1385,21 +1385,47 @@ const EMBEDDED_DEFAULT_PROFILE = {"server":{"ip":"2405:f600:8:e0a9:985c:f5c3:340
       UNMASKED_RENDERER_WEBGL: UNMASKED_RENDERER_WEBGL
     };
     
-    // Common extensions that mobile devices support
-    const supportedExtensions = [
-      'WEBGL_debug_renderer_info',
-      'WEBGL_lose_context',
-      'OES_texture_float',
-      'OES_texture_half_float',
+    // Use profile extensions if available, otherwise use mobile defaults
+    const supportedExtensions = webgl.extensions || [
+      'ANGLE_instanced_arrays',
+      'EXT_blend_minmax',
+      'EXT_color_buffer_half_float',
+      'EXT_float_blend',
+      'EXT_texture_filter_anisotropic',
+      'EXT_sRGB',
       'OES_element_index_uint',
+      'OES_fbo_render_mipmap',
       'OES_standard_derivatives',
-      'EXT_shader_texture_lod',
+      'OES_texture_float',
+      'OES_texture_float_linear',
+      'OES_texture_half_float',
+      'OES_texture_half_float_linear',
+      'OES_vertex_array_object',
+      'WEBGL_color_buffer_float',
       'WEBGL_compressed_texture_astc',
       'WEBGL_compressed_texture_etc',
-      'EXT_color_buffer_float',
-      'OES_vertex_array_object',
-      'ANGLE_instanced_arrays'
+      'WEBGL_compressed_texture_etc1',
+      'WEBGL_debug_renderer_info',
+      'WEBGL_debug_shaders',
+      'WEBGL_depth_texture',
+      'WEBGL_lose_context',
+      'WEBGL_multi_draw'
     ];
+    
+    // Additional WebGL constants for more parameters
+    const GL_RED_BITS = 3410;
+    const GL_GREEN_BITS = 3411;
+    const GL_BLUE_BITS = 3412;
+    const GL_ALPHA_BITS = 3413;
+    const GL_SUBPIXEL_BITS = 3408;
+    const GL_MAX_ELEMENTS_VERTICES = 33000;
+    const GL_MAX_ELEMENTS_INDICES = 33001;
+    const GL_MAX_3D_TEXTURE_SIZE = 32883;
+    const GL_MAX_ARRAY_TEXTURE_LAYERS = 35071;
+    const GL_MAX_TEXTURE_LOD_BIAS = 34045;
+    const GL_MAX_DRAW_BUFFERS = 34852;
+    const GL_MAX_COLOR_ATTACHMENTS = 36063;
+    const GL_MAX_SAMPLES = 36183;
     
     // Create fake context with all necessary methods
     const fakeContext = {
@@ -1422,35 +1448,62 @@ const EMBEDDED_DEFAULT_PROFILE = {"server":{"ip":"2405:f600:8:e0a9:985c:f5c3:340
           case GL_SHADING_LANGUAGE_VERSION:
             return webgl.shadingLanguageVersion || (isWebGL2 ? 'WebGL GLSL ES 3.00 (OpenGL ES GLSL ES 3.0 Chromium)' : 'WebGL GLSL ES 1.0 (OpenGL ES GLSL ES 1.0 Chromium)');
           case GL_MAX_TEXTURE_SIZE:
-            return webgl.maxTextureSize || 16384;
+            return webgl.maxTextureSize || 4096;
           case GL_MAX_RENDERBUFFER_SIZE:
             return webgl.maxRenderbufferSize || 16384;
           case GL_MAX_VIEWPORT_DIMS:
             return new Int32Array(webgl.maxViewportDims || [16384, 16384]);
           case GL_MAX_VERTEX_ATTRIBS:
-            return 16;
+            return webgl.maxVertexAttribs || 32;
           case GL_MAX_VERTEX_UNIFORM_VECTORS:
-            return 256;
+            return webgl.maxVertexUniformVectors || 256;
           case GL_MAX_VARYING_VECTORS:
-            return 30;
+            return webgl.maxVaryingVectors || 31;
           case GL_MAX_COMBINED_TEXTURE_IMAGE_UNITS:
-            return 32;
+            return webgl.maxCombinedTextureUnits || 96;
           case GL_MAX_VERTEX_TEXTURE_IMAGE_UNITS:
-            return 16;
+            return webgl.maxVertexTextureUnits || 16;
           case GL_MAX_TEXTURE_IMAGE_UNITS:
-            return 16;
+            return webgl.maxTextureImageUnits || 16;
           case GL_MAX_FRAGMENT_UNIFORM_VECTORS:
-            return 224;
+            return webgl.maxFragmentUniformVectors || 256;
           case GL_ALIASED_LINE_WIDTH_RANGE:
-            return new Float32Array([1, 1]);
+            return new Float32Array(webgl.aliasedLineWidthRange || [1, 8]);
           case GL_ALIASED_POINT_SIZE_RANGE:
-            return new Float32Array([1, 1024]);
+            return new Float32Array(webgl.aliasedPointSizeRange || [1, 1023]);
           case GL_DEPTH_BITS:
-            return 24;
+            return webgl.depthBits || 24;
           case GL_STENCIL_BITS:
-            return 8;
+            return webgl.stencilBits || 0;
           case GL_MAX_CUBE_MAP_TEXTURE_SIZE:
-            return 16384;
+            return webgl.maxCubeMapTextureSize || 4096;
+          case GL_RED_BITS:
+            return webgl.redBits || 8;
+          case GL_GREEN_BITS:
+            return webgl.greenBits || 8;
+          case GL_BLUE_BITS:
+            return webgl.blueBits || 8;
+          case GL_ALPHA_BITS:
+            return webgl.alphaBits || 8;
+          case GL_SUBPIXEL_BITS:
+            return webgl.subpixelBits || 4;
+          // WebGL2 specific parameters
+          case GL_MAX_ELEMENTS_VERTICES:
+            return 16777216;
+          case GL_MAX_ELEMENTS_INDICES:
+            return 16777216;
+          case GL_MAX_3D_TEXTURE_SIZE:
+            return isWebGL2 ? 2048 : null;
+          case GL_MAX_ARRAY_TEXTURE_LAYERS:
+            return isWebGL2 ? 2048 : null;
+          case GL_MAX_TEXTURE_LOD_BIAS:
+            return isWebGL2 ? 16 : null;
+          case GL_MAX_DRAW_BUFFERS:
+            return isWebGL2 ? 8 : null;
+          case GL_MAX_COLOR_ATTACHMENTS:
+            return isWebGL2 ? 8 : null;
+          case GL_MAX_SAMPLES:
+            return isWebGL2 ? 4 : null;
           default:
             return null;
         }
@@ -1461,14 +1514,26 @@ const EMBEDDED_DEFAULT_PROFILE = {"server":{"ip":"2405:f600:8:e0a9:985c:f5c3:340
           return fakeDebugRendererInfo;
         }
         if (supportedExtensions.includes(name)) {
-          // Return a minimal fake extension object
+          // Return a minimal fake extension object with proper structure
+          if (name === 'OES_vertex_array_object') {
+            return { createVertexArrayOES: function() { return {}; }, bindVertexArrayOES: function() {}, deleteVertexArrayOES: function() {} };
+          }
+          if (name === 'ANGLE_instanced_arrays') {
+            return { drawArraysInstancedANGLE: function() {}, drawElementsInstancedANGLE: function() {}, vertexAttribDivisorANGLE: function() {} };
+          }
+          if (name === 'OES_element_index_uint') {
+            return {};
+          }
+          if (name === 'WEBGL_lose_context') {
+            return { loseContext: function() {}, restoreContext: function() {} };
+          }
           return {};
         }
         return null;
       }, 'getExtension'),
       
       getSupportedExtensions: makeNative(function() {
-        return supportedExtensions;
+        return [...supportedExtensions];
       }, 'getSupportedExtensions'),
       
       getContextAttributes: makeNative(function() {
@@ -1700,64 +1765,68 @@ const EMBEDDED_DEFAULT_PROFILE = {"server":{"ip":"2405:f600:8:e0a9:985c:f5c3:340
   }
 
   // ============================================
-  // AUDIO CONTEXT SPOOFING (Complete - baseLatency, value, sampleRate)
+  // AUDIO CONTEXT SPOOFING (Complete - baseLatency, value, sampleRate, sampleRateLive)
   // ============================================
 
   const audioLatency = client.audioLatency || {};
   const audioBaseLatencySimple = client.audioBaseLatencySimple;
 
   // Spoof AudioContext properties (baseLatency, outputLatency, sampleRate)
-  if (audioLatency.baseLatency !== undefined || audioBaseLatencySimple !== undefined) {
-    const targetBaseLatency = audioLatency.baseLatency ?? audioBaseLatencySimple ?? 0.003;
-    const targetOutputLatency = audioLatency.outputLatency ?? 0;
-    const targetSampleRate = audioLatency.sampleRate ?? audio.sampleRateLive ?? 48000;
-    const targetMaxChannelCount = audioLatency.maxChannelCount ?? audio.maxChannelCount ?? 2;
-    const targetChannelCount = audioLatency.channelCount ?? 2;
-    const targetChannelInterpretation = audioLatency.channelInterpretation ?? 'speakers';
-    const targetState = audioLatency.state ?? audio.contextState ?? 'suspended';
+  // Target sampleRateLive (48000 for mobile)
+  const targetSampleRateLive = audio.sampleRateLive ?? 48000;
+  const targetBaseLatency = audioLatency.baseLatency ?? audioBaseLatencySimple ?? 0.003;
+  const targetOutputLatency = audioLatency.outputLatency ?? 0;
+  const targetMaxChannelCount = audioLatency.maxChannelCount ?? audio.maxChannelCount ?? 2;
+  const targetChannelCount = audioLatency.channelCount ?? 2;
+  const targetChannelInterpretation = audioLatency.channelInterpretation ?? 'speakers';
 
-    // Override AudioContext constructor to spoof properties
-    const OriginalAudioContext = window.AudioContext || window.webkitAudioContext;
-    if (OriginalAudioContext) {
-      const AudioContextProxy = function(...args) {
-        const ctx = new OriginalAudioContext(...args);
-        
-        // Spoof baseLatency
-        Object.defineProperty(ctx, 'baseLatency', {
-          get: makeNative(function() { return targetBaseLatency; }, 'get baseLatency'),
+  // Override AudioContext constructor to spoof properties
+  const OriginalAudioContext = window.AudioContext || window.webkitAudioContext;
+  if (OriginalAudioContext) {
+    const AudioContextProxy = function(...args) {
+      const ctx = new OriginalAudioContext(...args);
+      
+      // Spoof sampleRate (this is sampleRateLive in fingerprint)
+      Object.defineProperty(ctx, 'sampleRate', {
+        get: makeNative(function() { return targetSampleRateLive; }, 'get sampleRate'),
+        configurable: true
+      });
+      
+      // Spoof baseLatency
+      Object.defineProperty(ctx, 'baseLatency', {
+        get: makeNative(function() { return targetBaseLatency; }, 'get baseLatency'),
+        configurable: true
+      });
+      
+      // Spoof outputLatency
+      Object.defineProperty(ctx, 'outputLatency', {
+        get: makeNative(function() { return targetOutputLatency; }, 'get outputLatency'),
+        configurable: true
+      });
+      
+      // Spoof sampleRate on destination
+      if (ctx.destination) {
+        Object.defineProperty(ctx.destination, 'maxChannelCount', {
+          get: makeNative(function() { return targetMaxChannelCount; }, 'get maxChannelCount'),
           configurable: true
         });
-        
-        // Spoof outputLatency
-        Object.defineProperty(ctx, 'outputLatency', {
-          get: makeNative(function() { return targetOutputLatency; }, 'get outputLatency'),
+        Object.defineProperty(ctx.destination, 'channelCount', {
+          get: makeNative(function() { return targetChannelCount; }, 'get channelCount'),
           configurable: true
         });
-        
-        // Spoof sampleRate on destination
-        if (ctx.destination) {
-          Object.defineProperty(ctx.destination, 'maxChannelCount', {
-            get: makeNative(function() { return targetMaxChannelCount; }, 'get maxChannelCount'),
-            configurable: true
-          });
-          Object.defineProperty(ctx.destination, 'channelCount', {
-            get: makeNative(function() { return targetChannelCount; }, 'get channelCount'),
-            configurable: true
-          });
-          Object.defineProperty(ctx.destination, 'channelInterpretation', {
-            get: makeNative(function() { return targetChannelInterpretation; }, 'get channelInterpretation'),
-            configurable: true
-          });
-        }
-        
-        return ctx;
-      };
-      AudioContextProxy.prototype = OriginalAudioContext.prototype;
-      makeNative(AudioContextProxy, 'AudioContext');
-      window.AudioContext = AudioContextProxy;
-      if (window.webkitAudioContext) {
-        window.webkitAudioContext = AudioContextProxy;
+        Object.defineProperty(ctx.destination, 'channelInterpretation', {
+          get: makeNative(function() { return targetChannelInterpretation; }, 'get channelInterpretation'),
+          configurable: true
+        });
       }
+      
+      return ctx;
+    };
+    AudioContextProxy.prototype = OriginalAudioContext.prototype;
+    makeNative(AudioContextProxy, 'AudioContext');
+    window.AudioContext = AudioContextProxy;
+    if (window.webkitAudioContext) {
+      window.webkitAudioContext = AudioContextProxy;
     }
   }
 
