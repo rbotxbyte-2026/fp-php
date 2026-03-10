@@ -5,12 +5,20 @@
 (function() {
   'use strict';
   
+  // Poll briefly for config (background.js may be injecting it)
   let config = null;
-  try {
-    const stored = localStorage.getItem('__fp_spoof_config__');
-    const enabled = localStorage.getItem('__fp_spoof_enabled__');
-    if (stored && enabled === 'true') config = JSON.parse(stored);
-  } catch (e) {}
+  const maxWait = 50; // ms - brief wait for background.js injection
+  const start = Date.now();
+  
+  while (!config && Date.now() - start < maxWait) {
+    try {
+      const stored = localStorage.getItem('__fp_spoof_config__');
+      const enabled = localStorage.getItem('__fp_spoof_enabled__');
+      if (stored && enabled === 'true') {
+        config = JSON.parse(stored);
+      }
+    } catch (e) {}
+  }
   
   if (!config || !config.client || !config.client.behavioral) return;
   
@@ -117,15 +125,21 @@
   let spoofConfig = null;
   let spoofEnabled = false;
 
-  try {
-    const storedConfig = localStorage.getItem('__fp_spoof_config__');
-    const storedEnabled = localStorage.getItem('__fp_spoof_enabled__');
-    
-    if (storedConfig && storedEnabled === 'true') {
-      spoofConfig = JSON.parse(storedConfig);
-      spoofEnabled = true;
-    }
-  } catch (e) {}
+  // Poll briefly for config (in case first IIFE polling didn't complete)
+  const maxWait = 50;
+  const start = Date.now();
+  
+  while (!spoofEnabled && Date.now() - start < maxWait) {
+    try {
+      const storedConfig = localStorage.getItem('__fp_spoof_config__');
+      const storedEnabled = localStorage.getItem('__fp_spoof_enabled__');
+      
+      if (storedConfig && storedEnabled === 'true') {
+        spoofConfig = JSON.parse(storedConfig);
+        spoofEnabled = true;
+      }
+    } catch (e) {}
+  }
 
   if (!spoofEnabled || !spoofConfig) {
     return;

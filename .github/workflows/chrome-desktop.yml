@@ -45,31 +45,7 @@ jobs:
           cp -r extension/* ~/Downloads/fp-spoofer-extension/
           cp original.json ~/Downloads/
           
-          # PRE-INJECT the profile directly into content.js to fix timing issue
-          # The problem: content.js runs at document_start BEFORE background.js can inject config
-          # Solution: Embed the config directly at the top of content.js
-          
-          PROFILE_B64=$(cat original.json | base64 -w0)
-          
-          # Build prepend script using echo (avoids heredoc YAML issues)
-          echo "// AUTO-INJECTED: Pre-load profile into localStorage" > /tmp/prepend.js
-          echo "(function() {" >> /tmp/prepend.js
-          echo "  try {" >> /tmp/prepend.js
-          echo "    const profileB64 = '$PROFILE_B64';" >> /tmp/prepend.js
-          echo "    const injectedProfile = JSON.parse(atob(profileB64));" >> /tmp/prepend.js
-          echo "    localStorage.setItem('__fp_spoof_config__', JSON.stringify(injectedProfile));" >> /tmp/prepend.js
-          echo "    localStorage.setItem('__fp_spoof_enabled__', 'true');" >> /tmp/prepend.js
-          echo "    console.log('[FP Spoofer] Profile pre-injected from workflow');" >> /tmp/prepend.js
-          echo "  } catch (e) {" >> /tmp/prepend.js
-          echo "    console.error('[FP Spoofer] Pre-injection failed:', e);" >> /tmp/prepend.js
-          echo "  }" >> /tmp/prepend.js
-          echo "})();" >> /tmp/prepend.js
-          
-          # Prepend to content.js
-          cat /tmp/prepend.js ~/Downloads/fp-spoofer-extension/content.js > /tmp/content-patched.js
-          mv /tmp/content-patched.js ~/Downloads/fp-spoofer-extension/content.js
-          
-          echo "Profile pre-injected into content.js"
+          echo "Extension copied (includes bundled default profile)"
           
           # Read dimensions from profile
           SCREEN_WIDTH=$(jq -r '.client.screen.width // 384' original.json)
