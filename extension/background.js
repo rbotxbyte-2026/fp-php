@@ -177,6 +177,27 @@ chrome.runtime.onStartup.addListener(async () => {
 // Also initialize when extension is installed
 chrome.runtime.onInstalled.addListener(async () => {
   const data = await chrome.storage.local.get(['spoofEnabled', 'spoofProfile']);
+  
+  // Auto-load default profile if no config exists
+  if (!data.spoofProfile) {
+    try {
+      const response = await fetch(chrome.runtime.getURL('default-profile.json'));
+      if (response.ok) {
+        const defaultProfile = await response.json();
+        await chrome.storage.local.set({
+          spoofProfile: defaultProfile,
+          spoofEnabled: true
+        });
+        await updateHeaderRules(defaultProfile, true);
+        updateBadge(true);
+        console.log('[FP Spoofer] Auto-loaded default profile');
+        return;
+      }
+    } catch (e) {
+      console.log('[FP Spoofer] No default profile found:', e);
+    }
+  }
+  
   updateBadge(data.spoofEnabled || false);
   await updateHeaderRules(data.spoofProfile, data.spoofEnabled);
   
