@@ -49,22 +49,21 @@ jobs:
           # The problem: content.js runs at document_start BEFORE background.js can inject config
           # Solution: Embed the config directly at the top of content.js
           
-          PROFILE_JSON=$(cat original.json | jq -c .)
+          PROFILE_B64=$(cat original.json | base64 -w0)
           
-          # Create prepend script that sets localStorage before content.js reads it
-          cat > /tmp/prepend.js << PREPEND_EOF
-// AUTO-INJECTED: Pre-load profile into localStorage
-(function() {
-  try {
-    const injectedProfile = ${PROFILE_JSON};
-    localStorage.setItem('__fp_spoof_config__', JSON.stringify(injectedProfile));
-    localStorage.setItem('__fp_spoof_enabled__', 'true');
-    console.log('[FP Spoofer] Profile pre-injected from workflow');
-  } catch (e) {
-    console.error('[FP Spoofer] Pre-injection failed:', e);
-  }
-})();
-PREPEND_EOF
+          # Build prepend script using echo (avoids heredoc YAML issues)
+          echo "// AUTO-INJECTED: Pre-load profile into localStorage" > /tmp/prepend.js
+          echo "(function() {" >> /tmp/prepend.js
+          echo "  try {" >> /tmp/prepend.js
+          echo "    const profileB64 = '$PROFILE_B64';" >> /tmp/prepend.js
+          echo "    const injectedProfile = JSON.parse(atob(profileB64));" >> /tmp/prepend.js
+          echo "    localStorage.setItem('__fp_spoof_config__', JSON.stringify(injectedProfile));" >> /tmp/prepend.js
+          echo "    localStorage.setItem('__fp_spoof_enabled__', 'true');" >> /tmp/prepend.js
+          echo "    console.log('[FP Spoofer] Profile pre-injected from workflow');" >> /tmp/prepend.js
+          echo "  } catch (e) {" >> /tmp/prepend.js
+          echo "    console.error('[FP Spoofer] Pre-injection failed:', e);" >> /tmp/prepend.js
+          echo "  }" >> /tmp/prepend.js
+          echo "})();" >> /tmp/prepend.js
           
           # Prepend to content.js
           cat /tmp/prepend.js ~/Downloads/fp-spoofer-extension/content.js > /tmp/content-patched.js
@@ -81,37 +80,22 @@ PREPEND_EOF
           echo "Profile dimensions: ${SCREEN_WIDTH}x${SCREEN_HEIGHT} (inner: ${INNER_WIDTH}x${INNER_HEIGHT})"
           
           # Create launcher script that resizes Chrome to profile dimensions
-          cat > ~/Desktop/launch-chrome-resized.sh << 'SCRIPT'
-          #!/bin/bash
-          # Read profile dimensions
-          INNER_WIDTH=$(jq -r '.client.screen.innerWidth // 384' ~/Downloads/original.json)
-          INNER_HEIGHT=$(jq -r '.client.screen.innerHeight // 699' ~/Downloads/original.json)
-          
-          # Chrome adds ~0 to width and ~79 to height for UI (address bar, etc)
-          WINDOW_WIDTH=$INNER_WIDTH
-          WINDOW_HEIGHT=$((INNER_HEIGHT + 79))
-          
-          echo "Launching Chrome with window size: ${WINDOW_WIDTH}x${WINDOW_HEIGHT}"
-          
-          google-chrome \
-            --window-size=${WINDOW_WIDTH},${WINDOW_HEIGHT} \
-            --window-position=100,100 \
-            --no-first-run \
-            --disable-default-apps \
-            --disable-popup-blocking \
-            "about:blank" &
-          SCRIPT
+          echo '#!/bin/bash' > ~/Desktop/launch-chrome-resized.sh
+          echo 'INNER_WIDTH=$(jq -r ".client.screen.innerWidth // 384" ~/Downloads/original.json)' >> ~/Desktop/launch-chrome-resized.sh
+          echo 'INNER_HEIGHT=$(jq -r ".client.screen.innerHeight // 699" ~/Downloads/original.json)' >> ~/Desktop/launch-chrome-resized.sh
+          echo 'WINDOW_WIDTH=$INNER_WIDTH' >> ~/Desktop/launch-chrome-resized.sh
+          echo 'WINDOW_HEIGHT=$((INNER_HEIGHT + 79))' >> ~/Desktop/launch-chrome-resized.sh
+          echo 'echo "Launching Chrome with window size: ${WINDOW_WIDTH}x${WINDOW_HEIGHT}"' >> ~/Desktop/launch-chrome-resized.sh
+          echo 'google-chrome --window-size=${WINDOW_WIDTH},${WINDOW_HEIGHT} --window-position=100,100 --no-first-run --disable-default-apps --disable-popup-blocking "about:blank" &' >> ~/Desktop/launch-chrome-resized.sh
           chmod +x ~/Desktop/launch-chrome-resized.sh
           
           # Create desktop shortcut
-          cat > ~/Desktop/Chrome-Resized.desktop << EOF
-          [Desktop Entry]
-          Type=Application
-          Name=Chrome (Profile Size)
-          Exec=/home/runner/Desktop/launch-chrome-resized.sh
-          Icon=google-chrome
-          Terminal=false
-          EOF
+          echo '[Desktop Entry]' > ~/Desktop/Chrome-Resized.desktop
+          echo 'Type=Application' >> ~/Desktop/Chrome-Resized.desktop
+          echo 'Name=Chrome (Profile Size)' >> ~/Desktop/Chrome-Resized.desktop
+          echo 'Exec=/home/runner/Desktop/launch-chrome-resized.sh' >> ~/Desktop/Chrome-Resized.desktop
+          echo 'Icon=google-chrome' >> ~/Desktop/Chrome-Resized.desktop
+          echo 'Terminal=false' >> ~/Desktop/Chrome-Resized.desktop
           chmod +x ~/Desktop/Chrome-Resized.desktop
           
           echo ""
