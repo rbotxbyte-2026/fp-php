@@ -1,0 +1,14 @@
+{
+  "name": "fp-spoof-docker",
+  "version": "1.0.0",
+  "description": "Dynamic fingerprint spoofing for Android via Docker",
+  "main": "setup-device.js",
+  "scripts": {
+    "setup": "node setup-device.js",
+    "inject": "node cdp-inject.js",
+    "start": "./entrypoint.sh"
+  },
+  "dependencies": {
+    "ws": "^8.16.0"
+  }
+}

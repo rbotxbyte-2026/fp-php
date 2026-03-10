@@ -1,0 +1,91 @@
+version: '3.8'
+
+services:
+  # Android Redroid Container
+  redroid:
+    image: redroid/redroid:11.0.0-latest
+    privileged: true
+    ports:
+      - "5555:5555"     # ADB
+    volumes:
+      - android-data:/data
+      - ./profiles:/profiles
+    command:
+      - androidboot.redroid_width=1080
+      - androidboot.redroid_height=2340
+      - androidboot.redroid_dpi=440
+      - androidboot.redroid_fps=60
+      - androidboot.redroid_gpu_mode=guest
+    healthcheck:
+      test: ["CMD", "getprop", "sys.boot_completed"]
+      interval: 10s
+      timeout: 5s
+      retries: 30
+    networks:
+      - fpnet
+
+  # VNC Server using scrcpy-web
+  vnc:
+    image: emptysaucepan/scrcpy-web:latest
+    depends_on:
+      redroid:
+        condition: service_healthy
+    environment:
+      - SCRCPY_SERVER_PORT=5555
+      - SCRCPY_DEVICE_HOST=redroid
+      - SCRCPY_OPTS=--max-size=1080 --bit-rate=2M
+    ports:
+      - "6080:8000"     # noVNC web UI
+    networks:
+      - fpnet
+
+  # Alternative: Simple noVNC + scrcpy setup
+  scrcpy-vnc:
+    image: ghcr.io/neocturne/scrcpy-docker:latest
+    depends_on:
+      redroid:
+        condition: service_healthy
+    environment:
+      - ADB_SERVER_HOST=redroid
+      - ADB_SERVER_PORT=5555
+    command: >
+      sh -c "
+        adb connect redroid:5555 &&
+        adb wait-for-device &&
+        scrcpy --tcpip=redroid:5555 --record=/output/screen.mp4 --no-display
+      "
+    volumes:
+      - ./output:/output
+    networks:
+      - fpnet
+    profiles:
+      - record  # Only start with --profile record
+
+  # Controller - Sets up device and runs automation
+  controller:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      redroid:
+        condition: service_healthy
+    volumes:
+      - ./profiles:/app/profiles
+      - ../original.json:/app/profiles/original.json:ro
+      - ./output:/app/output
+    environment:
+      - PROFILE_PATH=/app/profiles/original.json
+      - REDROID_HOST=redroid
+      - REDROID_ADB_PORT=5555
+      - CHROME_DEBUG_PORT=9222
+      - TARGET_URL=${TARGET_URL:-https://botxbyte.com/fp.php}
+      - SAVE_RESULT=true
+    networks:
+      - fpnet
+
+networks:
+  fpnet:
+    driver: bridge
+
+volumes:
+  android-data:
