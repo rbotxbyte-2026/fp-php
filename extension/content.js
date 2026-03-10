@@ -1428,12 +1428,20 @@ const EMBEDDED_DEFAULT_PROFILE = {"server":{"ip":"2405:f600:8:e0a9:985c:f5c3:340
     const GL_MAX_SAMPLES = 36183;
     
     // Create fake context with all necessary methods
-    const fakeContext = {
-      canvas: canvas,
-      drawingBufferWidth: canvas.width || 300,
-      drawingBufferHeight: canvas.height || 150,
-      
-      getParameter: makeNative(function(param) {
+    // Use Object.create to set proper prototype chain so instanceof checks pass
+    const ContextPrototype = isWebGL2 && typeof WebGL2RenderingContext !== 'undefined' 
+      ? WebGL2RenderingContext.prototype 
+      : WebGLRenderingContext.prototype;
+    
+    const fakeContext = Object.create(ContextPrototype);
+    
+    // Set basic properties
+    fakeContext.canvas = canvas;
+    fakeContext.drawingBufferWidth = canvas.width || 300;
+    fakeContext.drawingBufferHeight = canvas.height || 150;
+    
+    // Override getParameter with our values
+    fakeContext.getParameter = makeNative(function(param) {
         switch(param) {
           case UNMASKED_VENDOR_WEBGL:
             return webgl.unmaskedVendor || 'Qualcomm';
@@ -1507,9 +1515,9 @@ const EMBEDDED_DEFAULT_PROFILE = {"server":{"ip":"2405:f600:8:e0a9:985c:f5c3:340
           default:
             return null;
         }
-      }, 'getParameter'),
+      }, 'getParameter');
       
-      getExtension: makeNative(function(name) {
+    fakeContext.getExtension = makeNative(function(name) {
         if (name === 'WEBGL_debug_renderer_info') {
           return fakeDebugRendererInfo;
         }
@@ -1530,13 +1538,13 @@ const EMBEDDED_DEFAULT_PROFILE = {"server":{"ip":"2405:f600:8:e0a9:985c:f5c3:340
           return {};
         }
         return null;
-      }, 'getExtension'),
+      }, 'getExtension');
       
-      getSupportedExtensions: makeNative(function() {
+    fakeContext.getSupportedExtensions = makeNative(function() {
         return [...supportedExtensions];
-      }, 'getSupportedExtensions'),
+      }, 'getSupportedExtensions');
       
-      getContextAttributes: makeNative(function() {
+    fakeContext.getContextAttributes = makeNative(function() {
         return {
           alpha: true,
           antialias: true,
@@ -1549,64 +1557,64 @@ const EMBEDDED_DEFAULT_PROFILE = {"server":{"ip":"2405:f600:8:e0a9:985c:f5c3:340
           stencil: false,
           xrCompatible: false
         };
-      }, 'getContextAttributes'),
+      }, 'getContextAttributes');
       
-      isContextLost: makeNative(function() {
+    fakeContext.isContextLost = makeNative(function() {
         return false;
-      }, 'isContextLost'),
+      }, 'isContextLost');
       
-      getShaderPrecisionFormat: makeNative(function(shaderType, precisionType) {
+    fakeContext.getShaderPrecisionFormat = makeNative(function(shaderType, precisionType) {
         return {
           rangeMin: 127,
           rangeMax: 127,
           precision: 23
         };
-      }, 'getShaderPrecisionFormat'),
+      }, 'getShaderPrecisionFormat');
       
-      // Stub methods that fingerprinters might call
-      createShader: makeNative(function() { return {}; }, 'createShader'),
-      shaderSource: makeNative(function() {}, 'shaderSource'),
-      compileShader: makeNative(function() {}, 'compileShader'),
-      getShaderParameter: makeNative(function() { return true; }, 'getShaderParameter'),
-      createProgram: makeNative(function() { return {}; }, 'createProgram'),
-      attachShader: makeNative(function() {}, 'attachShader'),
-      linkProgram: makeNative(function() {}, 'linkProgram'),
-      getProgramParameter: makeNative(function() { return true; }, 'getProgramParameter'),
-      useProgram: makeNative(function() {}, 'useProgram'),
-      createBuffer: makeNative(function() { return {}; }, 'createBuffer'),
-      bindBuffer: makeNative(function() {}, 'bindBuffer'),
-      bufferData: makeNative(function() {}, 'bufferData'),
-      enableVertexAttribArray: makeNative(function() {}, 'enableVertexAttribArray'),
-      vertexAttribPointer: makeNative(function() {}, 'vertexAttribPointer'),
-      getAttribLocation: makeNative(function() { return 0; }, 'getAttribLocation'),
-      getUniformLocation: makeNative(function() { return {}; }, 'getUniformLocation'),
-      uniform1f: makeNative(function() {}, 'uniform1f'),
-      uniform2f: makeNative(function() {}, 'uniform2f'),
-      uniform3f: makeNative(function() {}, 'uniform3f'),
-      uniform4f: makeNative(function() {}, 'uniform4f'),
-      uniformMatrix4fv: makeNative(function() {}, 'uniformMatrix4fv'),
-      drawArrays: makeNative(function() {}, 'drawArrays'),
-      drawElements: makeNative(function() {}, 'drawElements'),
-      viewport: makeNative(function() {}, 'viewport'),
-      clear: makeNative(function() {}, 'clear'),
-      clearColor: makeNative(function() {}, 'clearColor'),
-      clearDepth: makeNative(function() {}, 'clearDepth'),
-      enable: makeNative(function() {}, 'enable'),
-      disable: makeNative(function() {}, 'disable'),
-      depthFunc: makeNative(function() {}, 'depthFunc'),
-      blendFunc: makeNative(function() {}, 'blendFunc'),
-      createTexture: makeNative(function() { return {}; }, 'createTexture'),
-      bindTexture: makeNative(function() {}, 'bindTexture'),
-      texImage2D: makeNative(function() {}, 'texImage2D'),
-      texParameteri: makeNative(function() {}, 'texParameteri'),
-      activeTexture: makeNative(function() {}, 'activeTexture'),
-      generateMipmap: makeNative(function() {}, 'generateMipmap'),
-      pixelStorei: makeNative(function() {}, 'pixelStorei'),
-      createFramebuffer: makeNative(function() { return {}; }, 'createFramebuffer'),
-      bindFramebuffer: makeNative(function() {}, 'bindFramebuffer'),
-      framebufferTexture2D: makeNative(function() {}, 'framebufferTexture2D'),
-      checkFramebufferStatus: makeNative(function() { return 36053; }, 'checkFramebufferStatus'), // GL_FRAMEBUFFER_COMPLETE
-      readPixels: makeNative(function(x, y, width, height, format, type, pixels) {
+    // Stub methods that fingerprinters might call
+    fakeContext.createShader = makeNative(function() { return {}; }, 'createShader');
+    fakeContext.shaderSource = makeNative(function() {}, 'shaderSource');
+    fakeContext.compileShader = makeNative(function() {}, 'compileShader');
+    fakeContext.getShaderParameter = makeNative(function() { return true; }, 'getShaderParameter');
+    fakeContext.createProgram = makeNative(function() { return {}; }, 'createProgram');
+    fakeContext.attachShader = makeNative(function() {}, 'attachShader');
+    fakeContext.linkProgram = makeNative(function() {}, 'linkProgram');
+    fakeContext.getProgramParameter = makeNative(function() { return true; }, 'getProgramParameter');
+    fakeContext.useProgram = makeNative(function() {}, 'useProgram');
+    fakeContext.createBuffer = makeNative(function() { return {}; }, 'createBuffer');
+    fakeContext.bindBuffer = makeNative(function() {}, 'bindBuffer');
+    fakeContext.bufferData = makeNative(function() {}, 'bufferData');
+    fakeContext.enableVertexAttribArray = makeNative(function() {}, 'enableVertexAttribArray');
+    fakeContext.vertexAttribPointer = makeNative(function() {}, 'vertexAttribPointer');
+    fakeContext.getAttribLocation = makeNative(function() { return 0; }, 'getAttribLocation');
+    fakeContext.getUniformLocation = makeNative(function() { return {}; }, 'getUniformLocation');
+    fakeContext.uniform1f = makeNative(function() {}, 'uniform1f');
+    fakeContext.uniform2f = makeNative(function() {}, 'uniform2f');
+    fakeContext.uniform3f = makeNative(function() {}, 'uniform3f');
+    fakeContext.uniform4f = makeNative(function() {}, 'uniform4f');
+    fakeContext.uniformMatrix4fv = makeNative(function() {}, 'uniformMatrix4fv');
+    fakeContext.drawArrays = makeNative(function() {}, 'drawArrays');
+    fakeContext.drawElements = makeNative(function() {}, 'drawElements');
+    fakeContext.viewport = makeNative(function() {}, 'viewport');
+    fakeContext.clear = makeNative(function() {}, 'clear');
+    fakeContext.clearColor = makeNative(function() {}, 'clearColor');
+    fakeContext.clearDepth = makeNative(function() {}, 'clearDepth');
+    fakeContext.enable = makeNative(function() {}, 'enable');
+    fakeContext.disable = makeNative(function() {}, 'disable');
+    fakeContext.depthFunc = makeNative(function() {}, 'depthFunc');
+    fakeContext.blendFunc = makeNative(function() {}, 'blendFunc');
+    fakeContext.createTexture = makeNative(function() { return {}; }, 'createTexture');
+    fakeContext.bindTexture = makeNative(function() {}, 'bindTexture');
+    fakeContext.texImage2D = makeNative(function() {}, 'texImage2D');
+    fakeContext.texParameteri = makeNative(function() {}, 'texParameteri');
+    fakeContext.activeTexture = makeNative(function() {}, 'activeTexture');
+    fakeContext.generateMipmap = makeNative(function() {}, 'generateMipmap');
+    fakeContext.pixelStorei = makeNative(function() {}, 'pixelStorei');
+    fakeContext.createFramebuffer = makeNative(function() { return {}; }, 'createFramebuffer');
+    fakeContext.bindFramebuffer = makeNative(function() {}, 'bindFramebuffer');
+    fakeContext.framebufferTexture2D = makeNative(function() {}, 'framebufferTexture2D');
+    fakeContext.checkFramebufferStatus = makeNative(function() { return 36053; }, 'checkFramebufferStatus'); // GL_FRAMEBUFFER_COMPLETE
+    fakeContext.readPixels = makeNative(function(x, y, width, height, format, type, pixels) {
         // Fill with deterministic data based on profile
         if (pixels) {
           const seed = (webgl.unmaskedRenderer || 'Adreno').charCodeAt(0);
@@ -1614,24 +1622,23 @@ const EMBEDDED_DEFAULT_PROFILE = {"server":{"ip":"2405:f600:8:e0a9:985c:f5c3:340
             pixels[i] = (seed * (i + 1) * 17) % 256;
           }
         }
-      }, 'readPixels'),
-      getError: makeNative(function() { return 0; }, 'getError'), // GL_NO_ERROR
-      finish: makeNative(function() {}, 'finish'),
-      flush: makeNative(function() {}, 'flush'),
-      deleteShader: makeNative(function() {}, 'deleteShader'),
-      deleteProgram: makeNative(function() {}, 'deleteProgram'),
-      deleteBuffer: makeNative(function() {}, 'deleteBuffer'),
-      deleteTexture: makeNative(function() {}, 'deleteTexture'),
-      deleteFramebuffer: makeNative(function() {}, 'deleteFramebuffer'),
-      scissor: makeNative(function() {}, 'scissor'),
-      colorMask: makeNative(function() {}, 'colorMask'),
-      depthMask: makeNative(function() {}, 'depthMask'),
-      stencilMask: makeNative(function() {}, 'stencilMask'),
-      cullFace: makeNative(function() {}, 'cullFace'),
-      frontFace: makeNative(function() {}, 'frontFace'),
-      lineWidth: makeNative(function() {}, 'lineWidth'),
-      polygonOffset: makeNative(function() {}, 'polygonOffset')
-    };
+      }, 'readPixels');
+    fakeContext.getError = makeNative(function() { return 0; }, 'getError'); // GL_NO_ERROR
+    fakeContext.finish = makeNative(function() {}, 'finish');
+    fakeContext.flush = makeNative(function() {}, 'flush');
+    fakeContext.deleteShader = makeNative(function() {}, 'deleteShader');
+    fakeContext.deleteProgram = makeNative(function() {}, 'deleteProgram');
+    fakeContext.deleteBuffer = makeNative(function() {}, 'deleteBuffer');
+    fakeContext.deleteTexture = makeNative(function() {}, 'deleteTexture');
+    fakeContext.deleteFramebuffer = makeNative(function() {}, 'deleteFramebuffer');
+    fakeContext.scissor = makeNative(function() {}, 'scissor');
+    fakeContext.colorMask = makeNative(function() {}, 'colorMask');
+    fakeContext.depthMask = makeNative(function() {}, 'depthMask');
+    fakeContext.stencilMask = makeNative(function() {}, 'stencilMask');
+    fakeContext.cullFace = makeNative(function() {}, 'cullFace');
+    fakeContext.frontFace = makeNative(function() {}, 'frontFace');
+    fakeContext.lineWidth = makeNative(function() {}, 'lineWidth');
+    fakeContext.polygonOffset = makeNative(function() {}, 'polygonOffset');
     
     // Add WebGL constants to the context
     const webglConstants = {

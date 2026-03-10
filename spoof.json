@@ -1,10 +1,10 @@
 {
   "server": {
-    "ip": "52.161.82.112",
+    "ip": "172.182.226.16",
     "protocol": "HTTP/1.0",
     "https": true,
     "port": "80",
-    "request_time": "2026-03-10 16:05:44",
+    "request_time": "2026-03-10 16:20:44",
     "user_agent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Mobile Safari/537.36",
     "accept": "*/*",
     "accept_language": "en-IN,en-GB;q=0.9,en-US;q=0.8,en;q=0.7,gu;q=0.6",
@@ -28,12 +28,12 @@
     "ch_ua_bitness": null,
     "ch_ua_full_version_list": null,
     "ch_ua_model": null,
-    "x_forwarded_for": "52.161.82.112, 172.71.203.106",
+    "x_forwarded_for": "172.182.226.16, 172.70.230.49",
     "x_real_ip": null,
     "via": null,
-    "cf_connecting_ip": "52.161.82.112",
+    "cf_connecting_ip": "172.182.226.16",
     "cf_ipcountry": "US",
-    "cf_ray": "9da3900adc6910c5-EWR",
+    "cf_ray": "9da3a603ad364747-EWR",
     "cdn_loop": "cloudflare; loops=1",
     "x_forwarded_proto": "https",
     "ja3_hash": null,
@@ -43,9 +43,9 @@
     "all_headers": {
       "Cf-Visitor": "{\"scheme\":\"https\"}",
       "Cf-Ipcountry": "US",
-      "Cf-Connecting-Ip": "52.161.82.112",
+      "Cf-Connecting-Ip": "172.182.226.16",
       "Cdn-Loop": "cloudflare; loops=1",
-      "Cf-Ray": "9da3900adc6910c5-EWR",
+      "Cf-Ray": "9da3a603ad364747-EWR",
       "Accept-Language": "en-IN,en-GB;q=0.9,en-US;q=0.8,en;q=0.7,gu;q=0.6",
       "Accept-Encoding": "gzip, br",
       "Referer": "https://botxbyte.com/fp.php",
@@ -61,10 +61,10 @@
       "X-Requested-With": "XMLHttpRequest",
       "Sec-Ch-Ua-Platform": "\"Android\"",
       "Priority": "u=1, i",
-      "Content-Length": "44546",
+      "Content-Length": "44541",
       "Connection": "close",
       "X-Forwarded-Proto": "https",
-      "X-Forwarded-For": "52.161.82.112, 172.71.203.106",
+      "X-Forwarded-For": "172.182.226.16, 172.70.230.49",
       "X-Server-Addr": "107.170.48.37",
       "Host": "botxbyte.com",
       "Authorization": ""
@@ -158,7 +158,7 @@
       "calendar": "gregory",
       "numberingSystem": "latn",
       "localeDateString": "10/03/2026",
-      "localeTimeString": "21:35:44"
+      "localeTimeString": "21:50:44"
     },
     "canvas": {
       "hash": "54891a77",
@@ -193,21 +193,32 @@
       "depthBits": null,
       "stencilBits": null,
       "subpixelBits": null,
-      "extensionCount": 12,
-      "extensionHash": "348aa78e",
+      "extensionCount": 23,
+      "extensionHash": "79cb5ed9",
       "extensions": [
-        "WEBGL_debug_renderer_info",
-        "WEBGL_lose_context",
-        "OES_texture_float",
-        "OES_texture_half_float",
+        "ANGLE_instanced_arrays",
+        "EXT_blend_minmax",
+        "EXT_color_buffer_half_float",
+        "EXT_float_blend",
+        "EXT_texture_filter_anisotropic",
+        "EXT_sRGB",
         "OES_element_index_uint",
+        "OES_fbo_render_mipmap",
         "OES_standard_derivatives",
-        "EXT_shader_texture_lod",
+        "OES_texture_float",
+        "OES_texture_float_linear",
+        "OES_texture_half_float",
+        "OES_texture_half_float_linear",
+        "OES_vertex_array_object",
+        "WEBGL_color_buffer_float",
         "WEBGL_compressed_texture_astc",
         "WEBGL_compressed_texture_etc",
-        "EXT_color_buffer_float",
-        "OES_vertex_array_object",
-        "ANGLE_instanced_arrays"
+        "WEBGL_compressed_texture_etc1",
+        "WEBGL_debug_renderer_info",
+        "WEBGL_debug_shaders",
+        "WEBGL_depth_texture",
+        "WEBGL_lose_context",
+        "WEBGL_multi_draw"
       ],
       "shaderRenderHash": "698d5c8d",
       "rasterizationMethod": "hardware"
@@ -226,7 +237,7 @@
     },
     "audio": {
       "sampleRate": 44100,
-      "sampleRateLive": 44100,
+      "sampleRateLive": 48000,
       "hash": "b717709",
       "fullHash": "578a0aeb",
       "value": 124.08075626414939,
@@ -420,10 +431,10 @@
       "navigationTiming": {
         "type": "navigate",
         "redirectCount": 0,
-        "domInteractive": 623,
-        "domContentLoaded": 626,
-        "loadEvent": 627,
-        "ttfb": 217,
+        "domInteractive": 536,
+        "domContentLoaded": 539,
+        "loadEvent": 539,
+        "ttfb": 223,
         "transferSize": 52057,
         "encodedBodySize": 51757
       },
@@ -433,7 +444,7 @@
         "usedJSHeapSize": 10000000
       },
       "timeOrigin": 1773122913591.5,
-      "now": 6589.200000000012
+      "now": 5706.5
     },
     "stackTrace": {
       "engine": "V8(Chrome/Node)",
@@ -516,7 +527,7 @@
     "refreshRate": {
       "measured_fps": 60,
       "snapped_hz": 60,
-      "avg_frame_ms": 16.663
+      "avg_frame_ms": 16.669
     },
     "videoDecoder": {
       "supported": true,
@@ -562,7 +573,7 @@
           "absolute": false
         }
       },
-      "sessionDuration": 6584
+      "sessionDuration": 5702
     },
     "fontPreferences": {
       "default": 455.95556640625,
@@ -650,12 +661,12 @@
         }
       },
       "shaderPrecisionsHash": "70f3c0",
-      "extensionPresenceHash": "10ecb8f"
+      "extensionPresenceHash": "46f092d0"
     },
     "audioLatency": {
       "baseLatency": 0.003,
       "outputLatency": 0,
-      "sampleRate": 44100,
+      "sampleRate": 48000,
       "state": "suspended",
       "maxChannelCount": 2,
       "channelCount": 2,
@@ -768,41 +779,30 @@
     "mathHash": "100ac6dd",
     "webglExtra": {
       "unsupportedExtensions": [
-        "EXT_blend_minmax",
         "EXT_clip_control",
-        "EXT_color_buffer_half_float",
+        "EXT_color_buffer_float",
         "EXT_depth_clamp",
         "EXT_disjoint_timer_query",
         "EXT_disjoint_timer_query_webgl2",
-        "EXT_float_blend",
         "EXT_frag_depth",
         "EXT_polygon_offset_clamp",
-        "EXT_sRGB",
+        "EXT_shader_texture_lod",
         "EXT_texture_compression_bptc",
         "EXT_texture_compression_rgtc",
-        "EXT_texture_filter_anisotropic",
         "EXT_texture_mirror_clamp_to_edge",
         "KHR_parallel_shader_compile",
         "OES_draw_buffers_indexed",
-        "OES_fbo_render_mipmap",
-        "OES_texture_float_linear",
-        "OES_texture_half_float_linear",
         "WEBGL_blend_func_extended",
         "WEBGL_clip_cull_distance",
-        "WEBGL_color_buffer_float",
         "WEBGL_compressed_texture_atc",
-        "WEBGL_compressed_texture_etc1",
         "WEBGL_compressed_texture_pvrtc",
         "WEBGL_compressed_texture_s3tc",
         "WEBGL_compressed_texture_s3tc_srgb",
-        "WEBGL_debug_shaders",
-        "WEBGL_depth_texture",
         "WEBGL_draw_buffers",
-        "WEBGL_multi_draw",
         "WEBGL_polygon_mode",
         "WEBKIT_WEBGL_compressed_texture_pvrtc"
       ],
-      "unsupportedCount": 33,
+      "unsupportedCount": 22,
       "allParametersHash": "0"
     },
     "dateTimeLocale": {
@@ -1244,16 +1244,16 @@
     },
     "fontLoading": {
       "supported": true,
-      "readyTimeMs": 0.1,
+      "readyTimeMs": 0,
       "status": "loaded",
       "loadedFamilies": 0
     },
     "hypervisorProbe": {
-      "mean_ms": 0.01,
-      "stdDev_ms": 0.03,
+      "mean_ms": 0.0125,
+      "stdDev_ms": 0.0331,
       "min_ms": 0,
       "max_ms": 0.1,
-      "cv_percent": 300,
+      "cv_percent": 264.58,
       "possibleVM": true
     },
     "memoryPattern": {
@@ -1262,7 +1262,7 @@
         {
           "pages": 1,
           "sizeKB": 64,
-          "allocMs": 0,
+          "allocMs": 0.1,
           "touchMs": 0
         },
         {
@@ -1274,23 +1274,23 @@
         {
           "pages": 50,
           "sizeKB": 3200,
-          "allocMs": 0.1,
+          "allocMs": 0,
           "touchMs": 0.2
         },
         {
           "pages": 100,
           "sizeKB": 6400,
           "allocMs": 0,
-          "touchMs": 0.4
+          "touchMs": 0.1
         },
         {
           "pages": 256,
           "sizeKB": 16384,
           "allocMs": 0,
-          "touchMs": 0.5
+          "touchMs": 0.4
         }
       ],
-      "patternHash": "2724b8a3"
+      "patternHash": "57af5c9d"
     },
     "fontsByCSS": {
       "detected": [
@@ -2699,5 +2699,5 @@
       "supported": true
     }
   },
-  "generated": "2026-03-10T16:05:44+00:00"
+  "generated": "2026-03-10T16:20:44+00:00"
 }
