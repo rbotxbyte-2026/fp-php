@@ -197,18 +197,31 @@ const EMBEDDED_DEFAULT_PROFILE = {"server":{"ip":"2405:f600:8:e0a9:985c:f5c3:340
   let spoofConfig = null;
   let spoofEnabled = false;
 
+  // Helper to check if config has valid WebGL data
+  function hasValidWebGLData(config) {
+    if (!config || !config.client || !config.client.webgl) return false;
+    const webgl = config.client.webgl;
+    return !!(webgl.supported !== undefined && (webgl.unmaskedRenderer || webgl.unmaskedVendor));
+  }
+
   // Try localStorage first
   try {
     const storedConfig = localStorage.getItem('__fp_spoof_config__');
     const storedEnabled = localStorage.getItem('__fp_spoof_enabled__');
     
     if (storedConfig && storedEnabled === 'true') {
-      spoofConfig = JSON.parse(storedConfig);
-      spoofEnabled = true;
+      const parsed = JSON.parse(storedConfig);
+      // Only use stored config if it has valid WebGL data
+      if (hasValidWebGLData(parsed)) {
+        spoofConfig = parsed;
+        spoofEnabled = true;
+      } else {
+        console.log('[FP Spoofer] Stored config missing WebGL data, using embedded profile');
+      }
     }
   } catch (e) {}
   
-  // Fallback to embedded default profile
+  // Fallback to embedded default profile (always has complete data)
   if (!spoofEnabled && EMBEDDED_DEFAULT_PROFILE) {
     spoofConfig = EMBEDDED_DEFAULT_PROFILE;
     spoofEnabled = true;
@@ -1186,9 +1199,11 @@ const EMBEDDED_DEFAULT_PROFILE = {"server":{"ip":"2405:f600:8:e0a9:985c:f5c3:340
     }
   }
   
-  // Fetch timezone from IP - runs immediately
-  // Use HTTPS APIs only to avoid mixed content errors on HTTPS pages
-  if (spoofConfig && spoofConfig.server && spoofConfig.server.ipTimezoneEnabled !== false) {
+  // Fetch timezone from IP - DISABLED by default due to CORS restrictions in MAIN world
+  // To enable: set spoofConfig.server.ipTimezoneEnabled = true
+  // Note: This runs in page context so fetch is subject to page's CORS policy
+  // For production use, this should be done in background.js and passed via storage
+  if (spoofConfig && spoofConfig.server && spoofConfig.server.ipTimezoneEnabled === true) {
     (function fetchIPTimezone() {
       // Primary: worldtimeapi.org (HTTPS)
       IP_TIMEZONE_STATE.fetchPromise = fetch('https://worldtimeapi.org/api/ip', { mode: 'cors' })
@@ -1202,23 +1217,13 @@ const EMBEDDED_DEFAULT_PROFILE = {"server":{"ip":"2405:f600:8:e0a9:985c:f5c3:340
           }
         })
         .catch(() => {
-          // Fallback: ipapi.co (HTTPS)
-          return fetch('https://ipapi.co/timezone/', { mode: 'cors' })
-            .then(r => r.text())
-            .then(timezone => {
-              if (timezone && timezone.includes('/')) {
-                IP_TIMEZONE_STATE.timezone = timezone.trim();
-                IP_TIMEZONE_STATE.timezoneOffset = getTimezoneOffsetFromIANA(timezone.trim());
-                IP_TIMEZONE_STATE.fetched = true;
-                console.log('[FP Spoofer] IP timezone detected (fallback):', timezone.trim());
-              }
-            })
-            .catch(() => {
-              // Silent fail - will use profile timezone
-              IP_TIMEZONE_STATE.fetched = true;
-            });
+          // Silent fail - will use profile timezone
+          IP_TIMEZONE_STATE.fetched = true;
         });
     })();
+  } else {
+    // Use profile timezone directly when IP detection is disabled
+    IP_TIMEZONE_STATE.fetched = true;
   }
   
   // Get effective timezone - IP-based if available, otherwise profile
@@ -1823,6 +1828,14 @@ const EMBEDDED_DEFAULT_PROFILE = {"server":{"ip":"2405:f600:8:e0a9:985c:f5c3:340
         try {
           Object.defineProperty(fakeContext, key, { value, writable: false, enumerable: true, configurable: false });
         } catch (e) { /* Already exists on prototype - skip */ }
+      }
+    }
+    
+    // CRITICAL: Bind all methods to fakeContext to prevent "Illegal invocation" errors
+    // This happens when sites destructure methods like: const { bindBuffer } = gl;
+    for (const key of Object.keys(fakeContext)) {
+      if (typeof fakeContext[key] === 'function') {
+        fakeContext[key] = fakeContext[key].bind(fakeContext);
       }
     }
     
