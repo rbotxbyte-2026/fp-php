@@ -437,6 +437,53 @@
     } catch (e) {}
   }
   
+  // 5d-early. EARLY TOUCH FIX - Must run before fingerprinting
+  // fingerprint.com checks: typeof TouchEvent !== 'undefined' && 'ontouchstart' in window
+  // On desktop Chrome, TouchEvent exists but ontouchstart does NOT
+  // We need to add ontouchstart to window IMMEDIATELY
+  try {
+    // Create TouchEvent constructor if missing
+    if (typeof window.TouchEvent === 'undefined') {
+      const FakeTouchEvent = function TouchEvent(type, init) {
+        return Reflect.construct(UIEvent, [type, init], TouchEvent);
+      };
+      FakeTouchEvent.prototype = Object.create(UIEvent.prototype);
+      FakeTouchEvent.prototype.constructor = FakeTouchEvent;
+      Object.defineProperty(window, 'TouchEvent', {
+        value: FakeTouchEvent,
+        writable: true,
+        configurable: true
+      });
+    }
+    
+    // Add touch properties to window - CRITICAL for 'ontouchstart' in window check
+    const touchEventProps = ['ontouchstart', 'ontouchend', 'ontouchmove', 'ontouchcancel'];
+    touchEventProps.forEach(prop => {
+      if (!(prop in window)) {
+        Object.defineProperty(window, prop, {
+          value: null,
+          writable: true,
+          configurable: true,
+          enumerable: true
+        });
+      }
+    });
+    
+    // Also add to document
+    touchEventProps.forEach(prop => {
+      if (!(prop in document)) {
+        Object.defineProperty(document, prop, {
+          value: null,
+          writable: true,
+          configurable: true,
+          enumerable: true
+        });
+      }
+    });
+  } catch (e) {
+    // Silently fail
+  }
+
   // 5e. Fix Function.prototype.toString to not reveal any spoofing
   // UC detection looks at native function patterns
   // CRITICAL: Must NEVER throw errors - that triggers toString_error signal
