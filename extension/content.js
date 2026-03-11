@@ -665,6 +665,8 @@ const EMBEDDED_DEFAULT_PROFILE = {"server":{"ip":"2405:f600:8:e0a9:985c:f5c3:340
   const colorProfile = client.colorProfile || {};
   const pwaInfo = client.pwaInfo || {};
   const networkExtended = client.networkExtended || {};
+  const storageInfo = client.storageInfo || {};
+  const mediaDevicesProfile = client.mediaDevices || [];
 
   // ============================================
   // NAVIGATOR PROXY (Intercept 'in' operator for API presence)
@@ -3111,6 +3113,61 @@ const EMBEDDED_DEFAULT_PROFILE = {"server":{"ip":"2405:f600:8:e0a9:985c:f5c3:340
     Navigator.prototype.getBattery = makeNative(async function() {
       return spoofedBattery;
     }, 'getBattery');
+  }
+
+  // ============================================
+  // STORAGE QUOTA SPOOFING
+  // ============================================
+  // Spoof navigator.storage.estimate() to return mobile-appropriate values
+  // This hides the real disk size which is a fingerprinting vector
+
+  if (navigator.storage && storageInfo.storageEstimate) {
+    const spoofedEstimate = {
+      quota: storageInfo.storageEstimate.quota || 68719476736, // ~64GB default for mobile
+      usage: storageInfo.storageEstimate.usage || 0,
+      usageDetails: storageInfo.storageEstimate.usageDetails || {}
+    };
+
+    const originalEstimate = navigator.storage.estimate;
+    navigator.storage.estimate = makeNative(async function() {
+      return { ...spoofedEstimate };
+    }, 'estimate');
+  }
+
+  // ============================================
+  // MEDIA DEVICES SPOOFING
+  // ============================================
+  // Spoof navigator.mediaDevices.enumerateDevices() to return controlled device list
+  // This hides the real number of cameras/microphones which is a fingerprinting vector
+
+  if (navigator.mediaDevices && mediaDevicesProfile.length > 0) {
+    const spoofedDevices = mediaDevicesProfile.map((device, index) => {
+      // Create a MediaDeviceInfo-like object
+      const deviceInfo = {
+        deviceId: device.deviceId || '',
+        groupId: device.groupId || '',
+        kind: device.kind || 'audioinput',
+        label: device.label || ''
+      };
+      // Make it look like a real MediaDeviceInfo
+      Object.defineProperty(deviceInfo, 'toJSON', {
+        value: makeNative(function() {
+          return {
+            deviceId: this.deviceId,
+            groupId: this.groupId,
+            kind: this.kind,
+            label: this.label
+          };
+        }, 'toJSON'),
+        enumerable: false
+      });
+      return deviceInfo;
+    });
+
+    const originalEnumerateDevices = navigator.mediaDevices.enumerateDevices;
+    navigator.mediaDevices.enumerateDevices = makeNative(async function() {
+      return [...spoofedDevices];
+    }, 'enumerateDevices');
   }
 
   // ============================================
