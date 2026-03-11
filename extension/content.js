@@ -2115,6 +2115,47 @@ const EMBEDDED_DEFAULT_PROFILE = {"server":{"ip":"2405:f600:8:e0a9:985c:f5c3:340
     // Store original getParameter
     const getParameterOriginal = WebGLRenderingContext.prototype.getParameter;
     
+    // Extension-specific and WebGL2-only parameters that cause INVALID_ENUM in WebGL1
+    // We must return null for these WITHOUT calling original to prevent console warnings
+    const extensionOnlyParams = new Set([
+      // WEBGL_draw_buffers extension
+      34852,  // MAX_DRAW_BUFFERS_WEBGL
+      36063,  // MAX_COLOR_ATTACHMENTS_WEBGL
+      // EXT_texture_filter_anisotropic extension
+      34047,  // MAX_TEXTURE_MAX_ANISOTROPY_EXT
+      // WebGL2-only parameters (cause INVALID_ENUM in WebGL1)
+      36183,  // MAX_SAMPLES
+      35071,  // MAX_ARRAY_TEXTURE_LAYERS
+      32883,  // MAX_3D_TEXTURE_SIZE  
+      35968,  // MAX_TRANSFORM_FEEDBACK_SEPARATE_ATTRIBS
+      35978,  // MAX_TRANSFORM_FEEDBACK_INTERLEAVED_COMPONENTS
+      35967,  // MAX_TRANSFORM_FEEDBACK_SEPARATE_COMPONENTS
+      35375,  // MAX_UNIFORM_BUFFER_BINDINGS
+      35373,  // MAX_UNIFORM_BLOCK_SIZE
+      35371,  // MAX_VERTEX_UNIFORM_BLOCKS
+      35372,  // MAX_FRAGMENT_UNIFORM_BLOCKS
+      35374,  // MAX_COMBINED_UNIFORM_BLOCKS
+      36203,  // MAX_VERTEX_OUTPUT_COMPONENTS
+      36204,  // MAX_FRAGMENT_INPUT_COMPONENTS
+      35657,  // MAX_PROGRAM_TEXEL_OFFSET
+      35076,  // MIN_PROGRAM_TEXEL_OFFSET
+      35658,  // MAX_VARYING_COMPONENTS
+      36347,  // Duplicate but keep for safety
+      35659,  // MAX_COMBINED_VERTEX_UNIFORM_COMPONENTS (actually exists)
+      35070,  // MAX_ELEMENTS_INDICES
+      33001,  // MAX_ELEMENTS_VERTICES
+      35379,  // UNIFORM_BUFFER_OFFSET_ALIGNMENT
+      // EXT_disjoint_timer_query extension
+      36388,  // TIMESTAMP_EXT
+      36389,  // GPU_DISJOINT_EXT
+      // WEBGL_multi_draw extension params (none that cause errors)
+      // OES_draw_buffers_indexed extension
+      35077,  // MAX_DUAL_SOURCE_DRAW_BUFFERS
+    ]);
+    
+    // Track which extensions have been enabled on each context
+    const enabledExtensions = new WeakMap();
+    
     WebGLRenderingContext.prototype.getParameter = makeNative(function(param) {
       // Handle spoofed params - return our values
       if (param === UNMASKED_VENDOR_WEBGL) {
@@ -2145,13 +2186,16 @@ const EMBEDDED_DEFAULT_PROFILE = {"server":{"ip":"2405:f600:8:e0a9:985c:f5c3:340
         return new Int32Array(webgl.maxViewportDims);
       }
       
-      // IMPORTANT: Pass through ALL other params to real implementation
-      // Wrap in try/catch to handle extension-specific params (e.g., WEBGL_draw_buffers)
-      // that throw INVALID_ENUM when the extension is not enabled
+      // Handle extension-only and WebGL2-only parameters that cause INVALID_ENUM in WebGL1
+      // Return null without calling original to prevent console warnings
+      if (extensionOnlyParams.has(param)) {
+        return null;
+      }
+      
+      // Pass through to real implementation for other params
       try {
         return getParameterOriginal.call(this, param);
       } catch (e) {
-        // Extension not enabled or invalid param - return null silently
         return null;
       }
     }, 'getParameter');
@@ -2169,6 +2213,13 @@ const EMBEDDED_DEFAULT_PROFILE = {"server":{"ip":"2405:f600:8:e0a9:985c:f5c3:340
         return fakeDebugRendererInfoExt;
       }
       const ext = getExtensionOriginal.call(this, name);
+      // Track enabled extensions for getParameter checks
+      if (ext) {
+        if (!enabledExtensions.has(this)) {
+          enabledExtensions.set(this, new Set());
+        }
+        enabledExtensions.get(this).add(name);
+      }
       return ext;
     }, 'getExtension');
     
