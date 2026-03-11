@@ -2146,7 +2146,14 @@ const EMBEDDED_DEFAULT_PROFILE = {"server":{"ip":"2405:f600:8:e0a9:985c:f5c3:340
       }
       
       // IMPORTANT: Pass through ALL other params to real implementation
-      return getParameterOriginal.call(this, param);
+      // Wrap in try/catch to handle extension-specific params (e.g., WEBGL_draw_buffers)
+      // that throw INVALID_ENUM when the extension is not enabled
+      try {
+        return getParameterOriginal.call(this, param);
+      } catch (e) {
+        // Extension not enabled or invalid param - return null silently
+        return null;
+      }
     }, 'getParameter');
 
     // Spoof getExtension to return fake debug_renderer_info when real one unavailable
@@ -2220,7 +2227,12 @@ const EMBEDDED_DEFAULT_PROFILE = {"server":{"ip":"2405:f600:8:e0a9:985c:f5c3:340
           return webgl.shadingLanguageVersion;
         }
         
-        return getParameter2Original.call(this, param);
+        // Wrap in try/catch to handle extension-specific params
+        try {
+          return getParameter2Original.call(this, param);
+        } catch (e) {
+          return null;
+        }
       }, 'getParameter');
       
       const getExtension2Original = WebGL2RenderingContext.prototype.getExtension;
