@@ -178,6 +178,59 @@
   // fingerprint.com times debugger statements to detect automation
   // We can't fully block this but we can make it less detectable
   
+  // 5d. Hide CDP-related globals that UC might have injected
+  // undetected-chromedriver sometimes leaves these traces
+  const cdpGlobals = ['__cdcRequest', '__cdcResponse', '__webdriver_evaluate', '__selenium_evaluate', 
+                      '__webdriver_script_function', '__webdriver_script_func', '__webdriver_script_fn',
+                      '__fxdriver_evaluate', '__driver_evaluate', '__driver_unwrap', '__selenium_unwrap',
+                      '__fxdriver_unwrap', '$chrome_asyncScriptInfo', '__$webdriverAsyncExecutor',
+                      '__lastWatirAlert', '__lastWatirConfirm', '__lastWatirPrompt', '_Selenium_IDE_Recorder',
+                      '_selenium', 'calledSelenium', '_WEBDRIVER_ELEM_CACHE', 'ChromeDriverw',
+                      '__nightmare', '__puppeteer', '__playwright'];
+  for (const glob of cdpGlobals) {
+    try { 
+      if (glob in window) {
+        delete window[glob]; 
+      }
+    } catch (e) {}
+  }
+  
+  // 5e. Fix Function.prototype.toString to not reveal any spoofing
+  // UC detection looks at native function patterns
+  const originalFunctionToString = Function.prototype.toString;
+  const nativeCode = 'function () { [native code] }';
+  const boundNativePattern = /^function\s*\(\)\s*\{\s*\[native code\]\s*\}$/;
+  Function.prototype.toString = function() {
+    // If this function was marked as native by makeNative, return native string
+    if (this.__isNative__) {
+      return 'function ' + (this.__nativeName__ || '') + '() { [native code] }';
+    }
+    return originalFunctionToString.call(this);
+  };
+  // Make toString itself look native
+  try {
+    Object.defineProperty(Function.prototype.toString, '__isNative__', { value: true, enumerable: false });
+    Object.defineProperty(Function.prototype.toString, '__nativeName__', { value: 'toString', enumerable: false });
+  } catch(e) {}
+  
+  // 5f. Override console methods to hide our logging from fingerprinters
+  // Some detection scripts check for console modifications
+  try {
+    const origConsole = {
+      log: console.log,
+      warn: console.warn,
+      error: console.error,
+      info: console.info,
+      debug: console.debug
+    };
+    // Store original for our use
+    window.__fpOrigConsole = origConsole;
+  } catch (e) {}
+  
+  // 5g. Block DevTools detection via outerHeight/outerWidth difference
+  // fingerprint.com checks window.outerHeight - window.innerHeight > threshold
+  // We'll handle this in the main spoofing section with screen data
+  
 })();
 
 // EMBEDDED DEFAULT PROFILE - Loaded synchronously to ensure config is available at document_start
