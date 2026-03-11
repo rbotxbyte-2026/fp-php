@@ -63,19 +63,36 @@
   
   // The webdriver property is defined on Navigator.prototype with configurable:false
   // So we can't delete it. Instead, replace navigator with a Proxy that hides it.
+  // CRITICAL: fingerprint.com uses multiple detection vectors:
+  // 1. 'webdriver' in navigator
+  // 2. 'webdriver' in Navigator.prototype
+  // 3. Reflect.has(navigator, 'webdriver')
+  // 4. Object.keys(navigator).includes('webdriver')
+  // 5. Object.getOwnPropertyNames(Navigator.prototype)
+  
+  // Store original Reflect methods before any modifications
+  const origReflectHas = Reflect.has;
+  const origReflectGet = Reflect.get;
+  const origReflectOwnKeys = Reflect.ownKeys;
+  const origReflectGetOwnPropertyDescriptor = Reflect.getOwnPropertyDescriptor;
+  
   try {
     const navigatorProxy = new Proxy(origNavigator, {
       has: function(target, prop) {
         if (prop === 'webdriver') {
           return false;  // 'webdriver' in navigator returns false
         }
-        return prop in target;
+        return origReflectHas(target, prop);
       },
       get: function(target, prop, receiver) {
         if (prop === 'webdriver') {
           return undefined;
         }
-        const value = Reflect.get(target, prop, target);
+        // Special handling for Symbol.toStringTag to prevent Proxy detection
+        if (prop === Symbol.toStringTag) {
+          return 'Navigator';
+        }
+        const value = origReflectGet(target, prop, target);
         // Bind functions to original navigator
         if (typeof value === 'function') {
           return value.bind(target);
@@ -87,6 +104,13 @@
           return undefined;  // Property doesn't exist
         }
         return Object.getOwnPropertyDescriptor(target, prop);
+      },
+      ownKeys: function(target) {
+        // Filter out webdriver from all key enumerations
+        return origReflectOwnKeys(target).filter(k => k !== 'webdriver');
+      },
+      getPrototypeOf: function(target) {
+        return Navigator.prototype;
       }
     });
     
@@ -96,14 +120,54 @@
       configurable: true
     });
     
-    // Also try to ensure Navigator.prototype.webdriver returns undefined and hides from 'in'
+    // CRITICAL: Also fix Navigator.prototype itself
+    // Create a proxy for Navigator.prototype to hide webdriver
+    const origNavigatorPrototype = Navigator.prototype;
+    const navigatorPrototypeProxy = new Proxy(origNavigatorPrototype, {
+      has: function(target, prop) {
+        if (prop === 'webdriver') {
+          return false;  // 'webdriver' in Navigator.prototype returns false
+        }
+        return origReflectHas(target, prop);
+      },
+      get: function(target, prop, receiver) {
+        if (prop === 'webdriver') {
+          return undefined;
+        }
+        const value = origReflectGet(target, prop, target);
+        if (typeof value === 'function') {
+          return value.bind(target);
+        }
+        return value;
+      },
+      getOwnPropertyDescriptor: function(target, prop) {
+        if (prop === 'webdriver') {
+          return undefined;
+        }
+        return Object.getOwnPropertyDescriptor(target, prop);
+      },
+      ownKeys: function(target) {
+        return origReflectOwnKeys(target).filter(k => k !== 'webdriver');
+      }
+    });
+    
+    // Replace Navigator.prototype
     try {
-      Object.defineProperty(Navigator.prototype, 'webdriver', {
-        get: function() { return undefined; },
-        configurable: true,
-        enumerable: false
+      Object.defineProperty(Navigator, 'prototype', {
+        value: navigatorPrototypeProxy,
+        writable: false,
+        configurable: false
       });
-    } catch (e) {}
+    } catch (e) {
+      // Fallback: at least make webdriver undefined
+      try {
+        Object.defineProperty(Navigator.prototype, 'webdriver', {
+          get: function() { return undefined; },
+          configurable: true,
+          enumerable: false
+        });
+      } catch (e2) {}
+    }
     
   } catch (e) {
     // Fallback: at minimum make value undefined
@@ -114,6 +178,40 @@
       });
     } catch (e2) {}
   }
+  
+  // 2b. Override Reflect methods to hide webdriver
+  // Note: navigatorPrototypeProxy is scoped inside the try block above,
+  // but checking Navigator.prototype covers it since we replaced it
+  try {
+    Reflect.has = function(target, prop) {
+      if (prop === 'webdriver' && (target === origNavigator || target === Navigator.prototype)) {
+        return false;
+      }
+      return origReflectHas(target, prop);
+    };
+    
+    Reflect.get = function(target, prop, receiver) {
+      if (prop === 'webdriver' && (target === origNavigator || target === Navigator.prototype)) {
+        return undefined;
+      }
+      return origReflectGet(target, prop, receiver);
+    };
+    
+    Reflect.ownKeys = function(target) {
+      const keys = origReflectOwnKeys(target);
+      if (target === origNavigator || target === Navigator.prototype) {
+        return keys.filter(k => k !== 'webdriver');
+      }
+      return keys;
+    };
+    
+    Reflect.getOwnPropertyDescriptor = function(target, prop) {
+      if (prop === 'webdriver' && (target === origNavigator || target === Navigator.prototype)) {
+        return undefined;
+      }
+      return origReflectGetOwnPropertyDescriptor(target, prop);
+    };
+  } catch (e) {}
   
   // 2b. Fix hasOwnProperty for webdriver check
   try {
@@ -874,11 +972,10 @@ const EMBEDDED_DEFAULT_PROFILE = {"server":{"ip":"2405:f600:8:e0a9:985c:f5c3:340
   // ============================================
 
   // 1. Fix webdriver property - CRITICAL for bot detection
-  // On REAL browsers, navigator.webdriver is UNDEFINED (not false!)
-  // ChromeDriver sets it to true, undetected-chromedriver sets to false
-  // fingerprint.com specifically checks for this pattern
+  // NOTE: The main webdriver fix is now in earlyAntiDetection() using Proxies
+  // This section is kept for additional hardening only
   (function fixWebdriver() {
-    // Delete from all possible locations
+    // Delete from all possible locations (already done early, but reinforce)
     const deleteWebdriver = (obj) => {
       try {
         delete obj.webdriver;
@@ -890,25 +987,26 @@ const EMBEDDED_DEFAULT_PROFILE = {"server":{"ip":"2405:f600:8:e0a9:985c:f5c3:340
     deleteWebdriver(Navigator.prototype);
     deleteWebdriver(window.navigator);
     
-    // CRITICAL: Return undefined, NOT false!
-    // Real Chrome: navigator.webdriver === undefined
-    // ChromeDriver: navigator.webdriver === true  
-    // UndetectedChromedriver: navigator.webdriver === false (DETECTED!)
+    // CRITICAL: webdriver must be completely hidden, not just return undefined
+    // The Proxy in earlyAntiDetection handles the main evasion
+    // These defineProperty calls are fallback reinforcement with enumerable: false
     const webdriverGetter = function webdriver() { return undefined; };
     makeNative(webdriverGetter, 'get webdriver');
     
-    _originals.defineProperty(Navigator.prototype, 'webdriver', {
-      get: webdriverGetter,
-      configurable: true,
-      enumerable: true
-    });
+    try {
+      _originals.defineProperty(Navigator.prototype, 'webdriver', {
+        get: webdriverGetter,
+        configurable: true,
+        enumerable: false  // CRITICAL: Must be false to hide from enumeration
+      });
+    } catch(e) {}
     
-    // Also override on navigator instance
+    // Also override on navigator instance if Proxy didn't work
     try {
       _originals.defineProperty(navigator, 'webdriver', {
         get: webdriverGetter,
         configurable: true,
-        enumerable: true
+        enumerable: false  // CRITICAL: Must be false
       });
     } catch(e) {}
   })();
