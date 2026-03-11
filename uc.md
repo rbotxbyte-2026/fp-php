@@ -957,7 +957,7 @@ Use these sites to verify that UC evasions are working:
 11. **Chrome Command Line Switches** — https://peter.sh/experiments/chromium-command-line-switches/
 12. **Bot Detection Test Suite (Incolumitas)** — https://bot.incolumitas.com/
 13. **BotD Detection Library** — https://github.com/fingerprintjs/BotD
-14. **Headless Browser Detector** — https://github.com/AdrianSchiworWorkers/headless-detector
+14. **Headless Browser Detector** — https://github.com/AdrianSchiwor/headless-detector
 15. **CDP Documentation (Selenium)** — https://www.selenium.dev/documentation/webdriver/bidi/cdp/
 16. **How to Detect CDP-Injected Scripts (Castle.io)** — https://blog.castle.io/how-to-detect-scripts-injected-via-cdp-in-chrome-2/
 17. **Chromium Flags** — https://www.chrome-flags.com/
