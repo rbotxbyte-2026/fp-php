@@ -2254,9 +2254,8 @@ const EMBEDDED_DEFAULT_PROFILE = {"server":{"ip":"2405:f600:8:e0a9:985c:f5c3:340
         return new Int32Array(webgl.maxViewportDims);
       }
       
-      // Only pass through params in whitelist, return null for others to prevent INVALID_ENUM
+      // Only pass through valid WebGL1 params to prevent INVALID_ENUM
       if (!validWebGL1Params.has(param)) {
-        console.log('[FP Spoofer] WebGL1 getParameter BLOCKED (not in whitelist):', param);
         return null;
       }
       
@@ -2325,6 +2324,50 @@ const EMBEDDED_DEFAULT_PROFILE = {"server":{"ip":"2405:f600:8:e0a9:985c:f5c3:340
     }
 
     if (typeof WebGL2RenderingContext !== 'undefined') {
+      // Whitelist of valid WebGL2 getParameter params
+      const validWebGL2Params = new Set([
+        // All WebGL1 params are valid in WebGL2
+        ...validWebGL1Params,
+        // WebGL2-specific params
+        32883,  // MAX_3D_TEXTURE_SIZE
+        33170,  // CONTEXT_PROFILE_MASK (only some implementations)
+        34045,  // MAX_TEXTURE_LOD_BIAS
+        34467,  // MAX_FRAGMENT_INPUT_COMPONENTS
+        34852,  // MAX_DRAW_BUFFERS
+        35071,  // MAX_ARRAY_TEXTURE_LAYERS
+        35076,  // MIN_PROGRAM_TEXEL_OFFSET
+        35077,  // MAX_PROGRAM_TEXEL_OFFSET
+        35371,  // MAX_VERTEX_UNIFORM_BLOCKS
+        35373,  // MAX_FRAGMENT_UNIFORM_BLOCKS (note: different from 35372)
+        35374,  // MAX_COMBINED_UNIFORM_BLOCKS
+        35375,  // MAX_UNIFORM_BUFFER_BINDINGS
+        35376,  // MAX_UNIFORM_BLOCK_SIZE
+        35377,  // MAX_COMBINED_VERTEX_UNIFORM_COMPONENTS
+        35379,  // UNIFORM_BUFFER_OFFSET_ALIGNMENT
+        35380,  // MAX_COMBINED_FRAGMENT_UNIFORM_COMPONENTS
+        35657,  // MAX_PROGRAM_TEXEL_OFFSET (duplicate check)
+        35658,  // MAX_VARYING_COMPONENTS
+        35659,  // MAX_COMBINED_VERTEX_UNIFORM_COMPONENTS (duplicate)
+        35968,  // MAX_TRANSFORM_FEEDBACK_SEPARATE_ATTRIBS
+        35978,  // MAX_TRANSFORM_FEEDBACK_INTERLEAVED_COMPONENTS
+        35979,  // MAX_TRANSFORM_FEEDBACK_SEPARATE_COMPONENTS
+        36003,  // TRANSFORM_FEEDBACK_BUFFER_BINDING
+        36004,  // TRANSFORM_FEEDBACK_BUFFER_SIZE
+        36063,  // MAX_COLOR_ATTACHMENTS
+        36183,  // MAX_SAMPLES
+        37154,  // MAX_VERTEX_OUTPUT_COMPONENTS
+        37157,  // MAX_FRAGMENT_INPUT_COMPONENTS (duplicate)
+        // Additional WebGL2 state params
+        35660,  // MAX_VERTEX_TEXTURE_IMAGE_UNITS (already in WebGL1)
+        35661,  // MAX_COMBINED_TEXTURE_IMAGE_UNITS (already in WebGL1)
+        36005,  // STENCIL_BACK_WRITEMASK (already in WebGL1)
+        36006,  // FRAMEBUFFER_BINDING
+        36007,  // RENDERBUFFER_BINDING
+        36347,  // MAX_VERTEX_UNIFORM_VECTORS
+        36348,  // MAX_VARYING_VECTORS
+        36349,  // MAX_FRAGMENT_UNIFORM_VECTORS
+      ]);
+      
       const getParameter2Original = WebGL2RenderingContext.prototype.getParameter;
       WebGL2RenderingContext.prototype.getParameter = makeNative(function(param) {
         if (param === UNMASKED_VENDOR_WEBGL) {
@@ -2346,8 +2389,11 @@ const EMBEDDED_DEFAULT_PROFILE = {"server":{"ip":"2405:f600:8:e0a9:985c:f5c3:340
           return webgl.shadingLanguageVersion;
         }
         
-        // Log and pass through - WebGL2 supports more params
-        console.log('[FP Spoofer] WebGL2 getParameter:', param);
+        // Only pass through valid WebGL2 params to prevent INVALID_ENUM
+        if (!validWebGL2Params.has(param)) {
+          return null;
+        }
+        
         try {
           return getParameter2Original.call(this, param);
         } catch (e) {
