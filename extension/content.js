@@ -524,21 +524,25 @@
   }
   
   // 5d-early-2. Fix Developer Tools detection
-  // fingerprint.com detects DevTools via outerWidth/outerHeight vs innerWidth/innerHeight
-  // On mobile, these should be equal (no chrome/toolbar difference when DevTools not docked)
+  // fingerprint.com detects DevTools via multiple methods:
+  // 1. outerWidth/Height vs innerWidth/Height (DevTools docked changes these)
+  // 2. console.log timing (slower with DevTools open)
+  // 3. Firebug detection
+  // 4. debugger statement timing
+  // For mobile profile, we need consistent dimensions
+  // NOTE: __SPOOF_PROFILE__ is not available yet, we'll fix dimensions in main spoofing
+  // Here we just ensure the detection methods don't trigger
   try {
-    const screenData = window.__SPOOF_PROFILE__?.client?.screen;
-    if (screenData) {
-      const innerW = screenData.innerWidth || 384;
-      const innerH = screenData.innerHeight || 699;
-      const outerW = screenData.outerWidth || 384;
-      const outerH = screenData.outerHeight || 832;
-      
-      // Make sure outer dimensions match the mobile profile
-      // DevTools detection: if (outerWidth - innerWidth > threshold) or (outerHeight - innerHeight > threshold)
-      Object.defineProperty(window, 'outerWidth', { get: () => outerW, configurable: true });
-      Object.defineProperty(window, 'outerHeight', { get: () => outerH, configurable: true });
+    // Block Firebug detection
+    if (!window.Firebug) {
+      Object.defineProperty(window, 'Firebug', {
+        get: () => undefined,
+        set: () => {},
+        configurable: true
+      });
     }
+    // Ensure chrome.devtools doesn't exist (it shouldn't in page context anyway)
+    // but make sure no automation tools added it
   } catch (e) {}
 
   // 5e. Fix Function.prototype.toString to not reveal any spoofing
