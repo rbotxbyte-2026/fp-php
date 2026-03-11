@@ -2059,16 +2059,25 @@ const EMBEDDED_DEFAULT_PROFILE = {"server":{"ip":"2405:f600:8:e0a9:985c:f5c3:340
   const hasWebGLProfile = webgl.supported === true || webgl.unmaskedRenderer || webgl.unmaskedVendor;
   console.log('[FP Spoofer] hasWebGLProfile:', hasWebGLProfile, 'webgl:', JSON.stringify(webgl));
   
-  // ALWAYS return fake WebGL context - bypasses broken software rendering on headless
-  // Real browser WebGL detection fails on GitHub Actions, so we always use fake
+  // STRATEGY: Try real WebGL first, only use fake as fallback
+  // Real WebGL allows actual rendering (3D demos, games) while we spoof fingerprint values
   const originalGetContext = HTMLCanvasElement.prototype.getContext;
   HTMLCanvasElement.prototype.getContext = makeNative(function(contextType, contextAttributes) {
     const isWebGLContext = contextType === 'webgl' || contextType === 'experimental-webgl' || contextType === 'webgl2';
     
-    // ALWAYS return fake WebGL context for consistency across all environments
-    // This ensures headless browsers (GitHub Actions) get working fake WebGL
     if (isWebGLContext) {
-      console.log('[FP Spoofer] Using fake WebGL context for:', contextType);
+      // Try to get real WebGL context first
+      const realContext = originalGetContext.call(this, contextType, contextAttributes);
+      
+      if (realContext) {
+        console.log('[FP Spoofer] Using REAL WebGL context with spoofed params for:', contextType);
+        // Real context works! We already override getParameter/getExtension on the prototype
+        // so fingerprint values will be spoofed while real rendering works
+        return realContext;
+      }
+      
+      // Real WebGL failed (headless/no GPU) - use fake context
+      console.log('[FP Spoofer] Real WebGL unavailable, using FAKE context for:', contextType);
       return createFakeWebGLContext(this, contextType);
     }
     
@@ -2082,8 +2091,13 @@ const EMBEDDED_DEFAULT_PROFILE = {"server":{"ip":"2405:f600:8:e0a9:985c:f5c3:340
     OffscreenCanvas.prototype.getContext = makeNative(function(contextType, contextAttributes) {
       const isWebGLContext = contextType === 'webgl' || contextType === 'experimental-webgl' || contextType === 'webgl2';
       
-      // ALWAYS return fake WebGL context
       if (isWebGLContext) {
+        // Try real context first
+        const realContext = originalOffscreenGetContext.call(this, contextType, contextAttributes);
+        if (realContext) {
+          return realContext;
+        }
+        // Fallback to fake
         console.log('[FP Spoofer] Using fake WebGL context for OffscreenCanvas');
         const fakeCanvas = { width: this.width || 300, height: this.height || 150 };
         return createFakeWebGLContext(fakeCanvas, contextType);
@@ -2150,6 +2164,39 @@ const EMBEDDED_DEFAULT_PROFILE = {"server":{"ip":"2405:f600:8:e0a9:985c:f5c3:340
       const ext = getExtensionOriginal.call(this, name);
       return ext;
     }, 'getExtension');
+    
+    // Spoof getSupportedExtensions to return profile extensions
+    if (webgl.extensions && webgl.extensions.length > 0) {
+      const getSupportedExtensionsOriginal = WebGLRenderingContext.prototype.getSupportedExtensions;
+      WebGLRenderingContext.prototype.getSupportedExtensions = makeNative(function() {
+        // Return profile's extension list
+        return [...webgl.extensions];
+      }, 'getSupportedExtensions');
+    }
+    
+    // Spoof getShaderPrecisionFormat for shader precision fingerprinting
+    const shaderPrecisions = client.webglPrecisions?.shaderPrecisions || {};
+    if (Object.keys(shaderPrecisions).length > 0) {
+      const getShaderPrecisionFormatOriginal = WebGLRenderingContext.prototype.getShaderPrecisionFormat;
+      WebGLRenderingContext.prototype.getShaderPrecisionFormat = makeNative(function(shaderType, precisionType) {
+        // Map shader type and precision type to profile values
+        const shaderNames = { 35633: 'VERTEX', 35632: 'FRAGMENT' };
+        const precisionNames = { 36336: 'LOW_FLOAT', 36337: 'MEDIUM_FLOAT', 36338: 'HIGH_FLOAT', 36339: 'LOW_INT', 36340: 'MEDIUM_INT', 36341: 'HIGH_INT' };
+        const shaderName = shaderNames[shaderType];
+        const precisionName = precisionNames[precisionType];
+        const key = `${shaderName}_${precisionName}`;
+        
+        if (shaderPrecisions[key]) {
+          return {
+            rangeMin: shaderPrecisions[key].rangeMin,
+            rangeMax: shaderPrecisions[key].rangeMax,
+            precision: shaderPrecisions[key].precision
+          };
+        }
+        // Fallback to real implementation
+        return getShaderPrecisionFormatOriginal.call(this, shaderType, precisionType);
+      }, 'getShaderPrecisionFormat');
+    }
 
     if (typeof WebGL2RenderingContext !== 'undefined') {
       const getParameter2Original = WebGL2RenderingContext.prototype.getParameter;
@@ -2184,6 +2231,35 @@ const EMBEDDED_DEFAULT_PROFILE = {"server":{"ip":"2405:f600:8:e0a9:985c:f5c3:340
         }
         return getExtension2Original.call(this, name);
       }, 'getExtension');
+      
+      // Spoof getSupportedExtensions for WebGL2
+      if (webgl.extensions && webgl.extensions.length > 0) {
+        const getSupportedExtensions2Original = WebGL2RenderingContext.prototype.getSupportedExtensions;
+        WebGL2RenderingContext.prototype.getSupportedExtensions = makeNative(function() {
+          return [...webgl.extensions];
+        }, 'getSupportedExtensions');
+      }
+      
+      // Spoof getShaderPrecisionFormat for WebGL2
+      if (Object.keys(shaderPrecisions).length > 0) {
+        const getShaderPrecisionFormat2Original = WebGL2RenderingContext.prototype.getShaderPrecisionFormat;
+        WebGL2RenderingContext.prototype.getShaderPrecisionFormat = makeNative(function(shaderType, precisionType) {
+          const shaderNames = { 35633: 'VERTEX', 35632: 'FRAGMENT' };
+          const precisionNames = { 36336: 'LOW_FLOAT', 36337: 'MEDIUM_FLOAT', 36338: 'HIGH_FLOAT', 36339: 'LOW_INT', 36340: 'MEDIUM_INT', 36341: 'HIGH_INT' };
+          const shaderName = shaderNames[shaderType];
+          const precisionName = precisionNames[precisionType];
+          const key = `${shaderName}_${precisionName}`;
+          
+          if (shaderPrecisions[key]) {
+            return {
+              rangeMin: shaderPrecisions[key].rangeMin,
+              rangeMax: shaderPrecisions[key].rangeMax,
+              precision: shaderPrecisions[key].precision
+            };
+          }
+          return getShaderPrecisionFormat2Original.call(this, shaderType, precisionType);
+        }, 'getShaderPrecisionFormat');
+      }
     }
   }
 
