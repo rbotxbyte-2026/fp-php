@@ -2880,18 +2880,50 @@ const EMBEDDED_DEFAULT_PROFILE = {"server":{"ip":"2405:f600:8:e0a9:985c:f5c3:340
 
   // ============================================
   // PLUGINS & MIMETYPES SPOOFING
-  // IMPORTANT: Empty plugins array triggers "chrome_no_plugins" tampering signal
-  // Only override plugins if we have actual plugins to spoof
-  // Desktop Chrome ALWAYS has plugins (PDF Viewer), so empty plugins looks suspicious
+  // CRITICAL: Must match mobile/desktop profile correctly
+  // - Mobile profiles: MUST have empty plugins (override to empty)
+  // - Desktop profiles: Should have plugins (PDF Viewer, etc.)
   // ============================================
 
-  // Spoof plugins - but ONLY if we have non-empty plugins data
-  // Skip if plugins is empty to avoid "chrome_no_plugins" tampering signal
   const pluginsData = client.plugins;
   const mimeTypesData = client.mimeTypes;
   
-  // Only override plugins if we have actual plugins to spoof (not empty array)
-  if (pluginsData !== undefined && Array.isArray(pluginsData) && pluginsData.length > 0) {
+  // Use isMobileProfile already defined earlier in the code
+  
+  if (isMobileProfile) {
+    // Mobile profiles: Create proper empty PluginArray and MimeTypeArray
+    // This is expected behavior - mobile Chrome has no plugins
+    const createEmptyPluginArray = makeNative(function() {
+      const arr = {
+        length: 0,
+        item: makeNative(function(i) { return null; }, 'item'),
+        namedItem: makeNative(function(n) { return null; }, 'namedItem'),
+        refresh: makeNative(function() {}, 'refresh'),
+        [Symbol.iterator]: function*() {}
+      };
+      Object.defineProperty(arr, Symbol.toStringTag, { value: 'PluginArray' });
+      return arr;
+    }, 'get plugins');
+    
+    const createEmptyMimeTypeArray = makeNative(function() {
+      const arr = {
+        length: 0,
+        item: makeNative(function(i) { return null; }, 'item'),
+        namedItem: makeNative(function(n) { return null; }, 'namedItem'),
+        [Symbol.iterator]: function*() {}
+      };
+      Object.defineProperty(arr, Symbol.toStringTag, { value: 'MimeTypeArray' });
+      return arr;
+    }, 'get mimeTypes');
+    
+    Object.defineProperty(Navigator.prototype, 'plugins', { get: createEmptyPluginArray, configurable: true });
+    Object.defineProperty(Navigator.prototype, 'mimeTypes', { get: createEmptyMimeTypeArray, configurable: true });
+    
+    // Mobile doesn't have PDF viewer
+    defineNativeGetter(Navigator.prototype, 'pdfViewerEnabled', false, 'Navigator');
+    
+  } else if (pluginsData !== undefined && Array.isArray(pluginsData) && pluginsData.length > 0) {
+    // Desktop profile with specific plugins to spoof
     const spoofedPlugins = pluginsData.map((p) => {
       const plugin = {
         name: p.name,
@@ -2923,11 +2955,10 @@ const EMBEDDED_DEFAULT_PROFILE = {"server":{"ip":"2405:f600:8:e0a9:985c:f5c3:340
 
     Object.defineProperty(Navigator.prototype, 'plugins', { get: createPluginArray, configurable: true });
   }
-  // ELSE: If plugins is empty [], don't override - let real browser plugins show
-  // This avoids "chrome_no_plugins" tampering signal on desktop Chrome
+  // ELSE: Desktop profile with empty plugins data - let real browser plugins show
 
-  // Spoof mimeTypes - same logic, only if non-empty
-  if (mimeTypesData !== undefined && Array.isArray(mimeTypesData) && mimeTypesData.length > 0) {
+  // Spoof mimeTypes for desktop profiles with mimeTypes data
+  if (!isMobileProfile && mimeTypesData !== undefined && Array.isArray(mimeTypesData) && mimeTypesData.length > 0) {
     const spoofedMimeTypes = mimeTypesData.map((m) => ({
       type: m.type,
       description: m.description,
@@ -2947,16 +2978,14 @@ const EMBEDDED_DEFAULT_PROFILE = {"server":{"ip":"2405:f600:8:e0a9:985c:f5c3:340
 
     Object.defineProperty(Navigator.prototype, 'mimeTypes', { get: createMimeTypeArray, configurable: true });
   }
-  // ELSE: If mimeTypes is empty [], don't override
 
-  // Spoof pdfViewerEnabled based on plugins/mimeTypes presence
-  const navigatorInfo = client.navigator || {};
-  if (navigatorInfo.pdfViewerEnabled !== undefined && navigatorInfo.pdfViewerEnabled !== null) {
-    // Only override if profile explicitly specifies a value
-    defineNativeGetter(Navigator.prototype, 'pdfViewerEnabled', navigatorInfo.pdfViewerEnabled, 'Navigator');
+  // Spoof pdfViewerEnabled for desktop profiles if explicitly specified
+  if (!isMobileProfile) {
+    const navigatorInfo = client.navigator || {};
+    if (navigatorInfo.pdfViewerEnabled !== undefined && navigatorInfo.pdfViewerEnabled !== null) {
+      defineNativeGetter(Navigator.prototype, 'pdfViewerEnabled', navigatorInfo.pdfViewerEnabled, 'Navigator');
+    }
   }
-  // ELSE: If pdfViewerEnabled is undefined/null, don't override - let real browser value show
-  // This maintains consistency with keeping real plugins
 
   // ============================================
   // BATTERY API SPOOFING
