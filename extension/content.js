@@ -3251,25 +3251,65 @@ const EMBEDDED_DEFAULT_PROFILE = {"server":{"ip":"2405:f600:8:e0a9:985c:f5c3:340
   // TOUCH SUPPORT SPOOFING
   // ============================================
 
-  if (touchSupport.touchEvent !== undefined) {
-    if (touchSupport.touchEvent) {
-      // Ensure TouchEvent exists for touch-enabled devices
-      if (typeof TouchEvent === 'undefined') {
-        window.TouchEvent = makeNative(function TouchEvent(type, eventInitDict) {
-          return new UIEvent(type, eventInitDict);
-        }, 'TouchEvent');
-      }
-      // Set touch handlers
-      window.ontouchstart = null;
-      window.ontouchend = null;
-      window.ontouchmove = null;
-      window.ontouchcancel = null;
-    } else {
-      // Hide TouchEvent for non-touch devices
-      try {
-        delete window.TouchEvent;
-      } catch (e) {}
+  // For mobile profiles, ensure touch support looks native
+  if (touchSupport.touchEvent === true) {
+    // Create TouchEvent if it doesn't exist (desktop Chrome usually has it)
+    if (typeof window.TouchEvent === 'undefined') {
+      const FakeTouchEvent = function TouchEvent(type, eventInitDict) {
+        return new UIEvent(type, eventInitDict);
+      };
+      FakeTouchEvent.prototype = UIEvent.prototype;
+      window.TouchEvent = makeNative(FakeTouchEvent, 'TouchEvent');
     }
+    
+    // CRITICAL: For 'ontouchstart' in window to return true, we need to define it on window
+    // Using Object.defineProperty ensures it's detected by 'in' operator
+    const touchProps = ['ontouchstart', 'ontouchend', 'ontouchmove', 'ontouchcancel'];
+    touchProps.forEach(prop => {
+      if (!(prop in window)) {
+        Object.defineProperty(window, prop, {
+          value: null,
+          writable: true,
+          configurable: true,
+          enumerable: true
+        });
+      }
+    });
+    
+    // Also define on document
+    touchProps.forEach(prop => {
+      if (!(prop in document)) {
+        Object.defineProperty(document, prop, {
+          value: null,
+          writable: true,
+          configurable: true,
+          enumerable: true
+        });
+      }
+    });
+    
+    // Also define on document.documentElement
+    if (document.documentElement) {
+      touchProps.forEach(prop => {
+        if (!(prop in document.documentElement)) {
+          try {
+            Object.defineProperty(document.documentElement, prop, {
+              value: null,
+              writable: true,
+              configurable: true,
+              enumerable: true
+            });
+          } catch(e) {}
+        }
+      });
+    }
+    
+    console.log('[FP-SPOOF] TouchEvent spoofed: TouchEvent exists:', typeof window.TouchEvent !== 'undefined', ', ontouchstart in window:', 'ontouchstart' in window);
+  } else if (touchSupport.touchEvent === false) {
+    // Hide TouchEvent for non-touch devices
+    try {
+      delete window.TouchEvent;
+    } catch (e) {}
   }
 
   // ============================================
@@ -3888,6 +3928,18 @@ const EMBEDDED_DEFAULT_PROFILE = {"server":{"ip":"2405:f600:8:e0a9:985c:f5c3:340
       const sizeMatch = font.match(/(\d+)px/);
       const fontSize = sizeMatch ? sizeMatch[1] : '16';
       
+      // macOS-specific fonts that MUST NOT be detected on Android
+      const macOSOnlyFontsForMeasure = new Set([
+        'menlo', 'monaco', 'sf pro', 'sf mono', 'helvetica neue', 'apple sd gothic neo',
+        'apple color emoji', 'lucida grande', 'lucida', 'arial unicode ms',
+        'gill sans', 'optima', 'palatino', 'marker felt', 'bradley hand',
+        'chalkduster', 'copperplate', 'didot', 'futura', 'geneva', 'hoefler text',
+        'impact', 'luminari', 'phosphate', 'rockwell', 'savoye let', 'signpainter',
+        'skia', 'snell roundhand', 'trattatello', 'zapfino', 'american typewriter',
+        'big caslon', 'brush script mt', 'noteworthy', 'party let', 'papyrus',
+        'baskerville', 'avenir', 'avenir next'
+      ]);
+      
       // Check if this is a font probe (has quotes around font name)
       // Pattern: '16px "FontName", fallback' or "16px 'FontName', fallback"
       const fontTestMatch = font.match(/["']([^"']+)["']\s*,\s*(\w+)/);
@@ -3899,7 +3951,12 @@ const EMBEDDED_DEFAULT_PROFILE = {"server":{"ip":"2405:f600:8:e0a9:985c:f5c3:340
         const fallbackFont = fontTestMatch[2]; // 'monospace'
         
         // Should this font "exist" according to profile?
-        const shouldExist = installedFontsForMeasureText.has(testFontLower);
+        let shouldExist = installedFontsForMeasureText.has(testFontLower);
+        
+        // BLOCK macOS-specific fonts on mobile profile
+        if (macOSOnlyFontsForMeasure.has(testFontLower)) {
+          shouldExist = false;
+        }
         
         // Get baseline width using separate canvas
         baselineCtx.font = fontSize + 'px ' + fallbackFont;
@@ -3927,81 +3984,148 @@ const EMBEDDED_DEFAULT_PROFILE = {"server":{"ip":"2405:f600:8:e0a9:985c:f5c3:340
   }
 
   // PART 2: Override offsetWidth for fontsByCSS (DOM element-based detection)
+  // Fingerprint.com tests fonts using "FontName", fallback (where fallback is monospace, serif, or sans-serif)
   
-  if (fontsByCSSDetected.length > 0 || fontsByCSS.count !== undefined) {
-    const originalOffsetWidthDesc = Object.getOwnPropertyDescriptor(HTMLElement.prototype, 'offsetWidth');
-    const originalOffsetHeightDesc = Object.getOwnPropertyDescriptor(HTMLElement.prototype, 'offsetHeight');
-    
-    // Track baseline widths
-    let cssBaselineWidth = null;
-    let cssBaselineHeight = null;
-    
-    Object.defineProperty(HTMLElement.prototype, 'offsetWidth', {
-      get: makeNative(function() {
-        const originalWidth = originalOffsetWidthDesc.get.call(this);
-        const fontFamily = this.style.fontFamily || '';
-        const fontLower = fontFamily.toLowerCase().trim();
-        
-        // Check if this is the baseline test (just "monospace" without comma)
-        if (fontLower === 'monospace') {
-          cssBaselineWidth = originalWidth;
-          return originalWidth;
-        }
-        
-        // Check if this is a font detection probe ("Font",monospace)
-        if (fontFamily.includes(',') && fontLower.includes('monospace')) {
-          const fonts = fontFamily.split(',').map(f => f.trim().replace(/['"]/g, ''));
-          const testFont = fonts[0]; // First font is the one being tested
-          const testFontLower = testFont.toLowerCase();
-          
-          // Check if this font should "exist"
-          const shouldExist = installedFontsForCSS.has(testFontLower);
-          
-          if (!shouldExist && cssBaselineWidth !== null) {
-            // Font not in profile - return baseline width (font "not found")
-            return cssBaselineWidth;
-          } else if (shouldExist && originalWidth === cssBaselineWidth && cssBaselineWidth !== null) {
-            // Font should exist but renders same as baseline - vary slightly
-            return cssBaselineWidth + 1;
-          }
-        }
-        
+  // Build a comprehensive set of fonts that should be "installed" from all profile sources
+  const allProfileFonts = new Set([
+    ...fontsDetected.map(f => f.toLowerCase()),
+    ...fontsByCSSDetected.map(f => f.toLowerCase()),
+    ...fontsSubsetDetected.map(f => f.toLowerCase())
+  ]);
+  
+  // Common fallback fonts used in font detection
+  const fallbackFonts = ['monospace', 'serif', 'sans-serif', 'sans', 'cursive', 'fantasy', 'system-ui'];
+  
+  // macOS-specific fonts that MUST NOT be detected on Android
+  const macOSOnlyFonts = new Set([
+    'menlo', 'monaco', 'sf pro', 'sf mono', 'helvetica neue', 'apple sd gothic neo',
+    'apple color emoji', 'lucida grande', 'lucida', 'arial unicode ms',
+    'gill sans', 'optima', 'palatino', 'marker felt', 'bradley hand',
+    'chalkduster', 'copperplate', 'didot', 'futura', 'geneva', 'hoefler text',
+    'impact', 'luminari', 'phosphate', 'rockwell', 'savoye let', 'signpainter',
+    'skia', 'snell roundhand', 'trattatello', 'zapfino', 'american typewriter',
+    'big caslon', 'brush script mt', 'noteworthy', 'party let', 'papyrus',
+    'baskerville', 'avenir', 'avenir next'
+  ]);
+  
+  const originalOffsetWidthDesc = Object.getOwnPropertyDescriptor(HTMLElement.prototype, 'offsetWidth');
+  const originalOffsetHeightDesc = Object.getOwnPropertyDescriptor(HTMLElement.prototype, 'offsetHeight');
+  
+  // Track multiple baseline widths per fallback font type
+  const cssBaselines = {
+    monospace: { width: null, height: null },
+    serif: { width: null, height: null },
+    'sans-serif': { width: null, height: null },
+    sans: { width: null, height: null },
+    cursive: { width: null, height: null },
+    fantasy: { width: null, height: null },
+    'system-ui': { width: null, height: null }
+  };
+  
+  // Helper to extract font names from font-family string
+  const parseFontFamily = (fontFamily) => {
+    return fontFamily
+      .split(',')
+      .map(f => f.trim().replace(/['"]|\s+$/g, '').trim())
+      .filter(f => f.length > 0);
+  };
+  
+  Object.defineProperty(HTMLElement.prototype, 'offsetWidth', {
+    get: makeNative(function() {
+      const originalWidth = originalOffsetWidthDesc.get.call(this);
+      const fontFamily = this.style.fontFamily || '';
+      
+      if (!fontFamily) return originalWidth;
+      
+      const fonts = parseFontFamily(fontFamily);
+      if (fonts.length === 0) return originalWidth;
+      
+      const fontLower = fonts[0].toLowerCase();
+      
+      // Check if this is a baseline-only test (single fallback font)
+      if (fonts.length === 1 && fallbackFonts.includes(fontLower)) {
+        cssBaselines[fontLower] = cssBaselines[fontLower] || { width: null, height: null };
+        cssBaselines[fontLower].width = originalWidth;
         return originalWidth;
-      }, 'get offsetWidth'),
-      configurable: true,
-      enumerable: true
-    });
-    
-    Object.defineProperty(HTMLElement.prototype, 'offsetHeight', {
-      get: makeNative(function() {
-        const originalHeight = originalOffsetHeightDesc.get.call(this);
-        const fontFamily = this.style.fontFamily || '';
-        const fontLower = fontFamily.toLowerCase().trim();
+      }
+      
+      // Check if this is a font detection probe ("TestFont", fallback)
+      if (fonts.length >= 2) {
+        const testFont = fonts[0];
+        const testFontLower = testFont.toLowerCase();
+        const fallbackFont = fonts[fonts.length - 1].toLowerCase();
         
-        // Baseline test
-        if (fontLower === 'monospace') {
-          cssBaselineHeight = originalHeight;
-          return originalHeight;
+        // Determine if this font should "exist" based on profile
+        let shouldExist = allProfileFonts.has(testFontLower);
+        
+        // BLOCK macOS-specific fonts on mobile profile
+        if (macOSOnlyFonts.has(testFontLower)) {
+          shouldExist = false;
         }
         
-        if (fontFamily.includes(',') && fontLower.includes('monospace')) {
-          const fonts = fontFamily.split(',').map(f => f.trim().replace(/['"]/g, ''));
-          const testFont = fonts[0];
-          const testFontLower = testFont.toLowerCase();
-          
-          const shouldExist = installedFontsForCSS.has(testFontLower);
-          
-          if (!shouldExist && cssBaselineHeight !== null) {
-            return cssBaselineHeight;
-          }
-        }
+        // Get baseline for this fallback type
+        const baseline = cssBaselines[fallbackFont]?.width;
         
+        if (!shouldExist && baseline !== null) {
+          // Font should NOT exist - return baseline width
+          return baseline;
+        } else if (shouldExist && originalWidth === baseline && baseline !== null) {
+          // Font should exist but width matches baseline - add small variance
+          return baseline + 1;
+        }
+      }
+      
+      return originalWidth;
+    }, 'get offsetWidth'),
+    configurable: true,
+    enumerable: true
+  });
+  
+  Object.defineProperty(HTMLElement.prototype, 'offsetHeight', {
+    get: makeNative(function() {
+      const originalHeight = originalOffsetHeightDesc.get.call(this);
+      const fontFamily = this.style.fontFamily || '';
+      
+      if (!fontFamily) return originalHeight;
+      
+      const fonts = parseFontFamily(fontFamily);
+      if (fonts.length === 0) return originalHeight;
+      
+      const fontLower = fonts[0].toLowerCase();
+      
+      // Baseline test
+      if (fonts.length === 1 && fallbackFonts.includes(fontLower)) {
+        cssBaselines[fontLower] = cssBaselines[fontLower] || { width: null, height: null };
+        cssBaselines[fontLower].height = originalHeight;
         return originalHeight;
-      }, 'get offsetHeight'),
-      configurable: true,
-      enumerable: true
-    });
-  }
+      }
+      
+      // Font detection probe
+      if (fonts.length >= 2) {
+        const testFont = fonts[0];
+        const testFontLower = testFont.toLowerCase();
+        const fallbackFont = fonts[fonts.length - 1].toLowerCase();
+        
+        let shouldExist = allProfileFonts.has(testFontLower);
+        
+        if (macOSOnlyFonts.has(testFontLower)) {
+          shouldExist = false;
+        }
+        
+        const baseline = cssBaselines[fallbackFont]?.height;
+        
+        if (!shouldExist && baseline !== null) {
+          return baseline;
+        }
+      }
+      
+      return originalHeight;
+    }, 'get offsetHeight'),
+    configurable: true,
+    enumerable: true
+  });
+  
+  console.log('[FP-SPOOF] Font spoofing active. Profile fonts:', allProfileFonts.size, 'Blocking macOS fonts:', macOSOnlyFonts.size);
 
   // PART 3: Override getBoundingClientRect for fontPreferences
   // fontPreferences uses span.getBoundingClientRect().width with different font-families
