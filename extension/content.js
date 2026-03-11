@@ -401,20 +401,29 @@
   
   // 5e. Fix Function.prototype.toString to not reveal any spoofing
   // UC detection looks at native function patterns
+  // CRITICAL: Must NEVER throw errors - that triggers toString_error signal
   const originalFunctionToString = Function.prototype.toString;
   const nativeCode = 'function () { [native code] }';
   const boundNativePattern = /^function\s*\(\)\s*\{\s*\[native code\]\s*\}$/;
   Function.prototype.toString = function() {
-    // If this function was marked as native by makeNative, return native string
-    if (this.__isNative__) {
-      return 'function ' + (this.__nativeName__ || '') + '() { [native code] }';
+    try {
+      // If this function was marked as native by makeNative, return native string
+      if (this && this.__isNative__) {
+        return 'function ' + (this.__nativeName__ || '') + '() { [native code] }';
+      }
+      // For bound functions and proxies, try to get original toString
+      const result = originalFunctionToString.call(this);
+      return result;
+    } catch (e) {
+      // NEVER throw - return a generic native code string
+      // This prevents the toString_error tampering signal
+      return 'function () { [native code] }';
     }
-    return originalFunctionToString.call(this);
   };
   // Make toString itself look native
   try {
-    Object.defineProperty(Function.prototype.toString, '__isNative__', { value: true, enumerable: false });
-    Object.defineProperty(Function.prototype.toString, '__nativeName__', { value: 'toString', enumerable: false });
+    Object.defineProperty(Function.prototype.toString, '__isNative__', { value: true, enumerable: false, configurable: false, writable: false });
+    Object.defineProperty(Function.prototype.toString, '__nativeName__', { value: 'toString', enumerable: false, configurable: false, writable: false });
   } catch(e) {}
   
   // 5f. Override console methods to hide our logging from fingerprinters
@@ -1225,13 +1234,113 @@ const EMBEDDED_DEFAULT_PROFILE = {"server":{"ip":"2405:f600:8:e0a9:985c:f5c3:340
   // Our extension itself provides a valid chrome.runtime, so we should preserve it
   // fingerprint.com flags "no_chrome_runtime" when it's missing/broken, not when it exists
   (function fixChromeObject() {
+    // CRITICAL: For mobile profile, we need to make chrome object look like Android Chrome
+    // Android Chrome has chrome.runtime but with limited/different structure than desktop
+    
+    if (isMobileProfile) {
+      // Mobile Chrome on Android DOES have chrome.runtime, but it's more limited
+      // The key is to have it exist with proper structure but without extension-specific properties
+      
+      // Create or reset chrome object for mobile
+      if (typeof window.chrome === 'undefined') {
+        window.chrome = {};
+      }
+      
+      // Create mobile-style runtime (exists but limited)
+      const mobileRuntime = {
+        // These enums exist in all Chrome versions
+        OnInstalledReason: {
+          INSTALL: 'install',
+          UPDATE: 'update', 
+          CHROME_UPDATE: 'chrome_update',
+          SHARED_MODULE_UPDATE: 'shared_module_update'
+        },
+        OnRestartRequiredReason: {
+          APP_UPDATE: 'app_update',
+          OS_UPDATE: 'os_update',
+          PERIODIC: 'periodic'
+        },
+        PlatformArch: {
+          ARM: 'arm',
+          ARM64: 'arm64',
+          X86_32: 'x86-32',
+          X86_64: 'x86-64',
+          MIPS: 'mips',
+          MIPS64: 'mips64'
+        },
+        PlatformNaclArch: {
+          ARM: 'arm',
+          X86_32: 'x86-32',
+          X86_64: 'x86-64',
+          MIPS: 'mips',
+          MIPS64: 'mips64'
+        },
+        PlatformOs: {
+          MAC: 'mac',
+          WIN: 'win',
+          ANDROID: 'android',
+          CROS: 'cros',
+          LINUX: 'linux',
+          OPENBSD: 'openbsd',
+          FUCHSIA: 'fuchsia'
+        },
+        RequestUpdateCheckStatus: {
+          THROTTLED: 'throttled',
+          NO_UPDATE: 'no_update',
+          UPDATE_AVAILABLE: 'update_available'
+        }
+      };
+      
+      // id is undefined for pages without extension context (normal for websites)
+      Object.defineProperty(mobileRuntime, 'id', {
+        value: undefined,
+        writable: false,
+        enumerable: true,
+        configurable: false
+      });
+      
+      // Make it non-configurable to look more legitimate
+      try {
+        Object.defineProperty(window.chrome, 'runtime', {
+          value: mobileRuntime,
+          writable: false,
+          configurable: false,
+          enumerable: true
+        });
+      } catch (e) {
+        // If we can't override, try deleting first
+        try {
+          delete window.chrome.runtime;
+          window.chrome.runtime = mobileRuntime;
+        } catch (e2) {}
+      }
+      
+      // Mobile Chrome has limited app object
+      window.chrome.app = {
+        isInstalled: false,
+        getDetails: makeNative(function getDetails() { return null; }, 'getDetails'),
+        getIsInstalled: makeNative(function getIsInstalled() { return false; }, 'getIsInstalled'),
+        runningState: makeNative(function runningState() { return 'cannot_run'; }, 'runningState')
+      };
+      
+      // Remove devtools (not accessible on mobile)
+      try { delete window.chrome.devtools; } catch (e) {}
+      
+      // Remove desktop-only properties
+      try { delete window.chrome.csi; } catch (e) {}
+      try { delete window.chrome.loadTimes; } catch (e) {}
+      
+      return; // Exit for mobile
+    }
+    
+    // DESKTOP Chrome handling below
     // Check if chrome.runtime already exists and is valid (from the extension itself)
     const hasValidRuntime = typeof window.chrome !== 'undefined' && 
                            typeof window.chrome.runtime !== 'undefined' &&
                            window.chrome.runtime !== null;
     
     if (hasValidRuntime) {
-      // chrome.runtime exists (likely from our extension) - don't break it!
+      // chrome.runtime exists (likely from our extension) - keep it for desktop
       // Just ensure devtools isn't accessible
       try { delete window.chrome.devtools; } catch (e) {}
       try {
@@ -1240,126 +1349,105 @@ const EMBEDDED_DEFAULT_PROFILE = {"server":{"ip":"2405:f600:8:e0a9:985c:f5c3:340
           configurable: true
         });
       } catch (e) {}
-      return;  // Exit - don't override existing runtime
+      return;
     }
     
-    // Only create chrome.runtime if it doesn't exist (unusual case)
+    // Only create chrome.runtime if it doesn't exist (unusual case for desktop)
     if (typeof window.chrome === 'undefined') {
       window.chrome = {};
     }
     
-    // For pages where chrome.runtime is missing, create a minimal valid one
-    if (!window.chrome.runtime) {
-      const minimalRuntime = {};
-      Object.defineProperty(minimalRuntime, 'id', { value: undefined, enumerable: true });
-      Object.defineProperty(minimalRuntime, 'OnInstalledReason', { 
-        value: { INSTALL: 'install', UPDATE: 'update', CHROME_UPDATE: 'chrome_update', SHARED_MODULE_UPDATE: 'shared_module_update' },
-        enumerable: true 
-      });
-      Object.defineProperty(minimalRuntime, 'OnRestartRequiredReason', { 
-        value: { APP_UPDATE: 'app_update', OS_UPDATE: 'os_update', PERIODIC: 'periodic' },
-        enumerable: true 
-      });
-      Object.defineProperty(minimalRuntime, 'PlatformArch', { 
-        value: { ARM: 'arm', ARM64: 'arm64', X86_32: 'x86-32', X86_64: 'x86-64', MIPS: 'mips', MIPS64: 'mips64' },
-        enumerable: true 
-      });
-      Object.defineProperty(minimalRuntime, 'PlatformNaclArch', { 
-        value: { ARM: 'arm', X86_32: 'x86-32', X86_64: 'x86-64', MIPS: 'mips', MIPS64: 'mips64' },
-        enumerable: true 
-      });
-      Object.defineProperty(minimalRuntime, 'PlatformOs', { 
-        value: { MAC: 'mac', WIN: 'win', ANDROID: 'android', CROS: 'cros', LINUX: 'linux', OPENBSD: 'openbsd', FUCHSIA: 'fuchsia' },
-        enumerable: true 
-      });
-      Object.defineProperty(minimalRuntime, 'RequestUpdateCheckStatus', { 
-        value: { THROTTLED: 'throttled', NO_UPDATE: 'no_update', UPDATE_AVAILABLE: 'update_available' },
-        enumerable: true 
-      });
-      
-      Object.defineProperty(window.chrome, 'runtime', {
-        value: minimalRuntime,
-        writable: false,
-        configurable: true,
-        enumerable: true
-      });
+    // Desktop Chrome - add expected methods
+    if (typeof window.chrome.runtime === 'undefined') {
+      window.chrome.runtime = {
+        connect: makeNative(function connect() { 
+          return { 
+            postMessage: function(){}, 
+            disconnect: function(){},
+            onMessage: { addListener: function(){} },
+            onDisconnect: { addListener: function(){} }
+          }; 
+        }, 'connect'),
+        sendMessage: makeNative(function sendMessage() {}, 'sendMessage'),
+        id: undefined,
+        getManifest: makeNative(function() { return undefined; }, 'getManifest'),
+        getURL: makeNative(function(path) { return ''; }, 'getURL'),
+        OnInstalledReason: {
+          INSTALL: 'install',
+          UPDATE: 'update', 
+          CHROME_UPDATE: 'chrome_update',
+          SHARED_MODULE_UPDATE: 'shared_module_update'
+        },
+        OnRestartRequiredReason: {
+          APP_UPDATE: 'app_update',
+          OS_UPDATE: 'os_update',
+          PERIODIC: 'periodic'
+        },
+        PlatformArch: {
+          ARM: 'arm',
+          ARM64: 'arm64',
+          X86_32: 'x86-32',
+          X86_64: 'x86-64',
+          MIPS: 'mips',
+          MIPS64: 'mips64'
+        },
+        PlatformOs: {
+          MAC: 'mac',
+          WIN: 'win',
+          ANDROID: 'android',
+          CROS: 'cros',
+          LINUX: 'linux',
+          OPENBSD: 'openbsd',
+          FUCHSIA: 'fuchsia'
+        }
+      };
+    }
+
+    // Add csi (Client-Side Instrumentation) - present in desktop Chrome
+    if (typeof window.chrome.csi === 'undefined') {
+      window.chrome.csi = makeNative(function csi() {
+        const timing = performance.timing || {};
+        return {
+          onloadT: timing.domContentLoadedEventEnd || Date.now(),
+          pageT: performance.now(),
+          startE: timing.navigationStart || Date.now() - 1000,
+          tran: 15
+        };
+      }, 'csi');
+    }
+
+    // Add loadTimes - present in desktop Chrome
+    if (typeof window.chrome.loadTimes === 'undefined') {
+      window.chrome.loadTimes = makeNative(function loadTimes() {
+        const timing = performance.timing || {};
+        const now = Date.now() / 1000;
+        return {
+          commitLoadTime: timing.responseEnd ? timing.responseEnd / 1000 : now,
+          connectionInfo: 'h2',
+          finishDocumentLoadTime: timing.domContentLoadedEventEnd ? timing.domContentLoadedEventEnd / 1000 : now,
+          finishLoadTime: timing.loadEventEnd ? timing.loadEventEnd / 1000 : now,
+          firstPaintAfterLoadTime: 0,
+          firstPaintTime: timing.domContentLoadedEventStart ? timing.domContentLoadedEventStart / 1000 : now,
+          navigationType: 'Navigate',
+          npnNegotiatedProtocol: 'h2',
+          requestTime: timing.requestStart ? timing.requestStart / 1000 : now - 0.1,
+          startLoadTime: timing.navigationStart ? timing.navigationStart / 1000 : now - 0.2,
+          wasAlternateProtocolAvailable: false,
+          wasFetchedViaSpdy: true,
+          wasNpnNegotiated: true
+        };
+      }, 'loadTimes');
     }
     
-    // Mobile should have app object with limited API
-    if (isMobileProfile) {
-      if (!window.chrome.app) {
-        window.chrome.app = {
-          isInstalled: false,
-          getDetails: makeNative(function() { return null; }, 'getDetails'),
-          getIsInstalled: makeNative(function() { return false; }, 'getIsInstalled'),
-          runningState: makeNative(function() { return 'cannot_run'; }, 'runningState')
-        };
-      }
-    } else {
-      // Desktop Chrome - add expected methods
-      if (typeof window.chrome.runtime === 'undefined') {
-        window.chrome.runtime = {
-          connect: makeNative(function connect() { 
-            return { 
-              postMessage: function(){}, 
-              disconnect: function(){},
-              onMessage: { addListener: function(){} },
-              onDisconnect: { addListener: function(){} }
-            }; 
-          }, 'connect'),
-          sendMessage: makeNative(function sendMessage() {}, 'sendMessage'),
-          id: undefined,
-          getManifest: makeNative(function() { return undefined; }, 'getManifest'),
-          getURL: makeNative(function(path) { return ''; }, 'getURL')
-        };
-      }
-
-      // Add csi (Client-Side Instrumentation) - present in desktop Chrome
-      if (typeof window.chrome.csi === 'undefined') {
-        window.chrome.csi = makeNative(function csi() {
-          const timing = performance.timing || {};
-          return {
-            onloadT: timing.domContentLoadedEventEnd || Date.now(),
-            pageT: performance.now(),
-            startE: timing.navigationStart || Date.now() - 1000,
-            tran: 15
-          };
-        }, 'csi');
-      }
-
-      // Add loadTimes - present in desktop Chrome
-      if (typeof window.chrome.loadTimes === 'undefined') {
-        window.chrome.loadTimes = makeNative(function loadTimes() {
-          const timing = performance.timing || {};
-          const now = Date.now() / 1000;
-          return {
-            commitLoadTime: timing.responseEnd ? timing.responseEnd / 1000 : now,
-            connectionInfo: 'h2',
-            finishDocumentLoadTime: timing.domContentLoadedEventEnd ? timing.domContentLoadedEventEnd / 1000 : now,
-            finishLoadTime: timing.loadEventEnd ? timing.loadEventEnd / 1000 : now,
-            firstPaintAfterLoadTime: 0,
-            firstPaintTime: timing.domContentLoadedEventStart ? timing.domContentLoadedEventStart / 1000 : now,
-            navigationType: 'Navigate',
-            npnNegotiatedProtocol: 'h2',
-            requestTime: timing.requestStart ? timing.requestStart / 1000 : now - 0.1,
-            startLoadTime: timing.navigationStart ? timing.navigationStart / 1000 : now - 0.2,
-            wasAlternateProtocolAvailable: false,
-            wasFetchedViaSpdy: true,
-            wasNpnNegotiated: true
-          };
-        }, 'loadTimes');
-      }
-      
-      // Desktop Chrome app object
-      if (!window.chrome.app) {
-        window.chrome.app = {
-          isInstalled: false,
-          getDetails: makeNative(function() { return null; }, 'getDetails'),
-          getIsInstalled: makeNative(function() { return false; }, 'getIsInstalled'),
-          InstallState: { INSTALLED: 'installed', NOT_INSTALLED: 'not_installed', DISABLED: 'disabled' },
-          runningState: makeNative(function() { return 'cannot_run'; }, 'runningState')
-        };
-      }
+    // Desktop Chrome app object
+    if (!window.chrome.app) {
+      window.chrome.app = {
+        isInstalled: false,
+        getDetails: makeNative(function() { return null; }, 'getDetails'),
+        getIsInstalled: makeNative(function() { return false; }, 'getIsInstalled'),
+        InstallState: { INSTALLED: 'installed', NOT_INSTALLED: 'not_installed', DISABLED: 'disabled' },
+        runningState: makeNative(function() { return 'cannot_run'; }, 'runningState')
+      };
     }
     
     // Make chrome object non-writable to prevent detection via assignment tests
