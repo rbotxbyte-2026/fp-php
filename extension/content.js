@@ -2004,12 +2004,26 @@ const EMBEDDED_DEFAULT_PROFILE = {"server":{"ip":"2405:f600:8:e0a9:985c:f5c3:340
       }
     });
     
-    // Use Proxy pattern for getImageData
+    // Use Proxy pattern for getImageData - add noise directly to result
     CanvasRenderingContext2D.prototype.getImageData = new Proxy(originalGetImageData, {
       apply(target, self, args) {
-        // Noisify canvas before returning image data
-        noisify(self.canvas, self);
-        return Reflect.apply(target, self, args);
+        // Get the original image data
+        const imageData = Reflect.apply(target, self, args);
+        
+        // Add noise directly to the returned data (don't call noisify to avoid recursive getImageData)
+        try {
+          const data = imageData.data;
+          for (let i = 0; i < data.length; i += 4) {
+            data[i + 0] = Math.max(0, Math.min(255, data[i + 0] + shift.r));     // R
+            data[i + 1] = Math.max(0, Math.min(255, data[i + 1] + shift.g));     // G
+            data[i + 2] = Math.max(0, Math.min(255, data[i + 2] + shift.b));     // B
+            // data[i + 3] unchanged (alpha)
+          }
+        } catch (e) {
+          // Ignore errors
+        }
+        
+        return imageData;
       }
     });
   }
