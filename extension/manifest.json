@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "FP Spoofer",
-  "version": "1.8.3",
+  "version": "1.8.4",
   "description": "Import and spoof browser fingerprint values with anti-detection and IP-based timezone",
   "permissions": [
     "storage",

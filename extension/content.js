@@ -409,16 +409,12 @@ const FP_INTERNAL = {
     const _origConsoleInfo = console.info;
     const _origConsoleDebug = console.debug;
     
-    // 5f-1. Block console.profile() DevTools detection
-    // FP.com uses: console.profile(); console.profileEnd(); 
-    // These throw when DevTools is closed, but succeed when open
-    // On mobile, these APIs should not exist or be no-ops
-    console.profile = function() { return undefined; };
-    console.profileEnd = function() { return undefined; };
-    
-    // Make them look native
-    console.profile.toString = () => 'function profile() { [native code] }';
-    console.profileEnd.toString = () => 'function profileEnd() { [native code] }';
+    // 5f-1. Handle console.profile() DevTools detection
+    // On Mobile Chrome, these exist but do nothing (no profiler in mobile DevTools)
+    // Key: They should NOT indicate DevTools is open
+    // The original functions should remain on console but be no-ops
+    // We DON'T replace them - that's detectable. Instead leave them as-is.
+    // Mobile Chrome's console.profile is already a no-op
   } catch (e) {}
   
   // 5g. Block DevTools detection via outerHeight/outerWidth difference
@@ -957,55 +953,14 @@ const EMBEDDED_DEFAULT_PROFILE = {"server":{"ip":"2405:f600:8:e0a9:985c:f5c3:340
     configurable: true
   });
 
-  // 2. Console-based devtools detection evasion
+  // 2. Console-based devtools detection note
   // Fingerprint.com uses: console.log({ get x() { devtoolsOpen = true; }})
   // When DevTools is open, console formats objects and calls getters
-  // We intercept console methods to serialize objects WITHOUT calling getters
-  const safeStringify = (obj) => {
-    if (obj === null) return 'null';
-    if (obj === undefined) return 'undefined';
-    if (typeof obj !== 'object') return String(obj);
-    try {
-      // Use a simple approach - just return [object Object] for detection objects
-      // This prevents getter-based detection
-      return Object.prototype.toString.call(obj);
-    } catch (e) {
-      return '[object Object]';
-    }
-  };
-
-  // Wrap console methods to prevent getter-based detection
-  const consoleMethods = ['log', 'info', 'warn', 'error', 'debug', 'dir', 'dirxml', 'table'];
-  const _originalConsole = {};
-  
-  for (const method of consoleMethods) {
-    if (console[method]) {
-      _originalConsole[method] = console[method].bind(console);
-      console[method] = makeNative(function(...args) {
-        try {
-          // Check if any arg has suspicious getters (detection trap)
-          const safeArgs = args.map(arg => {
-            if (arg !== null && typeof arg === 'object' && !Array.isArray(arg)) {
-              try {
-                const desc = Object.getOwnPropertyDescriptors(arg);
-                const hasGetterTrap = Object.values(desc).some(d => typeof d.get === 'function');
-                if (hasGetterTrap) {
-                  // Don't format this object - return a safe placeholder
-                  // This prevents the getter from being called
-                  return '[FP Safe: object]';
-                }
-              } catch (e) {}
-            }
-            return arg;
-          });
-          return _originalConsole[method](...safeArgs);
-        } catch (e) {
-          // Fallback: just call original with original args
-          return _originalConsole[method](...args);
-        }
-      }, method);
-    }
-  }
+  // When DevTools is CLOSED, the getter is NEVER called
+  // 
+  // IMPORTANT: Do NOT wrap console methods - wrapping is detectable!
+  // The getter trap only fires when DevTools is actually open.
+  // Since we're not running with DevTools open, just leave console alone.
 
   // 3. Element-based detection (devtools-detector library)
   // Detection creates elements and checks if DevTools modifies them
@@ -2882,53 +2837,65 @@ const EMBEDDED_DEFAULT_PROFILE = {"server":{"ip":"2405:f600:8:e0a9:985c:f5c3:340
   const targetChannelCount = audioLatency.channelCount ?? 2;
   const targetChannelInterpretation = audioLatency.channelInterpretation ?? 'speakers';
 
-  // Override AudioContext constructor to spoof properties
+  // Override AudioContext - spoof at PROTOTYPE level to avoid detection
+  // Fingerprint.com checks AudioContext.prototype.baseLatency descriptor
   const OriginalAudioContext = window.AudioContext || window.webkitAudioContext;
   if (OriginalAudioContext) {
-    const AudioContextProxy = function(...args) {
-      const ctx = new OriginalAudioContext(...args);
-      
-      // Spoof sampleRate (this is sampleRateLive in fingerprint)
-      Object.defineProperty(ctx, 'sampleRate', {
-        get: makeNative(function() { return targetSampleRateLive; }, 'get sampleRate'),
-        configurable: true
-      });
-      
-      // Spoof baseLatency
-      Object.defineProperty(ctx, 'baseLatency', {
-        get: makeNative(function() { return targetBaseLatency; }, 'get baseLatency'),
-        configurable: true
-      });
-      
-      // Spoof outputLatency
-      Object.defineProperty(ctx, 'outputLatency', {
-        get: makeNative(function() { return targetOutputLatency; }, 'get outputLatency'),
-        configurable: true
-      });
-      
-      // Spoof sampleRate on destination
-      if (ctx.destination) {
-        Object.defineProperty(ctx.destination, 'maxChannelCount', {
-          get: makeNative(function() { return targetMaxChannelCount; }, 'get maxChannelCount'),
-          configurable: true
-        });
-        Object.defineProperty(ctx.destination, 'channelCount', {
-          get: makeNative(function() { return targetChannelCount; }, 'get channelCount'),
-          configurable: true
-        });
-        Object.defineProperty(ctx.destination, 'channelInterpretation', {
-          get: makeNative(function() { return targetChannelInterpretation; }, 'get channelInterpretation'),
-          configurable: true
+    // Spoof baseLatency on the prototype (BaseAudioContext.prototype)
+    // This is where the real getter lives
+    const baseAudioContextProto = Object.getPrototypeOf(OriginalAudioContext.prototype);
+    if (baseAudioContextProto) {
+      const origBaseLatencyDesc = Object.getOwnPropertyDescriptor(baseAudioContextProto, 'baseLatency');
+      if (origBaseLatencyDesc && origBaseLatencyDesc.get) {
+        const origBaseLatencyGetter = origBaseLatencyDesc.get;
+        Object.defineProperty(baseAudioContextProto, 'baseLatency', {
+          get: makeNative(function() {
+            // Return spoofed value, falling back to original if needed
+            return targetBaseLatency;
+          }, 'get baseLatency'),
+          configurable: true,
+          enumerable: origBaseLatencyDesc.enumerable
         });
       }
       
-      return ctx;
-    };
-    AudioContextProxy.prototype = OriginalAudioContext.prototype;
-    makeNative(AudioContextProxy, 'AudioContext');
-    window.AudioContext = AudioContextProxy;
-    if (window.webkitAudioContext) {
-      window.webkitAudioContext = AudioContextProxy;
+      // Also spoof outputLatency at prototype level
+      const origOutputLatencyDesc = Object.getOwnPropertyDescriptor(baseAudioContextProto, 'outputLatency');
+      if (origOutputLatencyDesc && origOutputLatencyDesc.get) {
+        Object.defineProperty(baseAudioContextProto, 'outputLatency', {
+          get: makeNative(function() {
+            return targetOutputLatency;
+          }, 'get outputLatency'),
+          configurable: true,
+          enumerable: origOutputLatencyDesc.enumerable
+        });
+      }
+      
+      // Spoof sampleRate at prototype level
+      const origSampleRateDesc = Object.getOwnPropertyDescriptor(baseAudioContextProto, 'sampleRate');
+      if (origSampleRateDesc && origSampleRateDesc.get) {
+        Object.defineProperty(baseAudioContextProto, 'sampleRate', {
+          get: makeNative(function() {
+            return targetSampleRateLive;
+          }, 'get sampleRate'),
+          configurable: true,
+          enumerable: origSampleRateDesc.enumerable
+        });
+      }
+    }
+    
+    // Also spoof AudioDestinationNode.prototype.maxChannelCount
+    if (window.AudioDestinationNode) {
+      const destProto = window.AudioDestinationNode.prototype;
+      const origMaxChannelCountDesc = Object.getOwnPropertyDescriptor(destProto, 'maxChannelCount');
+      if (origMaxChannelCountDesc && origMaxChannelCountDesc.get) {
+        Object.defineProperty(destProto, 'maxChannelCount', {
+          get: makeNative(function() {
+            return targetMaxChannelCount;
+          }, 'get maxChannelCount'),
+          configurable: true,
+          enumerable: origMaxChannelCountDesc.enumerable
+        });
+      }
     }
   }
 
