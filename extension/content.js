@@ -991,22 +991,27 @@ const EMBEDDED_DEFAULT_PROFILE = {"server":{"ip":"2405:f600:8:e0a9:985c:f5c3:340
     if (console[method]) {
       _originalConsole[method] = console[method].bind(console);
       console[method] = makeNative(function(...args) {
-        // Check if any arg has suspicious getters (detection trap)
-        const safeArgs = args.map(arg => {
-          if (arg !== null && typeof arg === 'object' && !Array.isArray(arg)) {
-            try {
-              const desc = Object.getOwnPropertyDescriptors(arg);
-              const hasGetterTrap = Object.values(desc).some(d => typeof d.get === 'function');
-              if (hasGetterTrap) {
-                // Don't format this object - return a safe placeholder
-                // This prevents the getter from being called
-                return '[FP Safe: object]';
-              }
-            } catch (e) {}
-          }
-          return arg;
-        });
-        return _originalConsole[method](...safeArgs);
+        try {
+          // Check if any arg has suspicious getters (detection trap)
+          const safeArgs = args.map(arg => {
+            if (arg !== null && typeof arg === 'object' && !Array.isArray(arg)) {
+              try {
+                const desc = Object.getOwnPropertyDescriptors(arg);
+                const hasGetterTrap = Object.values(desc).some(d => typeof d.get === 'function');
+                if (hasGetterTrap) {
+                  // Don't format this object - return a safe placeholder
+                  // This prevents the getter from being called
+                  return '[FP Safe: object]';
+                }
+              } catch (e) {}
+            }
+            return arg;
+          });
+          return _originalConsole[method](...safeArgs);
+        } catch (e) {
+          // Fallback: just call original with original args
+          return _originalConsole[method](...args);
+        }
       }, method);
     }
   }
