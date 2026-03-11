@@ -1944,9 +1944,14 @@ const EMBEDDED_DEFAULT_PROFILE = {"server":{"ip":"2405:f600:8:e0a9:985c:f5c3:340
       a: 0 // Don't modify alpha to avoid transparency issues
     };
     
+    // Track canvases we've already noisified to avoid double-processing
+    const noisifiedCanvases = new WeakSet();
+    
     // Noisify function - adds noise to canvas using 2D context
     const noisify = function(canvas, context) {
       if (!context || !canvas) return;
+      // Only noisify once per canvas to avoid compounding noise
+      if (noisifiedCanvases.has(canvas)) return;
       
       const width = canvas.width;
       const height = canvas.height;
@@ -1965,17 +1970,27 @@ const EMBEDDED_DEFAULT_PROFILE = {"server":{"ip":"2405:f600:8:e0a9:985c:f5c3:340
           }
           
           context.putImageData(imageData, 0, 0);
+          noisifiedCanvases.add(canvas);
         } catch (e) {
           // Canvas might be tainted or empty - ignore
         }
       }
     };
     
+    // Store original getContext to use with willReadFrequently
+    const originalCanvasGetContext = HTMLCanvasElement.prototype.getContext;
+    
+    // Helper to get 2D context with willReadFrequently to avoid Chrome warnings
+    const get2DContextForRead = function(canvas) {
+      // Use willReadFrequently: true to avoid "Multiple readback operations" warning
+      return originalCanvasGetContext.call(canvas, '2d', { willReadFrequently: true });
+    };
+    
     // Use Proxy pattern for toBlob
     HTMLCanvasElement.prototype.toBlob = new Proxy(HTMLCanvasElement.prototype.toBlob, {
       apply(target, self, args) {
         // Noisify canvas before extracting blob
-        noisify(self, self.getContext('2d'));
+        noisify(self, get2DContextForRead(self));
         return Reflect.apply(target, self, args);
       }
     });
@@ -1984,7 +1999,7 @@ const EMBEDDED_DEFAULT_PROFILE = {"server":{"ip":"2405:f600:8:e0a9:985c:f5c3:340
     HTMLCanvasElement.prototype.toDataURL = new Proxy(HTMLCanvasElement.prototype.toDataURL, {
       apply(target, self, args) {
         // Noisify canvas before extracting data URL
-        noisify(self, self.getContext('2d'));
+        noisify(self, get2DContextForRead(self));
         return Reflect.apply(target, self, args);
       }
     });
