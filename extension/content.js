@@ -105,242 +105,77 @@
     try { delete window[prop]; } catch (e) {}
   }
   
-  // 2. IMMEDIATELY fix navigator.webdriver BEFORE anything else
-  // On real browsers: 'webdriver' in navigator returns FALSE
-  // On ChromeDriver: returns true with value true
-  // On undetected-chromedriver: returns true with value undefined (DETECTED!)
-  // We need 'webdriver' in navigator to return FALSE
+  // 2. Fix navigator.webdriver
+  // On real browsers (non-automated): navigator.webdriver is false/undefined
+  // CRITICAL: Fingerprint.com detects OVERLY AGGRESSIVE overrides as "undetectedChromedriver"
+  // They look for patterns like: overriding Object.prototype, Reflect methods, etc.
+  // Since user is NOT using actual chromedriver, we should do MINIMAL intervention:
+  // - If webdriver is already false/undefined, do nothing
+  // - If webdriver is true (automated), try simple fix only
+  // - DO NOT override global Object.prototype or Reflect methods - that's the detection signature!
+  
   const origNavigator = navigator;
   
-  // Store original methods for Proxy detection evasion
+  // Store original methods (but DON'T override them globally)
   const origObjectProtoToString = Object.prototype.toString;
   const origSymbolHasInstance = Function.prototype[Symbol.hasInstance];
   
+  // Check current webdriver state
+  let needsWebdriverFix = false;
   try {
-    // Try to delete the property first
-    delete Navigator.prototype.webdriver;
-    delete origNavigator.webdriver;
+    // Only fix if webdriver is actually true (automated browser)
+    // On regular Chrome, this is already false/undefined
+    needsWebdriverFix = navigator.webdriver === true;
   } catch (e) {}
   
-  // The webdriver property is defined on Navigator.prototype with configurable:false
-  // So we can't delete it. Instead, replace navigator with a Proxy that hides it.
-  // CRITICAL: fingerprint.com uses multiple detection vectors:
-  // 1. 'webdriver' in navigator
-  // 2. 'webdriver' in Navigator.prototype
-  // 3. Reflect.has(navigator, 'webdriver')
-  // 4. Object.keys(navigator).includes('webdriver')
-  // 5. Object.getOwnPropertyNames(Navigator.prototype)
+  if (needsWebdriverFix) {
+    // Only apply minimal fix if actually needed
+    try {
+      // Try simple property override - much less detectable than Proxy
+      Object.defineProperty(Navigator.prototype, 'webdriver', {
+        get: function() { return false; },
+        configurable: true,
+        enumerable: true
+      });
+    } catch (e) {
+      // If that fails, try on navigator directly
+      try {
+        Object.defineProperty(navigator, 'webdriver', {
+          get: function() { return false; },
+          configurable: true
+        });
+      } catch (e2) {}
+    }
+  }
   
-  // Store original Reflect methods before any modifications
+  // NOTE: We deliberately DO NOT:
+  // - Create Proxy for navigator (detectable)
+  // - Override Object.prototype.toString (detectable)
+  // - Override Object.prototype.hasOwnProperty (detectable)
+  // - Override Reflect.has/get/ownKeys (detectable)
+  // - Override Object.getOwnPropertyDescriptor globally (detectable)
+  // These patterns ARE the "undetectedChromedriver" signature!
+  
+  // Store original Reflect methods (for internal use only, not overriding)
   const origReflectHas = Reflect.has;
   const origReflectGet = Reflect.get;
   const origReflectOwnKeys = Reflect.ownKeys;
   const origReflectGetOwnPropertyDescriptor = Reflect.getOwnPropertyDescriptor;
   
-  try {
-    const navigatorProxy = new Proxy(origNavigator, {
-      has: function(target, prop) {
-        if (prop === 'webdriver') {
-          return false;  // 'webdriver' in navigator returns false
-        }
-        return origReflectHas(target, prop);
-      },
-      get: function(target, prop, receiver) {
-        if (prop === 'webdriver') {
-          return undefined;
-        }
-        // Special handling for Symbol.toStringTag to prevent Proxy detection
-        if (prop === Symbol.toStringTag) {
-          return 'Navigator';
-        }
-        const value = origReflectGet(target, prop, target);
-        // Bind functions to original navigator
-        if (typeof value === 'function') {
-          return value.bind(target);
-        }
-        return value;
-      },
-      getOwnPropertyDescriptor: function(target, prop) {
-        if (prop === 'webdriver') {
-          return undefined;  // Property doesn't exist
-        }
-        return Object.getOwnPropertyDescriptor(target, prop);
-      },
-      ownKeys: function(target) {
-        // Filter out webdriver from all key enumerations
-        return origReflectOwnKeys(target).filter(k => k !== 'webdriver');
-      },
-      getPrototypeOf: function(target) {
-        return Navigator.prototype;
-      }
-    });
-    
-    // Replace global navigator
-    Object.defineProperty(window, 'navigator', {
-      get: function() { return navigatorProxy; },
-      configurable: true
-    });
-    
-    // CRITICAL: Also fix Navigator.prototype itself
-    // Create a proxy for Navigator.prototype to hide webdriver
-    const origNavigatorPrototype = Navigator.prototype;
-    const navigatorPrototypeProxy = new Proxy(origNavigatorPrototype, {
-      has: function(target, prop) {
-        if (prop === 'webdriver') {
-          return false;  // 'webdriver' in Navigator.prototype returns false
-        }
-        return origReflectHas(target, prop);
-      },
-      get: function(target, prop, receiver) {
-        if (prop === 'webdriver') {
-          return undefined;
-        }
-        const value = origReflectGet(target, prop, target);
-        if (typeof value === 'function') {
-          return value.bind(target);
-        }
-        return value;
-      },
-      getOwnPropertyDescriptor: function(target, prop) {
-        if (prop === 'webdriver') {
-          return undefined;
-        }
-        return Object.getOwnPropertyDescriptor(target, prop);
-      },
-      ownKeys: function(target) {
-        return origReflectOwnKeys(target).filter(k => k !== 'webdriver');
-      }
-    });
-    
-    // Replace Navigator.prototype
-    try {
-      Object.defineProperty(Navigator, 'prototype', {
-        value: navigatorPrototypeProxy,
-        writable: false,
-        configurable: false
-      });
-    } catch (e) {
-      // Fallback: at least make webdriver undefined
-      try {
-        Object.defineProperty(Navigator.prototype, 'webdriver', {
-          get: function() { return undefined; },
-          configurable: true,
-          enumerable: false
-        });
-      } catch (e2) {}
-    }
-    
-  } catch (e) {
-    // Fallback: at minimum make value undefined
-    try {
-      Object.defineProperty(Navigator.prototype, 'webdriver', {
-        get: function() { return undefined; },
-        configurable: true
-      });
-    } catch (e2) {}
-  }
-  
-  // 2b. Override Reflect methods to hide webdriver
-  // Note: navigatorPrototypeProxy is scoped inside the try block above,
-  // but checking Navigator.prototype covers it since we replaced it
-  try {
-    Reflect.has = function(target, prop) {
-      if (prop === 'webdriver' && (target === origNavigator || target === Navigator.prototype)) {
-        return false;
-      }
-      return origReflectHas(target, prop);
-    };
-    
-    Reflect.get = function(target, prop, receiver) {
-      if (prop === 'webdriver' && (target === origNavigator || target === Navigator.prototype)) {
-        return undefined;
-      }
-      return origReflectGet(target, prop, receiver);
-    };
-    
-    Reflect.ownKeys = function(target) {
-      const keys = origReflectOwnKeys(target);
-      if (target === origNavigator || target === Navigator.prototype) {
-        return keys.filter(k => k !== 'webdriver');
-      }
-      return keys;
-    };
-    
-    Reflect.getOwnPropertyDescriptor = function(target, prop) {
-      if (prop === 'webdriver' && (target === origNavigator || target === Navigator.prototype)) {
-        return undefined;
-      }
-      return origReflectGetOwnPropertyDescriptor(target, prop);
-    };
-  } catch (e) {}
-  
-  // 2b-pre. CRITICAL: Fix Object.prototype.toString for Proxy detection evasion
-  // Proxy objects can be detected via: Object.prototype.toString.call(navigator)
-  // This MUST return "[object Navigator]" not "[object Object]"
-  try {
-    Object.prototype.toString = function() {
-      // Check if this is our proxied navigator
-      if (this === window.navigator) {
-        return '[object Navigator]';
-      }
-      // For other proxied objects, try to return the correct tag
-      if (this && this[Symbol.toStringTag]) {
-        return '[object ' + this[Symbol.toStringTag] + ']';
-      }
-      return origObjectProtoToString.call(this);
-    };
-  } catch (e) {}
-  
-  // 2b-pre2. Fix instanceof checks for Proxy objects
-  // navigator instanceof Navigator must return true even when navigator is proxied
-  try {
-    Object.defineProperty(Navigator, Symbol.hasInstance, {
-      value: function(instance) {
-        // Our proxied navigator should pass instanceof check
-        if (instance === window.navigator || instance === origNavigator) {
-          return true;
-        }
-        // Fallback to default behavior
-        return origSymbolHasInstance.call(Navigator, instance);
-      },
-      configurable: true,
-      writable: true
-    });
-  } catch (e) {}
-  
-  // 2b. Fix hasOwnProperty for webdriver check
-  try {
-    const originalHasOwnProperty = Object.prototype.hasOwnProperty;
-    Object.prototype.hasOwnProperty = function(prop) {
-      if (prop === 'webdriver' && (this === origNavigator || this === Navigator.prototype)) {
-        return false;
-      }
-      return originalHasOwnProperty.call(this, prop);
-    };
-  } catch (e) {}
-  
-  // 2c. Also hide from getOwnPropertyNames/getOwnPropertyDescriptor
-  try {
-    const origGetOwnPropertyDescriptor = Object.getOwnPropertyDescriptor;
-    Object.getOwnPropertyDescriptor = function(obj, prop) {
-      if (prop === 'webdriver' && (obj === origNavigator || obj === Navigator.prototype)) {
-        return undefined;
-      }
-      return origGetOwnPropertyDescriptor(obj, prop);
-    };
-    
-    const origGetOwnPropertyNames = Object.getOwnPropertyNames;
-    Object.getOwnPropertyNames = function(obj) {
-      const names = origGetOwnPropertyNames(obj);
-      if (obj === origNavigator || obj === Navigator.prototype) {
-        return names.filter(n => n !== 'webdriver');
-      }
-      return names;
-    };
-  } catch (e) {}
-  
+  // NOTE: We deliberately DO NOT override Object.prototype.toString, 
+  // Object.prototype.hasOwnProperty, Object.getOwnPropertyDescriptor, or
+  // Object.getOwnPropertyNames globally. These overrides are the EXACT
+  // signature that fingerprint.com looks for when detecting "undetectedChromedriver"!
+  // 
+  // According to UC research (uc.md):
+  // "Anti-bot scripts detect the cleanup patterns themselves"
+  // 
+  // Since the user is NOT using actual chromedriver, these overrides are
+  // not needed and only serve to trigger detection.
+
   // 3. Continuously monitor and delete cdc_ variables
   // ChromeDriver injects them dynamically during execution
+  // NOTE: This is safe because it only cleans up variables, doesn't override prototypes
   const cleanupCdc = () => {
     try {
       // Clean window
@@ -584,8 +419,13 @@
       profile: console.profile,
       profileEnd: console.profileEnd
     };
-    // Store original for our use
-    window.__fpOrigConsole = origConsole;
+    // Store original for our use - non-enumerable to avoid detection
+    Object.defineProperty(window, '__fpOrigConsole', {
+      value: origConsole,
+      writable: true,
+      enumerable: false,
+      configurable: true
+    });
     
     // 5f-1. Block console.profile() DevTools detection
     // FP.com uses: console.profile(); console.profileEnd(); 
@@ -728,8 +568,13 @@ const EMBEDDED_DEFAULT_PROFILE = {"server":{"ip":"2405:f600:8:e0a9:985c:f5c3:340
     });
     observeBody.observe(document.documentElement || document, { childList: true, subtree: true });
     
-    // Mark that we've applied mouse blocking
-    window.__FP_MOUSE_BLOCKED__ = true;
+    // Mark that we've applied mouse blocking (non-enumerable to avoid detection)
+    Object.defineProperty(window, '__FP_MOUSE_BLOCKED__', {
+      value: true,
+      writable: true,
+      enumerable: false,  // CRITICAL: not visible in Object.keys(window)
+      configurable: true
+    });
   }
 })();
 
@@ -4554,9 +4399,13 @@ const EMBEDDED_DEFAULT_PROFILE = {"server":{"ip":"2405:f600:8:e0a9:985c:f5c3:340
   // Also spoof the audio hash values if they exist
   const audioData = client.audio || {};
   if (audioData.hash !== undefined || audioData.fullHash !== undefined) {
-    // Store the target hashes - these will be compared by fingerprinting libraries
-    window.__FP_AUDIO_HASH__ = audioData.hash;
-    window.__FP_AUDIO_FULL_HASH__ = audioData.fullHash;
+    // Store the target hashes - non-enumerable to avoid detection
+    Object.defineProperty(window, '__FP_AUDIO_HASH__', {
+      value: audioData.hash, writable: true, enumerable: false, configurable: true
+    });
+    Object.defineProperty(window, '__FP_AUDIO_FULL_HASH__', {
+      value: audioData.fullHash, writable: true, enumerable: false, configurable: true
+    });
   }
 
   // ============================================
@@ -4565,8 +4414,10 @@ const EMBEDDED_DEFAULT_PROFILE = {"server":{"ip":"2405:f600:8:e0a9:985c:f5c3:340
 
   const canvasData = client.canvas || {};
   if (canvasData.geometry_hash !== undefined) {
-    // Store geometry hash for reference
-    window.__FP_CANVAS_GEOMETRY_HASH__ = canvasData.geometry_hash;
+    // Store geometry hash for reference - non-enumerable
+    Object.defineProperty(window, '__FP_CANVAS_GEOMETRY_HASH__', {
+      value: canvasData.geometry_hash, writable: true, enumerable: false, configurable: true
+    });
   }
 
   // ============================================
@@ -4638,10 +4489,16 @@ const EMBEDDED_DEFAULT_PROFILE = {"server":{"ip":"2405:f600:8:e0a9:985c:f5c3:340
     const targetMean = hypervisorProbe.mean_ms;
     const targetStdDev = hypervisorProbe.stdDev_ms || 0;
     
-    // Store for reference - timing probes can't easily be spoofed at JS level
-    window.__FP_HYPERVISOR_MEAN__ = targetMean;
-    window.__FP_HYPERVISOR_STDDEV__ = targetStdDev;
-    window.__FP_POSSIBLE_VM__ = hypervisorProbe.possibleVM || false;
+    // Store for reference - non-enumerable to avoid detection
+    Object.defineProperty(window, '__FP_HYPERVISOR_MEAN__', {
+      value: targetMean, writable: true, enumerable: false, configurable: true
+    });
+    Object.defineProperty(window, '__FP_HYPERVISOR_STDDEV__', {
+      value: targetStdDev, writable: true, enumerable: false, configurable: true
+    });
+    Object.defineProperty(window, '__FP_POSSIBLE_VM__', {
+      value: hypervisorProbe.possibleVM || false, writable: true, enumerable: false, configurable: true
+    });
   }
 
 })();
