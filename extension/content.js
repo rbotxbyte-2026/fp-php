@@ -580,10 +580,23 @@
       warn: console.warn,
       error: console.error,
       info: console.info,
-      debug: console.debug
+      debug: console.debug,
+      profile: console.profile,
+      profileEnd: console.profileEnd
     };
     // Store original for our use
     window.__fpOrigConsole = origConsole;
+    
+    // 5f-1. Block console.profile() DevTools detection
+    // FP.com uses: console.profile(); console.profileEnd(); 
+    // These throw when DevTools is closed, but succeed when open
+    // On mobile, these APIs should not exist or be no-ops
+    console.profile = function() { return undefined; };
+    console.profileEnd = function() { return undefined; };
+    
+    // Make them look native
+    console.profile.toString = () => 'function profile() { [native code] }';
+    console.profileEnd.toString = () => 'function profileEnd() { [native code] }';
   } catch (e) {}
   
   // 5g. Block DevTools detection via outerHeight/outerWidth difference
@@ -1081,17 +1094,27 @@ const EMBEDDED_DEFAULT_PROFILE = {"server":{"ip":"2405:f600:8:e0a9:985c:f5c3:340
   const realInnerWidth = window.innerWidth;
   const realInnerHeight = window.innerHeight;
 
-  // 1. Size-based detection - make outer match expected values
+  // Get profile values - use embedded profile for mobile dimensions
+  const profileScreen = spoofConfig?.client?.screen || EMBEDDED_DEFAULT_PROFILE?.client?.screen || {};
+  const profileInnerWidth = profileScreen.innerWidth || 384;
+  const profileInnerHeight = profileScreen.innerHeight || 699;
+  const profileOuterWidth = profileScreen.outerWidth || 384;
+  const profileOuterHeight = profileScreen.outerHeight || 832;
+
+  // 1. Size-based detection - use PROFILE values, not desktop calculations
+  // FP.com detects DevTools via: outerWidth - innerWidth > threshold
+  // For mobile: outerWidth should equal innerWidth (no window chrome)
+  // outerHeight - innerHeight = status bar + nav bar (mobile: ~133px)
   Object.defineProperty(window, 'outerWidth', {
     get: makeNative(function() {
-      return window.innerWidth;
+      return profileOuterWidth;
     }, 'get outerWidth'),
     configurable: true
   });
   
   Object.defineProperty(window, 'outerHeight', {
     get: makeNative(function() {
-      return window.innerHeight + 79;
+      return profileOuterHeight;
     }, 'get outerHeight'),
     configurable: true
   });
