@@ -18,15 +18,40 @@
       try {
         const fileName = frame.getFileName() || '';
         const funcName = frame.getFunctionName() || '';
-        const lower = (fileName + funcName).toLowerCase();
-        return !lower.includes('chromedriver') &&
-               !lower.includes('webdriver') &&
-               !lower.includes('selenium') &&
-               !lower.includes('puppeteer') &&
-               !lower.includes('playwright') &&
-               !lower.includes('chrome-extension://') &&
-               !lower.includes('cdc_') &&
-               !lower.includes('__driver');
+        const evalOrigin = frame.getEvalOrigin?.() || '';
+        const lower = (fileName + funcName + evalOrigin).toLowerCase();
+        
+        // Comprehensive automation detection patterns
+        const automationPatterns = [
+          'chromedriver', 'webdriver', 'selenium', 'puppeteer', 'playwright',
+          'chrome-extension://', 'cdc_', '__driver', '__cdp',
+          '__puppeteer_evaluation_script__', '__selenium_evaluate',
+          'puppeteer_evaluation_script', 'devtools://',
+          'debugger eval', 'eval at <anonymous>',
+          'VM\\d+', // Chrome's internal VM naming for eval'd code
+          '__playwright', '__nightmare',
+          'runtime.evaluate', 'injectedscript'
+        ];
+        
+        for (const pattern of automationPatterns) {
+          if (lower.includes(pattern.toLowerCase()) || 
+              (pattern.includes('\\') && new RegExp(pattern, 'i').test(fileName))) {
+            return false;
+          }
+        }
+        
+        // Also check the script URL for CDP-injected patterns
+        const scriptUrl = frame.getScriptNameOrSourceURL?.() || '';
+        if (scriptUrl && (
+          scriptUrl.includes('__puppeteer') ||
+          scriptUrl.includes('__selenium') ||
+          scriptUrl.includes('__playwright') ||
+          /^VM\d+$/.test(scriptUrl)
+        )) {
+          return false;
+        }
+        
+        return true;
       } catch (e) {
         return true;
       }
@@ -46,6 +71,38 @@
     if (key.match(/^[\$]?cdc_/i) || key.match(/^[\$]?[a-z]{26}_$/i)) {
       try { delete window[key]; } catch (e) {}
     }
+  }
+  
+  // 1b. Also clean document-level cdc_ variables (UC adds them here too)
+  try {
+    const docKeys = Object.keys(document);
+    for (const key of docKeys) {
+      if (key.match(/^[\$]?cdc_/i) || key.match(/^[\$]?[a-z]{26}_$/i)) {
+        try { delete document[key]; } catch (e) {}
+      }
+    }
+  } catch (e) {}
+  
+  // 1c. Delete domAutomationController (Chrome automation marker)
+  try { delete window.domAutomationController; } catch (e) {}
+  try { delete window.domAutomation; } catch (e) {}
+  
+  // 1d. Clean up any automation-related properties on window
+  const automationProps = [
+    'domAutomationController', 'domAutomation', 
+    '_Selenium_IDE_Recorder', '_selenium', 'calledSelenium',
+    '__webdriver_script_fn', '__driver_unwrap', '__webdriver_unwrap',
+    '__selenium_unwrap', '__fxdriver_unwrap',
+    '__webdriver_evaluate', '__selenium_evaluate',
+    '__driver_evaluate', '__fxdriver_evaluate',
+    '__lastWatirAlert', '__lastWatirConfirm', '__lastWatirPrompt',
+    '$chrome_asyncScriptInfo', '__$webdriverAsyncExecutor',
+    '_WEBDRIVER_ELEM_CACHE', 'ChromeDriverw',
+    '__nightmare', '__puppeteer', '__playwright',
+    'webdriver', '__webdriver_script_function', '__webdriver_script_func'
+  ];
+  for (const prop of automationProps) {
+    try { delete window[prop]; } catch (e) {}
   }
   
   // 2. IMMEDIATELY fix navigator.webdriver BEFORE anything else
@@ -248,18 +305,34 @@
   // ChromeDriver injects them dynamically during execution
   const cleanupCdc = () => {
     try {
+      // Clean window
       const keys = Object.keys(window);
       for (const key of keys) {
         if (key.match(/^[\$]?cdc_/i) || key.match(/^[\$]?[a-z]{26}_$/i)) {
           delete window[key];
         }
       }
+      // Clean document
+      const docKeys = Object.keys(document);
+      for (const key of docKeys) {
+        if (key.match(/^[\$]?cdc_/i) || key.match(/^[\$]?[a-z]{26}_$/i)) {
+          delete document[key];
+        }
+      }
+      // Clean domAutomationController if it reappears
+      if ('domAutomationController' in window) {
+        delete window.domAutomationController;
+      }
     } catch(e) {}
   };
   
-  // Run cleanup frequently for first 10 seconds
+  // Run cleanup frequently for first 10 seconds, then periodically
   const cdcInterval = setInterval(cleanupCdc, 10);
-  setTimeout(() => clearInterval(cdcInterval), 10000);
+  setTimeout(() => {
+    clearInterval(cdcInterval);
+    // Continue with slower interval
+    setInterval(cleanupCdc, 500);
+  }, 10000);
   
   // 4. Override Object.keys to hide cdc_ variables
   const originalKeys = Object.keys;
@@ -709,33 +782,48 @@ const EMBEDDED_DEFAULT_PROFILE = {"server":{"ip":"2405:f600:8:e0a9:985c:f5c3:340
   // More sophisticated toString override with prototype chain awareness
   // CRITICAL: Must handle all edge cases to avoid toString_error tampering signal
   const customToString = function toString() {
-    // Handle null/undefined context (prevent TypeError)
-    if (this === null || this === undefined) {
-      // Real Function.prototype.toString throws TypeError for null/undefined
-      throw new TypeError('Function.prototype.toString requires that \'this\' be a Function');
-    }
-    
-    const target = this;
-    
-    // Check our spoofed functions first
-    if (nativeFunctionNames.has(target)) {
-      return nativeFunctionNames.get(target);
-    }
-    
-    // For non-function types, throw proper error like native would
-    if (typeof target !== 'function') {
-      throw new TypeError('Function.prototype.toString requires that \'this\' be a Function');
-    }
-    
-    // Use original toString for everything else
+    // Wrap entire function in try-catch to prevent ANY toString errors
     try {
-      return _originals.toString.call(target);
-    } catch (e) {
-      // Only use fallback if original truly fails
-      if (typeof target === 'function' && target.name) {
-        return `function ${target.name}() { [native code] }`;
+      // Handle null/undefined context (prevent TypeError)
+      if (this === null || this === undefined) {
+        // Real Function.prototype.toString throws TypeError for null/undefined
+        throw new TypeError('Function.prototype.toString requires that \'this\' be a Function');
       }
-      return 'function () { [native code] }';
+      
+      const target = this;
+      
+      // Check our spoofed functions first - wrap in try-catch in case WeakMap has issues
+      try {
+        if (nativeFunctionNames.has(target)) {
+          return nativeFunctionNames.get(target);
+        }
+      } catch (e) {
+        // WeakMap operation failed, continue to fallback
+      }
+      
+      // For non-function types, throw proper error like native would
+      if (typeof target !== 'function') {
+        throw new TypeError('Function.prototype.toString requires that \'this\' be a Function');
+      }
+      
+      // Use original toString for everything else
+      try {
+        return _originals.toString.call(target);
+      } catch (e) {
+        // Only use fallback if original truly fails
+        if (typeof target === 'function' && target.name) {
+          return `function ${target.name}() { [native code] }`;
+        }
+        return 'function () { [native code] }';
+      }
+    } catch (outerError) {
+      // Absolute fallback - return something that looks native
+      // This prevents toString_error detection
+      if (typeof this === 'function') {
+        return this.name ? `function ${this.name}() { [native code] }` : 'function () { [native code] }';
+      }
+      // Re-throw only TypeError for non-functions (expected behavior)
+      throw new TypeError('Function.prototype.toString requires that \'this\' be a Function');
     }
   };
   
