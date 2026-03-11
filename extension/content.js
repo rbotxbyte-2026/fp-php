@@ -49,38 +49,71 @@
   }
   
   // 2. IMMEDIATELY fix navigator.webdriver BEFORE anything else
-  // On real browsers: undefined. On ChromeDriver: true. On undetected-chromedriver: false
-  // We need UNDEFINED to pass fingerprint.com
+  // On real browsers: 'webdriver' in navigator returns FALSE
+  // On ChromeDriver: returns true with value true
+  // On undetected-chromedriver: returns true with value undefined (DETECTED!)
+  // We need 'webdriver' in navigator to return FALSE
   const origNavigator = navigator;
+  
   try {
-    // Delete from prototype first
+    // Try to delete the property first
     delete Navigator.prototype.webdriver;
     delete origNavigator.webdriver;
-    
-    // Critical: Don't define a getter, completely remove the property
-    // This makes "webdriver in navigator" return false
-    // The trick is to NOT define it at all - real Chrome doesn't have it
-    
-    // Monitor and continuously remove if CDP re-adds it
-    const removeWebdriver = () => {
-      try {
-        const desc = Object.getOwnPropertyDescriptor(origNavigator, 'webdriver');
-        if (desc !== undefined) {
-          delete origNavigator.webdriver;
-        }
-        const protoDesc = Object.getOwnPropertyDescriptor(Navigator.prototype, 'webdriver');
-        if (protoDesc !== undefined) {
-          delete Navigator.prototype.webdriver;
-        }
-      } catch (e) {}
-    };
-    
-    // Run immediately and frequently
-    removeWebdriver();
-    const wdInterval = setInterval(removeWebdriver, 5);
-    setTimeout(() => clearInterval(wdInterval), 3000);
-    
   } catch (e) {}
+  
+  // The webdriver property is defined on Navigator.prototype with configurable:false
+  // So we can't delete it. Instead, replace navigator with a Proxy that hides it.
+  try {
+    const navigatorProxy = new Proxy(origNavigator, {
+      has: function(target, prop) {
+        if (prop === 'webdriver') {
+          return false;  // 'webdriver' in navigator returns false
+        }
+        return prop in target;
+      },
+      get: function(target, prop, receiver) {
+        if (prop === 'webdriver') {
+          return undefined;
+        }
+        const value = Reflect.get(target, prop, target);
+        // Bind functions to original navigator
+        if (typeof value === 'function') {
+          return value.bind(target);
+        }
+        return value;
+      },
+      getOwnPropertyDescriptor: function(target, prop) {
+        if (prop === 'webdriver') {
+          return undefined;  // Property doesn't exist
+        }
+        return Object.getOwnPropertyDescriptor(target, prop);
+      }
+    });
+    
+    // Replace global navigator
+    Object.defineProperty(window, 'navigator', {
+      get: function() { return navigatorProxy; },
+      configurable: true
+    });
+    
+    // Also try to ensure Navigator.prototype.webdriver returns undefined and hides from 'in'
+    try {
+      Object.defineProperty(Navigator.prototype, 'webdriver', {
+        get: function() { return undefined; },
+        configurable: true,
+        enumerable: false
+      });
+    } catch (e) {}
+    
+  } catch (e) {
+    // Fallback: at minimum make value undefined
+    try {
+      Object.defineProperty(Navigator.prototype, 'webdriver', {
+        get: function() { return undefined; },
+        configurable: true
+      });
+    } catch (e2) {}
+  }
   
   // 2b. Fix hasOwnProperty for webdriver check
   try {
