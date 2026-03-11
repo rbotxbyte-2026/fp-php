@@ -3,7 +3,7 @@
     "identification": {
       "data": {
         "visitorId": "lg91DiXmK08Y44cFHAFi",
-        "requestId": "1773238055191.lwndmy",
+        "requestId": "1773238772258.ZySSrw",
         "browserDetails": {
           "browserName": "Chrome Mobile",
           "browserMajorVersion": "145",
@@ -13,7 +13,7 @@
           "device": "ONEPLUS A6010",
           "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Mobile Safari/537.36"
         },
-        "incognito": false,
+        "incognito": true,
         "ip": "103.81.118.10",
         "ipLocation": {
           "accuracyRadius": 10,
@@ -39,8 +39,8 @@
             }
           ]
         },
-        "timestamp": 1773238055209,
-        "time": "2026-03-11T14:07:35Z",
+        "timestamp": 1773238772274,
+        "time": "2026-03-11T14:19:32Z",
         "url": "https://fingerprint.com/demo/",
         "tag": {
           "referrerLink": null
@@ -55,8 +55,8 @@
           "subscription": "2026-03-07T14:35:51.15Z"
         },
         "lastSeenAt": {
-          "global": "2026-03-11T14:03:14.57Z",
-          "subscription": "2026-03-11T14:03:14.57Z"
+          "global": "2026-03-11T14:17:53.922Z",
+          "subscription": "2026-03-11T14:17:53.922Z"
         },
         "replayed": false,
         "sdk": {
@@ -95,9 +95,9 @@
         },
         "url": "https://fingerprint.com/demo/",
         "ip": "103.81.118.10",
-        "time": "2026-03-11T14:07:35.208Z",
+        "time": "2026-03-11T14:19:32.273Z",
         "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Mobile Safari/537.36",
-        "requestId": "1773238055191.lwndmy"
+        "requestId": "1773238772258.ZySSrw"
       }
     },
     "rootApps": {
@@ -192,7 +192,7 @@
     },
     "incognito": {
       "data": {
-        "result": false
+        "result": true
       }
     },
     "tampering": {
@@ -235,119 +235,6 @@
     },
     "rawDeviceAttributes": {
       "data": {
-        "vendorFlavors": {
-          "value": [
-            "chrome"
-          ]
-        },
-        "platform": {
-          "value": "Linux armv81"
-        },
-        "audioBaseLatency": {
-          "value": -2
-        },
-        "pdfViewerEnabled": {
-          "value": false
-        },
-        "languages": {
-          "value": [
-            [
-              "en-IN"
-            ]
-          ]
-        },
-        "invertedColors": {},
-        "canvas": {
-          "value": {
-            "Geometry": "db3c1462576a399a03ae93d0ab9eb5c4",
-            "Text": "33ef2eac537e4d7f1ec72d560cab71e5",
-            "Winding": true
-          }
-        },
-        "localStorage": {
-          "value": true
-        },
-        "timezone": {
-          "value": "Asia/Calcutta"
-        },
-        "dateTimeLocale": {
-          "value": "en-GB"
-        },
-        "cookiesEnabled": {
-          "value": true
-        },
-        "plugins": {
-          "value": []
-        },
-        "mathML": {
-          "value": {
-            "bottom": 26.5,
-            "font": "Times",
-            "height": 18.5,
-            "left": 8,
-            "right": 293.3046875,
-            "top": 8,
-            "width": 285.3046875,
-            "x": 8,
-            "y": 8
-          }
-        },
-        "fonts": {
-          "value": []
-        },
-        "deviceMemory": {
-          "value": 8
-        },
-        "cpuClass": {},
-        "architecture": {
-          "value": 127
-        },
-        "monochrome": {},
-        "indexedDB": {
-          "value": true
-        },
-        "webGlBasics": {
-          "value": {
-            "renderer": "WebKit WebGL",
-            "rendererUnmasked": "Adreno (TM) 630",
-            "shadingLanguageVersion": "WebGL GLSL ES 1.0 (OpenGL ES GLSL ES 1.0 Chromium)",
-            "vendor": "WebKit",
-            "vendorUnmasked": "Qualcomm",
-            "version": "WebGL 1.0 (OpenGL ES 2.0 Chromium)"
-          }
-        },
-        "vendor": {
-          "value": "Google Inc."
-        },
-        "audio": {
-          "value": 124.04348155876505
-        },
-        "reducedMotion": {
-          "value": false
-        },
-        "colorGamut": {
-          "value": "srgb"
-        },
-        "privateClickMeasurement": {},
-        "domBlockers": {},
-        "osCpu": {},
-        "contrast": {
-          "value": 0
-        },
-        "sessionStorage": {
-          "value": true
-        },
-        "hardwareConcurrency": {
-          "value": 8
-        },
-        "screenFrame": {
-          "value": [
-            0,
-            0,
-            0,
-            0
-          ]
-        },
         "webGlExtensions": {
           "value": {
             "contextAttributes": "6b1ed336830d2bc96442a9d76373252a",
@@ -361,14 +248,14 @@
         "forcedColors": {
           "value": false
         },
-        "screenResolution": {
-          "value": [
-            832,
-            384
-          ]
+        "hardwareConcurrency": {
+          "value": 8
         },
-        "colorDepth": {
-          "value": 24
+        "math": {
+          "value": "5f030fa7d2e5f9f757bfaf81642eb1a6"
+        },
+        "cookiesEnabled": {
+          "value": true
         },
         "touchSupport": {
           "value": {
@@ -377,26 +264,34 @@
             "touchStart": true
           }
         },
+        "platform": {
+          "value": "Linux armv81"
+        },
+        "domBlockers": {},
+        "mathML": {
+          "value": {
+            "bottom": 26.5,
+            "font": "Times",
+            "height": 18.5,
+            "left": 8,
+            "right": 293.3046875,
+            "top": 8,
+            "width": 285.3046875,
+            "x": 8,
+            "y": 8
+          }
+        },
+        "monochrome": {},
+        "fonts": {
+          "value": []
+        },
         "openDatabase": {
           "value": false
         },
-        "fontPreferences": {
-          "value": {
-            "apple": 73.78125,
-            "default": 73.78125,
-            "min": 4.6171875,
-            "mono": 66.53125,
-            "sans": 72.0078125,
-            "serif": 73.78125,
-            "system": 73.046875
-          }
+        "sessionStorage": {
+          "value": true
         },
-        "hdr": {
-          "value": false
-        },
-        "math": {
-          "value": "5f030fa7d2e5f9f757bfaf81642eb1a6"
-        },
+        "cpuClass": {},
         "emoji": {
           "value": {
             "bottom": 28,
@@ -409,13 +304,118 @@
             "x": 8,
             "y": 9.5
           }
-        }
+        },
+        "contrast": {
+          "value": 0
+        },
+        "dateTimeLocale": {
+          "value": "en-GB"
+        },
+        "screenResolution": {
+          "value": [
+            832,
+            384
+          ]
+        },
+        "vendorFlavors": {
+          "value": [
+            "chrome"
+          ]
+        },
+        "plugins": {
+          "value": []
+        },
+        "colorDepth": {
+          "value": 24
+        },
+        "audio": {
+          "value": 124.04348155876505
+        },
+        "fontPreferences": {
+          "value": {
+            "apple": 73.78125,
+            "default": 73.78125,
+            "min": 4.6171875,
+            "mono": 66.53125,
+            "sans": 72.0078125,
+            "serif": 73.78125,
+            "system": 73.046875
+          }
+        },
+        "timezone": {
+          "value": "Asia/Calcutta"
+        },
+        "audioBaseLatency": {
+          "value": -2
+        },
+        "screenFrame": {
+          "value": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "canvas": {
+          "value": {
+            "Geometry": "db3c1462576a399a03ae93d0ab9eb5c4",
+            "Text": "33ef2eac537e4d7f1ec72d560cab71e5",
+            "Winding": true
+          }
+        },
+        "invertedColors": {},
+        "localStorage": {
+          "value": true
+        },
+        "indexedDB": {
+          "value": true
+        },
+        "architecture": {
+          "value": 127
+        },
+        "privateClickMeasurement": {},
+        "webGlBasics": {
+          "value": {
+            "renderer": "WebKit WebGL",
+            "rendererUnmasked": "Adreno (TM) 630",
+            "shadingLanguageVersion": "WebGL GLSL ES 1.0 (OpenGL ES GLSL ES 1.0 Chromium)",
+            "vendor": "WebKit",
+            "vendorUnmasked": "Qualcomm",
+            "version": "WebGL 1.0 (OpenGL ES 2.0 Chromium)"
+          }
+        },
+        "deviceMemory": {
+          "value": 8
+        },
+        "reducedMotion": {
+          "value": false
+        },
+        "pdfViewerEnabled": {
+          "value": false
+        },
+        "colorGamut": {
+          "value": "srgb"
+        },
+        "languages": {
+          "value": [
+            [
+              "en-IN"
+            ]
+          ]
+        },
+        "vendor": {
+          "value": "Google Inc."
+        },
+        "hdr": {
+          "value": false
+        },
+        "osCpu": {}
       }
     },
     "highActivity": {
       "data": {
         "result": true,
-        "dailyRequests": 37
+        "dailyRequests": 42
       }
     },
     "locationSpoofing": {
@@ -425,7 +425,7 @@
     },
     "suspectScore": {
       "data": {
-        "result": 35
+        "result": 39
       }
     },
     "velocity": {
@@ -447,16 +447,16 @@
         },
         "events": {
           "intervals": {
-            "5m": 2,
-            "1h": 6,
-            "24h": 37
+            "5m": 3,
+            "1h": 11,
+            "24h": 42
           }
         },
         "ipEvents": {
           "intervals": {
-            "5m": 2,
-            "1h": 4,
-            "24h": 4
+            "5m": 3,
+            "1h": 9,
+            "24h": 9
           }
         },
         "distinctIpByLinkedId": {},

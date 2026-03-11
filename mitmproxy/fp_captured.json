@@ -1,0 +1,310 @@
+{
+  "captures": [
+    {
+      "url": "https://sync.inmobi.com/sync?redirect=https%3A%2F%2Fs.amazon-adsystem.com%2Fecm3%3Fex%3Dinmobi.com%26id%3D%7BID5UID%7D&gdpr_consent=&gdpr=&us_privacy=&gdpr_pd=&source=8&google_push=&retry=",
+      "ts": "2026-03-11T19:27:52.904Z",
+      "unique": 18,
+      "total": 39
+    },
+    {
+      "url": "https://ads.pubmatic.com/AdServer/js/user_sync.html?p=164187&userIdMacro=PM_UID&gdpr=0&gdpr_consent=&predirect=https%3A%2F%2Fhb.trustedstack.com%2Fcksync.php%3Fcs%3D66%26type%3Dpts%26gdpr%3D0%26gdpr_consent%3D%26ovsid%3DPM_UID",
+      "ts": "2026-03-11T19:27:53.876Z",
+      "unique": 26,
+      "total": 91
+    },
+    {
+      "url": "https://eus.rubiconproject.com/usync.html?p=medianet",
+      "ts": "2026-03-11T19:27:53.885Z",
+      "unique": 18,
+      "total": 39
+    },
+    {
+      "url": "https://s.amazon-adsystem.com/iu3?cm3ppd=1&d=dtb-pub&csif=t&dl=n-adobe3pb_n-start_n-onetag_pm-db5_n-acuityads_n-nativo_n-Outbrain",
+      "ts": "2026-03-11T19:27:53.893Z",
+      "unique": 18,
+      "total": 39
+    },
+    {
+      "url": "https://hbx.media.net/cksync.html?cs=8&vsid=4162588344754199000V10&type=ppt&refUrl=&vid=32572617594162588344754199000V10&axid_e=&ovsid=dIV0DKo55kIs&ev=1&pid=560210",
+      "ts": "2026-03-11T19:27:54.876Z",
+      "unique": 18,
+      "total": 39
+    },
+    {
+      "url": "https://www.googleadservices.com/pagead/managed/js/activeview/current/reach_worklet.html",
+      "ts": "2026-03-11T19:27:54.888Z",
+      "unique": 21,
+      "total": 79
+    },
+    {
+      "url": "https://s.amazon-adsystem.com/v3/pr?exlist=n-adobe3pb_n-start_n-onetag_pm-db5_n-acuityads_n-nativo_n-Outbrain&fv=1.0&a=cm&cm3ppd=1&dmt=3",
+      "ts": "2026-03-11T19:27:55.338Z",
+      "unique": 18,
+      "total": 39
+    },
+    {
+      "url": "https://platform.twitter.com/widgets/widget_iframe.2f70fb173b9000da126c79afe2098f02.html?origin=https%3A%2F%2Ftimesofindia.indiatimes.com",
+      "ts": "2026-03-11T19:27:55.878Z",
+      "unique": 22,
+      "total": 50
+    },
+    {
+      "url": "https://ads.pubmatic.com/AdServer/js/user_sync.html?kdntuid=1&p=164398",
+      "ts": "2026-03-11T19:27:55.894Z",
+      "unique": 26,
+      "total": 70
+    },
+    {
+      "url": "https://acdn.adnxs.com/dmp/async_usersync.html",
+      "ts": "2026-03-11T19:27:55.900Z",
+      "unique": 21,
+      "total": 43
+    },
+    {
+      "url": "https://cdn.taboola.com/scripts/prebid_iframe_sync.html",
+      "ts": "2026-03-11T19:27:55.907Z",
+      "unique": 22,
+      "total": 45
+    }
+  ],
+  "merged_apis": {
+    "navigator.mediaDevices": {
+      "t": "object",
+      "c": 11,
+      "v": [
+        "{}"
+      ]
+    },
+    "navigator.mediaCapabilities": {
+      "t": "object",
+      "c": 33,
+      "v": [
+        "{}"
+      ]
+    },
+    "navigator.getBattery": {
+      "t": "function",
+      "c": 22,
+      "v": [
+        "[fn]"
+      ]
+    },
+    "navigator.connection": {
+      "t": "object",
+      "c": 11,
+      "v": [
+        "{}"
+      ]
+    },
+    "navigator.storage": {
+      "t": "object",
+      "c": 66,
+      "v": [
+        "{}"
+      ]
+    },
+    "window.speechSynthesis": {
+      "t": "object",
+      "c": 33,
+      "v": [
+        "{}"
+      ]
+    },
+    "navigator.getGamepads": {
+      "t": "function",
+      "c": 22,
+      "v": [
+        "[fn]"
+      ]
+    },
+    "navigator.permissions": {
+      "t": "object",
+      "c": 33,
+      "v": [
+        "{}"
+      ]
+    },
+    "navigator.userAgentData": {
+      "t": "object",
+      "c": 34,
+      "v": [
+        "{\"brands\":[{\"brand\":\"Not:A-Brand\",\"version\":\"99\"},{\"brand\":\"Google Chrome\",\"version\":\"145\"},{\"brand\""
+      ]
+    },
+    "navigator.bluetooth": {
+      "t": "object",
+      "c": 11,
+      "v": [
+        "{}"
+      ]
+    },
+    "navigator.usb": {
+      "t": "object",
+      "c": 11,
+      "v": [
+        "{}"
+      ]
+    },
+    "navigator.serial": {
+      "t": "object",
+      "c": 11,
+      "v": [
+        "{}"
+      ]
+    },
+    "navigator.hid": {
+      "t": "undefined",
+      "c": 11,
+      "v": [
+        "undefined"
+      ]
+    },
+    "navigator.geolocation": {
+      "t": "object",
+      "c": 55,
+      "v": [
+        "{}"
+      ]
+    },
+    "window.crypto": {
+      "t": "object",
+      "c": 28,
+      "v": [
+        "{}"
+      ]
+    },
+    "navigator.plugins": {
+      "t": "object",
+      "c": 11,
+      "v": [
+        "[Plugins:0]"
+      ]
+    },
+    "navigator.mimeTypes": {
+      "t": "object",
+      "c": 11,
+      "v": [
+        "[MimeTypes:0]"
+      ]
+    },
+    "document.readyState": {
+      "t": "string",
+      "c": 22,
+      "v": [
+        "loading"
+      ]
+    },
+    "window.localStorage": {
+      "t": "object",
+      "c": 24,
+      "v": [
+        "{\"PubMatic_USP\":\"{\\\"156011\\\":{\\\"t\\\":1773257261552,\\\"c\\\":\\\"1---\\\"},\\\"159035\\\":{\\\"t\\\":1773257262212,\\\"",
+        "{\"PubMatic_USP\":\"{\\\"156011\\\":{\\\"t\\\":1773257261552,\\\"c\\\":\\\"1---\\\"},\\\"159035\\\":{\\\"t\\\":1773257248374,\\\"",
+        "{\"PubMatic_USP\":\"{\\\"156011\\\":{\\\"t\\\":1773257247704,\\\"c\\\":\\\"1---\\\"},\\\"159035\\\":{\\\"t\\\":1773257248374,\\\"",
+        "{\"taboola global:user-id\":\"02877c7d-7ff0-4fe2-bf83-f0e8b4cb859a-tuct10ab478e\"}"
+      ]
+    },
+    "navigator.userAgent": {
+      "t": "string",
+      "c": 42,
+      "v": [
+        "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Mobile Sa"
+      ]
+    },
+    "navigator.appName": {
+      "t": "string",
+      "c": 2,
+      "v": [
+        "Netscape"
+      ]
+    },
+    "document.cookie": {
+      "t": "string",
+      "c": 29,
+      "v": [
+        "XANDR_PANID=AyqpD4EfPCWuCp5Ux9bRAAtGuKWmfA0x_wniF_wEbWp3um__xssOB8hyZ8ppD14cD90nWsf12y_6eBF6as50pEWW",
+        "KADUSERCOOKIE=457B9845-B402-41F9-93FB-40C2A0A004BF; KRTBCOOKIE_1097=23028-d9aec2d6-de9a-45b2-ba82-43",
+        "KADUSERCOOKIE=457B9845-B402-41F9-93FB-40C2A0A004BF; chkChromeAb67Sec=1; DPSync4=1775779200%3A102%7C1",
+        "KADUSERCOOKIE=457B9845-B402-41F9-93FB-40C2A0A004BF; DPSync4=1775779200%3A102%7C1773792000%3A164%7C17",
+        "t_gid=02877c7d-7ff0-4fe2-bf83-f0e8b4cb859a-tuct10ab478e; t_pt_gid=02877c7d-7ff0-4fe2-bf83-f0e8b4cb85"
+      ]
+    },
+    "window.frames": {
+      "t": "object",
+      "c": 8,
+      "v": [
+        "[obj]"
+      ]
+    },
+    "window.parent": {
+      "t": "object",
+      "c": 8,
+      "v": [
+        "[obj]"
+      ]
+    },
+    "storage.getItem": {
+      "t": "string",
+      "c": 14,
+      "v": [
+        "taboola global:user-id",
+        "PubMatic",
+        "PubMatic_GPP",
+        "PubMatic_USP"
+      ]
+    },
+    "storage.setItem": {
+      "t": "string",
+      "c": 3,
+      "v": [
+        "taboola global:user-id",
+        "PubMatic_USP"
+      ]
+    },
+    "window.trustedTypes": {
+      "t": "object",
+      "c": 1,
+      "v": [
+        "{}"
+      ]
+    },
+    "window.self": {
+      "t": "object",
+      "c": 5,
+      "v": [
+        "[obj]"
+      ]
+    },
+    "crypto.getRandomValues": {
+      "t": "number",
+      "c": 1,
+      "v": [
+        "16"
+      ]
+    }
+  },
+  "last_updated": "2026-03-12T00:57:58.006162",
+  "total_apis": 29
+}c": 5,
+      "v": [
+        "[obj]"
+      ]
+    },
+    "crypto.getRandomValues": {
+      "t": "number",
+      "c": 1,
+      "v": [
+        "16"
+      ]
+    },
+    "navigator.cookieEnabled": {
+      "t": "boolean",
+      "c": 77,
+      "v": [
+        "true"
+      ]
+    }
+  },
+  "last_updated": "2026-03-12T00:57:58.005413",
+  "total_apis": 30
+}

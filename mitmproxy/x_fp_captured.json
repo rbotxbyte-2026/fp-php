@@ -1,0 +1,2095 @@
+{
+  "captures": [
+    {
+      "url": "https://fingerprint.com/demo/",
+      "ts": "2026-03-11T19:16:15.377Z",
+      "unique": 255,
+      "total": 6041
+    },
+    {
+      "url": "https://fingerprint.com/demo/",
+      "ts": "2026-03-11T19:16:16.940Z",
+      "unique": 255,
+      "total": 6222
+    },
+    {
+      "url": "https://fingerprint.com/demo/",
+      "ts": "2026-03-11T19:16:40.778Z",
+      "unique": 252,
+      "total": 5775
+    },
+    {
+      "url": "https://fingerprint.com/demo/",
+      "ts": "2026-03-11T19:16:45.338Z",
+      "unique": 252,
+      "total": 5884
+    },
+    {
+      "url": "https://fingerprint.com/demo/",
+      "ts": "2026-03-11T19:17:14.787Z",
+      "unique": 255,
+      "total": 6864
+    },
+    {
+      "url": "https://fingerprint.com/demo/",
+      "ts": "2026-03-11T19:17:19.930Z",
+      "unique": 255,
+      "total": 6978
+    },
+    {
+      "url": "https://whoer.net/",
+      "ts": "2026-03-11T19:17:33.608Z",
+      "unique": 192,
+      "total": 1749
+    },
+    {
+      "url": "https://whoer.net/",
+      "ts": "2026-03-11T19:17:38.528Z",
+      "unique": 195,
+      "total": 2229
+    },
+    {
+      "url": "https://whoer.net/",
+      "ts": "2026-03-11T19:17:41.678Z",
+      "unique": 195,
+      "total": 2355
+    },
+    {
+      "url": "https://c.botfaqtor.ru/edit.html?i=156357",
+      "ts": "2026-03-11T19:17:44.750Z",
+      "unique": 19,
+      "total": 42
+    },
+    {
+      "url": "https://whoer.net/",
+      "ts": "2026-03-11T19:17:46.801Z",
+      "unique": 195,
+      "total": 2711
+    },
+    {
+      "url": "https://c.botfaqtor.ru/edit.html?i=156357",
+      "ts": "2026-03-11T19:17:48.748Z",
+      "unique": 19,
+      "total": 42
+    },
+    {
+      "url": "https://whoer.net/",
+      "ts": "2026-03-11T19:17:53.525Z",
+      "unique": 195,
+      "total": 3323
+    },
+    {
+      "url": "https://app.grow.me/iframe-login?siteId=b4701910-f190-4c72-82fd-8ab0365f33ee&isHeadless=true&callback=https%3A%2F%2Fwhoer.net%2F&isGdprCountry=false",
+      "ts": "2026-03-11T19:17:54.751Z",
+      "unique": 20,
+      "total": 45
+    }
+  ],
+  "merged_apis": {
+    "navigator.mediaDevices": {
+      "t": "object",
+      "c": 40,
+      "v": [
+        "{}"
+      ]
+    },
+    "navigator.mediaCapabilities": {
+      "t": "object",
+      "c": 106,
+      "v": [
+        "{}"
+      ]
+    },
+    "navigator.getBattery": {
+      "t": "function",
+      "c": 44,
+      "v": [
+        "[fn]"
+      ]
+    },
+    "navigator.connection": {
+      "t": "object",
+      "c": 274,
+      "v": [
+        "{}"
+      ]
+    },
+    "navigator.storage": {
+      "t": "object",
+      "c": 112,
+      "v": [
+        "{}"
+      ]
+    },
+    "window.speechSynthesis": {
+      "t": "object",
+      "c": 54,
+      "v": [
+        "{}"
+      ]
+    },
+    "navigator.getGamepads": {
+      "t": "function",
+      "c": 39,
+      "v": [
+        "[fn]"
+      ]
+    },
+    "navigator.permissions": {
+      "t": "object",
+      "c": 70,
+      "v": [
+        "{}"
+      ]
+    },
+    "navigator.userAgentData": {
+      "t": "object",
+      "c": 349,
+      "v": [
+        "{\"brands\":[{\"brand\":\"Not:A-Brand\",\"version\":\"99\"},{\"brand\":\"Google Chrome\",\"version\":\"145\"},{\"brand\""
+      ]
+    },
+    "navigator.bluetooth": {
+      "t": "object",
+      "c": 30,
+      "v": [
+        "{}"
+      ]
+    },
+    "navigator.usb": {
+      "t": "object",
+      "c": 30,
+      "v": [
+        "{}"
+      ]
+    },
+    "navigator.serial": {
+      "t": "object",
+      "c": 30,
+      "v": [
+        "{}"
+      ]
+    },
+    "navigator.hid": {
+      "t": "undefined",
+      "c": 14,
+      "v": [
+        "undefined"
+      ]
+    },
+    "navigator.geolocation": {
+      "t": "object",
+      "c": 86,
+      "v": [
+        "{}"
+      ]
+    },
+    "window.crypto": {
+      "t": "object",
+      "c": 1817,
+      "v": [
+        "{}"
+      ]
+    },
+    "navigator.plugins": {
+      "t": "object",
+      "c": 112,
+      "v": [
+        "[Plugins:0]"
+      ]
+    },
+    "navigator.mimeTypes": {
+      "t": "object",
+      "c": 50,
+      "v": [
+        "[MimeTypes:0]"
+      ]
+    },
+    "document.readyState": {
+      "t": "string",
+      "c": 354,
+      "v": [
+        "interactive",
+        "complete",
+        "loading"
+      ]
+    },
+    "window.self": {
+      "t": "object",
+      "c": 921,
+      "v": [
+        "[obj]"
+      ]
+    },
+    "window.trustedTypes": {
+      "t": "object",
+      "c": 90,
+      "v": [
+        "{}"
+      ]
+    },
+    "navigator.userAgent": {
+      "t": "string",
+      "c": 2717,
+      "v": [
+        "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Mobile Sa"
+      ]
+    },
+    "document.referrer": {
+      "t": "string",
+      "c": 709,
+      "v": [
+        ""
+      ]
+    },
+    "document.cookie": {
+      "t": "string",
+      "c": 2732,
+      "v": [
+        "",
+        "_ga_VMPC3S2CRY=GS2.1.s1773256645$o1$g0$t1773256645$j60$l0$h0",
+        "_gcl_au=1.1.2120283431.1773256532; userled_consent=true; _fuid=NjZiNDcyOWUtYTUwZi00MTQ3LWEwODktN2IyN",
+        "_ga_VMPC3S2CRY=deleted",
+        "__tld__=1; _gcl_au=1.1.2120283431.1773256532; userled_consent=true; _fuid=NjZiNDcyOWUtYTUwZi00MTQ3LW"
+      ]
+    },
+    "window.frames": {
+      "t": "object",
+      "c": 448,
+      "v": [
+        "[obj]"
+      ]
+    },
+    "window.parent": {
+      "t": "object",
+      "c": 333,
+      "v": [
+        "[obj]"
+      ]
+    },
+    "navigator.cookieDeprecationLabel": {
+      "t": "undefined",
+      "c": 27,
+      "v": [
+        "undefined"
+      ]
+    },
+    "document.scripts": {
+      "t": "object",
+      "c": 21,
+      "v": [
+        "{\"0\":{},\"1\":{},\"2\":{},\"3\":{},\"4\":{},\"5\":{},\"6\":{},\"7\":{},\"8\":{},\"9\":{},\"10\":{},\"11\":{},\"12\":{},\"13\":"
+      ]
+    },
+    "window.name": {
+      "t": "string",
+      "c": 98,
+      "v": [
+        "",
+        "__ab:2bf1917d21fff737e83aaa48716d4007aead3868"
+      ]
+    },
+    "window.localStorage": {
+      "t": "object",
+      "c": 2230,
+      "v": [
+        "{\"663116642504f20300239a52_canTrack\":\"{\\\"data\\\":false,\\\"expireTime\\\":1773342967422}\",\"AMP_88cf5b0af4",
+        "{}",
+        "{\"mv_session\":\"{\\\"value\\\":{\\\"depth\\\":1,\\\"referrer\\\":\\\"DIRECT\\\"},\\\"expiry\\\":1773258443922}\"}",
+        "{\"663116642504f20300239a52_canTrack\":\"{\\\"data\\\":false,\\\"expireTime\\\":1773342933481}\",\"AMP_88cf5b0af4",
+        "{\"mv_session\":\"{\\\"value\\\":{\\\"depth\\\":1,\\\"referrer\\\":\\\"DIRECT\\\"},\\\"expiry\\\":1773258443750}\"}"
+      ]
+    },
+    "storage.getItem": {
+      "t": "string",
+      "c": 2308,
+      "v": [
+        "_gcl_ls",
+        "cookieChoice",
+        "DD_DEBUGGER",
+        "ab_id",
+        "GROW_USER_ID"
+      ]
+    },
+    "window.opener": {
+      "t": "null",
+      "c": 121,
+      "v": [
+        "null"
+      ]
+    },
+    "document.title": {
+      "t": "string",
+      "c": 166,
+      "v": [
+        "Demo | Fingerprint Demo",
+        "What Is My IP Address? - Find IP and Check Leaks"
+      ]
+    },
+    "performance.getEntriesByType": {
+      "t": "string",
+      "c": 519,
+      "v": [
+        "[fn]"
+      ]
+    },
+    "history.state": {
+      "t": "null",
+      "c": 24,
+      "v": [
+        "null"
+      ]
+    },
+    "history.pushState": {
+      "t": "function",
+      "c": 59,
+      "v": [
+        "[fn]"
+      ]
+    },
+    "history.replaceState": {
+      "t": "function",
+      "c": 32,
+      "v": [
+        "[fn]"
+      ]
+    },
+    "screen.width": {
+      "t": "number",
+      "c": 258,
+      "v": [
+        "384"
+      ]
+    },
+    "screen.height": {
+      "t": "number",
+      "c": 258,
+      "v": [
+        "832"
+      ]
+    },
+    "window.navigation": {
+      "t": "object",
+      "c": 36,
+      "v": [
+        "{}"
+      ]
+    },
+    "document.hidden": {
+      "t": "boolean",
+      "c": 195,
+      "v": [
+        "false"
+      ]
+    },
+    "window.external": {
+      "t": "object",
+      "c": 75,
+      "v": [
+        "{}"
+      ]
+    },
+    "navigator.loadPurpose": {
+      "t": "undefined",
+      "c": 18,
+      "v": [
+        "undefined"
+      ]
+    },
+    "navigator.language": {
+      "t": "string",
+      "c": 208,
+      "v": [
+        "en-IN"
+      ]
+    },
+    "storage.setItem": {
+      "t": "string",
+      "c": 982,
+      "v": [
+        "__support__",
+        "vector_test",
+        "ph_phc_9dulIW3P2WvKyM4gpDwBlTymZArbmS7rAvfxFpU0p7t_posthog",
+        "__mplssupport__",
+        "BT_sid"
+      ]
+    },
+    "window.sessionStorage": {
+      "t": "object",
+      "c": 1541,
+      "v": [
+        "{\"ph_phc_9dulIW3P2WvKyM4gpDwBlTymZArbmS7rAvfxFpU0p7t_window_id\":\"\\\"019cde53-63e8-71c4-8ad5-a51d75597",
+        "{\"ph_phc_9dulIW3P2WvKyM4gpDwBlTymZArbmS7rAvfxFpU0p7t_primary_window_exists\":\"true\",\"ph_phc_9dulIW3P2",
+        "{}",
+        "{\"BT_sid\":\"klRWqyK5-mLSirB02U-9cde552da3\"}",
+        "{\"@@scroll|/demo/|initial\":\"0\",\"ph_phc_9dulIW3P2WvKyM4gpDwBlTymZArbmS7rAvfxFpU0p7t_window_id\":\"\\\"019"
+      ]
+    },
+    "navigator.sendBeacon": {
+      "t": "function",
+      "c": 67,
+      "v": [
+        "[fn]"
+      ]
+    },
+    "crypto.getRandomValues": {
+      "t": "number",
+      "c": 22,
+      "v": [
+        "8",
+        "16",
+        "1"
+      ]
+    },
+    "navigator.onLine": {
+      "t": "boolean",
+      "c": 83,
+      "v": [
+        "true"
+      ]
+    },
+    "document.visibilityState": {
+      "t": "string",
+      "c": 120,
+      "v": [
+        "visible"
+      ]
+    },
+    "navigator.vendor": {
+      "t": "string",
+      "c": 316,
+      "v": [
+        "Google Inc."
+      ]
+    },
+    "document.compatMode": {
+      "t": "string",
+      "c": 51,
+      "v": [
+        "CSS1Compat"
+      ]
+    },
+    "navigator.product": {
+      "t": "string",
+      "c": 27,
+      "v": [
+        "Gecko"
+      ]
+    },
+    "navigator.scheduling": {
+      "t": "object",
+      "c": 40,
+      "v": [
+        "{}"
+      ]
+    },
+    "navigator.webdriver": {
+      "t": "boolean",
+      "c": 56,
+      "v": [
+        "false"
+      ]
+    },
+    "document.URL": {
+      "t": "string",
+      "c": 10,
+      "v": [
+        "https://fingerprint.com/demo/"
+      ]
+    },
+    "navigator.maxTouchPoints": {
+      "t": "number",
+      "c": 74,
+      "v": [
+        "5"
+      ]
+    },
+    "window.devicePixelRatio": {
+      "t": "number",
+      "c": 37,
+      "v": [
+        "2.8125"
+      ]
+    },
+    "Intl.resolvedOptions": {
+      "t": "string",
+      "c": 64,
+      "v": [
+        "Asia/Calcutta"
+      ]
+    },
+    "Date.getTimezoneOffset": {
+      "t": "number",
+      "c": 69,
+      "v": [
+        "-330"
+      ]
+    },
+    "window.innerHeight": {
+      "t": "number",
+      "c": 111,
+      "v": [
+        "747",
+        "699"
+      ]
+    },
+    "window.innerWidth": {
+      "t": "number",
+      "c": 116,
+      "v": [
+        "384"
+      ]
+    },
+    "screen.availHeight": {
+      "t": "number",
+      "c": 99,
+      "v": [
+        "832"
+      ]
+    },
+    "screen.availWidth": {
+      "t": "number",
+      "c": 99,
+      "v": [
+        "384"
+      ]
+    },
+    "window.scrollY": {
+      "t": "number",
+      "c": 1026,
+      "v": [
+        "0",
+        "11.377778053283691",
+        "192.7111053466797",
+        "43.022220611572266",
+        "194.13333129882812"
+      ]
+    },
+    "window.pageYOffset": {
+      "t": "number",
+      "c": 36,
+      "v": [
+        "0"
+      ]
+    },
+    "window.customElements": {
+      "t": "object",
+      "c": 19070,
+      "v": [
+        "{}"
+      ]
+    },
+    "canvas.getContext": {
+      "t": "string",
+      "c": 93,
+      "v": [
+        "webgl",
+        "webgl2",
+        "2d"
+      ]
+    },
+    "canvas.toDataURL": {
+      "t": "string",
+      "c": 64,
+      "v": [
+        "[FP]"
+      ]
+    },
+    "performance.getEntries": {
+      "t": "string",
+      "c": 6,
+      "v": [
+        "[fn]"
+      ]
+    },
+    "navigator.userLanguage": {
+      "t": "undefined",
+      "c": 34,
+      "v": [
+        "undefined"
+      ]
+    },
+    "navigator.appVersion": {
+      "t": "string",
+      "c": 71,
+      "v": [
+        "5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Mobile Safari/537"
+      ]
+    },
+    "performance.timing": {
+      "t": "object",
+      "c": 46,
+      "v": [
+        "{\"connectStart\":1773256619389,\"secureConnectionStart\":0,\"unloadEventEnd\":1773256619667,\"domainLookup",
+        "{\"connectStart\":1773256641576,\"secureConnectionStart\":1773256641813,\"unloadEventEnd\":0,\"domainLookup",
+        "{\"connectStart\":1773256590010,\"secureConnectionStart\":0,\"unloadEventEnd\":1773256590213,\"domainLookup",
+        "{\"connectStart\":1773256561466,\"secureConnectionStart\":0,\"unloadEventEnd\":1773256561808,\"domainLookup"
+      ]
+    },
+    "navigator.globalPrivacyControl": {
+      "t": "undefined",
+      "c": 17,
+      "v": [
+        "undefined"
+      ]
+    },
+    "window.visualViewport": {
+      "t": "object",
+      "c": 155,
+      "v": [
+        "{}"
+      ]
+    },
+    "css.matchMedia": {
+      "t": "string",
+      "c": 141,
+      "v": [
+        "(max-width: 1200px)",
+        "(prefers-reduced-motion)",
+        "(max-width: 640px)",
+        "(pointer: coarse)",
+        "(prefers-color-scheme: dark)"
+      ]
+    },
+    "screen.colorDepth": {
+      "t": "number",
+      "c": 48,
+      "v": [
+        "24"
+      ]
+    },
+    "document.characterSet": {
+      "t": "string",
+      "c": 33,
+      "v": [
+        "UTF-8"
+      ]
+    },
+    "screen.availTop": {
+      "t": "number",
+      "c": 105,
+      "v": [
+        "0"
+      ]
+    },
+    "screen.availLeft": {
+      "t": "number",
+      "c": 105,
+      "v": [
+        "0"
+      ]
+    },
+    "audio.getChannelData": {
+      "t": "number",
+      "c": 12,
+      "v": [
+        "0"
+      ]
+    },
+    "canvas.fillText": {
+      "t": "string",
+      "c": 34,
+      "v": [
+        "Cwm fjordbank glyphs",
+        "Cwm fjordbank gly \ud83d\ude03"
+      ]
+    },
+    "navigator.oscpu": {
+      "t": "undefined",
+      "c": 22,
+      "v": [
+        "undefined"
+      ]
+    },
+    "navigator.languages": {
+      "t": "object",
+      "c": 73,
+      "v": [
+        "[\"en-IN\",\"en-GB\",\"en-US\",\"en\",\"gu\"]"
+      ]
+    },
+    "performance.mark": {
+      "t": "string",
+      "c": 454,
+      "v": [
+        "[fn]"
+      ]
+    },
+    "network.effectiveType": {
+      "t": "string",
+      "c": 43,
+      "v": [
+        "4g"
+      ]
+    },
+    "network.saveData": {
+      "t": "boolean",
+      "c": 38,
+      "v": [
+        "false"
+      ]
+    },
+    "navigator.constructor": {
+      "t": "function",
+      "c": 350,
+      "v": [
+        "[fn]"
+      ]
+    },
+    "history.constructor": {
+      "t": "function",
+      "c": 344,
+      "v": [
+        "[fn]"
+      ]
+    },
+    "screen.constructor": {
+      "t": "function",
+      "c": 344,
+      "v": [
+        "[fn]"
+      ]
+    },
+    "navigator.platform": {
+      "t": "string",
+      "c": 83,
+      "v": [
+        "Linux armv81"
+      ]
+    },
+    "navigator.deviceMemory": {
+      "t": "number",
+      "c": 43,
+      "v": [
+        "8"
+      ]
+    },
+    "navigator.hardwareConcurrency": {
+      "t": "number",
+      "c": 43,
+      "v": [
+        "8"
+      ]
+    },
+    "webrtc.RTCPeerConnection": {
+      "t": "string",
+      "c": 21,
+      "v": [
+        "new"
+      ]
+    },
+    "webrtc.createDataChannel": {
+      "t": "string",
+      "c": 21,
+      "v": [
+        "",
+        "0.9166566768840793",
+        "0.44539150739840605",
+        "y.metrika",
+        "0.4429041164687093"
+      ]
+    },
+    "navigator.storageBuckets": {
+      "t": "object",
+      "c": 22,
+      "v": [
+        "{}"
+      ]
+    },
+    "speech.getVoices": {
+      "t": "string",
+      "c": 12,
+      "v": [
+        "0 voices",
+        "80 voices"
+      ]
+    },
+    "storage.indexedDB.open": {
+      "t": "string",
+      "c": 11,
+      "v": [
+        "botfaqtor_db",
+        "1"
+      ]
+    },
+    "navigator.webkitTemporaryStorage": {
+      "t": "object",
+      "c": 26,
+      "v": [
+        "{}"
+      ]
+    },
+    "window.indexedDB": {
+      "t": "object",
+      "c": 32,
+      "v": [
+        "{}"
+      ]
+    },
+    "navigator.gpu": {
+      "t": "object",
+      "c": 28,
+      "v": [
+        "{}"
+      ]
+    },
+    "media.decodingInfo": {
+      "t": "string",
+      "c": 48,
+      "v": [
+        "{\"type\":\"file\",\"video\":{\"contentType\":\"video/mp4; ",
+        "{\"type\":\"file\",\"video\":{\"contentType\":\"video/webm;"
+      ]
+    },
+    "navigator.null": {
+      "t": "undefined",
+      "c": 6,
+      "v": [
+        "undefined"
+      ]
+    },
+    "navigator.cpuClass": {
+      "t": "undefined",
+      "c": 17,
+      "v": [
+        "undefined"
+      ]
+    },
+    "permissions.query": {
+      "t": "string",
+      "c": 6,
+      "v": [
+        "notifications"
+      ]
+    },
+    "webgl.getSupportedExtensions": {
+      "t": "string",
+      "c": 23,
+      "v": [
+        "23 ext",
+        "13 ext"
+      ]
+    },
+    "webgl.getParameter(32777)": {
+      "t": "number",
+      "c": 24,
+      "v": [
+        "32774"
+      ]
+    },
+    "webgl.getParameter(34877)": {
+      "t": "number",
+      "c": 12,
+      "v": [
+        "32774"
+      ]
+    },
+    "webgl.getParameter(32968)": {
+      "t": "number",
+      "c": 12,
+      "v": [
+        "0"
+      ]
+    },
+    "webgl.getParameter(32969)": {
+      "t": "number",
+      "c": 12,
+      "v": [
+        "1"
+      ]
+    },
+    "webgl.getParameter(32970)": {
+      "t": "number",
+      "c": 12,
+      "v": [
+        "0"
+      ]
+    },
+    "webgl.getParameter(32971)": {
+      "t": "number",
+      "c": 12,
+      "v": [
+        "1"
+      ]
+    },
+    "webgl.getParameter(32773)": {
+      "t": "object",
+      "c": 12,
+      "v": [
+        "{\"0\":0,\"1\":0,\"2\":0,\"3\":0}"
+      ]
+    },
+    "webgl.getParameter(2884)": {
+      "t": "boolean",
+      "c": 12,
+      "v": [
+        "false"
+      ]
+    },
+    "webgl.getParameter(3042)": {
+      "t": "boolean",
+      "c": 12,
+      "v": [
+        "false"
+      ]
+    },
+    "webgl.getParameter(3024)": {
+      "t": "boolean",
+      "c": 12,
+      "v": [
+        "true"
+      ]
+    },
+    "webgl.getParameter(2960)": {
+      "t": "boolean",
+      "c": 12,
+      "v": [
+        "false"
+      ]
+    },
+    "webgl.getParameter(2929)": {
+      "t": "boolean",
+      "c": 12,
+      "v": [
+        "false"
+      ]
+    },
+    "webgl.getParameter(3089)": {
+      "t": "boolean",
+      "c": 12,
+      "v": [
+        "false"
+      ]
+    },
+    "webgl.getParameter(32823)": {
+      "t": "boolean",
+      "c": 12,
+      "v": [
+        "false"
+      ]
+    },
+    "webgl.getParameter(2849)": {
+      "t": "number",
+      "c": 12,
+      "v": [
+        "1"
+      ]
+    },
+    "webgl.getParameter(33901)": {
+      "t": "object",
+      "c": 17,
+      "v": [
+        "{\"0\":1,\"1\":1023}"
+      ]
+    },
+    "webgl.getParameter(33902)": {
+      "t": "object",
+      "c": 17,
+      "v": [
+        "{\"0\":1,\"1\":8}"
+      ]
+    },
+    "webgl.getParameter(2885)": {
+      "t": "number",
+      "c": 12,
+      "v": [
+        "1029"
+      ]
+    },
+    "webgl.getParameter(2886)": {
+      "t": "number",
+      "c": 12,
+      "v": [
+        "2305"
+      ]
+    },
+    "webgl.getParameter(2928)": {
+      "t": "object",
+      "c": 12,
+      "v": [
+        "{\"0\":0,\"1\":1}"
+      ]
+    },
+    "webgl.getParameter(2930)": {
+      "t": "boolean",
+      "c": 12,
+      "v": [
+        "true"
+      ]
+    },
+    "webgl.getParameter(2931)": {
+      "t": "number",
+      "c": 12,
+      "v": [
+        "1"
+      ]
+    },
+    "webgl.getParameter(2932)": {
+      "t": "number",
+      "c": 12,
+      "v": [
+        "513"
+      ]
+    },
+    "webgl.getParameter(2961)": {
+      "t": "number",
+      "c": 12,
+      "v": [
+        "0"
+      ]
+    },
+    "webgl.getParameter(2962)": {
+      "t": "number",
+      "c": 12,
+      "v": [
+        "519"
+      ]
+    },
+    "webgl.getParameter(2964)": {
+      "t": "number",
+      "c": 12,
+      "v": [
+        "7680"
+      ]
+    },
+    "webgl.getParameter(2965)": {
+      "t": "number",
+      "c": 12,
+      "v": [
+        "7680"
+      ]
+    },
+    "webgl.getParameter(2966)": {
+      "t": "number",
+      "c": 12,
+      "v": [
+        "7680"
+      ]
+    },
+    "webgl.getParameter(2967)": {
+      "t": "number",
+      "c": 12,
+      "v": [
+        "0"
+      ]
+    },
+    "webgl.getParameter(2963)": {
+      "t": "number",
+      "c": 12,
+      "v": [
+        "4294967295"
+      ]
+    },
+    "webgl.getParameter(2968)": {
+      "t": "number",
+      "c": 12,
+      "v": [
+        "4294967295"
+      ]
+    },
+    "webgl.getParameter(34816)": {
+      "t": "number",
+      "c": 12,
+      "v": [
+        "519"
+      ]
+    },
+    "webgl.getParameter(34817)": {
+      "t": "number",
+      "c": 12,
+      "v": [
+        "7680"
+      ]
+    },
+    "webgl.getParameter(34818)": {
+      "t": "number",
+      "c": 12,
+      "v": [
+        "7680"
+      ]
+    },
+    "webgl.getParameter(34819)": {
+      "t": "number",
+      "c": 12,
+      "v": [
+        "7680"
+      ]
+    },
+    "webgl.getParameter(36003)": {
+      "t": "number",
+      "c": 12,
+      "v": [
+        "0"
+      ]
+    },
+    "webgl.getParameter(36004)": {
+      "t": "number",
+      "c": 12,
+      "v": [
+        "4294967295"
+      ]
+    },
+    "webgl.getParameter(36005)": {
+      "t": "number",
+      "c": 12,
+      "v": [
+        "4294967295"
+      ]
+    },
+    "webgl.getParameter(2978)": {
+      "t": "object",
+      "c": 12,
+      "v": [
+        "{\"0\":0,\"1\":0,\"2\":300,\"3\":150}"
+      ]
+    },
+    "webgl.getParameter(3088)": {
+      "t": "object",
+      "c": 12,
+      "v": [
+        "{\"0\":0,\"1\":0,\"2\":300,\"3\":150}"
+      ]
+    },
+    "webgl.getParameter(3106)": {
+      "t": "object",
+      "c": 12,
+      "v": [
+        "{\"0\":0,\"1\":0,\"2\":0,\"3\":0}"
+      ]
+    },
+    "webgl.getParameter(3107)": {
+      "t": "object",
+      "c": 12,
+      "v": [
+        "[true,true,true,true]"
+      ]
+    },
+    "webgl.getParameter(3317)": {
+      "t": "number",
+      "c": 12,
+      "v": [
+        "4"
+      ]
+    },
+    "webgl.getParameter(3333)": {
+      "t": "number",
+      "c": 12,
+      "v": [
+        "4"
+      ]
+    },
+    "webgl.getParameter(3379)": {
+      "t": "number",
+      "c": 17,
+      "v": [
+        "4096"
+      ]
+    },
+    "webgl.getParameter(3386)": {
+      "t": "object",
+      "c": 17,
+      "v": [
+        "{\"0\":16384,\"1\":16384}"
+      ]
+    },
+    "webgl.getParameter(3408)": {
+      "t": "number",
+      "c": 12,
+      "v": [
+        "4"
+      ]
+    },
+    "webgl.getParameter(3410)": {
+      "t": "number",
+      "c": 17,
+      "v": [
+        "8"
+      ]
+    },
+    "webgl.getParameter(3411)": {
+      "t": "number",
+      "c": 17,
+      "v": [
+        "8"
+      ]
+    },
+    "webgl.getParameter(3412)": {
+      "t": "number",
+      "c": 17,
+      "v": [
+        "8"
+      ]
+    },
+    "webgl.getParameter(3413)": {
+      "t": "number",
+      "c": 17,
+      "v": [
+        "8"
+      ]
+    },
+    "webgl.getParameter(3414)": {
+      "t": "number",
+      "c": 17,
+      "v": [
+        "24"
+      ]
+    },
+    "webgl.getParameter(3415)": {
+      "t": "number",
+      "c": 17,
+      "v": [
+        "0"
+      ]
+    },
+    "webgl.getParameter(10752)": {
+      "t": "number",
+      "c": 12,
+      "v": [
+        "0"
+      ]
+    },
+    "webgl.getParameter(32824)": {
+      "t": "number",
+      "c": 12,
+      "v": [
+        "0"
+      ]
+    },
+    "webgl.getParameter(32936)": {
+      "t": "number",
+      "c": 12,
+      "v": [
+        "1"
+      ]
+    },
+    "webgl.getParameter(32937)": {
+      "t": "number",
+      "c": 12,
+      "v": [
+        "4"
+      ]
+    },
+    "webgl.getParameter(32938)": {
+      "t": "number",
+      "c": 12,
+      "v": [
+        "1"
+      ]
+    },
+    "webgl.getParameter(32939)": {
+      "t": "boolean",
+      "c": 12,
+      "v": [
+        "false"
+      ]
+    },
+    "webgl.getParameter(34467)": {
+      "t": "object",
+      "c": 12,
+      "v": [
+        "{}"
+      ]
+    },
+    "webgl.getParameter(33170)": {
+      "t": "number",
+      "c": 12,
+      "v": [
+        "4352"
+      ]
+    },
+    "webgl.getParameter(34921)": {
+      "t": "number",
+      "c": 17,
+      "v": [
+        "32"
+      ]
+    },
+    "webgl.getParameter(36347)": {
+      "t": "number",
+      "c": 17,
+      "v": [
+        "256"
+      ]
+    },
+    "webgl.getParameter(36348)": {
+      "t": "number",
+      "c": 17,
+      "v": [
+        "31"
+      ]
+    },
+    "webgl.getParameter(35661)": {
+      "t": "number",
+      "c": 17,
+      "v": [
+        "96"
+      ]
+    },
+    "webgl.getParameter(35660)": {
+      "t": "number",
+      "c": 17,
+      "v": [
+        "16"
+      ]
+    },
+    "webgl.getParameter(34930)": {
+      "t": "number",
+      "c": 17,
+      "v": [
+        "16"
+      ]
+    },
+    "webgl.getParameter(36349)": {
+      "t": "number",
+      "c": 17,
+      "v": [
+        "256"
+      ]
+    },
+    "webgl.getParameter(35724)": {
+      "t": "string",
+      "c": 29,
+      "v": [
+        "WebGL GLSL ES 1.0 (OpenGL ES GLSL ES 1.0 Chromium)"
+      ]
+    },
+    "webgl.getParameter(7936)": {
+      "t": "string",
+      "c": 29,
+      "v": [
+        "WebKit"
+      ]
+    },
+    "webgl.getParameter(7937)": {
+      "t": "string",
+      "c": 29,
+      "v": [
+        "WebKit WebGL"
+      ]
+    },
+    "webgl.getParameter(7938)": {
+      "t": "string",
+      "c": 29,
+      "v": [
+        "WebGL 1.0 (OpenGL ES 2.0 Chromium)"
+      ]
+    },
+    "webgl.getParameter(34076)": {
+      "t": "number",
+      "c": 17,
+      "v": [
+        "4096"
+      ]
+    },
+    "webgl.getParameter(34016)": {
+      "t": "number",
+      "c": 12,
+      "v": [
+        "33984"
+      ]
+    },
+    "webgl.getParameter(35738)": {
+      "t": "number",
+      "c": 12,
+      "v": [
+        "5121"
+      ]
+    },
+    "webgl.getParameter(35739)": {
+      "t": "number",
+      "c": 12,
+      "v": [
+        "6408"
+      ]
+    },
+    "webgl.getParameter(34024)": {
+      "t": "number",
+      "c": 17,
+      "v": [
+        "16384"
+      ]
+    },
+    "webgl.getParameter(37440)": {
+      "t": "boolean",
+      "c": 12,
+      "v": [
+        "false"
+      ]
+    },
+    "webgl.getParameter(37441)": {
+      "t": "boolean",
+      "c": 12,
+      "v": [
+        "false"
+      ]
+    },
+    "webgl.getParameter(37443)": {
+      "t": "number",
+      "c": 12,
+      "v": [
+        "37444"
+      ]
+    },
+    "webgl.getExtension": {
+      "t": "string",
+      "c": 308,
+      "v": [
+        "EXT_texture_filter_anisotropic:yes",
+        "EXT_blend_minmax:yes",
+        "EXT_color_buffer_half_float:yes",
+        "WEBGL_debug_renderer_info:yes",
+        "ANGLE_instanced_arrays:yes"
+      ]
+    },
+    "webgl.getParameter(34047)": {
+      "t": "number",
+      "c": 17,
+      "v": [
+        "16"
+      ]
+    },
+    "webgl.getParameter(35723)": {
+      "t": "number",
+      "c": 12,
+      "v": [
+        "4352"
+      ]
+    },
+    "webgl.getParameter(34229)": {
+      "t": "null",
+      "c": 12,
+      "v": [
+        "null"
+      ]
+    },
+    "webgl.getShaderPrecisionFormat": {
+      "t": "string",
+      "c": 324,
+      "v": [
+        "35632,36338",
+        "35633,36336",
+        "35632,36337",
+        "35633,36338",
+        "35632,36336"
+      ]
+    },
+    "navigator.doNotTrack": {
+      "t": "null",
+      "c": 27,
+      "v": [
+        "null"
+      ]
+    },
+    "plugins.plugins": {
+      "t": "string",
+      "c": 98,
+      "v": [
+        "0 plugins"
+      ]
+    },
+    "performance.memory": {
+      "t": "object",
+      "c": 12,
+      "v": [
+        "{}"
+      ]
+    },
+    "navigator.pdfViewerEnabled": {
+      "t": "boolean",
+      "c": 33,
+      "v": [
+        "false"
+      ]
+    },
+    "audio.AudioContext": {
+      "t": "string",
+      "c": 12,
+      "v": [
+        "new"
+      ]
+    },
+    "audio.baseLatency": {
+      "t": "number",
+      "c": 12,
+      "v": [
+        "0.003"
+      ]
+    },
+    "window.isSecureContext": {
+      "t": "boolean",
+      "c": 6,
+      "v": [
+        "true"
+      ]
+    },
+    "performance.timeOrigin": {
+      "t": "number",
+      "c": 193,
+      "v": [
+        "1773256619379",
+        "1773256641543.5",
+        "1773256590000.5",
+        "1773256561447.8"
+      ]
+    },
+    "network.rtt": {
+      "t": "number",
+      "c": 17,
+      "v": [
+        "50"
+      ]
+    },
+    "navigator.productSub": {
+      "t": "string",
+      "c": 42,
+      "v": [
+        "20030107"
+      ]
+    },
+    "plugins.mimeTypes": {
+      "t": "string",
+      "c": 36,
+      "v": [
+        "0 types"
+      ]
+    },
+    "window.outerWidth": {
+      "t": "number",
+      "c": 6,
+      "v": [
+        "384"
+      ]
+    },
+    "window.outerHeight": {
+      "t": "number",
+      "c": 6,
+      "v": [
+        "832"
+      ]
+    },
+    "css.supports": {
+      "t": "string",
+      "c": 6,
+      "v": [
+        "backdrop-filter,blur(2px)"
+      ]
+    },
+    "navigator.vendorSub": {
+      "t": "string",
+      "c": 21,
+      "v": [
+        ""
+      ]
+    },
+    "navigator.userActivation": {
+      "t": "object",
+      "c": 16,
+      "v": [
+        "{}"
+      ]
+    },
+    "navigator.cookieEnabled": {
+      "t": "boolean",
+      "c": 33,
+      "v": [
+        "true"
+      ]
+    },
+    "navigator.appCodeName": {
+      "t": "string",
+      "c": 21,
+      "v": [
+        "Mozilla"
+      ]
+    },
+    "navigator.appName": {
+      "t": "string",
+      "c": 31,
+      "v": [
+        "Netscape"
+      ]
+    },
+    "navigator.javaEnabled": {
+      "t": "function",
+      "c": 21,
+      "v": [
+        "[fn]"
+      ]
+    },
+    "navigator.vibrate": {
+      "t": "function",
+      "c": 11,
+      "v": [
+        "[fn]"
+      ]
+    },
+    "navigator.windowControlsOverlay": {
+      "t": "object",
+      "c": 16,
+      "v": [
+        "{}"
+      ]
+    },
+    "navigator.deprecatedRunAdAuctionEnforcesKAnonymity": {
+      "t": "boolean",
+      "c": 21,
+      "v": [
+        "false"
+      ]
+    },
+    "navigator.protectedAudience": {
+      "t": "object",
+      "c": 16,
+      "v": [
+        "{}"
+      ]
+    },
+    "navigator.clipboard": {
+      "t": "object",
+      "c": 26,
+      "v": [
+        "{}"
+      ]
+    },
+    "navigator.credentials": {
+      "t": "object",
+      "c": 16,
+      "v": [
+        "{}"
+      ]
+    },
+    "navigator.keyboard": {
+      "t": "object",
+      "c": 16,
+      "v": [
+        "{}"
+      ]
+    },
+    "navigator.managed": {
+      "t": "object",
+      "c": 16,
+      "v": [
+        "{}"
+      ]
+    },
+    "navigator.serviceWorker": {
+      "t": "object",
+      "c": 16,
+      "v": [
+        "{}"
+      ]
+    },
+    "navigator.virtualKeyboard": {
+      "t": "object",
+      "c": 16,
+      "v": [
+        "{}"
+      ]
+    },
+    "navigator.wakeLock": {
+      "t": "object",
+      "c": 20,
+      "v": [
+        "{}"
+      ]
+    },
+    "navigator.locks": {
+      "t": "object",
+      "c": 16,
+      "v": [
+        "{}"
+      ]
+    },
+    "navigator.contacts": {
+      "t": "object",
+      "c": 16,
+      "v": [
+        "{}"
+      ]
+    },
+    "navigator.login": {
+      "t": "object",
+      "c": 16,
+      "v": [
+        "{}"
+      ]
+    },
+    "navigator.ink": {
+      "t": "object",
+      "c": 16,
+      "v": [
+        "{}"
+      ]
+    },
+    "navigator.devicePosture": {
+      "t": "object",
+      "c": 16,
+      "v": [
+        "{}"
+      ]
+    },
+    "navigator.mediaSession": {
+      "t": "object",
+      "c": 16,
+      "v": [
+        "{}"
+      ]
+    },
+    "navigator.presentation": {
+      "t": "object",
+      "c": 16,
+      "v": [
+        "{}"
+      ]
+    },
+    "navigator.adAuctionComponents": {
+      "t": "function",
+      "c": 11,
+      "v": [
+        "[fn]"
+      ]
+    },
+    "navigator.runAdAuction": {
+      "t": "function",
+      "c": 11,
+      "v": [
+        "[fn]"
+      ]
+    },
+    "navigator.canLoadAdAuctionFencedFrame": {
+      "t": "function",
+      "c": 11,
+      "v": [
+        "[fn]"
+      ]
+    },
+    "navigator.canShare": {
+      "t": "function",
+      "c": 11,
+      "v": [
+        "[fn]"
+      ]
+    },
+    "navigator.share": {
+      "t": "function",
+      "c": 11,
+      "v": [
+        "[fn]"
+      ]
+    },
+    "navigator.clearAppBadge": {
+      "t": "function",
+      "c": 11,
+      "v": [
+        "[fn]"
+      ]
+    },
+    "navigator.getUserMedia": {
+      "t": "function",
+      "c": 11,
+      "v": [
+        "[fn]"
+      ]
+    },
+    "navigator.requestMIDIAccess": {
+      "t": "function",
+      "c": 11,
+      "v": [
+        "[fn]"
+      ]
+    },
+    "navigator.requestMediaKeySystemAccess": {
+      "t": "function",
+      "c": 11,
+      "v": [
+        "[fn]"
+      ]
+    },
+    "navigator.setAppBadge": {
+      "t": "function",
+      "c": 11,
+      "v": [
+        "[fn]"
+      ]
+    },
+    "navigator.webkitGetUserMedia": {
+      "t": "function",
+      "c": 11,
+      "v": [
+        "[fn]"
+      ]
+    },
+    "navigator.clearOriginJoinedAdInterestGroups": {
+      "t": "function",
+      "c": 11,
+      "v": [
+        "[fn]"
+      ]
+    },
+    "navigator.createAuctionNonce": {
+      "t": "function",
+      "c": 11,
+      "v": [
+        "[fn]"
+      ]
+    },
+    "navigator.joinAdInterestGroup": {
+      "t": "function",
+      "c": 11,
+      "v": [
+        "[fn]"
+      ]
+    },
+    "navigator.leaveAdInterestGroup": {
+      "t": "function",
+      "c": 11,
+      "v": [
+        "[fn]"
+      ]
+    },
+    "navigator.updateAdInterestGroups": {
+      "t": "function",
+      "c": 11,
+      "v": [
+        "[fn]"
+      ]
+    },
+    "navigator.deprecatedReplaceInURN": {
+      "t": "function",
+      "c": 11,
+      "v": [
+        "[fn]"
+      ]
+    },
+    "navigator.deprecatedURNToURL": {
+      "t": "function",
+      "c": 11,
+      "v": [
+        "[fn]"
+      ]
+    },
+    "navigator.getInstalledRelatedApps": {
+      "t": "function",
+      "c": 11,
+      "v": [
+        "[fn]"
+      ]
+    },
+    "navigator.getInterestGroupAdAuctionData": {
+      "t": "function",
+      "c": 11,
+      "v": [
+        "[fn]"
+      ]
+    },
+    "canvas.getImageData": {
+      "t": "string",
+      "c": 6,
+      "v": [
+        "[FP]"
+      ]
+    },
+    "webgl.getParameter(37445)": {
+      "t": "string",
+      "c": 27,
+      "v": [
+        "Qualcomm"
+      ]
+    },
+    "webgl.RENDERER/VENDOR": {
+      "t": "string",
+      "c": 54,
+      "v": [
+        "Qualcomm",
+        "Adreno (TM) 630"
+      ]
+    },
+    "webgl.getParameter(37446)": {
+      "t": "string",
+      "c": 27,
+      "v": [
+        "Adreno (TM) 630"
+      ]
+    },
+    "window.scrollX": {
+      "t": "number",
+      "c": 529,
+      "v": [
+        "0"
+      ]
+    },
+    "window.pageXOffset": {
+      "t": "number",
+      "c": 15,
+      "v": [
+        "0"
+      ]
+    },
+    "performance.getEntriesByName": {
+      "t": "string",
+      "c": 108,
+      "v": [
+        "[fn]"
+      ]
+    },
+    "performance.measure": {
+      "t": "string",
+      "c": 349,
+      "v": [
+        "[fn]"
+      ]
+    },
+    "performance.clearMeasures": {
+      "t": "string",
+      "c": 251,
+      "v": [
+        "[fn]"
+      ]
+    },
+    "performance.clearMarks": {
+      "t": "string",
+      "c": 251,
+      "v": [
+        "[fn]"
+      ]
+    },
+    "Date.toString": {
+      "t": "string",
+      "c": 5,
+      "v": [
+        "Thu Mar 12 2026 00:47:28 GMT+0"
+      ]
+    },
+    "navigator.browserLanguage": {
+      "t": "undefined",
+      "c": 5,
+      "v": [
+        "undefined"
+      ]
+    },
+    "navigator.systemLanguage": {
+      "t": "undefined",
+      "c": 5,
+      "v": [
+        "undefined"
+      ]
+    },
+    "screen.pixelDepth": {
+      "t": "number",
+      "c": 5,
+      "v": [
+        "24"
+      ]
+    },
+    "screen.top": {
+      "t": "undefined",
+      "c": 5,
+      "v": [
+        "undefined"
+      ]
+    },
+    "screen.left": {
+      "t": "undefined",
+      "c": 5,
+      "v": [
+        "undefined"
+      ]
+    },
+    "navigator.webkitPersistentStorage": {
+      "t": "object",
+      "c": 10,
+      "v": [
+        "{}"
+      ]
+    },
+    "navigator.xr": {
+      "t": "object",
+      "c": 10,
+      "v": [
+        "{}"
+      ]
+    },
+    "window.length": {
+      "t": "number",
+      "c": 33,
+      "v": [
+        "5",
+        "6",
+        "1"
+      ]
+    },
+    "network.downlink": {
+      "t": "number",
+      "c": 5,
+      "v": [
+        "4.05"
+      ]
+    },
+    "network.type": {
+      "t": "string",
+      "c": 5,
+      "v": [
+        "wifi"
+      ]
+    },
+    "battery.getBattery": {
+      "t": "string",
+      "c": 5,
+      "v": [
+        "[FP]"
+      ]
+    },
+    "battery.level": {
+      "t": "number",
+      "c": 5,
+      "v": [
+        "0.3"
+      ]
+    },
+    "battery.charging": {
+      "t": "boolean",
+      "c": 5,
+      "v": [
+        "false"
+      ]
+    },
+    "screen.orientation": {
+      "t": "object",
+      "c": 10,
+      "v": [
+        "{}"
+      ]
+    },
+    "navigator.buildID": {
+      "t": "undefined",
+      "c": 5,
+      "v": [
+        "undefined"
+      ]
+    },
+    "navigator.msDoNotTrack": {
+      "t": "undefined",
+      "c": 5,
+      "v": [
+        "undefined"
+      ]
+    },
+    "window.locationbar": {
+      "t": "object",
+      "c": 10,
+      "v": [
+        "{}"
+      ]
+    },
+    "performance.interactionCount": {
+      "t": "number",
+      "c": 122,
+      "v": [
+        "0",
+        "1"
+      ]
+    }
+  },
+  "last_updated": "2026-03-12T00:47:57.023289",
+  "total_apis": 277
+}
