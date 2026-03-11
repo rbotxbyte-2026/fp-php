@@ -438,24 +438,12 @@
   }
   
   // 5d-early. EARLY TOUCH FIX - Must run before fingerprinting
-  // fingerprint.com checks: typeof TouchEvent !== 'undefined' && 'ontouchstart' in window
-  // On desktop Chrome, TouchEvent exists but ontouchstart does NOT
-  // We need to add ontouchstart to window IMMEDIATELY
+  // fingerprint.com checks multiple things:
+  // 1. typeof TouchEvent !== 'undefined'
+  // 2. 'ontouchstart' in window
+  // 3. document.createEvent('TouchEvent') - THIS throws on desktop Chrome!
+  // On desktop Chrome, TouchEvent exists but ontouchstart does NOT and createEvent throws
   try {
-    // Create TouchEvent constructor if missing
-    if (typeof window.TouchEvent === 'undefined') {
-      const FakeTouchEvent = function TouchEvent(type, init) {
-        return Reflect.construct(UIEvent, [type, init], TouchEvent);
-      };
-      FakeTouchEvent.prototype = Object.create(UIEvent.prototype);
-      FakeTouchEvent.prototype.constructor = FakeTouchEvent;
-      Object.defineProperty(window, 'TouchEvent', {
-        value: FakeTouchEvent,
-        writable: true,
-        configurable: true
-      });
-    }
-    
     // Add touch properties to window - CRITICAL for 'ontouchstart' in window check
     const touchEventProps = ['ontouchstart', 'ontouchend', 'ontouchmove', 'ontouchcancel'];
     touchEventProps.forEach(prop => {
@@ -480,9 +468,78 @@
         });
       }
     });
+    
+    // CRITICAL: Override document.createEvent to handle TouchEvent
+    // On desktop Chrome, document.createEvent('TouchEvent') throws NotSupportedError
+    // fingerprint.com uses this to detect touch support
+    const originalCreateEvent = document.createEvent.bind(document);
+    Object.defineProperty(document, 'createEvent', {
+      value: function(eventType) {
+        if (eventType === 'TouchEvent' || eventType === 'TouchEvents') {
+          // Return a fake TouchEvent-like object
+          const fakeEvent = originalCreateEvent.call(this, 'UIEvent');
+          fakeEvent.initUIEvent('touchstart', true, true, window, 0);
+          // Add touch-specific properties
+          Object.defineProperties(fakeEvent, {
+            touches: { value: [], writable: true, configurable: true },
+            targetTouches: { value: [], writable: true, configurable: true },
+            changedTouches: { value: [], writable: true, configurable: true }
+          });
+          return fakeEvent;
+        }
+        return originalCreateEvent.call(this, eventType);
+      },
+      writable: true,
+      configurable: true
+    });
+    
+    // Also ensure new TouchEvent() works properly for mobile profile
+    // Desktop Chrome has TouchEvent but it may behave differently
+    const OriginalTouchEvent = window.TouchEvent;
+    if (OriginalTouchEvent) {
+      const PatchedTouchEvent = function TouchEvent(type, eventInitDict) {
+        try {
+          return new OriginalTouchEvent(type, eventInitDict);
+        } catch (e) {
+          // If original throws, create a fake one
+          const evt = document.createEvent('UIEvent');
+          evt.initUIEvent(type, eventInitDict?.bubbles ?? true, eventInitDict?.cancelable ?? true, window, 0);
+          Object.defineProperties(evt, {
+            touches: { value: eventInitDict?.touches ?? [], configurable: true },
+            targetTouches: { value: eventInitDict?.targetTouches ?? [], configurable: true },
+            changedTouches: { value: eventInitDict?.changedTouches ?? [], configurable: true }
+          });
+          return evt;
+        }
+      };
+      PatchedTouchEvent.prototype = OriginalTouchEvent.prototype;
+      Object.defineProperty(window, 'TouchEvent', {
+        value: PatchedTouchEvent,
+        writable: true,
+        configurable: true
+      });
+    }
   } catch (e) {
     // Silently fail
   }
+  
+  // 5d-early-2. Fix Developer Tools detection
+  // fingerprint.com detects DevTools via outerWidth/outerHeight vs innerWidth/innerHeight
+  // On mobile, these should be equal (no chrome/toolbar difference when DevTools not docked)
+  try {
+    const screenData = window.__SPOOF_PROFILE__?.client?.screen;
+    if (screenData) {
+      const innerW = screenData.innerWidth || 384;
+      const innerH = screenData.innerHeight || 699;
+      const outerW = screenData.outerWidth || 384;
+      const outerH = screenData.outerHeight || 832;
+      
+      // Make sure outer dimensions match the mobile profile
+      // DevTools detection: if (outerWidth - innerWidth > threshold) or (outerHeight - innerHeight > threshold)
+      Object.defineProperty(window, 'outerWidth', { get: () => outerW, configurable: true });
+      Object.defineProperty(window, 'outerHeight', { get: () => outerH, configurable: true });
+    }
+  } catch (e) {}
 
   // 5e. Fix Function.prototype.toString to not reveal any spoofing
   // UC detection looks at native function patterns
