@@ -1221,60 +1221,72 @@ const EMBEDDED_DEFAULT_PROFILE = {"server":{"ip":"2405:f600:8:e0a9:985c:f5c3:340
     nav.userAgent.toLowerCase().includes('mobile')
   );
   
-  // Critical: chrome object must exist but look native
+  // Critical: DO NOT modify chrome.runtime if it already exists and looks legitimate
+  // Our extension itself provides a valid chrome.runtime, so we should preserve it
+  // fingerprint.com flags "no_chrome_runtime" when it's missing/broken, not when it exists
   (function fixChromeObject() {
+    // Check if chrome.runtime already exists and is valid (from the extension itself)
+    const hasValidRuntime = typeof window.chrome !== 'undefined' && 
+                           typeof window.chrome.runtime !== 'undefined' &&
+                           window.chrome.runtime !== null;
+    
+    if (hasValidRuntime) {
+      // chrome.runtime exists (likely from our extension) - don't break it!
+      // Just ensure devtools isn't accessible
+      try { delete window.chrome.devtools; } catch (e) {}
+      try {
+        Object.defineProperty(window.chrome, 'devtools', {
+          get: function() { return undefined; },
+          configurable: true
+        });
+      } catch (e) {}
+      return;  // Exit - don't override existing runtime
+    }
+    
+    // Only create chrome.runtime if it doesn't exist (unusual case)
     if (typeof window.chrome === 'undefined') {
       window.chrome = {};
     }
     
-    // Key insight: fingerprint.com checks if chrome.runtime exists and its behavior
-    // On real mobile Chrome without extensions, chrome.runtime should be undefined or minimal
-    // On real desktop Chrome without extensions, chrome.runtime should have specific structure
-    
-    if (isMobileProfile) {
-      // Mobile Chrome - needs chrome.runtime to exist but be minimal
-      // fingerprint.com flags "no_chrome_runtime" when chrome.runtime is undefined
-      // Mobile Chrome DOES have chrome.runtime, just with limited API
-      try { delete window.chrome.csi; } catch (e) {}
-      try { delete window.chrome.loadTimes; } catch (e) {}
-      
-      // CRITICAL: Mobile Chrome has chrome.runtime with at least these properties
-      // The detection looks for the presence of runtime, not its methods
-      const mobileRuntime = {};
-      Object.defineProperty(mobileRuntime, 'id', { value: undefined, enumerable: true });
-      Object.defineProperty(mobileRuntime, 'OnInstalledReason', { 
+    // For pages where chrome.runtime is missing, create a minimal valid one
+    if (!window.chrome.runtime) {
+      const minimalRuntime = {};
+      Object.defineProperty(minimalRuntime, 'id', { value: undefined, enumerable: true });
+      Object.defineProperty(minimalRuntime, 'OnInstalledReason', { 
         value: { INSTALL: 'install', UPDATE: 'update', CHROME_UPDATE: 'chrome_update', SHARED_MODULE_UPDATE: 'shared_module_update' },
         enumerable: true 
       });
-      Object.defineProperty(mobileRuntime, 'OnRestartRequiredReason', { 
+      Object.defineProperty(minimalRuntime, 'OnRestartRequiredReason', { 
         value: { APP_UPDATE: 'app_update', OS_UPDATE: 'os_update', PERIODIC: 'periodic' },
         enumerable: true 
       });
-      Object.defineProperty(mobileRuntime, 'PlatformArch', { 
+      Object.defineProperty(minimalRuntime, 'PlatformArch', { 
         value: { ARM: 'arm', ARM64: 'arm64', X86_32: 'x86-32', X86_64: 'x86-64', MIPS: 'mips', MIPS64: 'mips64' },
         enumerable: true 
       });
-      Object.defineProperty(mobileRuntime, 'PlatformNaclArch', { 
+      Object.defineProperty(minimalRuntime, 'PlatformNaclArch', { 
         value: { ARM: 'arm', X86_32: 'x86-32', X86_64: 'x86-64', MIPS: 'mips', MIPS64: 'mips64' },
         enumerable: true 
       });
-      Object.defineProperty(mobileRuntime, 'PlatformOs', { 
+      Object.defineProperty(minimalRuntime, 'PlatformOs', { 
         value: { MAC: 'mac', WIN: 'win', ANDROID: 'android', CROS: 'cros', LINUX: 'linux', OPENBSD: 'openbsd', FUCHSIA: 'fuchsia' },
         enumerable: true 
       });
-      Object.defineProperty(mobileRuntime, 'RequestUpdateCheckStatus', { 
+      Object.defineProperty(minimalRuntime, 'RequestUpdateCheckStatus', { 
         value: { THROTTLED: 'throttled', NO_UPDATE: 'no_update', UPDATE_AVAILABLE: 'update_available' },
         enumerable: true 
       });
       
       Object.defineProperty(window.chrome, 'runtime', {
-        value: mobileRuntime,
+        value: minimalRuntime,
         writable: false,
         configurable: true,
         enumerable: true
       });
-      
-      // Mobile should have app object with limited API
+    }
+    
+    // Mobile should have app object with limited API
+    if (isMobileProfile) {
       if (!window.chrome.app) {
         window.chrome.app = {
           isInstalled: false,
@@ -1468,11 +1480,22 @@ const EMBEDDED_DEFAULT_PROFILE = {"server":{"ip":"2405:f600:8:e0a9:985c:f5c3:340
   }
 
   // ============================================
-  // PLUGIN/MIMETYPE SPOOFING (Critical for mobile)
+  // PLUGIN/MIMETYPE SPOOFING (Critical for consistency)
   // fingerprint.com flags "chrome_no_plugins" as tampering signal
-  // On real mobile Chrome, plugins.length === 0 is NORMAL
+  // IMPORTANT: Desktop Chrome ALWAYS has plugins (PDF Viewer at minimum)
+  // Mobile Chrome has plugins.length === 0 (this is normal for mobile)
+  // 
+  // KEY INSIGHT: If we're on desktop Chrome spoofing mobile, we have two options:
+  // 1. Leave real plugins (inconsistent with mobile UA but avoids tampering flag)
+  // 2. Fake empty plugins (consistent with mobile but triggers tampering flag)
+  //
+  // We choose option 1: Leave real plugins to avoid "chrome_no_plugins" flag
+  // This is a trade-off, but fingerprint.com weights tampering signals heavily
   // ============================================
   
+  // DISABLED: Don't override plugins on desktop Chrome - it causes "chrome_no_plugins" tampering signal
+  // The real browser's plugins are more convincing than faked empty plugins
+  /*
   if (isMobileProfile) {
     // Mobile Chrome has no plugins - this is expected
     // Create fake PluginArray that looks native
@@ -1497,6 +1520,7 @@ const EMBEDDED_DEFAULT_PROFILE = {"server":{"ip":"2405:f600:8:e0a9:985c:f5c3:340
     defineNativeGetter(Navigator.prototype, 'plugins', fakePluginArray, 'Navigator');
     defineNativeGetter(Navigator.prototype, 'mimeTypes', fakeMimeTypeArray, 'Navigator');
   }
+  */
 
   // ============================================
   // PROTOTYPE CHAIN VERIFICATION EVASION
@@ -2827,14 +2851,19 @@ const EMBEDDED_DEFAULT_PROFILE = {"server":{"ip":"2405:f600:8:e0a9:985c:f5c3:340
 
   // ============================================
   // PLUGINS & MIMETYPES SPOOFING
+  // IMPORTANT: Empty plugins array triggers "chrome_no_plugins" tampering signal
+  // Only override plugins if we have actual plugins to spoof
+  // Desktop Chrome ALWAYS has plugins (PDF Viewer), so empty plugins looks suspicious
   // ============================================
 
-  // Spoof plugins - both when there are plugins AND when empty (mobile)
+  // Spoof plugins - but ONLY if we have non-empty plugins data
+  // Skip if plugins is empty to avoid "chrome_no_plugins" tampering signal
   const pluginsData = client.plugins;
   const mimeTypesData = client.mimeTypes;
   
-  if (pluginsData !== undefined) {
-    const spoofedPlugins = (pluginsData || []).map((p) => {
+  // Only override plugins if we have actual plugins to spoof (not empty array)
+  if (pluginsData !== undefined && Array.isArray(pluginsData) && pluginsData.length > 0) {
+    const spoofedPlugins = pluginsData.map((p) => {
       const plugin = {
         name: p.name,
         filename: p.filename,
@@ -2865,10 +2894,12 @@ const EMBEDDED_DEFAULT_PROFILE = {"server":{"ip":"2405:f600:8:e0a9:985c:f5c3:340
 
     Object.defineProperty(Navigator.prototype, 'plugins', { get: createPluginArray, configurable: true });
   }
+  // ELSE: If plugins is empty [], don't override - let real browser plugins show
+  // This avoids "chrome_no_plugins" tampering signal on desktop Chrome
 
-  // Spoof mimeTypes
-  if (mimeTypesData !== undefined) {
-    const spoofedMimeTypes = (mimeTypesData || []).map((m) => ({
+  // Spoof mimeTypes - same logic, only if non-empty
+  if (mimeTypesData !== undefined && Array.isArray(mimeTypesData) && mimeTypesData.length > 0) {
+    const spoofedMimeTypes = mimeTypesData.map((m) => ({
       type: m.type,
       description: m.description,
       suffixes: m.suffixes,
@@ -2887,15 +2918,16 @@ const EMBEDDED_DEFAULT_PROFILE = {"server":{"ip":"2405:f600:8:e0a9:985c:f5c3:340
 
     Object.defineProperty(Navigator.prototype, 'mimeTypes', { get: createMimeTypeArray, configurable: true });
   }
+  // ELSE: If mimeTypes is empty [], don't override
 
   // Spoof pdfViewerEnabled based on plugins/mimeTypes presence
   const navigatorInfo = client.navigator || {};
-  if (navigatorInfo.pdfViewerEnabled !== undefined) {
+  if (navigatorInfo.pdfViewerEnabled !== undefined && navigatorInfo.pdfViewerEnabled !== null) {
+    // Only override if profile explicitly specifies a value
     defineNativeGetter(Navigator.prototype, 'pdfViewerEnabled', navigatorInfo.pdfViewerEnabled, 'Navigator');
-  } else if (pluginsData !== undefined && pluginsData.length === 0) {
-    // Mobile devices without plugins should have pdfViewerEnabled = false or null
-    defineNativeGetter(Navigator.prototype, 'pdfViewerEnabled', false, 'Navigator');
   }
+  // ELSE: If pdfViewerEnabled is undefined/null, don't override - let real browser value show
+  // This maintains consistency with keeping real plugins
 
   // ============================================
   // BATTERY API SPOOFING
