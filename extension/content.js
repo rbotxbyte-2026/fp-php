@@ -2115,42 +2115,110 @@ const EMBEDDED_DEFAULT_PROFILE = {"server":{"ip":"2405:f600:8:e0a9:985c:f5c3:340
     // Store original getParameter
     const getParameterOriginal = WebGLRenderingContext.prototype.getParameter;
     
-    // Extension-specific and WebGL2-only parameters that cause INVALID_ENUM in WebGL1
-    // We must return null for these WITHOUT calling original to prevent console warnings
-    const extensionOnlyParams = new Set([
-      // WEBGL_draw_buffers extension
-      34852,  // MAX_DRAW_BUFFERS_WEBGL
-      36063,  // MAX_COLOR_ATTACHMENTS_WEBGL
-      // EXT_texture_filter_anisotropic extension
-      34047,  // MAX_TEXTURE_MAX_ANISOTROPY_EXT
-      // WebGL2-only parameters (cause INVALID_ENUM in WebGL1)
-      36183,  // MAX_SAMPLES
-      35071,  // MAX_ARRAY_TEXTURE_LAYERS
-      32883,  // MAX_3D_TEXTURE_SIZE  
-      35968,  // MAX_TRANSFORM_FEEDBACK_SEPARATE_ATTRIBS
-      35978,  // MAX_TRANSFORM_FEEDBACK_INTERLEAVED_COMPONENTS
-      35967,  // MAX_TRANSFORM_FEEDBACK_SEPARATE_COMPONENTS
-      35375,  // MAX_UNIFORM_BUFFER_BINDINGS
-      35373,  // MAX_UNIFORM_BLOCK_SIZE
-      35371,  // MAX_VERTEX_UNIFORM_BLOCKS
-      35372,  // MAX_FRAGMENT_UNIFORM_BLOCKS
-      35374,  // MAX_COMBINED_UNIFORM_BLOCKS
-      36203,  // MAX_VERTEX_OUTPUT_COMPONENTS
-      36204,  // MAX_FRAGMENT_INPUT_COMPONENTS
-      35657,  // MAX_PROGRAM_TEXEL_OFFSET
-      35076,  // MIN_PROGRAM_TEXEL_OFFSET
-      35658,  // MAX_VARYING_COMPONENTS
-      36347,  // Duplicate but keep for safety
-      35659,  // MAX_COMBINED_VERTEX_UNIFORM_COMPONENTS (actually exists)
-      35070,  // MAX_ELEMENTS_INDICES
-      33001,  // MAX_ELEMENTS_VERTICES
-      35379,  // UNIFORM_BUFFER_OFFSET_ALIGNMENT
-      // EXT_disjoint_timer_query extension
-      36388,  // TIMESTAMP_EXT
-      36389,  // GPU_DISJOINT_EXT
-      // WEBGL_multi_draw extension params (none that cause errors)
-      // OES_draw_buffers_indexed extension
-      35077,  // MAX_DUAL_SOURCE_DRAW_BUFFERS
+    // WHITELIST of valid WebGL1 getParameter params - anything not in this list returns null
+    // This prevents INVALID_ENUM warnings for WebGL2-only and extension-specific params
+    const validWebGL1Params = new Set([
+      // String params
+      7936,   // VENDOR
+      7937,   // RENDERER
+      7938,   // VERSION
+      35724,  // SHADING_LANGUAGE_VERSION
+      // WEBGL_debug_renderer_info (always available via our fake)
+      37445,  // UNMASKED_VENDOR_WEBGL
+      37446,  // UNMASKED_RENDERER_WEBGL
+      // Integer params
+      3379,   // MAX_TEXTURE_SIZE
+      34076,  // MAX_CUBE_MAP_TEXTURE_SIZE
+      34024,  // MAX_RENDERBUFFER_SIZE
+      34921,  // MAX_VERTEX_ATTRIBS
+      36347,  // MAX_VERTEX_UNIFORM_VECTORS
+      36348,  // MAX_VARYING_VECTORS
+      35661,  // MAX_COMBINED_TEXTURE_IMAGE_UNITS
+      35660,  // MAX_VERTEX_TEXTURE_IMAGE_UNITS
+      34930,  // MAX_TEXTURE_IMAGE_UNITS
+      36349,  // MAX_FRAGMENT_UNIFORM_VECTORS
+      3414,   // DEPTH_BITS
+      3415,   // STENCIL_BITS
+      3410,   // RED_BITS
+      3411,   // GREEN_BITS
+      3412,   // BLUE_BITS
+      3413,   // ALPHA_BITS
+      3408,   // SUBPIXEL_BITS
+      32936,  // SAMPLE_BUFFERS
+      32937,  // SAMPLES
+      // Float32Array params
+      33902,  // ALIASED_LINE_WIDTH_RANGE
+      33901,  // ALIASED_POINT_SIZE_RANGE
+      // Int32Array params
+      3386,   // MAX_VIEWPORT_DIMS
+      32824,  // DEPTH_RANGE
+      // State params (commonly queried)
+      2849,   // LINE_WIDTH
+      32823,  // POLYGON_OFFSET_FILL
+      32824,  // POLYGON_OFFSET_FACTOR
+      10752,  // POLYGON_OFFSET_UNITS
+      2884,   // CULL_FACE
+      2885,   // CULL_FACE_MODE
+      2886,   // FRONT_FACE
+      2929,   // DEPTH_TEST
+      2930,   // DEPTH_WRITEMASK
+      2931,   // DEPTH_CLEAR_VALUE
+      2932,   // DEPTH_FUNC
+      2960,   // STENCIL_TEST
+      2961,   // STENCIL_FUNC
+      2962,   // STENCIL_VALUE_MASK
+      2963,   // STENCIL_REF
+      2964,   // STENCIL_FAIL
+      2965,   // STENCIL_PASS_DEPTH_FAIL
+      2966,   // STENCIL_PASS_DEPTH_PASS
+      2967,   // STENCIL_BACK_FUNC
+      2968,   // STENCIL_BACK_VALUE_MASK
+      34817,  // STENCIL_BACK_REF
+      34816,  // STENCIL_BACK_FAIL
+      34818,  // STENCIL_BACK_PASS_DEPTH_FAIL
+      34819,  // STENCIL_BACK_PASS_DEPTH_PASS
+      2971,   // STENCIL_WRITEMASK
+      36005,  // STENCIL_BACK_WRITEMASK
+      2968,   // STENCIL_CLEAR_VALUE
+      3024,   // DITHER
+      3042,   // BLEND
+      32773,  // BLEND_COLOR
+      32777,  // BLEND_EQUATION_RGB
+      34877,  // BLEND_EQUATION_ALPHA
+      32969,  // BLEND_SRC_RGB
+      32968,  // BLEND_DST_RGB
+      32971,  // BLEND_SRC_ALPHA
+      32970,  // BLEND_DST_ALPHA
+      3089,   // SCISSOR_TEST
+      3088,   // SCISSOR_BOX
+      3106,   // COLOR_CLEAR_VALUE
+      3107,   // COLOR_WRITEMASK
+      3317,   // UNPACK_ALIGNMENT
+      3333,   // PACK_ALIGNMENT
+      37440,  // UNPACK_FLIP_Y_WEBGL
+      37441,  // UNPACK_PREMULTIPLY_ALPHA_WEBGL
+      37443,  // UNPACK_COLORSPACE_CONVERSION_WEBGL
+      // Binding params
+      34964,  // ARRAY_BUFFER_BINDING
+      34965,  // ELEMENT_ARRAY_BUFFER_BINDING
+      35725,  // CURRENT_PROGRAM
+      32873,  // TEXTURE_BINDING_2D
+      34068,  // TEXTURE_BINDING_CUBE_MAP
+      36006,  // FRAMEBUFFER_BINDING
+      36007,  // RENDERBUFFER_BINDING
+      34016,  // ACTIVE_TEXTURE
+      2978,   // VIEWPORT
+      // Implementation limits
+      2928,   // DEPTH_RANGE
+      36346,  // COMPRESSED_TEXTURE_FORMATS
+      35739,  // IMPLEMENTATION_COLOR_READ_FORMAT
+      35738,  // IMPLEMENTATION_COLOR_READ_TYPE
+      // Additional state
+      32926,  // SAMPLE_ALPHA_TO_COVERAGE
+      32928,  // SAMPLE_COVERAGE
+      32939,  // SAMPLE_COVERAGE_VALUE
+      32938,  // SAMPLE_COVERAGE_INVERT
+      7936,   // GENERATE_MIPMAP_HINT (same as VENDOR, won't cause issue)
     ]);
     
     // Track which extensions have been enabled on each context
@@ -2186,13 +2254,13 @@ const EMBEDDED_DEFAULT_PROFILE = {"server":{"ip":"2405:f600:8:e0a9:985c:f5c3:340
         return new Int32Array(webgl.maxViewportDims);
       }
       
-      // Handle extension-only and WebGL2-only parameters that cause INVALID_ENUM in WebGL1
-      // Return null without calling original to prevent console warnings
-      if (extensionOnlyParams.has(param)) {
+      // Only pass through params that are valid in WebGL1
+      // Unknown/WebGL2-only/extension-only params return null to prevent console warnings
+      if (!validWebGL1Params.has(param)) {
         return null;
       }
       
-      // Pass through to real implementation for other params
+      // Pass through to real implementation for valid params
       try {
         return getParameterOriginal.call(this, param);
       } catch (e) {
