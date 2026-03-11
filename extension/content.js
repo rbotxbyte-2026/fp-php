@@ -112,6 +112,10 @@
   // We need 'webdriver' in navigator to return FALSE
   const origNavigator = navigator;
   
+  // Store original methods for Proxy detection evasion
+  const origObjectProtoToString = Object.prototype.toString;
+  const origSymbolHasInstance = Function.prototype[Symbol.hasInstance];
+  
   try {
     // Try to delete the property first
     delete Navigator.prototype.webdriver;
@@ -268,6 +272,40 @@
       }
       return origReflectGetOwnPropertyDescriptor(target, prop);
     };
+  } catch (e) {}
+  
+  // 2b-pre. CRITICAL: Fix Object.prototype.toString for Proxy detection evasion
+  // Proxy objects can be detected via: Object.prototype.toString.call(navigator)
+  // This MUST return "[object Navigator]" not "[object Object]"
+  try {
+    Object.prototype.toString = function() {
+      // Check if this is our proxied navigator
+      if (this === window.navigator) {
+        return '[object Navigator]';
+      }
+      // For other proxied objects, try to return the correct tag
+      if (this && this[Symbol.toStringTag]) {
+        return '[object ' + this[Symbol.toStringTag] + ']';
+      }
+      return origObjectProtoToString.call(this);
+    };
+  } catch (e) {}
+  
+  // 2b-pre2. Fix instanceof checks for Proxy objects
+  // navigator instanceof Navigator must return true even when navigator is proxied
+  try {
+    Object.defineProperty(Navigator, Symbol.hasInstance, {
+      value: function(instance) {
+        // Our proxied navigator should pass instanceof check
+        if (instance === window.navigator || instance === origNavigator) {
+          return true;
+        }
+        // Fallback to default behavior
+        return origSymbolHasInstance.call(Navigator, instance);
+      },
+      configurable: true,
+      writable: true
+    });
   } catch (e) {}
   
   // 2b. Fix hasOwnProperty for webdriver check
