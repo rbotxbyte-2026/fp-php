@@ -123,12 +123,14 @@ chrome.webNavigation.onCommitted.addListener(async (details) => {
     if (!data.spoofEnabled || !data.spoofProfile) return;
     
     // Inject config via executeScript
+    // Use obfuscated localStorage keys to avoid detection
     await chrome.scripting.executeScript({
       target: { tabId: details.tabId },
       func: (config, enabled) => {
         try {
-          localStorage.setItem('__fp_spoof_config__', JSON.stringify(config));
-          localStorage.setItem('__fp_spoof_enabled__', enabled.toString());
+          // Keys must match those in content.js
+          localStorage.setItem('_pcfg', JSON.stringify(config));
+          localStorage.setItem('_pen', enabled.toString());
         } catch (e) {
           console.error('[FP Spoofer] Failed to inject config:', e);
         }

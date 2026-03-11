@@ -2,6 +2,20 @@
 // Runs in MAIN world to access page's JavaScript context
 
 // ============================================
+// INTERNAL SYMBOLS - Undetectable state markers
+// Symbols are unique and cannot be enumerated or directly accessed
+// ============================================
+const FP_INTERNAL = {
+  mouseBlocked: Symbol('fp.mouseBlocked'),
+  audioHash: Symbol('fp.audioHash'),
+  audioFullHash: Symbol('fp.audioFullHash'),
+  canvasGeometryHash: Symbol('fp.canvasGeometryHash'),
+  hypervisorMean: Symbol('fp.hypervisorMean'),
+  hypervisorStdDev: Symbol('fp.hypervisorStdDev'),
+  possibleVM: Symbol('fp.possibleVM')
+};
+
+// ============================================
 // ULTRA-EARLY CHROMEDRIVER DETECTION EVASION
 // Must run BEFORE any other code to catch cdc_ variables
 // ============================================
@@ -380,52 +394,20 @@
     // but make sure no automation tools added it
   } catch (e) {}
 
-  // 5e. Fix Function.prototype.toString to not reveal any spoofing
-  // UC detection looks at native function patterns
-  // CRITICAL: Must NEVER throw errors - that triggers toString_error signal
-  const originalFunctionToString = Function.prototype.toString;
-  const nativeCode = 'function () { [native code] }';
-  const boundNativePattern = /^function\s*\(\)\s*\{\s*\[native code\]\s*\}$/;
-  Function.prototype.toString = function() {
-    try {
-      // If this function was marked as native by makeNative, return native string
-      if (this && this.__isNative__) {
-        return 'function ' + (this.__nativeName__ || '') + '() { [native code] }';
-      }
-      // For bound functions and proxies, try to get original toString
-      const result = originalFunctionToString.call(this);
-      return result;
-    } catch (e) {
-      // NEVER throw - return a generic native code string
-      // This prevents the toString_error tampering signal
-      return 'function () { [native code] }';
-    }
-  };
-  // Make toString itself look native
-  try {
-    Object.defineProperty(Function.prototype.toString, '__isNative__', { value: true, enumerable: false, configurable: false, writable: false });
-    Object.defineProperty(Function.prototype.toString, '__nativeName__', { value: 'toString', enumerable: false, configurable: false, writable: false });
-  } catch(e) {}
+  // 5e. Function.prototype.toString override is handled later with WeakMap approach
+  // The WeakMap version (see below) is undetectable unlike __isNative__ properties
+  // DO NOT add any __isNative__ or __nativeName__ properties - they are DETECTABLE!
   
   // 5f. Override console methods to hide our logging from fingerprinters
   // Some detection scripts check for console modifications
+  // NOTE: We use closure variables, NOT window properties, to avoid detection
   try {
-    const origConsole = {
-      log: console.log,
-      warn: console.warn,
-      error: console.error,
-      info: console.info,
-      debug: console.debug,
-      profile: console.profile,
-      profileEnd: console.profileEnd
-    };
-    // Store original for our use - non-enumerable to avoid detection
-    Object.defineProperty(window, '__fpOrigConsole', {
-      value: origConsole,
-      writable: true,
-      enumerable: false,
-      configurable: true
-    });
+    // Store original console methods in CLOSURE scope (not window) - undetectable
+    const _origConsoleLog = console.log;
+    const _origConsoleWarn = console.warn;
+    const _origConsoleError = console.error;
+    const _origConsoleInfo = console.info;
+    const _origConsoleDebug = console.debug;
     
     // 5f-1. Block console.profile() DevTools detection
     // FP.com uses: console.profile(); console.profileEnd(); 
@@ -456,8 +438,11 @@ const EMBEDDED_DEFAULT_PROFILE = {"server":{"ip":"2405:f600:8:e0a9:985c:f5c3:340
   // Try localStorage first (set by previous page loads or background.js)
   let config = null;
   try {
-    const stored = localStorage.getItem('__fp_spoof_config__');
-    const enabled = localStorage.getItem('__fp_spoof_enabled__');
+    // Use obfuscated keys to avoid detection (looks like generic app data)
+    const STORAGE_KEY_CFG = '_pcfg';
+    const STORAGE_KEY_EN = '_pen';
+    const stored = localStorage.getItem(STORAGE_KEY_CFG);
+    const enabled = localStorage.getItem(STORAGE_KEY_EN);
     if (stored && enabled === 'true') {
       config = JSON.parse(stored);
     }
@@ -468,8 +453,8 @@ const EMBEDDED_DEFAULT_PROFILE = {"server":{"ip":"2405:f600:8:e0a9:985c:f5c3:340
     config = EMBEDDED_DEFAULT_PROFILE;
     // Store in localStorage for subsequent page loads
     try {
-      localStorage.setItem('__fp_spoof_config__', JSON.stringify(config));
-      localStorage.setItem('__fp_spoof_enabled__', 'true');
+      localStorage.setItem(STORAGE_KEY_CFG, JSON.stringify(config));
+      localStorage.setItem(STORAGE_KEY_EN, 'true');
       console.log('[FP Spoofer] Using embedded default profile');
     } catch (e) {}
   }
@@ -551,9 +536,11 @@ const EMBEDDED_DEFAULT_PROFILE = {"server":{"ip":"2405:f600:8:e0a9:985c:f5c3:340
     };
     
     // 5. Make document.body.addEventListener also blocked when body exists
+    // Use WeakSet to track processed elements (undetectable - no properties on objects)
+    const processedElements = new WeakSet();
     const observeBody = new MutationObserver(function(mutations) {
-      if (document.body && !document.body.__mouseBlocked__) {
-        document.body.__mouseBlocked__ = true;
+      if (document.body && !processedElements.has(document.body)) {
+        processedElements.add(document.body);
         Object.defineProperty(document.body, 'addEventListener', {
           value: blockedListener,
           writable: false,
@@ -568,13 +555,8 @@ const EMBEDDED_DEFAULT_PROFILE = {"server":{"ip":"2405:f600:8:e0a9:985c:f5c3:340
     });
     observeBody.observe(document.documentElement || document, { childList: true, subtree: true });
     
-    // Mark that we've applied mouse blocking (non-enumerable to avoid detection)
-    Object.defineProperty(window, '__FP_MOUSE_BLOCKED__', {
-      value: true,
-      writable: true,
-      enumerable: false,  // CRITICAL: not visible in Object.keys(window)
-      configurable: true
-    });
+    // Mark that we've applied mouse blocking using Symbol (undetectable)
+    window[FP_INTERNAL.mouseBlocked] = true;
   }
 })();
 
@@ -583,6 +565,10 @@ const EMBEDDED_DEFAULT_PROFILE = {"server":{"ip":"2405:f600:8:e0a9:985c:f5c3:340
 
   let spoofConfig = null;
   let spoofEnabled = false;
+  
+  // Use obfuscated keys to avoid detection (looks like generic app data)
+  const STORAGE_KEY_CFG = '_pcfg';
+  const STORAGE_KEY_EN = '_pen';
 
   // Helper to check if config has valid WebGL data
   function hasValidWebGLData(config) {
@@ -593,8 +579,8 @@ const EMBEDDED_DEFAULT_PROFILE = {"server":{"ip":"2405:f600:8:e0a9:985c:f5c3:340
 
   // Try localStorage first
   try {
-    const storedConfig = localStorage.getItem('__fp_spoof_config__');
-    const storedEnabled = localStorage.getItem('__fp_spoof_enabled__');
+    const storedConfig = localStorage.getItem(STORAGE_KEY_CFG);
+    const storedEnabled = localStorage.getItem(STORAGE_KEY_EN);
     
     if (storedConfig && storedEnabled === 'true') {
       const parsed = JSON.parse(storedConfig);
@@ -613,8 +599,8 @@ const EMBEDDED_DEFAULT_PROFILE = {"server":{"ip":"2405:f600:8:e0a9:985c:f5c3:340
     spoofConfig = EMBEDDED_DEFAULT_PROFILE;
     spoofEnabled = true;
     try {
-      localStorage.setItem('__fp_spoof_config__', JSON.stringify(spoofConfig));
-      localStorage.setItem('__fp_spoof_enabled__', 'true');
+      localStorage.setItem(STORAGE_KEY_CFG, JSON.stringify(spoofConfig));
+      localStorage.setItem(STORAGE_KEY_EN, 'true');
     } catch (e) {}
   }
 
@@ -923,11 +909,16 @@ const EMBEDDED_DEFAULT_PROFILE = {"server":{"ip":"2405:f600:8:e0a9:985c:f5c3:340
   }
   
   // Protect Object.getOwnPropertyNames from revealing our modifications
+  // Note: Most internal state now uses Symbols which are inherently hidden from this
   const originalGetOwnPropertyNames = Object.getOwnPropertyNames;
   Object.getOwnPropertyNames = function(obj) {
     const names = originalGetOwnPropertyNames(obj);
-    // Filter out any internal properties we might have added
-    return names.filter(name => !name.startsWith('__fp_'));
+    // Filter out any internal properties with suspicious patterns
+    // Case-insensitive check for __fp, __FP, or any double-underscore prefix
+    return names.filter(name => {
+      const lower = name.toLowerCase();
+      return !lower.startsWith('__fp') && !lower.startsWith('__spoof');
+    });
   };
   makeNative(Object.getOwnPropertyNames, 'getOwnPropertyNames');
 
@@ -3581,7 +3572,7 @@ const EMBEDDED_DEFAULT_PROFILE = {"server":{"ip":"2405:f600:8:e0a9:985c:f5c3:340
   
   // Mouse blocking already applied in immediate IIFE above
   // Just apply native function masking to the existing override
-  if (behavioral.mouse === null && window.__FP_MOUSE_BLOCKED__) {
+  if (behavioral.mouse === null && window[FP_INTERNAL.mouseBlocked]) {
     // Make the already-overridden addEventListener look native
     makeNative(EventTarget.prototype.addEventListener, 'addEventListener');
   }
@@ -4455,32 +4446,14 @@ const EMBEDDED_DEFAULT_PROFILE = {"server":{"ip":"2405:f600:8:e0a9:985c:f5c3:340
   }
 
   // ============================================
-  // AUDIO HASH SPOOFING (Complete)
+  // AUDIO HASH NOTE: Audio spoofing is handled earlier via AudioContext
+  // manipulation. No additional window properties needed.
   // ============================================
 
-  // Also spoof the audio hash values if they exist
-  const audioData = client.audio || {};
-  if (audioData.hash !== undefined || audioData.fullHash !== undefined) {
-    // Store the target hashes - non-enumerable to avoid detection
-    Object.defineProperty(window, '__FP_AUDIO_HASH__', {
-      value: audioData.hash, writable: true, enumerable: false, configurable: true
-    });
-    Object.defineProperty(window, '__FP_AUDIO_FULL_HASH__', {
-      value: audioData.fullHash, writable: true, enumerable: false, configurable: true
-    });
-  }
-
   // ============================================
-  // CANVAS GEOMETRY HASH SPOOFING
+  // CANVAS GEOMETRY NOTE: Canvas spoofing is handled in the canvas
+  // section. No additional window properties needed.
   // ============================================
-
-  const canvasData = client.canvas || {};
-  if (canvasData.geometry_hash !== undefined) {
-    // Store geometry hash for reference - non-enumerable
-    Object.defineProperty(window, '__FP_CANVAS_GEOMETRY_HASH__', {
-      value: canvasData.geometry_hash, writable: true, enumerable: false, configurable: true
-    });
-  }
 
   // ============================================
   // CROSS-FRAME PROTECTION (Like Canvas Defender)
@@ -4540,27 +4513,9 @@ const EMBEDDED_DEFAULT_PROFILE = {"server":{"ip":"2405:f600:8:e0a9:985c:f5c3:340
   }
 
   // ============================================
-  // HYPERVISOR PROBE SPOOFING
+  // HYPERVISOR PROBE NOTE: Hypervisor timing detection is handled
+  // via performance.now() spoofing. No additional window properties needed.
+  // Values are stored in closure scope only (undetectable).
   // ============================================
-
-  const hypervisorProbe = client.hypervisorProbe || {};
-  
-  if (hypervisorProbe.mean_ms !== undefined) {
-    // Override timing-related measurements to match profile
-    // This affects VM detection through CPUID timing
-    const targetMean = hypervisorProbe.mean_ms;
-    const targetStdDev = hypervisorProbe.stdDev_ms || 0;
-    
-    // Store for reference - non-enumerable to avoid detection
-    Object.defineProperty(window, '__FP_HYPERVISOR_MEAN__', {
-      value: targetMean, writable: true, enumerable: false, configurable: true
-    });
-    Object.defineProperty(window, '__FP_HYPERVISOR_STDDEV__', {
-      value: targetStdDev, writable: true, enumerable: false, configurable: true
-    });
-    Object.defineProperty(window, '__FP_POSSIBLE_VM__', {
-      value: hypervisorProbe.possibleVM || false, writable: true, enumerable: false, configurable: true
-    });
-  }
 
 })();
