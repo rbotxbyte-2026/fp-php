@@ -2254,9 +2254,9 @@ const EMBEDDED_DEFAULT_PROFILE = {"server":{"ip":"2405:f600:8:e0a9:985c:f5c3:340
         return new Int32Array(webgl.maxViewportDims);
       }
       
-      // Only pass through params that are valid in WebGL1
-      // Unknown/WebGL2-only/extension-only params return null to prevent console warnings
+      // Only pass through params in whitelist, return null for others to prevent INVALID_ENUM
       if (!validWebGL1Params.has(param)) {
+        console.log('[FP Spoofer] WebGL1 getParameter BLOCKED (not in whitelist):', param);
         return null;
       }
       
@@ -2346,7 +2346,8 @@ const EMBEDDED_DEFAULT_PROFILE = {"server":{"ip":"2405:f600:8:e0a9:985c:f5c3:340
           return webgl.shadingLanguageVersion;
         }
         
-        // Wrap in try/catch to handle extension-specific params
+        // Log and pass through - WebGL2 supports more params
+        console.log('[FP Spoofer] WebGL2 getParameter:', param);
         try {
           return getParameter2Original.call(this, param);
         } catch (e) {
