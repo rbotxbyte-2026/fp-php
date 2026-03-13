@@ -1,0 +1,11 @@
+# Magisk Module for FPSpoof LD_PRELOAD
+# 
+# This creates a Magisk module that applies LD_PRELOAD system-wide
+# Works better than manual setprop for Chrome
+
+id=fpspoof
+name=Fingerprint Spoofer
+version=v1.0
+versionCode=1
+author=FPSpoof
+description=LD_PRELOAD-based fingerprint spoofing for Chrome/WebView

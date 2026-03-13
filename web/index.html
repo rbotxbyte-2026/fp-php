@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fingerprint Spoof Test</title>
+  
+  <!-- 
+    OPTIONS - Choose ONE:
+    
+    1. Plain (readable):     <script src="spoof.js"></script>
+    2. Encrypted (static):   <script src="spoof.protected.js"></script>
+    3. Dynamic PHP (best):   <script src="spoof.php"></script>
+    
+    The PHP version generates NEW encryption on EVERY request!
+  -->
+  <script src="spoof.protected.js"></script>
+  
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+      color: #fff;
+      min-height: 100vh;
+      padding: 20px;
+    }
+    .container { max-width: 800px; margin: 0 auto; }
+    h1 { text-align: center; margin-bottom: 30px; font-size: 2rem; }
+    .card {
+      background: rgba(255,255,255,0.1);
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 20px;
+      backdrop-filter: blur(10px);
+    }
+    .card h2 { margin-bottom: 16px; color: #667eea; }
+    .result {
+      font-family: 'Monaco', 'Consolas', monospace;
+      font-size: 14px;
+      background: rgba(0,0,0,0.3);
+      padding: 16px;
+      border-radius: 8px;
+      word-break: break-all;
+      max-height: 200px;
+      overflow-y: auto;
+    }
+    .row { display: flex; margin-bottom: 8px; }
+    .label { color: #888; width: 150px; flex-shrink: 0; }
+    .value { color: #4ade80; }
+    button {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    button:hover { transform: scale(1.02); }
+    .status {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      margin-left: 10px;
+    }
+    .status.success { background: #22c55e; }
+    .status.warning { background: #f59e0b; }
+    #fpResult { margin-top: 16px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🛡️ Fingerprint Spoof Test</h1>
+    
+    <div class="card">
+      <h2>Current Browser Values (Should be SPOOFED)</h2>
+      <div class="result" id="browserValues"></div>
+    </div>
+    
+    <div class="card">
+      <h2>Test Fingerprint.com SDK 
+        <span class="status warning" id="fpStatus">Not Loaded</span>
+      </h2>
+      <p style="margin-bottom: 16px; color: #888;">
+        Click to load Fingerprint SDK and see what it detects:
+      </p>
+      <button onclick="testFingerprintJS()">Load Fingerprint.com SDK</button>
+      <div class="result" id="fpResult" style="display:none;"></div>
+    </div>
+    
+    <div class="card">
+      <h2>WebGL Info</h2>
+      <div class="result" id="webglInfo"></div>
+    </div>
+    
+    <div class="card">
+      <h2>Canvas Fingerprint</h2>
+      <canvas id="testCanvas" width="200" height="50" style="background:#fff;border-radius:4px;"></canvas>
+      <div class="result" id="canvasHash" style="margin-top:12px;"></div>
+    </div>
+  </div>
+
+  <script>
+    // Display current (spoofed) browser values
+    function showBrowserValues() {
+      const el = document.getElementById('browserValues');
+      el.innerHTML = `
+        <div class="row"><span class="label">User Agent:</span><span class="value">${navigator.userAgent}</span></div>
+        <div class="row"><span class="label">Platform:</span><span class="value">${navigator.platform}</span></div>
+        <div class="row"><span class="label">Language:</span><span class="value">${navigator.language}</span></div>
+        <div class="row"><span class="label">Cores:</span><span class="value">${navigator.hardwareConcurrency}</span></div>
+        <div class="row"><span class="label">Memory:</span><span class="value">${navigator.deviceMemory} GB</span></div>
+        <div class="row"><span class="label">Touch Points:</span><span class="value">${navigator.maxTouchPoints}</span></div>
+        <div class="row"><span class="label">Screen:</span><span class="value">${screen.width}x${screen.height}</span></div>
+        <div class="row"><span class="label">Color Depth:</span><span class="value">${screen.colorDepth}</span></div>
+        <div class="row"><span class="label">DPR:</span><span class="value">${window.devicePixelRatio}</span></div>
+        <div class="row"><span class="label">Timezone:</span><span class="value">${Intl.DateTimeFormat().resolvedOptions().timeZone}</span></div>
+        <div class="row"><span class="label">TZ Offset:</span><span class="value">${new Date().getTimezoneOffset()} min</span></div>
+        <div class="row"><span class="label">Webdriver:</span><span class="value">${navigator.webdriver}</span></div>
+        <div class="row"><span class="label">Plugins:</span><span class="value">${navigator.plugins.length}</span></div>
+      `;
+    }
+    
+    // WebGL info
+    function showWebGLInfo() {
+      const canvas = document.createElement('canvas');
+      const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+      const el = document.getElementById('webglInfo');
+      
+      if (gl) {
+        const debugInfo = gl.getExtension('WEBGL_debug_renderer_info');
+        el.innerHTML = `
+          <div class="row"><span class="label">Vendor:</span><span class="value">${gl.getParameter(debugInfo.UNMASKED_VENDOR_WEBGL)}</span></div>
+          <div class="row"><span class="label">Renderer:</span><span class="value">${gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL)}</span></div>
+          <div class="row"><span class="label">Version:</span><span class="value">${gl.getParameter(gl.VERSION)}</span></div>
+          <div class="row"><span class="label">Shading Lang:</span><span class="value">${gl.getParameter(gl.SHADING_LANGUAGE_VERSION)}</span></div>
+        `;
+      } else {
+        el.innerHTML = '<span class="value">WebGL not available</span>';
+      }
+    }
+    
+    // Canvas fingerprint test
+    function showCanvasFingerprint() {
+      const canvas = document.getElementById('testCanvas');
+      const ctx = canvas.getContext('2d');
+      
+      // Draw something
+      ctx.fillStyle = '#f60';
+      ctx.fillRect(0, 0, 100, 50);
+      ctx.fillStyle = '#069';
+      ctx.font = '14px Arial';
+      ctx.fillText('Fingerprint Test 🔐', 10, 30);
+      
+      const dataURL = canvas.toDataURL();
+      const hash = dataURL.length + '-' + dataURL.substring(50, 80);
+      
+      document.getElementById('canvasHash').innerHTML = `
+        <div class="row"><span class="label">Canvas Hash:</span><span class="value">${hash}</span></div>
+        <div class="row"><span class="label">Data Length:</span><span class="value">${dataURL.length} chars</span></div>
+      `;
+    }
+    
+    // Test with actual Fingerprint.com SDK
+    function testFingerprintJS() {
+      const statusEl = document.getElementById('fpStatus');
+      const resultEl = document.getElementById('fpResult');
+      
+      statusEl.textContent = 'Loading...';
+      statusEl.className = 'status warning';
+      resultEl.style.display = 'block';
+      resultEl.innerHTML = 'Loading Fingerprint.com SDK...';
+      
+      // Load FingerprintJS
+      const script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/@fingerprintjs/fingerprintjs@4/dist/fp.min.js';
+      script.onload = async () => {
+        try {
+          const FingerprintJS = window.FingerprintJS;
+          const fp = await FingerprintJS.load();
+          const result = await fp.get();
+          
+          statusEl.textContent = 'Loaded';
+          statusEl.className = 'status success';
+          
+          resultEl.innerHTML = `
+            <div class="row"><span class="label">Visitor ID:</span><span class="value">${result.visitorId}</span></div>
+            <div class="row"><span class="label">Confidence:</span><span class="value">${(result.confidence.score * 100).toFixed(1)}%</span></div>
+            <div class="row"><span class="label">Platform:</span><span class="value">${result.components.platform?.value || 'N/A'}</span></div>
+            <div class="row"><span class="label">Timezone:</span><span class="value">${result.components.timezone?.value || 'N/A'}</span></div>
+            <div class="row"><span class="label">Screen:</span><span class="value">${result.components.screenResolution?.value?.join('x') || 'N/A'}</span></div>
+            <div class="row"><span class="label">Cores:</span><span class="value">${result.components.hardwareConcurrency?.value || 'N/A'}</span></div>
+            <div class="row"><span class="label">Memory:</span><span class="value">${result.components.deviceMemory?.value || 'N/A'}</span></div>
+            <div class="row"><span class="label">WebGL Vendor:</span><span class="value">${result.components.webGlBasics?.value?.vendor || 'N/A'}</span></div>
+            <div class="row"><span class="label">WebGL Renderer:</span><span class="value">${result.components.webGlBasics?.value?.renderer || 'N/A'}</span></div>
+          `;
+          
+          console.log('Full FP result:', result);
+        } catch (err) {
+          statusEl.textContent = 'Error';
+          statusEl.className = 'status warning';
+          resultEl.innerHTML = `<span style="color:#ef4444;">Error: ${err.message}</span>`;
+        }
+      };
+      script.onerror = () => {
+        statusEl.textContent = 'Failed';
+        resultEl.innerHTML = '<span style="color:#ef4444;">Failed to load SDK</span>';
+      };
+      document.head.appendChild(script);
+    }
+    
+    // Init
+    showBrowserValues();
+    showWebGLInfo();
+    showCanvasFingerprint();
+  </script>
+</body>
+</html>
