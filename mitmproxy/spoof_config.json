@@ -1,0 +1,64 @@
+{
+  "navigator": {
+    "userAgent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Mobile Safari/537.36",
+    "appVersion": "5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Mobile Safari/537.36",
+    "platform": "Linux armv81",
+    "language": "en-IN",
+    "languages": ["en-IN", "en-GB", "en-US", "en", "gu"],
+    "hardwareConcurrency": 8,
+    "deviceMemory": 8,
+    "maxTouchPoints": 5,
+    "vendor": "Google Inc.",
+    "vendorSub": "",
+    "product": "Gecko",
+    "productSub": "20030107",
+    "webdriver": false,
+    "cookieEnabled": true,
+    "onLine": true,
+    "pdfViewerEnabled": false,
+    "doNotTrack": null,
+    "appCodeName": "Mozilla",
+    "appName": "Netscape"
+  },
+  "screen": {
+    "width": 384,
+    "height": 832,
+    "availWidth": 384,
+    "availHeight": 832,
+    "availTop": 0,
+    "availLeft": 0,
+    "colorDepth": 24,
+    "pixelDepth": 24
+  },
+  "window": {
+    "innerWidth": 384,
+    "innerHeight": 747,
+    "outerWidth": 384,
+    "outerHeight": 832,
+    "devicePixelRatio": 2.8125
+  },
+  "webgl": {
+    "vendor": "Qualcomm",
+    "renderer": "Adreno (TM) 630",
+    "version": "WebGL 1.0 (OpenGL ES 2.0 Chromium)",
+    "shadingLanguageVersion": "WebGL GLSL ES 1.0 (OpenGL ES GLSL ES 1.0 Chromium)"
+  },
+  "timezone": {
+    "offset": -330,
+    "name": "Asia/Calcutta"
+  },
+  "network": {
+    "effectiveType": "4g",
+    "rtt": 50,
+    "downlink": 4.05,
+    "saveData": false,
+    "type": "wifi"
+  },
+  "battery": {
+    "level": 0.3,
+    "charging": false
+  },
+  "audio": {
+    "baseLatency": 0.003
+  }
+}
