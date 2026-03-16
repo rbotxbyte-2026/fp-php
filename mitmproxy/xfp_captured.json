@@ -1,0 +1,5635 @@
+{
+  "captures": [
+    {
+      "url": "https://ogs.google.com/u/0/widget/app?eom=1&awwd=1&em=2&dpi=89978449&origin=https%3A%2F%2Fwww.google.com&cn=app&pid=1&spid=1&hl=en",
+      "source": "ogs.google.com",
+      "ts": "2026-03-13T09:26:01.369Z",
+      "unique": 50,
+      "total": 1590
+    },
+    {
+      "url": "https://www.google.com/search?client=firefox-b-d&q=http%3A%2F%2F",
+      "source": "www.google.com",
+      "ts": "2026-03-13T09:26:15.755Z",
+      "unique": 75,
+      "total": 7731
+    },
+    {
+      "url": "https://accounts.google.com/RotateCookiesPage?og_pid=1&rot=3&origin=https%3A%2F%2Fwww.google.com&exp_id=0",
+      "source": "accounts.google.com",
+      "ts": "2026-03-13T09:26:20.566Z",
+      "unique": 23,
+      "total": 42
+    },
+    {
+      "url": "https://www.youtube.com/embed/?enablejsapi=1&rel=0&autoplay=0&playsinline=1&fs=1&hl=en-IN&embed_config=%7B%22enc%22%3A%22AXH1ezn71d1rVJHvFPST9w1x1Kjwg5qlXuPezek4osO92yCBJ4IqudI5aQeM2hn3BBeXj7htUPre6NQNHjhenoWyZl22YlEd4it6ILN4dGSKl6mvSKqP83Xhni4-WXfl9wt1C_HNEw5JaLbjtrPHaj-x1uEqcnBH6d0nO9_V6fHBeLQTZQ3mhIuWmhixsVkf8ga3pE8lYgySrURglWKxvvWwBmjhinavoeAvhI00McvZsV7wnZpMahsulMknjv7n3RxhHs-6qoTD8yUr1JEfyraV-ZmoS54AhBRYH38Gv9acsia3Dqx1sHf4ORdpsxlc2fmkF7x_wdYZmhGOPa8RlR3gxYnO1m1FLwoHXLK7%22%7D",
+      "source": "www.youtube.com",
+      "ts": "2026-03-13T09:26:21.207Z",
+      "unique": 94,
+      "total": 7436
+    },
+    {
+      "url": "https://www.google.com/search?client=firefox-b-d&q=http%3A%2F%2F",
+      "source": "www.google.com",
+      "ts": "2026-03-13T09:26:22.678Z",
+      "unique": 82,
+      "total": 7929
+    },
+    {
+      "url": "https://accounts.google.com/RotateCookiesPage?og_pid=1&rot=3&origin=https%3A%2F%2Fwww.google.com&exp_id=0",
+      "source": "accounts.google.com",
+      "ts": "2026-03-13T09:26:22.693Z",
+      "unique": 23,
+      "total": 42
+    },
+    {
+      "url": "https://ogs.google.com/u/0/widget/app?eom=1&awwd=1&em=2&dpi=89978449&origin=https%3A%2F%2Fwww.google.com&cn=app&pid=1&spid=1&hl=en",
+      "source": "ogs.google.com",
+      "ts": "2026-03-13T09:26:22.695Z",
+      "unique": 48,
+      "total": 1534
+    },
+    {
+      "url": "https://www.youtube.com/embed/?enablejsapi=1&rel=0&autoplay=0&playsinline=1&fs=1&hl=en-IN&embed_config=%7B%22enc%22%3A%22AXH1ezn71d1rVJHvFPST9w1x1Kjwg5qlXuPezek4osO92yCBJ4IqudI5aQeM2hn3BBeXj7htUPre6NQNHjhenoWyZl22YlEd4it6ILN4dGSKl6mvSKqP83Xhni4-WXfl9wt1C_HNEw5JaLbjtrPHaj-x1uEqcnBH6d0nO9_V6fHBeLQTZQ3mhIuWmhixsVkf8ga3pE8lYgySrURglWKxvvWwBmjhinavoeAvhI00McvZsV7wnZpMahsulMknjv7n3RxhHs-6qoTD8yUr1JEfyraV-ZmoS54AhBRYH38Gv9acsia3Dqx1sHf4ORdpsxlc2fmkF7x_wdYZmhGOPa8RlR3gxYnO1m1FLwoHXLK7%22%7D",
+      "source": "www.youtube.com",
+      "ts": "2026-03-13T09:26:22.698Z",
+      "unique": 94,
+      "total": 7436
+    },
+    {
+      "url": "https://www.google.com/search?client=firefox-b-d&q=http%3A%2F%2F",
+      "source": "www.google.com",
+      "ts": "2026-03-13T09:26:24.423Z",
+      "unique": 82,
+      "total": 7939
+    },
+    {
+      "url": "https://timesofindia.indiatimes.com/",
+      "source": "timesofindia.indiatimes.com",
+      "ts": "2026-03-13T09:26:26.320Z",
+      "unique": 91,
+      "total": 4812
+    },
+    {
+      "url": "https://b7235a33fd35b8f0b5288e012cc5bd69.safeframe.googlesyndication.com/safeframe/1-0-45/html/container.html",
+      "source": "b7235a33fd35b8f0b5288e012cc5bd69.safeframe.googlesyndication.com",
+      "ts": "2026-03-13T09:26:30.644Z",
+      "unique": 23,
+      "total": 898
+    },
+    {
+      "url": "https://timesofindia.indiatimes.com/world/middle-east/us-israel-iran-war-news-live-udates-middle-east-crisis-conflict-drone-ballistic-missile-attacks-explosions-gulf-countries-dubai-flights-news-status-donald-trump-netanyahu-mojtaba-khamenei/liveblog/129485596.cms",
+      "source": "timesofindia.indiatimes.com",
+      "ts": "2026-03-13T09:26:37.173Z",
+      "unique": 108,
+      "total": 81958
+    },
+    {
+      "url": "https://s.amazon-adsystem.com/iu3?cm3ppd=1&d=dtb-pub&csif=t&dl=n-adobe3pb_n-index_n-LoopMe_n-start_n-Ogury_rx_n-acuityads_n-MediaNet_n-rtbhouse_ox-db5_smrt_n-inmobi_n-smadex_n-smaato_n-sharethrough_n-onetag_pm-db5_rbd_n-nativo_an-db5_n-Outbrain&dcc=t",
+      "source": "s.amazon-adsystem.com",
+      "ts": "2026-03-13T09:26:41.822Z",
+      "unique": 20,
+      "total": 38
+    },
+    {
+      "url": "https://s.amazon-adsystem.com/v3/pr?exlist=n-adobe3pb_n-index_n-LoopMe_n-start_n-Ogury_rx_n-acuityads_n-MediaNet_n-rtbhouse_ox-db5_smrt_n-inmobi_n-smaato_n-sharethrough_n-onetag_pm-db5_rbd_n-nativo_an-db5_n-Outbrain&fv=1.0&a=cm&cm3ppd=1&dmt=3",
+      "source": "s.amazon-adsystem.com",
+      "ts": "2026-03-13T09:26:42.090Z",
+      "unique": 20,
+      "total": 38
+    },
+    {
+      "url": "https://timesofindia.indiatimes.com/world/middle-east/us-israel-iran-war-news-live-udates-middle-east-crisis-conflict-drone-ballistic-missile-attacks-explosions-gulf-countries-dubai-flights-news-status-donald-trump-netanyahu-mojtaba-khamenei/liveblog/129485596.cms",
+      "source": "timesofindia.indiatimes.com",
+      "ts": "2026-03-13T09:26:42.168Z",
+      "unique": 108,
+      "total": 82192
+    },
+    {
+      "url": "https://ads.pubmatic.com/AdServer/js/user_sync.html?p=156011&s=165626&predirect=https%3A%2F%2Fs.amazon-adsystem.com%2Fecm3%3Fex%3Dpubmatic.com%26id%3D",
+      "source": "ads.pubmatic.com",
+      "ts": "2026-03-13T09:26:42.196Z",
+      "unique": 29,
+      "total": 1355
+    },
+    {
+      "url": "https://sync.intentiq.com/profiles_engine/ProfilesEngineServlet?at=20&mi=10&dpi=1380607794",
+      "source": "sync.intentiq.com",
+      "ts": "2026-03-13T09:26:42.269Z",
+      "unique": 20,
+      "total": 38
+    },
+    {
+      "url": "https://u.openx.net/w/1.0/cm?cc=1&id=e818ca1e-0c23-caa8-0dd3-096b0ada08b7&ph=2d1251ae-7f3a-47cf-bd2a-2f288854a0ba&plm=5&r=https%3A%2F%2Fs.amazon-adsystem.com%2Fecm3%3Fex%3Dopenx.com%26id%3D%7BOPENX_ID%7D",
+      "source": "u.openx.net",
+      "ts": "2026-03-13T09:26:42.453Z",
+      "unique": 20,
+      "total": 38
+    },
+    {
+      "url": "https://ep2.adtrafficquality.google/sodar/sodar2/253/runner.html",
+      "source": "ep2.adtrafficquality.google",
+      "ts": "2026-03-13T09:26:42.545Z",
+      "unique": 42,
+      "total": 4284
+    },
+    {
+      "url": "https://ssum-sec.casalemedia.com/usermatch?cb=https%3A%2F%2Fs.amazon-adsystem.com%2Fecm3%3Fex%3Dindex.com%26id%3D%24UID&s=192259&C=1",
+      "source": "ssum-sec.casalemedia.com",
+      "ts": "2026-03-13T09:26:42.716Z",
+      "unique": 20,
+      "total": 38
+    },
+    {
+      "url": "https://platform.twitter.com/widgets/widget_iframe.2f70fb173b9000da126c79afe2098f02.html?origin=https%3A%2F%2Ftimesofindia.indiatimes.com",
+      "source": "platform.twitter.com",
+      "ts": "2026-03-13T09:26:42.770Z",
+      "unique": 24,
+      "total": 473
+    },
+    {
+      "url": "https://ms-cookie-sync.presage.io/user-sync.html?source=tam",
+      "source": "ms-cookie-sync.presage.io",
+      "ts": "2026-03-13T09:26:42.938Z",
+      "unique": 20,
+      "total": 38
+    },
+    {
+      "url": "https://timesofindia.indiatimes.com/world/middle-east/us-israel-iran-war-news-live-udates-middle-east-crisis-conflict-drone-ballistic-missile-attacks-explosions-gulf-countries-dubai-flights-news-status-donald-trump-netanyahu-mojtaba-khamenei/liveblog/129485596.cms",
+      "source": "timesofindia.indiatimes.com",
+      "ts": "2026-03-13T09:26:43.416Z",
+      "unique": 108,
+      "total": 82207
+    },
+    {
+      "url": "https://sync.inmobi.com/sync?redirect=https%3A%2F%2Fs.amazon-adsystem.com%2Fecm3%3Fex%3Dinmobi.com%26id%3D%7BID5UID%7D&gdpr_consent=&gdpr=&us_privacy=&gdpr_pd=&source=1&google_push=&retry=true",
+      "source": "sync.inmobi.com",
+      "ts": "2026-03-13T09:26:43.637Z",
+      "unique": 20,
+      "total": 38
+    },
+    {
+      "url": "https://timesofindia.indiatimes.com/world/middle-east/us-israel-iran-war-news-live-udates-middle-east-crisis-conflict-drone-ballistic-missile-attacks-explosions-gulf-countries-dubai-flights-news-status-donald-trump-netanyahu-mojtaba-khamenei/liveblog/129485596.cms",
+      "source": "timesofindia.indiatimes.com",
+      "ts": "2026-03-13T09:26:44.353Z",
+      "unique": 108,
+      "total": 82231
+    },
+    {
+      "url": "https://ads.pubmatic.com/AdServer/js/user_sync.html?kdntuid=1&p=164398",
+      "source": "ads.pubmatic.com",
+      "ts": "2026-03-13T09:26:44.959Z",
+      "unique": 29,
+      "total": 1376
+    },
+    {
+      "url": "https://u.openx.net/w/1.0/pd?ph=2d1251ae-7f3a-47cf-bd2a-2f288854a0ba",
+      "source": "u.openx.net",
+      "ts": "2026-03-13T09:26:45.021Z",
+      "unique": 20,
+      "total": 38
+    },
+    {
+      "url": "https://cdn.taboola.com/scripts/prebid_iframe_sync.html",
+      "source": "cdn.taboola.com",
+      "ts": "2026-03-13T09:26:45.046Z",
+      "unique": 24,
+      "total": 46
+    },
+    {
+      "url": "https://eus.rubiconproject.com/usync.html",
+      "source": "eus.rubiconproject.com",
+      "ts": "2026-03-13T09:26:45.182Z",
+      "unique": 20,
+      "total": 38
+    },
+    {
+      "url": "https://js-sec.indexww.com/um/ixmatch.html",
+      "source": "js-sec.indexww.com",
+      "ts": "2026-03-13T09:26:45.198Z",
+      "unique": 23,
+      "total": 897
+    },
+    {
+      "url": "https://timesofindia.indiatimes.com/world/middle-east/us-israel-iran-war-news-live-udates-middle-east-crisis-conflict-drone-ballistic-missile-attacks-explosions-gulf-countries-dubai-flights-news-status-donald-trump-netanyahu-mojtaba-khamenei/liveblog/129485596.cms",
+      "source": "timesofindia.indiatimes.com",
+      "ts": "2026-03-13T09:26:45.239Z",
+      "unique": 108,
+      "total": 82231
+    },
+    {
+      "url": "https://www.google.com/recaptcha/api2/aframe",
+      "source": "www.google.com",
+      "ts": "2026-03-13T09:26:45.246Z",
+      "unique": 25,
+      "total": 48
+    },
+    {
+      "url": "https://acdn.adnxs.com/dmp/async_usersync.html",
+      "source": "acdn.adnxs.com",
+      "ts": "2026-03-13T09:26:45.371Z",
+      "unique": 24,
+      "total": 897
+    },
+    {
+      "url": "https://tsdtocl.com/",
+      "source": "tsdtocl.com",
+      "ts": "2026-03-13T09:26:45.399Z",
+      "unique": 25,
+      "total": 473
+    },
+    {
+      "url": "https://s.amazon-adsystem.com/iu3?cm3ppd=1&d=dtb-pub&csif=t&dl=n-adobe3pb_n-index_n-LoopMe_n-start_n-Ogury_rx_n-acuityads_n-MediaNet_n-rtbhouse_ox-db5_smrt_n-inmobi_n-smadex_n-smaato_n-sharethrough_n-onetag_pm-db5_rbd_n-nativo_an-db5_n-Outbrain&dcc=t",
+      "source": "s.amazon-adsystem.com",
+      "ts": "2026-03-13T09:26:45.245Z",
+      "unique": 20,
+      "total": 38
+    },
+    {
+      "url": "https://platform.twitter.com/widgets/widget_iframe.2f70fb173b9000da126c79afe2098f02.html?origin=https%3A%2F%2Ftimesofindia.indiatimes.com",
+      "source": "platform.twitter.com",
+      "ts": "2026-03-13T09:26:45.245Z",
+      "unique": 24,
+      "total": 473
+    },
+    {
+      "url": "https://s.amazon-adsystem.com/v3/pr?exlist=n-adobe3pb_n-index_n-LoopMe_n-start_n-Ogury_rx_n-acuityads_n-MediaNet_n-rtbhouse_ox-db5_smrt_n-inmobi_n-smaato_n-sharethrough_n-onetag_pm-db5_rbd_n-nativo_an-db5_n-Outbrain&fv=1.0&a=cm&cm3ppd=1&dmt=3",
+      "source": "s.amazon-adsystem.com",
+      "ts": "2026-03-13T09:26:45.247Z",
+      "unique": 20,
+      "total": 38
+    },
+    {
+      "url": "https://acdn.adnxs.com/dmp/async_usersync.html",
+      "source": "acdn.adnxs.com",
+      "ts": "2026-03-13T09:26:45.409Z",
+      "unique": 24,
+      "total": 897
+    },
+    {
+      "url": "https://eus.rubiconproject.com/usync.html",
+      "source": "eus.rubiconproject.com",
+      "ts": "2026-03-13T09:26:45.411Z",
+      "unique": 20,
+      "total": 38
+    },
+    {
+      "url": "https://cdn.taboola.com/scripts/prebid_iframe_sync.html",
+      "source": "cdn.taboola.com",
+      "ts": "2026-03-13T09:26:45.409Z",
+      "unique": 24,
+      "total": 46
+    },
+    {
+      "url": "https://u.openx.net/w/1.0/pd?ph=2d1251ae-7f3a-47cf-bd2a-2f288854a0ba",
+      "source": "u.openx.net",
+      "ts": "2026-03-13T09:26:45.410Z",
+      "unique": 20,
+      "total": 38
+    },
+    {
+      "url": "https://ads.pubmatic.com/AdServer/js/user_sync.html?kdntuid=1&p=164398",
+      "source": "ads.pubmatic.com",
+      "ts": "2026-03-13T09:26:45.410Z",
+      "unique": 29,
+      "total": 1376
+    },
+    {
+      "url": "https://sync.inmobi.com/sync?redirect=https%3A%2F%2Fs.amazon-adsystem.com%2Fecm3%3Fex%3Dinmobi.com%26id%3D%7BID5UID%7D&gdpr_consent=&gdpr=&us_privacy=&gdpr_pd=&source=8&google_push=&retry=",
+      "source": "sync.inmobi.com",
+      "ts": "2026-03-13T09:26:45.416Z",
+      "unique": 20,
+      "total": 38
+    },
+    {
+      "url": "https://ads.pubmatic.com/AdServer/js/user_sync.html?p=156011&s=165626&predirect=https%3A%2F%2Fs.amazon-adsystem.com%2Fecm3%3Fex%3Dpubmatic.com%26id%3D",
+      "source": "ads.pubmatic.com",
+      "ts": "2026-03-13T09:26:45.433Z",
+      "unique": 29,
+      "total": 1355
+    },
+    {
+      "url": "https://ads.pubmatic.com/AdServer/js/user_sync.html?p=159035&gdpr=0&gdpr_consent=&userIdMacro=(PM_UID)&predirect=https%3A%2F%2Fsync.inmobi.com%2Fsetuid%3FbidderID%3DID5-SEA-76%26dspUserId%3D(PM_UID)",
+      "source": "ads.pubmatic.com",
+      "ts": "2026-03-13T09:26:45.464Z",
+      "unique": 29,
+      "total": 1355
+    },
+    {
+      "url": "https://eus.rubiconproject.com/usync.html?p=inmobi&endpoint=us-east",
+      "source": "eus.rubiconproject.com",
+      "ts": "2026-03-13T09:26:45.461Z",
+      "unique": 20,
+      "total": 38
+    },
+    {
+      "url": "https://b53f3cefc1b5b29da6bfa38defeaf6e8.safeframe.googlesyndication.com/safeframe/1-0-45/html/container.html",
+      "source": "b53f3cefc1b5b29da6bfa38defeaf6e8.safeframe.googlesyndication.com",
+      "ts": "2026-03-13T09:26:46.349Z",
+      "unique": 23,
+      "total": 898
+    },
+    {
+      "url": "https://ep2.adtrafficquality.google/sodar/sodar2/253/runner.html",
+      "source": "ep2.adtrafficquality.google",
+      "ts": "2026-03-13T09:26:47.351Z",
+      "unique": 42,
+      "total": 4183
+    },
+    {
+      "url": "https://tsdtocl.com/",
+      "source": "tsdtocl.com",
+      "ts": "2026-03-13T09:26:50.420Z",
+      "unique": 24,
+      "total": 469
+    },
+    {
+      "url": "https://timesofindia.indiatimes.com/",
+      "source": "timesofindia.indiatimes.com",
+      "ts": "2026-03-13T09:26:51.485Z",
+      "unique": 107,
+      "total": 6732
+    },
+    {
+      "url": "https://timesofindia.indiatimes.com/",
+      "source": "timesofindia.indiatimes.com",
+      "ts": "2026-03-13T09:26:52.066Z",
+      "unique": 108,
+      "total": 6736
+    },
+    {
+      "url": "https://www.google.com/recaptcha/api2/aframe",
+      "source": "www.google.com",
+      "ts": "2026-03-13T09:26:56.837Z",
+      "unique": 25,
+      "total": 48
+    },
+    {
+      "url": "https://s.amazon-adsystem.com/iu3?cm3ppd=1&d=dtb-pub&csif=t&gdpr=0&dl=n-adobe3pb_n-index_n-LoopMe_n-start_n-Ogury_rx_n-acuityads_n-MediaNet_n-rtbhouse_ox-db5_smrt_n-inmobi_n-smaato_n-sharethrough_n-onetag_pm-db5_rbd_n-nativo_an-db5_n-Outbrain",
+      "source": "s.amazon-adsystem.com",
+      "ts": "2026-03-13T09:26:57.069Z",
+      "unique": 20,
+      "total": 38
+    },
+    {
+      "url": "https://timesofindia.indiatimes.com/",
+      "source": "timesofindia.indiatimes.com",
+      "ts": "2026-03-13T09:26:57.067Z",
+      "unique": 108,
+      "total": 6750
+    },
+    {
+      "url": "https://s.amazon-adsystem.com/v3/pr?exlist=n-smaato_n-start_n-onetag_pm-db5_n-Ogury_rx_n-acuityads_n-nativo&fv=1.0&a=cm&cm3ppd=1&dmt=3&gdpr=0",
+      "source": "s.amazon-adsystem.com",
+      "ts": "2026-03-13T09:26:57.232Z",
+      "unique": 20,
+      "total": 38
+    },
+    {
+      "url": "https://sync.intentiq.com/profiles_engine/ProfilesEngineServlet?at=20&mi=10&dpi=1380607794&gdpr=0",
+      "source": "sync.intentiq.com",
+      "ts": "2026-03-13T09:26:57.397Z",
+      "unique": 20,
+      "total": 38
+    },
+    {
+      "url": "https://ads.pubmatic.com/AdServer/js/user_sync.html?p=156011&s=165626&predirect=https%3A%2F%2Fs.amazon-adsystem.com%2Fecm3%3Fex%3Dpubmatic.com%26id%3D&gdpr=0",
+      "source": "ads.pubmatic.com",
+      "ts": "2026-03-13T09:26:57.438Z",
+      "unique": 29,
+      "total": 1355
+    },
+    {
+      "url": "https://ms-cookie-sync.presage.io/user-sync.html?source=tam&gdpr=0",
+      "source": "ms-cookie-sync.presage.io",
+      "ts": "2026-03-13T09:26:57.470Z",
+      "unique": 20,
+      "total": 38
+    },
+    {
+      "url": "https://ads.pubmatic.com/AdServer/js/user_sync.html?kdntuid=1&p=164398",
+      "source": "ads.pubmatic.com",
+      "ts": "2026-03-13T09:27:00.254Z",
+      "unique": 29,
+      "total": 1376
+    },
+    {
+      "url": "https://eus.rubiconproject.com/usync.html",
+      "source": "eus.rubiconproject.com",
+      "ts": "2026-03-13T09:27:00.254Z",
+      "unique": 20,
+      "total": 38
+    },
+    {
+      "url": "https://cdn.taboola.com/scripts/prebid_iframe_sync.html",
+      "source": "cdn.taboola.com",
+      "ts": "2026-03-13T09:27:00.263Z",
+      "unique": 24,
+      "total": 44
+    },
+    {
+      "url": "https://js-sec.indexww.com/um/ixmatch.html",
+      "source": "js-sec.indexww.com",
+      "ts": "2026-03-13T09:27:00.290Z",
+      "unique": 23,
+      "total": 897
+    },
+    {
+      "url": "https://timesofindia.indiatimes.com/",
+      "source": "timesofindia.indiatimes.com",
+      "ts": "2026-03-13T09:27:00.297Z",
+      "unique": 108,
+      "total": 6751
+    },
+    {
+      "url": "https://acdn.adnxs.com/dmp/async_usersync.html",
+      "source": "acdn.adnxs.com",
+      "ts": "2026-03-13T09:27:00.420Z",
+      "unique": 24,
+      "total": 897
+    },
+    {
+      "url": "https://timesinternet-d.openx.net/w/1.0/pd",
+      "source": "timesinternet-d.openx.net",
+      "ts": "2026-03-13T09:27:00.543Z",
+      "unique": 20,
+      "total": 38
+    },
+    {
+      "url": "https://hbx.media.net/checksync.php?vsSync=1&cs=8&cv=31&https=1&cid=8CUM8C0J2&prvid=2034%2C2033%2C2055%2C2031%2C2030%2C2073%2C251%2C692%2C551%2C233%2C157%2C697%2C214%2C236%2C313%2C2124%2C237%2C534%2C636%2C319%2C55%2C99%2C77%2C56%2C20000%2C2045%2C2184%2C460%2C2119%2C462%2C2039%2C246%2C345%2C543%2C203%2C402%2C700%2C404%2C80%2C109%2C82&itype=PREBID&purpose1=1&gdprconsent=1&gdpr=0&coppa=0&usp_status=0&usp_consent=1&dn=timesofindia.indiatimes.com",
+      "source": "hbx.media.net",
+      "ts": "2026-03-13T09:27:00.636Z",
+      "unique": 24,
+      "total": 209
+    },
+    {
+      "url": "https://eus.rubiconproject.com/usync.html?p=medianet",
+      "source": "eus.rubiconproject.com",
+      "ts": "2026-03-13T09:27:01.084Z",
+      "unique": 20,
+      "total": 38
+    },
+    {
+      "url": "https://sync.inmobi.com/sync?redirect=https%3A%2F%2Fs.amazon-adsystem.com%2Fecm3%3Fex%3Dinmobi.com%26id%3D%7BID5UID%7D&gdpr_consent=&gdpr=&us_privacy=&gdpr_pd=&source=8&google_push=&retry=",
+      "source": "sync.inmobi.com",
+      "ts": "2026-03-13T09:27:01.625Z",
+      "unique": 20,
+      "total": 38
+    },
+    {
+      "url": "https://hbx.media.net/cksync.html?cs=8&vsid=4163955925613558000V10&type=ppt&refUrl=&vid=33940108834163955925613558000V10&axid_e=&ovsid=aqAEEm5Zso4x&ev=1&pid=560210",
+      "source": "hbx.media.net",
+      "ts": "2026-03-13T09:27:01.631Z",
+      "unique": 20,
+      "total": 38
+    },
+    {
+      "url": "https://ads.pubmatic.com/AdServer/js/user_sync.html?p=159035&gdpr=0&gdpr_consent=&userIdMacro=(PM_UID)&predirect=https%3A%2F%2Fsync.inmobi.com%2Fsetuid%3FbidderID%3DID5-SEA-76%26dspUserId%3D(PM_UID)",
+      "source": "ads.pubmatic.com",
+      "ts": "2026-03-13T09:27:01.635Z",
+      "unique": 29,
+      "total": 1355
+    },
+    {
+      "url": "https://eus.rubiconproject.com/usync.html?p=inmobi&endpoint=us-east",
+      "source": "eus.rubiconproject.com",
+      "ts": "2026-03-13T09:27:01.668Z",
+      "unique": 20,
+      "total": 38
+    },
+    {
+      "url": "https://www.google.com/recaptcha/api2/aframe",
+      "source": "www.google.com",
+      "ts": "2026-03-13T09:27:01.759Z",
+      "unique": 25,
+      "total": 48
+    },
+    {
+      "url": "https://s.amazon-adsystem.com/iu3?cm3ppd=1&d=dtb-pub&csif=t&gdpr=0&dl=n-adobe3pb_n-index_n-LoopMe_n-start_n-Ogury_rx_n-acuityads_n-MediaNet_n-rtbhouse_ox-db5_smrt_n-inmobi_n-smaato_n-sharethrough_n-onetag_pm-db5_rbd_n-nativo_an-db5_n-Outbrain",
+      "source": "s.amazon-adsystem.com",
+      "ts": "2026-03-13T09:27:02.225Z",
+      "unique": 20,
+      "total": 38
+    },
+    {
+      "url": "https://s.amazon-adsystem.com/v3/pr?exlist=n-smaato_n-start_n-onetag_pm-db5_n-Ogury_rx_n-acuityads_n-nativo&fv=1.0&a=cm&cm3ppd=1&dmt=3&gdpr=0",
+      "source": "s.amazon-adsystem.com",
+      "ts": "2026-03-13T09:27:02.230Z",
+      "unique": 20,
+      "total": 38
+    },
+    {
+      "url": "https://sync.intentiq.com/profiles_engine/ProfilesEngineServlet?at=20&mi=10&dpi=1380607794&gdpr=0",
+      "source": "sync.intentiq.com",
+      "ts": "2026-03-13T09:27:02.399Z",
+      "unique": 20,
+      "total": 38
+    },
+    {
+      "url": "https://ads.pubmatic.com/AdServer/js/user_sync.html?p=156011&s=165626&predirect=https%3A%2F%2Fs.amazon-adsystem.com%2Fecm3%3Fex%3Dpubmatic.com%26id%3D&gdpr=0",
+      "source": "ads.pubmatic.com",
+      "ts": "2026-03-13T09:27:02.444Z",
+      "unique": 29,
+      "total": 1355
+    },
+    {
+      "url": "https://ms-cookie-sync.presage.io/user-sync.html?source=tam&gdpr=0",
+      "source": "ms-cookie-sync.presage.io",
+      "ts": "2026-03-13T09:27:02.467Z",
+      "unique": 20,
+      "total": 38
+    },
+    {
+      "url": "https://timesofindia.indiatimes.com/",
+      "source": "timesofindia.indiatimes.com",
+      "ts": "2026-03-13T09:27:05.062Z",
+      "unique": 108,
+      "total": 6754
+    },
+    {
+      "url": "https://www.google.com/recaptcha/api2/aframe",
+      "source": "www.google.com",
+      "ts": "2026-03-13T09:27:05.078Z",
+      "unique": 25,
+      "total": 48
+    },
+    {
+      "url": "https://eus.rubiconproject.com/usync.html",
+      "source": "eus.rubiconproject.com",
+      "ts": "2026-03-13T09:27:05.263Z",
+      "unique": 20,
+      "total": 38
+    },
+    {
+      "url": "https://js-sec.indexww.com/um/ixmatch.html",
+      "source": "js-sec.indexww.com",
+      "ts": "2026-03-13T09:27:05.297Z",
+      "unique": 23,
+      "total": 897
+    },
+    {
+      "url": "https://acdn.adnxs.com/dmp/async_usersync.html",
+      "source": "acdn.adnxs.com",
+      "ts": "2026-03-13T09:27:05.422Z",
+      "unique": 24,
+      "total": 897
+    },
+    {
+      "url": "https://cdn.taboola.com/scripts/prebid_iframe_sync.html",
+      "source": "cdn.taboola.com",
+      "ts": "2026-03-13T09:27:05.425Z",
+      "unique": 24,
+      "total": 44
+    },
+    {
+      "url": "https://ads.pubmatic.com/AdServer/js/user_sync.html?kdntuid=1&p=164398",
+      "source": "ads.pubmatic.com",
+      "ts": "2026-03-13T09:27:05.452Z",
+      "unique": 29,
+      "total": 1376
+    },
+    {
+      "url": "https://timesinternet-d.openx.net/w/1.0/pd",
+      "source": "timesinternet-d.openx.net",
+      "ts": "2026-03-13T09:27:05.544Z",
+      "unique": 20,
+      "total": 38
+    },
+    {
+      "url": "https://hbx.media.net/checksync.php?vsSync=1&cs=8&cv=31&https=1&cid=8CUM8C0J2&prvid=2034%2C2033%2C2055%2C2031%2C2030%2C2073%2C251%2C692%2C551%2C233%2C157%2C697%2C214%2C236%2C313%2C2124%2C237%2C534%2C636%2C319%2C55%2C99%2C77%2C56%2C20000%2C2045%2C2184%2C460%2C2119%2C462%2C2039%2C246%2C345%2C543%2C203%2C402%2C700%2C404%2C80%2C109%2C82&itype=PREBID&purpose1=1&gdprconsent=1&gdpr=0&coppa=0&usp_status=0&usp_consent=1&dn=timesofindia.indiatimes.com",
+      "source": "hbx.media.net",
+      "ts": "2026-03-13T09:27:05.660Z",
+      "unique": 24,
+      "total": 251
+    },
+    {
+      "url": "https://s.amazon-adsystem.com/iu3?cm3ppd=1&d=dtb-pub&csif=t&gdpr=0&dl=n-adobe3pb_n-index_n-LoopMe_n-start_n-Ogury_rx_n-acuityads_n-MediaNet_n-rtbhouse_ox-db5_smrt_n-inmobi_n-smaato_n-sharethrough_n-onetag_pm-db5_rbd_n-nativo_an-db5_n-Outbrain",
+      "source": "s.amazon-adsystem.com",
+      "ts": "2026-03-13T09:27:05.078Z",
+      "unique": 20,
+      "total": 38
+    },
+    {
+      "url": "https://s.amazon-adsystem.com/v3/pr?exlist=n-smaato_n-start_n-onetag_pm-db5_n-Ogury_rx_n-acuityads_n-nativo&fv=1.0&a=cm&cm3ppd=1&dmt=3&gdpr=0",
+      "source": "s.amazon-adsystem.com",
+      "ts": "2026-03-13T09:27:05.083Z",
+      "unique": 20,
+      "total": 38
+    },
+    {
+      "url": "https://eus.rubiconproject.com/usync.html?p=medianet",
+      "source": "eus.rubiconproject.com",
+      "ts": "2026-03-13T09:27:06.078Z",
+      "unique": 20,
+      "total": 38
+    },
+    {
+      "url": "https://sync.inmobi.com/sync?redirect=https%3A%2F%2Fs.amazon-adsystem.com%2Fecm3%3Fex%3Dinmobi.com%26id%3D%7BID5UID%7D&gdpr_consent=&gdpr=&us_privacy=&gdpr_pd=&source=8&google_push=&retry=",
+      "source": "sync.inmobi.com",
+      "ts": "2026-03-13T09:27:06.618Z",
+      "unique": 20,
+      "total": 38
+    },
+    {
+      "url": "https://ads.pubmatic.com/AdServer/js/user_sync.html?p=159035&gdpr=0&gdpr_consent=&userIdMacro=(PM_UID)&predirect=https%3A%2F%2Fsync.inmobi.com%2Fsetuid%3FbidderID%3DID5-SEA-76%26dspUserId%3D(PM_UID)",
+      "source": "ads.pubmatic.com",
+      "ts": "2026-03-13T09:27:06.948Z",
+      "unique": 29,
+      "total": 1355
+    },
+    {
+      "url": "https://hbx.media.net/cksync.html?cs=8&vsid=4163955925613558000V10&type=ppt&refUrl=&vid=33940108834163955925613558000V10&axid_e=&ovsid=aqAEEm5Zso4x&ev=1&pid=560210",
+      "source": "hbx.media.net",
+      "ts": "2026-03-13T09:27:06.500Z",
+      "unique": 20,
+      "total": 38
+    },
+    {
+      "url": "https://eus.rubiconproject.com/usync.html?p=inmobi&endpoint=us-east",
+      "source": "eus.rubiconproject.com",
+      "ts": "2026-03-13T09:27:06.723Z",
+      "unique": 20,
+      "total": 38
+    },
+    {
+      "url": "https://eus.rubiconproject.com/usync.html",
+      "source": "eus.rubiconproject.com",
+      "ts": "2026-03-13T09:27:08.892Z",
+      "unique": 20,
+      "total": 38
+    },
+    {
+      "url": "https://hbx.media.net/cksync.html?cs=8&vsid=4163955925613558000V10&type=ppt&refUrl=&vid=33940108834163955925613558000V10&axid_e=&ovsid=aqAEEm5Zso4x&ev=1&pid=560210",
+      "source": "hbx.media.net",
+      "ts": "2026-03-13T09:27:08.893Z",
+      "unique": 20,
+      "total": 38
+    },
+    {
+      "url": "https://ads.pubmatic.com/AdServer/js/user_sync.html?kdntuid=1&p=164398",
+      "source": "ads.pubmatic.com",
+      "ts": "2026-03-13T09:27:08.893Z",
+      "unique": 29,
+      "total": 1376
+    },
+    {
+      "url": "https://eus.rubiconproject.com/usync.html?p=inmobi&endpoint=us-east",
+      "source": "eus.rubiconproject.com",
+      "ts": "2026-03-13T09:27:08.904Z",
+      "unique": 20,
+      "total": 38
+    },
+    {
+      "url": "https://ads.pubmatic.com/AdServer/js/user_sync.html?p=159035&gdpr=0&gdpr_consent=&userIdMacro=(PM_UID)&predirect=https%3A%2F%2Fsync.inmobi.com%2Fsetuid%3FbidderID%3DID5-SEA-76%26dspUserId%3D(PM_UID)",
+      "source": "ads.pubmatic.com",
+      "ts": "2026-03-13T09:27:08.902Z",
+      "unique": 29,
+      "total": 1355
+    },
+    {
+      "url": "https://ads.pubmatic.com/AdServer/js/user_sync.html?p=156011&s=165626&predirect=https%3A%2F%2Fs.amazon-adsystem.com%2Fecm3%3Fex%3Dpubmatic.com%26id%3D&gdpr=0",
+      "source": "ads.pubmatic.com",
+      "ts": "2026-03-13T09:27:08.907Z",
+      "unique": 29,
+      "total": 1355
+    },
+    {
+      "url": "https://fingerprint.com/",
+      "source": "fingerprint.com",
+      "ts": "2026-03-13T09:27:21.229Z",
+      "unique": 229,
+      "total": 83244
+    },
+    {
+      "url": "https://fingerprint.com/",
+      "source": "fingerprint.com",
+      "ts": "2026-03-13T09:27:23.592Z",
+      "unique": 229,
+      "total": 84584
+    },
+    {
+      "url": "https://fingerprint.com/",
+      "source": "fingerprint.com",
+      "ts": "2026-03-13T09:27:23.865Z",
+      "unique": 229,
+      "total": 84587
+    },
+    {
+      "url": "https://fingerprint.com/demo/",
+      "source": "fingerprint.com",
+      "ts": "2026-03-13T09:27:35.851Z",
+      "unique": 229,
+      "total": 99417
+    },
+    {
+      "url": "https://fingerprint.com/demo/",
+      "source": "fingerprint.com",
+      "ts": "2026-03-13T09:27:37.673Z",
+      "unique": 229,
+      "total": 99550
+    },
+    {
+      "url": "https://fingerprint.com/demo/",
+      "source": "fingerprint.com",
+      "ts": "2026-03-13T09:27:38.867Z",
+      "unique": 229,
+      "total": 99573
+    },
+    {
+      "url": "https://fingerprint.com/demo/",
+      "source": "fingerprint.com",
+      "ts": "2026-03-13T09:27:49.872Z",
+      "unique": 229,
+      "total": 99862
+    },
+    {
+      "url": "https://fingerprint.com/demo/",
+      "source": "fingerprint.com",
+      "ts": "2026-03-13T09:27:53.195Z",
+      "unique": 229,
+      "total": 99923
+    },
+    {
+      "url": "https://fingerprint.com/demo/",
+      "source": "fingerprint.com",
+      "ts": "2026-03-13T09:27:53.918Z",
+      "unique": 229,
+      "total": 101613
+    },
+    {
+      "url": "https://www.google.com/search?client=firefox-b-d&q=browserleaks",
+      "source": "www.google.com",
+      "ts": "2026-03-13T09:27:54.554Z",
+      "unique": 54,
+      "total": 939
+    },
+    {
+      "url": "https://www.google.com/sorry/index?continue=https://www.google.com/search%3Fclient%3Dfirefox-b-d%26q%3Dbrowserleaks%26sei%3DmdizacKhG-CX5OUPnZneoAU&q=EhAkBfYAAAgSmCUBvqMxNpTVGJuxz80GIjC3BESdBY5ru8OBQ63O8lltWzscK8UKIlwLmpR0V1sIRM9HOjgKo-TpPhEb10OWJwIyAVJaAUM",
+      "source": "www.google.com",
+      "ts": "2026-03-13T09:28:00.661Z",
+      "unique": 50,
+      "total": 16863
+    },
+    {
+      "url": "https://www.google.com/recaptcha/enterprise/anchor?ar=1&k=6LdLLIMbAAAAAIl-KLj9p1ePhM-4LCCDbjtJLqRO&co=aHR0cHM6Ly93d3cuZ29vZ2xlLmNvbTo0NDM.&hl=en&v=QvLuXwupqtKCyjBw2xIzFLIf&size=normal&s=jn1H4zcRjBTeTtiVQX1yuoOGvFMPPfYEc6bh37frZRvy34ny7kJzdXD66gxxs7SFqGXlpBcrJ4kkayfMqDE7bdiqmE5OBqw8Z-xBUyJZSxTEheks9F2NuSey-FXCdnpQq3JucirL7tDIX7oSbs9I_R_A440x0SxUi79VgPYE_Ju-uv2wS77pWxhlnm1H625mVS5pRCIXtEGg09NbR_eIE0XMUjrhD9wOk_8ngYk04oTmeSsmwewFi4pNjNCIx5ZfSSmxbqtwIqWWCzSkdJvO8C-8ZRnRfb4&anchor-ms=20000&execute-ms=30000&cb=jwpdpng4kzqm",
+      "source": "www.google.com",
+      "ts": "2026-03-13T09:28:00.661Z",
+      "unique": 34,
+      "total": 27057
+    },
+    {
+      "url": "https://www.google.com/recaptcha/enterprise/bframe?hl=en&v=QvLuXwupqtKCyjBw2xIzFLIf&k=6LdLLIMbAAAAAIl-KLj9p1ePhM-4LCCDbjtJLqRO&bft=0dAFcWeA4AmTTvDiOS5bi4gaLyO-DRcW2udmg6dqHGgoEVTns4kkGfo3wJYGiAcp3SgzOZO24cbZ-l6NuD0Bp-5W6Glipce7KeOQ",
+      "source": "www.google.com",
+      "ts": "2026-03-13T09:28:00.661Z",
+      "unique": 43,
+      "total": 17243
+    },
+    {
+      "url": "https://www.google.com/search?client=firefox-b-d&q=browserleaks&sei=mdizacKhG-CX5OUPnZneoAU",
+      "source": "www.google.com",
+      "ts": "2026-03-13T09:28:04.626Z",
+      "unique": 66,
+      "total": 5961
+    },
+    {
+      "url": "https://accounts.google.com/RotateCookiesPage?og_pid=1&rot=3&origin=https%3A%2F%2Fwww.google.com&exp_id=0",
+      "source": "accounts.google.com",
+      "ts": "2026-03-13T09:28:04.626Z",
+      "unique": 23,
+      "total": 42
+    },
+    {
+      "url": "https://browserleaks.com/",
+      "source": "browserleaks.com",
+      "ts": "2026-03-13T09:28:09.939Z",
+      "unique": 22,
+      "total": 898
+    },
+    {
+      "url": "https://browserleaks.com/webrtc",
+      "source": "browserleaks.com",
+      "ts": "2026-03-13T09:28:17.666Z",
+      "unique": 28,
+      "total": 914
+    },
+    {
+      "url": "https://browserleaks.com/webrtc",
+      "source": "browserleaks.com",
+      "ts": "2026-03-13T09:28:18.416Z",
+      "unique": 28,
+      "total": 914
+    },
+    {
+      "url": "https://browserleaks.com/webrtc",
+      "source": "browserleaks.com",
+      "ts": "2026-03-13T09:28:24.438Z",
+      "unique": 28,
+      "total": 914
+    },
+    {
+      "url": "https://browserleaks.com/canvas",
+      "source": "browserleaks.com",
+      "ts": "2026-03-13T09:28:27.518Z",
+      "unique": 24,
+      "total": 901
+    },
+    {
+      "url": "https://browserleaks.com/canvas",
+      "source": "browserleaks.com",
+      "ts": "2026-03-13T09:28:30.051Z",
+      "unique": 24,
+      "total": 901
+    },
+    {
+      "url": "https://browserleaks.com/canvas",
+      "source": "browserleaks.com",
+      "ts": "2026-03-13T09:28:34.233Z",
+      "unique": 25,
+      "total": 902
+    },
+    {
+      "url": "https://browserleaks.com/canvas",
+      "source": "browserleaks.com",
+      "ts": "2026-03-13T09:28:40.231Z",
+      "unique": 26,
+      "total": 904
+    },
+    {
+      "url": "https://browserleaks.com/canvas",
+      "source": "browserleaks.com",
+      "ts": "2026-03-13T09:28:55.239Z",
+      "unique": 26,
+      "total": 905
+    },
+    {
+      "url": "https://browserleaks.com/webgl",
+      "source": "browserleaks.com",
+      "ts": "2026-03-13T09:29:02.646Z",
+      "unique": 81,
+      "total": 1031
+    },
+    {
+      "url": "https://browserleaks.com/fonts",
+      "source": "browserleaks.com",
+      "ts": "2026-03-13T09:29:11.500Z",
+      "unique": 25,
+      "total": 902
+    },
+    {
+      "url": "https://browserleaks.com/tls",
+      "source": "browserleaks.com",
+      "ts": "2026-03-13T09:29:24.517Z",
+      "unique": 25,
+      "total": 902
+    },
+    {
+      "url": "https://browserleaks.com/tls",
+      "source": "browserleaks.com",
+      "ts": "2026-03-13T09:29:32.349Z",
+      "unique": 26,
+      "total": 905
+    },
+    {
+      "url": "https://browserleaks.com/proxy",
+      "source": "browserleaks.com",
+      "ts": "2026-03-13T09:29:40.551Z",
+      "unique": 27,
+      "total": 904
+    },
+    {
+      "url": "https://browserleaks.com/#more",
+      "source": "browserleaks.com",
+      "ts": "2026-03-13T09:29:45.902Z",
+      "unique": 22,
+      "total": 898
+    },
+    {
+      "url": "https://browserleaks.com/proxy",
+      "source": "browserleaks.com",
+      "ts": "2026-03-13T09:29:49.251Z",
+      "unique": 27,
+      "total": 905
+    },
+    {
+      "url": "https://browserleaks.com/proxy",
+      "source": "browserleaks.com",
+      "ts": "2026-03-13T09:29:54.785Z",
+      "unique": 27,
+      "total": 905
+    },
+    {
+      "url": "https://browserleaks.com/proxy",
+      "source": "browserleaks.com",
+      "ts": "2026-03-13T09:29:59.086Z",
+      "unique": 27,
+      "total": 905
+    },
+    {
+      "url": "https://browserleaks.com/javascript",
+      "source": "browserleaks.com",
+      "ts": "2026-03-13T09:30:06.101Z",
+      "unique": 111,
+      "total": 1086
+    },
+    {
+      "url": "https://browserleaks.com/javascript",
+      "source": "browserleaks.com",
+      "ts": "2026-03-13T09:30:07.717Z",
+      "unique": 111,
+      "total": 1086
+    },
+    {
+      "url": "https://browserleaks.com/ip",
+      "source": "browserleaks.com",
+      "ts": "2026-03-13T09:30:18.799Z",
+      "unique": 28,
+      "total": 923
+    },
+    {
+      "url": "https://browserleaks.com/ip",
+      "source": "browserleaks.com",
+      "ts": "2026-03-13T09:30:20.553Z",
+      "unique": 29,
+      "total": 924
+    },
+    {
+      "url": "https://browserleaks.com/ip",
+      "source": "browserleaks.com",
+      "ts": "2026-03-13T09:30:23.681Z",
+      "unique": 30,
+      "total": 927
+    },
+    {
+      "url": "https://browserleaks.com/ip",
+      "source": "browserleaks.com",
+      "ts": "2026-03-13T09:30:23.700Z",
+      "unique": 30,
+      "total": 927
+    },
+    {
+      "url": "https://browserleaks.com/ip",
+      "source": "browserleaks.com",
+      "ts": "2026-03-13T09:30:25.468Z",
+      "unique": 30,
+      "total": 927
+    },
+    {
+      "url": "https://browserleaks.com/ip",
+      "source": "browserleaks.com",
+      "ts": "2026-03-13T09:30:38.724Z",
+      "unique": 30,
+      "total": 928
+    },
+    {
+      "url": "https://browserleaks.com/ip",
+      "source": "browserleaks.com",
+      "ts": "2026-03-13T09:30:51.451Z",
+      "unique": 30,
+      "total": 929
+    },
+    {
+      "url": "https://browserleaks.com/ip",
+      "source": "browserleaks.com",
+      "ts": "2026-03-13T09:30:53.726Z",
+      "unique": 30,
+      "total": 929
+    },
+    {
+      "url": "https://browserleaks.com/",
+      "source": "browserleaks.com",
+      "ts": "2026-03-13T09:31:00.902Z",
+      "unique": 22,
+      "total": 899
+    },
+    {
+      "url": "https://browserleaks.com/donottrack",
+      "source": "browserleaks.com",
+      "ts": "2026-03-13T09:31:08.689Z",
+      "unique": 27,
+      "total": 904
+    },
+    {
+      "url": "https://browserleaks.com/",
+      "source": "browserleaks.com",
+      "ts": "2026-03-13T09:31:23.734Z",
+      "unique": 22,
+      "total": 899
+    },
+    {
+      "url": "https://browserleaks.com/css",
+      "source": "browserleaks.com",
+      "ts": "2026-03-13T09:31:27.732Z",
+      "unique": 25,
+      "total": 902
+    },
+    {
+      "url": "https://browserleaks.com/css",
+      "source": "browserleaks.com",
+      "ts": "2026-03-13T09:31:29.150Z",
+      "unique": 26,
+      "total": 905
+    },
+    {
+      "url": "https://browserleaks.com/css",
+      "source": "browserleaks.com",
+      "ts": "2026-03-13T09:31:35.684Z",
+      "unique": 26,
+      "total": 907
+    },
+    {
+      "url": "https://browserleaks.com/css",
+      "source": "browserleaks.com",
+      "ts": "2026-03-13T09:31:39.753Z",
+      "unique": 26,
+      "total": 908
+    },
+    {
+      "url": "https://browserleaks.com/css",
+      "source": "browserleaks.com",
+      "ts": "2026-03-13T09:31:54.757Z",
+      "unique": 26,
+      "total": 909
+    },
+    {
+      "url": "https://amiunique.org/",
+      "source": "amiunique.org",
+      "ts": "2026-03-13T09:32:13.638Z",
+      "unique": 57,
+      "total": 8553
+    },
+    {
+      "url": "https://amiunique.org/fingerprint",
+      "source": "amiunique.org",
+      "ts": "2026-03-13T09:32:26.151Z",
+      "unique": 55,
+      "total": 8677
+    },
+    {
+      "url": "https://amiunique.org/timeline",
+      "source": "amiunique.org",
+      "ts": "2026-03-13T09:32:27.786Z",
+      "unique": 55,
+      "total": 8452
+    },
+    {
+      "url": "https://amiunique.org/timeline",
+      "source": "amiunique.org",
+      "ts": "2026-03-13T09:32:41.896Z",
+      "unique": 56,
+      "total": 8462
+    },
+    {
+      "url": "https://amiunique.org/fingerprint",
+      "source": "amiunique.org",
+      "ts": "2026-03-13T09:32:58.287Z",
+      "unique": 55,
+      "total": 8653
+    },
+    {
+      "url": "https://amiunique.org/fingerprint",
+      "source": "amiunique.org",
+      "ts": "2026-03-13T09:33:03.348Z",
+      "unique": 55,
+      "total": 8653
+    },
+    {
+      "url": "https://amiunique.org/fingerprint",
+      "source": "amiunique.org",
+      "ts": "2026-03-13T09:33:04.424Z",
+      "unique": 55,
+      "total": 8653
+    },
+    {
+      "url": "https://amiunique.org/fingerprint",
+      "source": "amiunique.org",
+      "ts": "2026-03-13T09:33:15.242Z",
+      "unique": 55,
+      "total": 8656
+    },
+    {
+      "url": "https://amiunique.org/fingerprint",
+      "source": "amiunique.org",
+      "ts": "2026-03-13T09:33:19.425Z",
+      "unique": 56,
+      "total": 8666
+    },
+    {
+      "url": "https://coveryourtracks.eff.org/",
+      "source": "coveryourtracks.eff.org",
+      "ts": "2026-03-13T09:33:33.821Z",
+      "unique": 22,
+      "total": 42
+    },
+    {
+      "url": "https://coveryourtracks.eff.org/kcarter?aat=1",
+      "source": "coveryourtracks.eff.org",
+      "ts": "2026-03-13T09:33:39.502Z",
+      "unique": 22,
+      "total": 42
+    },
+    {
+      "url": "https://firstpartysimulator.net/kcarter?&aat=1",
+      "source": "firstpartysimulator.net",
+      "ts": "2026-03-13T09:33:48.780Z",
+      "unique": 22,
+      "total": 42
+    },
+    {
+      "url": "https://firstpartysimulator.org/kcarter?&aat=1",
+      "source": "firstpartysimulator.org",
+      "ts": "2026-03-13T09:33:56.702Z",
+      "unique": 22,
+      "total": 42
+    },
+    {
+      "url": "https://firstpartysimulator.org/kcarter?&aat=1",
+      "source": "firstpartysimulator.org",
+      "ts": "2026-03-13T09:33:57.402Z",
+      "unique": 22,
+      "total": 42
+    },
+    {
+      "url": "https://firstpartysimulator.org/kcarter?&aat=1",
+      "source": "firstpartysimulator.org",
+      "ts": "2026-03-13T09:33:58.560Z",
+      "unique": 22,
+      "total": 42
+    },
+    {
+      "url": "https://firstpartysimulator.org/kcarter?try2=true&aat=1",
+      "source": "firstpartysimulator.org",
+      "ts": "2026-03-13T09:34:02.840Z",
+      "unique": 59,
+      "total": 207
+    },
+    {
+      "url": "https://coveryourtracks.eff.org/results?&aat=1&fpi_whorls=%7B%22v2%22%3A%7B%22plugins%22%3A%22Plugin+0%3A+Chrome+PDF+Viewer%3B+Portable+Document+Format%3B+internal-pdf-viewer%3B+%28Portable+Document+Format%3B+application%2Fpdf%3B+pdf%29+%28Portable+Document+Format%3B+text%2Fpdf%3B+pdf%29.+Plugin+1%3A+Chromium+PDF+Viewer%3B+Portable+Document+Format%3B+internal-pdf-viewer%3B+%28Portable+Document+Format%3B+application%2Fpdf%3B+pdf%29+%28Portable+Document+Format%3B+text%2Fpdf%3B+pdf%29.+Plugin+2%3A+Microsoft+Edge+PDF+Viewer%3B+Portable+Document+Format%3B+internal-pdf-viewer%3B+%28Portable+Document+Format%3B+application%2Fpdf%3B+pdf%29+%28Portable+Document+Format%3B+text%2Fpdf%3B+pdf%29.+Plugin+3%3A+PDF+Viewer%3B+Portable+Document+Format%3B+internal-pdf-viewer%3B+%28Portable+Document+Format%3B+application%2Fpdf%3B+pdf%29+%28Portable+Document+Format%3B+text%2Fpdf%3B+pdf%29.+Plugin+4%3A+WebKit+built-in+PDF%3B+Portable+Document+Format%3B+internal-pdf-viewer%3B+%28Portable+Document+Format%3B+application%2Fpdf%3B+pdf%29+%28Portable+Document+Format%3B+text%2Fpdf%3B+pdf%29.+%22%2C%22hardware_concurrency%22%3A8%2C%22audio%22%3A%2235.74996626004577%22%2C%22canvas_hash_v2%22%3A%22d64f90d6590f4cdaf537d36a9e77776e%22%2C%22webgl_hash_v2%22%3A%22257f60fb907a277f6e0b46ffee306df1%22%7D%7D",
+      "source": "coveryourtracks.eff.org",
+      "ts": "2026-03-13T09:34:16.570Z",
+      "unique": 86,
+      "total": 500
+    },
+    {
+      "url": "https://coveryourtracks.eff.org/results?&aat=1&fpi_whorls=%7B%22v2%22%3A%7B%22plugins%22%3A%22Plugin+0%3A+Chrome+PDF+Viewer%3B+Portable+Document+Format%3B+internal-pdf-viewer%3B+%28Portable+Document+Format%3B+application%2Fpdf%3B+pdf%29+%28Portable+Document+Format%3B+text%2Fpdf%3B+pdf%29.+Plugin+1%3A+Chromium+PDF+Viewer%3B+Portable+Document+Format%3B+internal-pdf-viewer%3B+%28Portable+Document+Format%3B+application%2Fpdf%3B+pdf%29+%28Portable+Document+Format%3B+text%2Fpdf%3B+pdf%29.+Plugin+2%3A+Microsoft+Edge+PDF+Viewer%3B+Portable+Document+Format%3B+internal-pdf-viewer%3B+%28Portable+Document+Format%3B+application%2Fpdf%3B+pdf%29+%28Portable+Document+Format%3B+text%2Fpdf%3B+pdf%29.+Plugin+3%3A+PDF+Viewer%3B+Portable+Document+Format%3B+internal-pdf-viewer%3B+%28Portable+Document+Format%3B+application%2Fpdf%3B+pdf%29+%28Portable+Document+Format%3B+text%2Fpdf%3B+pdf%29.+Plugin+4%3A+WebKit+built-in+PDF%3B+Portable+Document+Format%3B+internal-pdf-viewer%3B+%28Portable+Document+Format%3B+application%2Fpdf%3B+pdf%29+%28Portable+Document+Format%3B+text%2Fpdf%3B+pdf%29.+%22%2C%22hardware_concurrency%22%3A8%2C%22audio%22%3A%2235.74996626004577%22%2C%22canvas_hash_v2%22%3A%22d64f90d6590f4cdaf537d36a9e77776e%22%2C%22webgl_hash_v2%22%3A%22257f60fb907a277f6e0b46ffee306df1%22%7D%7D",
+      "source": "coveryourtracks.eff.org",
+      "ts": "2026-03-13T09:34:17.169Z",
+      "unique": 86,
+      "total": 500
+    },
+    {
+      "url": "https://coveryourtracks.eff.org/results?&aat=1&fpi_whorls=%7B%22v2%22%3A%7B%22plugins%22%3A%22Plugin+0%3A+Chrome+PDF+Viewer%3B+Portable+Document+Format%3B+internal-pdf-viewer%3B+%28Portable+Document+Format%3B+application%2Fpdf%3B+pdf%29+%28Portable+Document+Format%3B+text%2Fpdf%3B+pdf%29.+Plugin+1%3A+Chromium+PDF+Viewer%3B+Portable+Document+Format%3B+internal-pdf-viewer%3B+%28Portable+Document+Format%3B+application%2Fpdf%3B+pdf%29+%28Portable+Document+Format%3B+text%2Fpdf%3B+pdf%29.+Plugin+2%3A+Microsoft+Edge+PDF+Viewer%3B+Portable+Document+Format%3B+internal-pdf-viewer%3B+%28Portable+Document+Format%3B+application%2Fpdf%3B+pdf%29+%28Portable+Document+Format%3B+text%2Fpdf%3B+pdf%29.+Plugin+3%3A+PDF+Viewer%3B+Portable+Document+Format%3B+internal-pdf-viewer%3B+%28Portable+Document+Format%3B+application%2Fpdf%3B+pdf%29+%28Portable+Document+Format%3B+text%2Fpdf%3B+pdf%29.+Plugin+4%3A+WebKit+built-in+PDF%3B+Portable+Document+Format%3B+internal-pdf-viewer%3B+%28Portable+Document+Format%3B+application%2Fpdf%3B+pdf%29+%28Portable+Document+Format%3B+text%2Fpdf%3B+pdf%29.+%22%2C%22hardware_concurrency%22%3A8%2C%22audio%22%3A%2235.74996626004577%22%2C%22canvas_hash_v2%22%3A%22d64f90d6590f4cdaf537d36a9e77776e%22%2C%22webgl_hash_v2%22%3A%22257f60fb907a277f6e0b46ffee306df1%22%7D%7D",
+      "source": "coveryourtracks.eff.org",
+      "ts": "2026-03-13T09:34:18.784Z",
+      "unique": 86,
+      "total": 500
+    },
+    {
+      "url": "https://coveryourtracks.eff.org/results?&aat=1&fpi_whorls=%7B%22v2%22%3A%7B%22plugins%22%3A%22Plugin+0%3A+Chrome+PDF+Viewer%3B+Portable+Document+Format%3B+internal-pdf-viewer%3B+%28Portable+Document+Format%3B+application%2Fpdf%3B+pdf%29+%28Portable+Document+Format%3B+text%2Fpdf%3B+pdf%29.+Plugin+1%3A+Chromium+PDF+Viewer%3B+Portable+Document+Format%3B+internal-pdf-viewer%3B+%28Portable+Document+Format%3B+application%2Fpdf%3B+pdf%29+%28Portable+Document+Format%3B+text%2Fpdf%3B+pdf%29.+Plugin+2%3A+Microsoft+Edge+PDF+Viewer%3B+Portable+Document+Format%3B+internal-pdf-viewer%3B+%28Portable+Document+Format%3B+application%2Fpdf%3B+pdf%29+%28Portable+Document+Format%3B+text%2Fpdf%3B+pdf%29.+Plugin+3%3A+PDF+Viewer%3B+Portable+Document+Format%3B+internal-pdf-viewer%3B+%28Portable+Document+Format%3B+application%2Fpdf%3B+pdf%29+%28Portable+Document+Format%3B+text%2Fpdf%3B+pdf%29.+Plugin+4%3A+WebKit+built-in+PDF%3B+Portable+Document+Format%3B+internal-pdf-viewer%3B+%28Portable+Document+Format%3B+application%2Fpdf%3B+pdf%29+%28Portable+Document+Format%3B+text%2Fpdf%3B+pdf%29.+%22%2C%22hardware_concurrency%22%3A8%2C%22audio%22%3A%2235.74996626004577%22%2C%22canvas_hash_v2%22%3A%22d64f90d6590f4cdaf537d36a9e77776e%22%2C%22webgl_hash_v2%22%3A%22257f60fb907a277f6e0b46ffee306df1%22%7D%7D",
+      "source": "coveryourtracks.eff.org",
+      "ts": "2026-03-13T09:34:22.178Z",
+      "unique": 86,
+      "total": 500
+    },
+    {
+      "url": "https://amiunique.org/fingerprint",
+      "source": "amiunique.org",
+      "ts": "2026-03-13T09:34:25.023Z",
+      "unique": 55,
+      "total": 8537
+    },
+    {
+      "url": "https://coveryourtracks.eff.org/results?&aat=1&fpi_whorls=%7B%22v2%22%3A%7B%22plugins%22%3A%22Plugin+0%3A+Chrome+PDF+Viewer%3B+Portable+Document+Format%3B+internal-pdf-viewer%3B+%28Portable+Document+Format%3B+application%2Fpdf%3B+pdf%29+%28Portable+Document+Format%3B+text%2Fpdf%3B+pdf%29.+Plugin+1%3A+Chromium+PDF+Viewer%3B+Portable+Document+Format%3B+internal-pdf-viewer%3B+%28Portable+Document+Format%3B+application%2Fpdf%3B+pdf%29+%28Portable+Document+Format%3B+text%2Fpdf%3B+pdf%29.+Plugin+2%3A+Microsoft+Edge+PDF+Viewer%3B+Portable+Document+Format%3B+internal-pdf-viewer%3B+%28Portable+Document+Format%3B+application%2Fpdf%3B+pdf%29+%28Portable+Document+Format%3B+text%2Fpdf%3B+pdf%29.+Plugin+3%3A+PDF+Viewer%3B+Portable+Document+Format%3B+internal-pdf-viewer%3B+%28Portable+Document+Format%3B+application%2Fpdf%3B+pdf%29+%28Portable+Document+Format%3B+text%2Fpdf%3B+pdf%29.+Plugin+4%3A+WebKit+built-in+PDF%3B+Portable+Document+Format%3B+internal-pdf-viewer%3B+%28Portable+Document+Format%3B+application%2Fpdf%3B+pdf%29+%28Portable+Document+Format%3B+text%2Fpdf%3B+pdf%29.+%22%2C%22hardware_concurrency%22%3A8%2C%22audio%22%3A%2235.74996626004577%22%2C%22canvas_hash_v2%22%3A%22d64f90d6590f4cdaf537d36a9e77776e%22%2C%22webgl_hash_v2%22%3A%22257f60fb907a277f6e0b46ffee306df1%22%7D%7D",
+      "source": "coveryourtracks.eff.org",
+      "ts": "2026-03-13T09:34:33.789Z",
+      "unique": 86,
+      "total": 500
+    },
+    {
+      "url": "https://coveryourtracks.eff.org/results?&aat=1&fpi_whorls=%7B%22v2%22%3A%7B%22plugins%22%3A%22Plugin+0%3A+Chrome+PDF+Viewer%3B+Portable+Document+Format%3B+internal-pdf-viewer%3B+%28Portable+Document+Format%3B+application%2Fpdf%3B+pdf%29+%28Portable+Document+Format%3B+text%2Fpdf%3B+pdf%29.+Plugin+1%3A+Chromium+PDF+Viewer%3B+Portable+Document+Format%3B+internal-pdf-viewer%3B+%28Portable+Document+Format%3B+application%2Fpdf%3B+pdf%29+%28Portable+Document+Format%3B+text%2Fpdf%3B+pdf%29.+Plugin+2%3A+Microsoft+Edge+PDF+Viewer%3B+Portable+Document+Format%3B+internal-pdf-viewer%3B+%28Portable+Document+Format%3B+application%2Fpdf%3B+pdf%29+%28Portable+Document+Format%3B+text%2Fpdf%3B+pdf%29.+Plugin+3%3A+PDF+Viewer%3B+Portable+Document+Format%3B+internal-pdf-viewer%3B+%28Portable+Document+Format%3B+application%2Fpdf%3B+pdf%29+%28Portable+Document+Format%3B+text%2Fpdf%3B+pdf%29.+Plugin+4%3A+WebKit+built-in+PDF%3B+Portable+Document+Format%3B+internal-pdf-viewer%3B+%28Portable+Document+Format%3B+application%2Fpdf%3B+pdf%29+%28Portable+Document+Format%3B+text%2Fpdf%3B+pdf%29.+%22%2C%22hardware_concurrency%22%3A8%2C%22audio%22%3A%2235.74996626004577%22%2C%22canvas_hash_v2%22%3A%22d64f90d6590f4cdaf537d36a9e77776e%22%2C%22webgl_hash_v2%22%3A%22257f60fb907a277f6e0b46ffee306df1%22%7D%7D",
+      "source": "coveryourtracks.eff.org",
+      "ts": "2026-03-13T09:34:35.420Z",
+      "unique": 86,
+      "total": 500
+    },
+    {
+      "url": "https://coveryourtracks.eff.org/results?&aat=1&fpi_whorls=%7B%22v2%22%3A%7B%22plugins%22%3A%22Plugin+0%3A+Chrome+PDF+Viewer%3B+Portable+Document+Format%3B+internal-pdf-viewer%3B+%28Portable+Document+Format%3B+application%2Fpdf%3B+pdf%29+%28Portable+Document+Format%3B+text%2Fpdf%3B+pdf%29.+Plugin+1%3A+Chromium+PDF+Viewer%3B+Portable+Document+Format%3B+internal-pdf-viewer%3B+%28Portable+Document+Format%3B+application%2Fpdf%3B+pdf%29+%28Portable+Document+Format%3B+text%2Fpdf%3B+pdf%29.+Plugin+2%3A+Microsoft+Edge+PDF+Viewer%3B+Portable+Document+Format%3B+internal-pdf-viewer%3B+%28Portable+Document+Format%3B+application%2Fpdf%3B+pdf%29+%28Portable+Document+Format%3B+text%2Fpdf%3B+pdf%29.+Plugin+3%3A+PDF+Viewer%3B+Portable+Document+Format%3B+internal-pdf-viewer%3B+%28Portable+Document+Format%3B+application%2Fpdf%3B+pdf%29+%28Portable+Document+Format%3B+text%2Fpdf%3B+pdf%29.+Plugin+4%3A+WebKit+built-in+PDF%3B+Portable+Document+Format%3B+internal-pdf-viewer%3B+%28Portable+Document+Format%3B+application%2Fpdf%3B+pdf%29+%28Portable+Document+Format%3B+text%2Fpdf%3B+pdf%29.+%22%2C%22hardware_concurrency%22%3A8%2C%22audio%22%3A%2235.74996626004577%22%2C%22canvas_hash_v2%22%3A%22d64f90d6590f4cdaf537d36a9e77776e%22%2C%22webgl_hash_v2%22%3A%22257f60fb907a277f6e0b46ffee306df1%22%7D%7D",
+      "source": "coveryourtracks.eff.org",
+      "ts": "2026-03-13T09:34:40.426Z",
+      "unique": 86,
+      "total": 500
+    },
+    {
+      "url": "https://coveryourtracks.eff.org/results?&aat=1&fpi_whorls=%7B%22v2%22%3A%7B%22plugins%22%3A%22Plugin+0%3A+Chrome+PDF+Viewer%3B+Portable+Document+Format%3B+internal-pdf-viewer%3B+%28Portable+Document+Format%3B+application%2Fpdf%3B+pdf%29+%28Portable+Document+Format%3B+text%2Fpdf%3B+pdf%29.+Plugin+1%3A+Chromium+PDF+Viewer%3B+Portable+Document+Format%3B+internal-pdf-viewer%3B+%28Portable+Document+Format%3B+application%2Fpdf%3B+pdf%29+%28Portable+Document+Format%3B+text%2Fpdf%3B+pdf%29.+Plugin+2%3A+Microsoft+Edge+PDF+Viewer%3B+Portable+Document+Format%3B+internal-pdf-viewer%3B+%28Portable+Document+Format%3B+application%2Fpdf%3B+pdf%29+%28Portable+Document+Format%3B+text%2Fpdf%3B+pdf%29.+Plugin+3%3A+PDF+Viewer%3B+Portable+Document+Format%3B+internal-pdf-viewer%3B+%28Portable+Document+Format%3B+application%2Fpdf%3B+pdf%29+%28Portable+Document+Format%3B+text%2Fpdf%3B+pdf%29.+Plugin+4%3A+WebKit+built-in+PDF%3B+Portable+Document+Format%3B+internal-pdf-viewer%3B+%28Portable+Document+Format%3B+application%2Fpdf%3B+pdf%29+%28Portable+Document+Format%3B+text%2Fpdf%3B+pdf%29.+%22%2C%22hardware_concurrency%22%3A8%2C%22audio%22%3A%2235.74996626004577%22%2C%22canvas_hash_v2%22%3A%22d64f90d6590f4cdaf537d36a9e77776e%22%2C%22webgl_hash_v2%22%3A%22257f60fb907a277f6e0b46ffee306df1%22%7D%7D",
+      "source": "coveryourtracks.eff.org",
+      "ts": "2026-03-13T09:34:41.114Z",
+      "unique": 86,
+      "total": 500
+    },
+    {
+      "url": "https://www.google.com/",
+      "source": "www.google.com",
+      "ts": "2026-03-15T21:10:40.145Z",
+      "unique": 90,
+      "total": 9355
+    },
+    {
+      "url": "https://accounts.google.com/RotateCookiesPage?og_pid=538&rot=3&origin=https%3A%2F%2Fwww.google.com&exp_id=0",
+      "source": "accounts.google.com",
+      "ts": "2026-03-15T21:10:41.066Z",
+      "unique": 23,
+      "total": 48
+    },
+    {
+      "url": "https://ogs.google.com/u/0/widget/app?eom=1&awwd=1&gpa=3&em=2&dpi=89978449&origin=https%3A%2F%2Fwww.google.com&cn=app&pid=1&spid=538&hl=en",
+      "source": "ogs.google.com",
+      "ts": "2026-03-15T21:10:44.644Z",
+      "unique": 48,
+      "total": 1530
+    },
+    {
+      "url": "https://www.google.com/",
+      "source": "www.google.com",
+      "ts": "2026-03-15T21:10:45.115Z",
+      "unique": 90,
+      "total": 9355
+    },
+    {
+      "url": "https://accounts.google.com/RotateCookiesPage?og_pid=538&rot=3&origin=https%3A%2F%2Fwww.google.com&exp_id=0",
+      "source": "accounts.google.com",
+      "ts": "2026-03-15T21:10:45.976Z",
+      "unique": 23,
+      "total": 48
+    }
+  ],
+  "merged_apis": {
+    "navigator.mediaDevices": {
+      "t": "object",
+      "c": 200,
+      "v": [
+        "{}"
+      ],
+      "src": [
+        "ads.pubmatic.com",
+        "amiunique.org",
+        "js-sec.indexww.com",
+        "tsdtocl.com",
+        "b7235a33fd35b8f0b5288e012cc5bd69.safeframe.googlesyndication.com",
+        "cdn.taboola.com",
+        "sync.inmobi.com",
+        "u.openx.net",
+        "ogs.google.com",
+        "sync.intentiq.com",
+        "www.google.com",
+        "b53f3cefc1b5b29da6bfa38defeaf6e8.safeframe.googlesyndication.com",
+        "s.amazon-adsystem.com",
+        "accounts.google.com",
+        "eus.rubiconproject.com",
+        "browserleaks.com",
+        "firstpartysimulator.net",
+        "timesinternet-d.openx.net",
+        "ep2.adtrafficquality.google",
+        "acdn.adnxs.com",
+        "hbx.media.net",
+        "platform.twitter.com",
+        "www.youtube.com",
+        "firstpartysimulator.org",
+        "ssum-sec.casalemedia.com",
+        "fingerprint.com",
+        "timesofindia.indiatimes.com",
+        "coveryourtracks.eff.org",
+        "ms-cookie-sync.presage.io"
+      ]
+    },
+    "navigator.mediaCapabilities": {
+      "t": "object",
+      "c": 629,
+      "v": [
+        "{}"
+      ],
+      "src": [
+        "ads.pubmatic.com",
+        "amiunique.org",
+        "js-sec.indexww.com",
+        "tsdtocl.com",
+        "b7235a33fd35b8f0b5288e012cc5bd69.safeframe.googlesyndication.com",
+        "cdn.taboola.com",
+        "sync.inmobi.com",
+        "u.openx.net",
+        "ogs.google.com",
+        "sync.intentiq.com",
+        "www.google.com",
+        "b53f3cefc1b5b29da6bfa38defeaf6e8.safeframe.googlesyndication.com",
+        "s.amazon-adsystem.com",
+        "accounts.google.com",
+        "eus.rubiconproject.com",
+        "browserleaks.com",
+        "firstpartysimulator.net",
+        "timesinternet-d.openx.net",
+        "ep2.adtrafficquality.google",
+        "acdn.adnxs.com",
+        "hbx.media.net",
+        "platform.twitter.com",
+        "www.youtube.com",
+        "firstpartysimulator.org",
+        "ssum-sec.casalemedia.com",
+        "fingerprint.com",
+        "timesofindia.indiatimes.com",
+        "coveryourtracks.eff.org",
+        "ms-cookie-sync.presage.io"
+      ]
+    },
+    "navigator.getBattery": {
+      "t": "undefined",
+      "c": 184,
+      "v": [
+        "undefined"
+      ],
+      "src": [
+        "ads.pubmatic.com",
+        "amiunique.org",
+        "js-sec.indexww.com",
+        "tsdtocl.com",
+        "b7235a33fd35b8f0b5288e012cc5bd69.safeframe.googlesyndication.com",
+        "cdn.taboola.com",
+        "sync.inmobi.com",
+        "u.openx.net",
+        "ogs.google.com",
+        "sync.intentiq.com",
+        "www.google.com",
+        "b53f3cefc1b5b29da6bfa38defeaf6e8.safeframe.googlesyndication.com",
+        "s.amazon-adsystem.com",
+        "accounts.google.com",
+        "eus.rubiconproject.com",
+        "browserleaks.com",
+        "firstpartysimulator.net",
+        "timesinternet-d.openx.net",
+        "ep2.adtrafficquality.google",
+        "acdn.adnxs.com",
+        "hbx.media.net",
+        "platform.twitter.com",
+        "www.youtube.com",
+        "firstpartysimulator.org",
+        "ssum-sec.casalemedia.com",
+        "fingerprint.com",
+        "timesofindia.indiatimes.com",
+        "coveryourtracks.eff.org",
+        "ms-cookie-sync.presage.io"
+      ]
+    },
+    "navigator.connection": {
+      "t": "undefined",
+      "c": 390,
+      "v": [
+        "undefined"
+      ],
+      "src": [
+        "ads.pubmatic.com",
+        "amiunique.org",
+        "js-sec.indexww.com",
+        "tsdtocl.com",
+        "b7235a33fd35b8f0b5288e012cc5bd69.safeframe.googlesyndication.com",
+        "cdn.taboola.com",
+        "sync.inmobi.com",
+        "u.openx.net",
+        "ogs.google.com",
+        "sync.intentiq.com",
+        "www.google.com",
+        "b53f3cefc1b5b29da6bfa38defeaf6e8.safeframe.googlesyndication.com",
+        "s.amazon-adsystem.com",
+        "accounts.google.com",
+        "eus.rubiconproject.com",
+        "browserleaks.com",
+        "firstpartysimulator.net",
+        "timesinternet-d.openx.net",
+        "ep2.adtrafficquality.google",
+        "acdn.adnxs.com",
+        "hbx.media.net",
+        "platform.twitter.com",
+        "www.youtube.com",
+        "firstpartysimulator.org",
+        "ssum-sec.casalemedia.com",
+        "fingerprint.com",
+        "timesofindia.indiatimes.com",
+        "coveryourtracks.eff.org",
+        "ms-cookie-sync.presage.io"
+      ]
+    },
+    "navigator.mozConnection": {
+      "t": "undefined",
+      "c": 238,
+      "v": [
+        "undefined"
+      ],
+      "src": [
+        "ads.pubmatic.com",
+        "amiunique.org",
+        "js-sec.indexww.com",
+        "tsdtocl.com",
+        "b7235a33fd35b8f0b5288e012cc5bd69.safeframe.googlesyndication.com",
+        "cdn.taboola.com",
+        "sync.inmobi.com",
+        "u.openx.net",
+        "ogs.google.com",
+        "sync.intentiq.com",
+        "www.google.com",
+        "b53f3cefc1b5b29da6bfa38defeaf6e8.safeframe.googlesyndication.com",
+        "s.amazon-adsystem.com",
+        "accounts.google.com",
+        "eus.rubiconproject.com",
+        "browserleaks.com",
+        "firstpartysimulator.net",
+        "timesinternet-d.openx.net",
+        "ep2.adtrafficquality.google",
+        "acdn.adnxs.com",
+        "hbx.media.net",
+        "platform.twitter.com",
+        "www.youtube.com",
+        "firstpartysimulator.org",
+        "ssum-sec.casalemedia.com",
+        "fingerprint.com",
+        "timesofindia.indiatimes.com",
+        "coveryourtracks.eff.org",
+        "ms-cookie-sync.presage.io"
+      ]
+    },
+    "navigator.webkitConnection": {
+      "t": "undefined",
+      "c": 249,
+      "v": [
+        "undefined"
+      ],
+      "src": [
+        "ads.pubmatic.com",
+        "amiunique.org",
+        "js-sec.indexww.com",
+        "tsdtocl.com",
+        "b7235a33fd35b8f0b5288e012cc5bd69.safeframe.googlesyndication.com",
+        "cdn.taboola.com",
+        "sync.inmobi.com",
+        "u.openx.net",
+        "ogs.google.com",
+        "sync.intentiq.com",
+        "www.google.com",
+        "b53f3cefc1b5b29da6bfa38defeaf6e8.safeframe.googlesyndication.com",
+        "s.amazon-adsystem.com",
+        "accounts.google.com",
+        "eus.rubiconproject.com",
+        "browserleaks.com",
+        "firstpartysimulator.net",
+        "timesinternet-d.openx.net",
+        "ep2.adtrafficquality.google",
+        "acdn.adnxs.com",
+        "hbx.media.net",
+        "platform.twitter.com",
+        "www.youtube.com",
+        "firstpartysimulator.org",
+        "ssum-sec.casalemedia.com",
+        "fingerprint.com",
+        "timesofindia.indiatimes.com",
+        "coveryourtracks.eff.org",
+        "ms-cookie-sync.presage.io"
+      ]
+    },
+    "navigator.storage": {
+      "t": "object",
+      "c": 1111,
+      "v": [
+        "{}"
+      ],
+      "src": [
+        "ads.pubmatic.com",
+        "amiunique.org",
+        "js-sec.indexww.com",
+        "tsdtocl.com",
+        "b7235a33fd35b8f0b5288e012cc5bd69.safeframe.googlesyndication.com",
+        "cdn.taboola.com",
+        "sync.inmobi.com",
+        "u.openx.net",
+        "ogs.google.com",
+        "sync.intentiq.com",
+        "www.google.com",
+        "b53f3cefc1b5b29da6bfa38defeaf6e8.safeframe.googlesyndication.com",
+        "s.amazon-adsystem.com",
+        "accounts.google.com",
+        "eus.rubiconproject.com",
+        "browserleaks.com",
+        "firstpartysimulator.net",
+        "timesinternet-d.openx.net",
+        "ep2.adtrafficquality.google",
+        "acdn.adnxs.com",
+        "hbx.media.net",
+        "platform.twitter.com",
+        "www.youtube.com",
+        "firstpartysimulator.org",
+        "ssum-sec.casalemedia.com",
+        "fingerprint.com",
+        "timesofindia.indiatimes.com",
+        "coveryourtracks.eff.org",
+        "ms-cookie-sync.presage.io"
+      ]
+    },
+    "window.speechSynthesis": {
+      "t": "object",
+      "c": 568,
+      "v": [
+        "{}"
+      ],
+      "src": [
+        "ads.pubmatic.com",
+        "amiunique.org",
+        "js-sec.indexww.com",
+        "tsdtocl.com",
+        "b7235a33fd35b8f0b5288e012cc5bd69.safeframe.googlesyndication.com",
+        "cdn.taboola.com",
+        "sync.inmobi.com",
+        "u.openx.net",
+        "ogs.google.com",
+        "sync.intentiq.com",
+        "www.google.com",
+        "b53f3cefc1b5b29da6bfa38defeaf6e8.safeframe.googlesyndication.com",
+        "s.amazon-adsystem.com",
+        "accounts.google.com",
+        "eus.rubiconproject.com",
+        "browserleaks.com",
+        "firstpartysimulator.net",
+        "timesinternet-d.openx.net",
+        "ep2.adtrafficquality.google",
+        "acdn.adnxs.com",
+        "hbx.media.net",
+        "platform.twitter.com",
+        "www.youtube.com",
+        "firstpartysimulator.org",
+        "ssum-sec.casalemedia.com",
+        "fingerprint.com",
+        "timesofindia.indiatimes.com",
+        "coveryourtracks.eff.org",
+        "ms-cookie-sync.presage.io"
+      ]
+    },
+    "navigator.getGamepads": {
+      "t": "function",
+      "c": 371,
+      "v": [
+        "[fn]"
+      ],
+      "src": [
+        "ads.pubmatic.com",
+        "amiunique.org",
+        "js-sec.indexww.com",
+        "tsdtocl.com",
+        "b7235a33fd35b8f0b5288e012cc5bd69.safeframe.googlesyndication.com",
+        "cdn.taboola.com",
+        "sync.inmobi.com",
+        "u.openx.net",
+        "ogs.google.com",
+        "sync.intentiq.com",
+        "www.google.com",
+        "b53f3cefc1b5b29da6bfa38defeaf6e8.safeframe.googlesyndication.com",
+        "s.amazon-adsystem.com",
+        "accounts.google.com",
+        "eus.rubiconproject.com",
+        "browserleaks.com",
+        "firstpartysimulator.net",
+        "timesinternet-d.openx.net",
+        "ep2.adtrafficquality.google",
+        "acdn.adnxs.com",
+        "hbx.media.net",
+        "platform.twitter.com",
+        "www.youtube.com",
+        "firstpartysimulator.org",
+        "ssum-sec.casalemedia.com",
+        "fingerprint.com",
+        "timesofindia.indiatimes.com",
+        "coveryourtracks.eff.org",
+        "ms-cookie-sync.presage.io"
+      ]
+    },
+    "navigator.permissions": {
+      "t": "object",
+      "c": 591,
+      "v": [
+        "{}"
+      ],
+      "src": [
+        "ads.pubmatic.com",
+        "amiunique.org",
+        "js-sec.indexww.com",
+        "tsdtocl.com",
+        "b7235a33fd35b8f0b5288e012cc5bd69.safeframe.googlesyndication.com",
+        "cdn.taboola.com",
+        "sync.inmobi.com",
+        "u.openx.net",
+        "ogs.google.com",
+        "sync.intentiq.com",
+        "www.google.com",
+        "b53f3cefc1b5b29da6bfa38defeaf6e8.safeframe.googlesyndication.com",
+        "s.amazon-adsystem.com",
+        "accounts.google.com",
+        "eus.rubiconproject.com",
+        "browserleaks.com",
+        "firstpartysimulator.net",
+        "timesinternet-d.openx.net",
+        "ep2.adtrafficquality.google",
+        "acdn.adnxs.com",
+        "hbx.media.net",
+        "platform.twitter.com",
+        "www.youtube.com",
+        "firstpartysimulator.org",
+        "ssum-sec.casalemedia.com",
+        "fingerprint.com",
+        "timesofindia.indiatimes.com",
+        "coveryourtracks.eff.org",
+        "ms-cookie-sync.presage.io"
+      ]
+    },
+    "navigator.userAgentData": {
+      "t": "undefined",
+      "c": 857,
+      "v": [
+        "undefined"
+      ],
+      "src": [
+        "ads.pubmatic.com",
+        "amiunique.org",
+        "js-sec.indexww.com",
+        "tsdtocl.com",
+        "b7235a33fd35b8f0b5288e012cc5bd69.safeframe.googlesyndication.com",
+        "cdn.taboola.com",
+        "sync.inmobi.com",
+        "u.openx.net",
+        "ogs.google.com",
+        "sync.intentiq.com",
+        "www.google.com",
+        "b53f3cefc1b5b29da6bfa38defeaf6e8.safeframe.googlesyndication.com",
+        "s.amazon-adsystem.com",
+        "accounts.google.com",
+        "eus.rubiconproject.com",
+        "browserleaks.com",
+        "firstpartysimulator.net",
+        "timesinternet-d.openx.net",
+        "ep2.adtrafficquality.google",
+        "acdn.adnxs.com",
+        "hbx.media.net",
+        "platform.twitter.com",
+        "www.youtube.com",
+        "firstpartysimulator.org",
+        "ssum-sec.casalemedia.com",
+        "fingerprint.com",
+        "timesofindia.indiatimes.com",
+        "coveryourtracks.eff.org",
+        "ms-cookie-sync.presage.io"
+      ]
+    },
+    "navigator.bluetooth": {
+      "t": "undefined",
+      "c": 182,
+      "v": [
+        "undefined"
+      ],
+      "src": [
+        "ads.pubmatic.com",
+        "amiunique.org",
+        "js-sec.indexww.com",
+        "tsdtocl.com",
+        "b7235a33fd35b8f0b5288e012cc5bd69.safeframe.googlesyndication.com",
+        "cdn.taboola.com",
+        "sync.inmobi.com",
+        "u.openx.net",
+        "ogs.google.com",
+        "sync.intentiq.com",
+        "www.google.com",
+        "b53f3cefc1b5b29da6bfa38defeaf6e8.safeframe.googlesyndication.com",
+        "s.amazon-adsystem.com",
+        "accounts.google.com",
+        "eus.rubiconproject.com",
+        "browserleaks.com",
+        "firstpartysimulator.net",
+        "timesinternet-d.openx.net",
+        "ep2.adtrafficquality.google",
+        "acdn.adnxs.com",
+        "hbx.media.net",
+        "platform.twitter.com",
+        "www.youtube.com",
+        "firstpartysimulator.org",
+        "ssum-sec.casalemedia.com",
+        "fingerprint.com",
+        "timesofindia.indiatimes.com",
+        "coveryourtracks.eff.org",
+        "ms-cookie-sync.presage.io"
+      ]
+    },
+    "navigator.usb": {
+      "t": "undefined",
+      "c": 180,
+      "v": [
+        "undefined"
+      ],
+      "src": [
+        "ads.pubmatic.com",
+        "amiunique.org",
+        "js-sec.indexww.com",
+        "tsdtocl.com",
+        "b7235a33fd35b8f0b5288e012cc5bd69.safeframe.googlesyndication.com",
+        "cdn.taboola.com",
+        "sync.inmobi.com",
+        "u.openx.net",
+        "ogs.google.com",
+        "sync.intentiq.com",
+        "www.google.com",
+        "b53f3cefc1b5b29da6bfa38defeaf6e8.safeframe.googlesyndication.com",
+        "s.amazon-adsystem.com",
+        "accounts.google.com",
+        "eus.rubiconproject.com",
+        "browserleaks.com",
+        "firstpartysimulator.net",
+        "timesinternet-d.openx.net",
+        "ep2.adtrafficquality.google",
+        "acdn.adnxs.com",
+        "hbx.media.net",
+        "platform.twitter.com",
+        "www.youtube.com",
+        "firstpartysimulator.org",
+        "ssum-sec.casalemedia.com",
+        "fingerprint.com",
+        "timesofindia.indiatimes.com",
+        "coveryourtracks.eff.org",
+        "ms-cookie-sync.presage.io"
+      ]
+    },
+    "navigator.serial": {
+      "t": "undefined",
+      "c": 180,
+      "v": [
+        "undefined"
+      ],
+      "src": [
+        "ads.pubmatic.com",
+        "amiunique.org",
+        "js-sec.indexww.com",
+        "tsdtocl.com",
+        "b7235a33fd35b8f0b5288e012cc5bd69.safeframe.googlesyndication.com",
+        "cdn.taboola.com",
+        "sync.inmobi.com",
+        "u.openx.net",
+        "ogs.google.com",
+        "sync.intentiq.com",
+        "www.google.com",
+        "b53f3cefc1b5b29da6bfa38defeaf6e8.safeframe.googlesyndication.com",
+        "s.amazon-adsystem.com",
+        "accounts.google.com",
+        "eus.rubiconproject.com",
+        "browserleaks.com",
+        "firstpartysimulator.net",
+        "timesinternet-d.openx.net",
+        "ep2.adtrafficquality.google",
+        "acdn.adnxs.com",
+        "hbx.media.net",
+        "platform.twitter.com",
+        "www.youtube.com",
+        "firstpartysimulator.org",
+        "ssum-sec.casalemedia.com",
+        "fingerprint.com",
+        "timesofindia.indiatimes.com",
+        "coveryourtracks.eff.org",
+        "ms-cookie-sync.presage.io"
+      ]
+    },
+    "navigator.hid": {
+      "t": "undefined",
+      "c": 180,
+      "v": [
+        "undefined"
+      ],
+      "src": [
+        "ads.pubmatic.com",
+        "amiunique.org",
+        "js-sec.indexww.com",
+        "tsdtocl.com",
+        "b7235a33fd35b8f0b5288e012cc5bd69.safeframe.googlesyndication.com",
+        "cdn.taboola.com",
+        "sync.inmobi.com",
+        "u.openx.net",
+        "ogs.google.com",
+        "sync.intentiq.com",
+        "www.google.com",
+        "b53f3cefc1b5b29da6bfa38defeaf6e8.safeframe.googlesyndication.com",
+        "s.amazon-adsystem.com",
+        "accounts.google.com",
+        "eus.rubiconproject.com",
+        "browserleaks.com",
+        "firstpartysimulator.net",
+        "timesinternet-d.openx.net",
+        "ep2.adtrafficquality.google",
+        "acdn.adnxs.com",
+        "hbx.media.net",
+        "platform.twitter.com",
+        "www.youtube.com",
+        "firstpartysimulator.org",
+        "ssum-sec.casalemedia.com",
+        "fingerprint.com",
+        "timesofindia.indiatimes.com",
+        "coveryourtracks.eff.org",
+        "ms-cookie-sync.presage.io"
+      ]
+    },
+    "navigator.geolocation": {
+      "t": "object",
+      "c": 917,
+      "v": [
+        "{}"
+      ],
+      "src": [
+        "ads.pubmatic.com",
+        "amiunique.org",
+        "js-sec.indexww.com",
+        "tsdtocl.com",
+        "b7235a33fd35b8f0b5288e012cc5bd69.safeframe.googlesyndication.com",
+        "cdn.taboola.com",
+        "sync.inmobi.com",
+        "u.openx.net",
+        "ogs.google.com",
+        "sync.intentiq.com",
+        "www.google.com",
+        "b53f3cefc1b5b29da6bfa38defeaf6e8.safeframe.googlesyndication.com",
+        "s.amazon-adsystem.com",
+        "accounts.google.com",
+        "eus.rubiconproject.com",
+        "browserleaks.com",
+        "firstpartysimulator.net",
+        "timesinternet-d.openx.net",
+        "ep2.adtrafficquality.google",
+        "acdn.adnxs.com",
+        "hbx.media.net",
+        "platform.twitter.com",
+        "www.youtube.com",
+        "firstpartysimulator.org",
+        "ssum-sec.casalemedia.com",
+        "fingerprint.com",
+        "timesofindia.indiatimes.com",
+        "coveryourtracks.eff.org",
+        "ms-cookie-sync.presage.io"
+      ]
+    },
+    "window.crypto": {
+      "t": "object",
+      "c": 48748,
+      "v": [
+        "{}"
+      ],
+      "src": [
+        "ads.pubmatic.com",
+        "amiunique.org",
+        "js-sec.indexww.com",
+        "tsdtocl.com",
+        "b7235a33fd35b8f0b5288e012cc5bd69.safeframe.googlesyndication.com",
+        "cdn.taboola.com",
+        "sync.inmobi.com",
+        "u.openx.net",
+        "ogs.google.com",
+        "sync.intentiq.com",
+        "www.google.com",
+        "b53f3cefc1b5b29da6bfa38defeaf6e8.safeframe.googlesyndication.com",
+        "s.amazon-adsystem.com",
+        "accounts.google.com",
+        "eus.rubiconproject.com",
+        "browserleaks.com",
+        "firstpartysimulator.net",
+        "timesinternet-d.openx.net",
+        "ep2.adtrafficquality.google",
+        "acdn.adnxs.com",
+        "hbx.media.net",
+        "platform.twitter.com",
+        "www.youtube.com",
+        "firstpartysimulator.org",
+        "ssum-sec.casalemedia.com",
+        "fingerprint.com",
+        "timesofindia.indiatimes.com",
+        "coveryourtracks.eff.org",
+        "ms-cookie-sync.presage.io"
+      ]
+    },
+    "navigator.plugins": {
+      "t": "object",
+      "c": 508,
+      "v": [
+        "[Plugins:5]"
+      ],
+      "src": [
+        "ads.pubmatic.com",
+        "amiunique.org",
+        "js-sec.indexww.com",
+        "tsdtocl.com",
+        "b7235a33fd35b8f0b5288e012cc5bd69.safeframe.googlesyndication.com",
+        "cdn.taboola.com",
+        "sync.inmobi.com",
+        "u.openx.net",
+        "ogs.google.com",
+        "sync.intentiq.com",
+        "www.google.com",
+        "b53f3cefc1b5b29da6bfa38defeaf6e8.safeframe.googlesyndication.com",
+        "s.amazon-adsystem.com",
+        "accounts.google.com",
+        "eus.rubiconproject.com",
+        "browserleaks.com",
+        "firstpartysimulator.net",
+        "timesinternet-d.openx.net",
+        "ep2.adtrafficquality.google",
+        "acdn.adnxs.com",
+        "hbx.media.net",
+        "platform.twitter.com",
+        "www.youtube.com",
+        "firstpartysimulator.org",
+        "ssum-sec.casalemedia.com",
+        "fingerprint.com",
+        "timesofindia.indiatimes.com",
+        "coveryourtracks.eff.org",
+        "ms-cookie-sync.presage.io"
+      ]
+    },
+    "navigator.mimeTypes": {
+      "t": "object",
+      "c": 742,
+      "v": [
+        "[MimeTypes:2]"
+      ],
+      "src": [
+        "ads.pubmatic.com",
+        "amiunique.org",
+        "js-sec.indexww.com",
+        "tsdtocl.com",
+        "b7235a33fd35b8f0b5288e012cc5bd69.safeframe.googlesyndication.com",
+        "cdn.taboola.com",
+        "sync.inmobi.com",
+        "u.openx.net",
+        "ogs.google.com",
+        "sync.intentiq.com",
+        "www.google.com",
+        "b53f3cefc1b5b29da6bfa38defeaf6e8.safeframe.googlesyndication.com",
+        "s.amazon-adsystem.com",
+        "accounts.google.com",
+        "eus.rubiconproject.com",
+        "browserleaks.com",
+        "firstpartysimulator.net",
+        "timesinternet-d.openx.net",
+        "ep2.adtrafficquality.google",
+        "acdn.adnxs.com",
+        "hbx.media.net",
+        "platform.twitter.com",
+        "www.youtube.com",
+        "firstpartysimulator.org",
+        "ssum-sec.casalemedia.com",
+        "fingerprint.com",
+        "timesofindia.indiatimes.com",
+        "coveryourtracks.eff.org",
+        "ms-cookie-sync.presage.io"
+      ]
+    },
+    "document.readyState": {
+      "t": "string",
+      "c": 1522,
+      "v": [
+        "loading",
+        "complete",
+        "interactive"
+      ],
+      "src": [
+        "ads.pubmatic.com",
+        "amiunique.org",
+        "js-sec.indexww.com",
+        "tsdtocl.com",
+        "b7235a33fd35b8f0b5288e012cc5bd69.safeframe.googlesyndication.com",
+        "cdn.taboola.com",
+        "sync.inmobi.com",
+        "u.openx.net",
+        "ogs.google.com",
+        "sync.intentiq.com",
+        "www.google.com",
+        "b53f3cefc1b5b29da6bfa38defeaf6e8.safeframe.googlesyndication.com",
+        "s.amazon-adsystem.com",
+        "accounts.google.com",
+        "eus.rubiconproject.com",
+        "browserleaks.com",
+        "firstpartysimulator.net",
+        "timesinternet-d.openx.net",
+        "ep2.adtrafficquality.google",
+        "acdn.adnxs.com",
+        "hbx.media.net",
+        "platform.twitter.com",
+        "www.youtube.com",
+        "firstpartysimulator.org",
+        "ssum-sec.casalemedia.com",
+        "fingerprint.com",
+        "timesofindia.indiatimes.com",
+        "coveryourtracks.eff.org",
+        "ms-cookie-sync.presage.io"
+      ]
+    },
+    "navigator.userAgent": {
+      "t": "string",
+      "c": 9329,
+      "v": [
+        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:148.0) Gecko/20100101 Firefox/148.0"
+      ],
+      "src": [
+        "amiunique.org",
+        "ads.pubmatic.com",
+        "fingerprint.com",
+        "www.google.com",
+        "platform.twitter.com",
+        "hbx.media.net",
+        "ogs.google.com",
+        "browserleaks.com",
+        "www.youtube.com",
+        "firstpartysimulator.org",
+        "timesofindia.indiatimes.com",
+        "coveryourtracks.eff.org"
+      ]
+    },
+    "window.parent": {
+      "t": "object",
+      "c": 996,
+      "v": [
+        "[obj]"
+      ],
+      "src": [
+        "acdn.adnxs.com",
+        "ads.pubmatic.com",
+        "js-sec.indexww.com",
+        "fingerprint.com",
+        "tsdtocl.com",
+        "hbx.media.net",
+        "platform.twitter.com",
+        "ogs.google.com",
+        "www.youtube.com",
+        "www.google.com",
+        "timesofindia.indiatimes.com"
+      ]
+    },
+    "performance.mark": {
+      "t": "string",
+      "c": 518,
+      "v": [
+        "[fn]"
+      ],
+      "src": [
+        "fingerprint.com",
+        "ogs.google.com",
+        "www.youtube.com",
+        "www.google.com",
+        "timesofindia.indiatimes.com"
+      ]
+    },
+    "window.self": {
+      "t": "object",
+      "c": 1351938,
+      "v": [
+        "[obj]",
+        "[err]"
+      ],
+      "src": [
+        "acdn.adnxs.com",
+        "amiunique.org",
+        "ads.pubmatic.com",
+        "js-sec.indexww.com",
+        "fingerprint.com",
+        "tsdtocl.com",
+        "platform.twitter.com",
+        "b7235a33fd35b8f0b5288e012cc5bd69.safeframe.googlesyndication.com",
+        "b53f3cefc1b5b29da6bfa38defeaf6e8.safeframe.googlesyndication.com",
+        "ogs.google.com",
+        "browserleaks.com",
+        "www.youtube.com",
+        "www.google.com",
+        "timesofindia.indiatimes.com",
+        "ep2.adtrafficquality.google"
+      ]
+    },
+    "window.trustedTypes": {
+      "t": "object",
+      "c": 257,
+      "v": [
+        "{}"
+      ],
+      "src": [
+        "amiunique.org",
+        "fingerprint.com",
+        "b7235a33fd35b8f0b5288e012cc5bd69.safeframe.googlesyndication.com",
+        "b53f3cefc1b5b29da6bfa38defeaf6e8.safeframe.googlesyndication.com",
+        "ogs.google.com",
+        "www.youtube.com",
+        "www.google.com",
+        "timesofindia.indiatimes.com",
+        "ep2.adtrafficquality.google"
+      ]
+    },
+    "performance.timing": {
+      "t": "object",
+      "c": 1304,
+      "v": [
+        "{\"navigationStart\":1773394005251,\"unloadEventStart\":1773394005268,\"unloadEventEnd\":1773394005280,\"re",
+        "{\"navigationStart\":1773394323677,\"unloadEventStart\":0,\"unloadEventEnd\":0,\"redirectStart\":0,\"redirect",
+        "{\"navigationStart\":1773394080661,\"unloadEventStart\":0,\"unloadEventEnd\":0,\"redirectStart\":17733940806",
+        "{\"navigationStart\":1773394333638,\"unloadEventStart\":1773394334346,\"unloadEventEnd\":1773394334346,\"re",
+        "{\"navigationStart\":1773393982677,\"unloadEventStart\":0,\"unloadEventEnd\":0,\"redirectStart\":0,\"redirect"
+      ],
+      "src": [
+        "amiunique.org",
+        "fingerprint.com",
+        "ogs.google.com",
+        "www.youtube.com",
+        "www.google.com",
+        "timesofindia.indiatimes.com"
+      ]
+    },
+    "navigator.product": {
+      "t": "string",
+      "c": 223,
+      "v": [
+        "Gecko"
+      ],
+      "src": [
+        "amiunique.org",
+        "fingerprint.com",
+        "ogs.google.com",
+        "browserleaks.com",
+        "www.google.com",
+        "timesofindia.indiatimes.com",
+        "coveryourtracks.eff.org"
+      ]
+    },
+    "performance.measure": {
+      "t": "string",
+      "c": 158,
+      "v": [
+        "[fn]"
+      ],
+      "src": [
+        "www.google.com",
+        "timesofindia.indiatimes.com",
+        "ogs.google.com"
+      ]
+    },
+    "performance.clearMeasures": {
+      "t": "string",
+      "c": 98,
+      "v": [
+        "[fn]"
+      ],
+      "src": [
+        "www.google.com",
+        "ogs.google.com"
+      ]
+    },
+    "performance.clearMarks": {
+      "t": "string",
+      "c": 109,
+      "v": [
+        "[fn]"
+      ],
+      "src": [
+        "www.google.com",
+        "timesofindia.indiatimes.com",
+        "ogs.google.com"
+      ]
+    },
+    "document.contentType": {
+      "t": "string",
+      "c": 453,
+      "v": [
+        "text/html"
+      ],
+      "src": [
+        "www.youtube.com",
+        "www.google.com",
+        "timesofindia.indiatimes.com",
+        "ogs.google.com"
+      ]
+    },
+    "document.compatMode": {
+      "t": "string",
+      "c": 914,
+      "v": [
+        "CSS1Compat",
+        "BackCompat"
+      ],
+      "src": [
+        "www.google.com",
+        "timesofindia.indiatimes.com",
+        "ogs.google.com",
+        "fingerprint.com"
+      ]
+    },
+    "window.devicePixelRatio": {
+      "t": "number",
+      "c": 278,
+      "v": [
+        "2"
+      ],
+      "src": [
+        "fingerprint.com",
+        "ogs.google.com",
+        "browserleaks.com",
+        "www.youtube.com",
+        "www.google.com",
+        "timesofindia.indiatimes.com",
+        "ep2.adtrafficquality.google"
+      ]
+    },
+    "css.matchMedia": {
+      "t": "string",
+      "c": 416,
+      "v": [
+        "(orientation: landscape)",
+        "(min-resolution: 1.5dppx), (-webkit-min-device-pixel-ratio: 1.5)",
+        "(max-width:740px)",
+        "(max-width: 1200px)",
+        "only screen and (max-height: 1079px) and (min-height: 800px)"
+      ],
+      "src": [
+        "fingerprint.com",
+        "ogs.google.com",
+        "browserleaks.com",
+        "www.youtube.com",
+        "www.google.com",
+        "timesofindia.indiatimes.com"
+      ]
+    },
+    "window.innerWidth": {
+      "t": "number",
+      "c": 976,
+      "v": [
+        "0",
+        "370",
+        "1391",
+        "1024"
+      ],
+      "src": [
+        "amiunique.org",
+        "fingerprint.com",
+        "ogs.google.com",
+        "browserleaks.com",
+        "www.youtube.com",
+        "www.google.com",
+        "timesofindia.indiatimes.com"
+      ]
+    },
+    "window.innerHeight": {
+      "t": "number",
+      "c": 506,
+      "v": [
+        "640",
+        "0",
+        "702",
+        "390"
+      ],
+      "src": [
+        "amiunique.org",
+        "fingerprint.com",
+        "ogs.google.com",
+        "browserleaks.com",
+        "www.youtube.com",
+        "www.google.com",
+        "timesofindia.indiatimes.com"
+      ]
+    },
+    "screen.width": {
+      "t": "number",
+      "c": 817,
+      "v": [
+        "1440"
+      ],
+      "src": [
+        "amiunique.org",
+        "fingerprint.com",
+        "ogs.google.com",
+        "browserleaks.com",
+        "www.youtube.com",
+        "www.google.com",
+        "timesofindia.indiatimes.com",
+        "coveryourtracks.eff.org"
+      ]
+    },
+    "screen.height": {
+      "t": "number",
+      "c": 815,
+      "v": [
+        "900"
+      ],
+      "src": [
+        "amiunique.org",
+        "fingerprint.com",
+        "ogs.google.com",
+        "browserleaks.com",
+        "www.youtube.com",
+        "www.google.com",
+        "timesofindia.indiatimes.com",
+        "coveryourtracks.eff.org"
+      ]
+    },
+    "history.state": {
+      "t": "null",
+      "c": 178,
+      "v": [
+        "null",
+        "{\"state\":null,\"url\":\"/search?client=firefox-b-d&q=browserleaks&sei=mdizacKhG-CX5OUPnZneoAU\",\"metadat",
+        "{\"state\":null,\"url\":\"/\",\"metadata\":{\"entryId\":1773609029326,\"pushId\":1773609029327,\"stackId\":1773609",
+        "{\"state\":null,\"url\":\"/search?client=firefox-b-d&q=http%3A%2F%2F\",\"metadata\":{\"entryId\":1773392525989",
+        "{\"key\":\"1773394046047\"}"
+      ],
+      "src": [
+        "amiunique.org",
+        "fingerprint.com",
+        "ogs.google.com",
+        "www.google.com",
+        "timesofindia.indiatimes.com"
+      ]
+    },
+    "navigator.maxTouchPoints": {
+      "t": "number",
+      "c": 217,
+      "v": [
+        "0"
+      ],
+      "src": [
+        "amiunique.org",
+        "fingerprint.com",
+        "ogs.google.com",
+        "browserleaks.com",
+        "www.youtube.com",
+        "www.google.com",
+        "coveryourtracks.eff.org",
+        "ep2.adtrafficquality.google"
+      ]
+    },
+    "document.hidden": {
+      "t": "boolean",
+      "c": 29780,
+      "v": [
+        "true",
+        "false"
+      ],
+      "src": [
+        "fingerprint.com",
+        "ogs.google.com",
+        "www.youtube.com",
+        "www.google.com",
+        "timesofindia.indiatimes.com",
+        "ep2.adtrafficquality.google"
+      ]
+    },
+    "history.scrollRestoration": {
+      "t": "string",
+      "c": 3,
+      "v": [
+        "auto"
+      ],
+      "src": [
+        "ogs.google.com"
+      ]
+    },
+    "navigator.sendBeacon": {
+      "t": "function",
+      "c": 747,
+      "v": [
+        "[fn]"
+      ],
+      "src": [
+        "amiunique.org",
+        "fingerprint.com",
+        "ogs.google.com",
+        "browserleaks.com",
+        "www.google.com",
+        "timesofindia.indiatimes.com"
+      ]
+    },
+    "performance.getEntriesByType": {
+      "t": "string",
+      "c": 869,
+      "v": [
+        "[fn]"
+      ],
+      "src": [
+        "fingerprint.com",
+        "ogs.google.com",
+        "www.youtube.com",
+        "www.google.com",
+        "timesofindia.indiatimes.com"
+      ]
+    },
+    "document.visibilityState": {
+      "t": "string",
+      "c": 347,
+      "v": [
+        "visible",
+        "hidden"
+      ],
+      "src": [
+        "amiunique.org",
+        "fingerprint.com",
+        "ogs.google.com",
+        "browserleaks.com",
+        "www.youtube.com",
+        "www.google.com",
+        "timesofindia.indiatimes.com"
+      ]
+    },
+    "document.cookie": {
+      "t": "string",
+      "c": 12133,
+      "v": [
+        "",
+        "KADUSERCOOKIE=8009606A-DBA5-40EF-91E1-D648004F55C9; chkSecSet=4; DPSync2=1775952000%3A102%7C17734464",
+        "_sharedid=7630dde1-2fcf-4a07-9c42-ed0bd47684ed; _sharedid_cst=znv0HA%3D%3D; _ga_FCN624MN68=GS2.1.s17",
+        "SID=g.a0007ggEhZ2LBLTttJAVZ9tizeRx19oQGhjQMPxddXQWbHDZH90mSYC_qhJE9yqQtFZDB4sE8gACgYKAbsSARYSFQHGX2M",
+        "geo_continent=AS; geo_country=IN; geo_region=; optout=1"
+      ],
+      "src": [
+        "acdn.adnxs.com",
+        "amiunique.org",
+        "ads.pubmatic.com",
+        "fingerprint.com",
+        "hbx.media.net",
+        "cdn.taboola.com",
+        "ogs.google.com",
+        "browserleaks.com",
+        "www.youtube.com",
+        "www.google.com",
+        "timesofindia.indiatimes.com"
+      ]
+    },
+    "navigator.cookieEnabled": {
+      "t": "boolean",
+      "c": 521,
+      "v": [
+        "true"
+      ],
+      "src": [
+        "amiunique.org",
+        "fingerprint.com",
+        "hbx.media.net",
+        "ogs.google.com",
+        "browserleaks.com",
+        "www.youtube.com",
+        "www.google.com",
+        "timesofindia.indiatimes.com"
+      ]
+    },
+    "performance.memory": {
+      "t": "undefined",
+      "c": 19,
+      "v": [
+        "undefined"
+      ],
+      "src": [
+        "www.youtube.com",
+        "www.google.com",
+        "ogs.google.com",
+        "ep2.adtrafficquality.google"
+      ]
+    },
+    "Date.getTimezoneOffset": {
+      "t": "number",
+      "c": 547,
+      "v": [
+        "NaN",
+        "-330"
+      ],
+      "src": [
+        "fingerprint.com",
+        "ogs.google.com",
+        "www.youtube.com",
+        "www.google.com",
+        "timesofindia.indiatimes.com",
+        "coveryourtracks.eff.org",
+        "ep2.adtrafficquality.google"
+      ]
+    },
+    "performance.interactionCount": {
+      "t": "number",
+      "c": 6,
+      "v": [
+        "0",
+        "1"
+      ],
+      "src": [
+        "timesofindia.indiatimes.com",
+        "ogs.google.com"
+      ]
+    },
+    "window.navigation": {
+      "t": "object",
+      "c": 94,
+      "v": [
+        "{}"
+      ],
+      "src": [
+        "www.google.com",
+        "fingerprint.com"
+      ]
+    },
+    "history.replaceState": {
+      "t": "function",
+      "c": 92,
+      "v": [
+        "[fn]"
+      ],
+      "src": [
+        "www.google.com",
+        "timesofindia.indiatimes.com",
+        "amiunique.org",
+        "fingerprint.com"
+      ]
+    },
+    "window.pageXOffset": {
+      "t": "number",
+      "c": 3302,
+      "v": [
+        "0"
+      ],
+      "src": [
+        "www.google.com",
+        "timesofindia.indiatimes.com",
+        "amiunique.org",
+        "fingerprint.com"
+      ]
+    },
+    "window.pageYOffset": {
+      "t": "number",
+      "c": 4152,
+      "v": [
+        "63",
+        "0",
+        "2",
+        "1",
+        "4"
+      ],
+      "src": [
+        "www.google.com",
+        "timesofindia.indiatimes.com",
+        "amiunique.org",
+        "fingerprint.com"
+      ]
+    },
+    "window.scrollY": {
+      "t": "number",
+      "c": 1017,
+      "v": [
+        "44",
+        "63",
+        "0",
+        "29",
+        "1375"
+      ],
+      "src": [
+        "www.google.com",
+        "timesofindia.indiatimes.com",
+        "fingerprint.com"
+      ]
+    },
+    "window.scheduler": {
+      "t": "object",
+      "c": 531,
+      "v": [
+        "{}"
+      ],
+      "src": [
+        "www.google.com",
+        "timesofindia.indiatimes.com"
+      ]
+    },
+    "navigator.platform": {
+      "t": "string",
+      "c": 189,
+      "v": [
+        "MacIntel"
+      ],
+      "src": [
+        "amiunique.org",
+        "fingerprint.com",
+        "browserleaks.com",
+        "www.youtube.com",
+        "www.google.com",
+        "timesofindia.indiatimes.com",
+        "coveryourtracks.eff.org",
+        "ep2.adtrafficquality.google"
+      ]
+    },
+    "window.sessionStorage": {
+      "t": "object",
+      "c": 1758,
+      "v": [
+        "{\"ph_phc_9dulIW3P2WvKyM4gpDwBlTymZArbmS7rAvfxFpU0p7t_posthog\":\"{}\"}",
+        "{\"__support__\":\"\\\"xyz\\\"\"}",
+        "{\"renewNudgePeriod\":\"30\",\"profile_info_NonLoggedin\":\"{\\\"sso_id\\\":null,\\\"subscription_method\\\":\\\"\\\",\\",
+        "{\"__tcigc__\":\"c\",\"arLastUrl\":\"https://timesofindia.indiatimes.com/\",\"tbl-sesn-ref\":\"https://timesofi",
+        "{}"
+      ],
+      "src": [
+        "amiunique.org",
+        "fingerprint.com",
+        "www.youtube.com",
+        "www.google.com",
+        "timesofindia.indiatimes.com",
+        "coveryourtracks.eff.org"
+      ]
+    },
+    "storage.setItem": {
+      "t": "string",
+      "c": 2902,
+      "v": [
+        "_c;;i",
+        "nextRotationAttemptTs",
+        "PubMatic_USP",
+        "rc::b",
+        "_gcl_ls"
+      ],
+      "src": [
+        "accounts.google.com",
+        "ads.pubmatic.com",
+        "fingerprint.com",
+        "tsdtocl.com",
+        "cdn.taboola.com",
+        "www.youtube.com",
+        "www.google.com",
+        "timesofindia.indiatimes.com"
+      ]
+    },
+    "performance.timeOrigin": {
+      "t": "number",
+      "c": 148,
+      "v": [
+        "1773393965352",
+        "1773394025061",
+        "1773609029326",
+        "1773393970750",
+        "1773393986322"
+      ],
+      "src": [
+        "fingerprint.com",
+        "www.youtube.com",
+        "www.google.com",
+        "timesofindia.indiatimes.com",
+        "ep2.adtrafficquality.google"
+      ]
+    },
+    "navigator.vendor": {
+      "t": "string",
+      "c": 712,
+      "v": [
+        ""
+      ],
+      "src": [
+        "amiunique.org",
+        "fingerprint.com",
+        "browserleaks.com",
+        "www.youtube.com",
+        "www.google.com",
+        "timesofindia.indiatimes.com"
+      ]
+    },
+    "performance.getEntriesByName": {
+      "t": "string",
+      "c": 94,
+      "v": [
+        "[fn]"
+      ],
+      "src": [
+        "www.youtube.com",
+        "www.google.com",
+        "timesofindia.indiatimes.com",
+        "fingerprint.com"
+      ]
+    },
+    "navigator.deviceMemory": {
+      "t": "undefined",
+      "c": 148,
+      "v": [
+        "undefined"
+      ],
+      "src": [
+        "fingerprint.com",
+        "browserleaks.com",
+        "www.youtube.com",
+        "www.google.com",
+        "timesofindia.indiatimes.com",
+        "coveryourtracks.eff.org"
+      ]
+    },
+    "css.supports": {
+      "t": "string",
+      "c": 20,
+      "v": [
+        "selector(:has(*))",
+        "animation-timing-function,line",
+        "backdrop-filter,blur(2px)"
+      ],
+      "src": [
+        "www.youtube.com",
+        "www.google.com",
+        "fingerprint.com"
+      ]
+    },
+    "navigator.msPointerEnabled": {
+      "t": "undefined",
+      "c": 10,
+      "v": [
+        "undefined"
+      ],
+      "src": [
+        "browserleaks.com",
+        "www.youtube.com",
+        "www.google.com"
+      ]
+    },
+    "window.localStorage": {
+      "t": "object",
+      "c": 11075,
+      "v": [
+        "{\"PubMatic_USP\":\"{\\\"156011\\\":{\\\"t\\\":1773393992215,\\\"c\\\":\\\"1---\\\"},\\\"159035\\\":{\\\"t\\\":1773393995626,\\\"",
+        "{\"_grecaptcha\":\"09AKhCRwgjQSoqw5-AA2IKooSrtTMpLQERuT-BB54byF5pdOpcF7oJKn_QSsT0TzWpMsn6RueRd-N5N-V9lg",
+        "{\"ul\":\"f9c88e23-35df-4453-95d5-321bb2480a63-tuct10ad5dc4\"}",
+        "{\"aps:5025:idVendors/enabled\":\"[\\\"liveintent\\\",\\\"pair\\\",\\\"amx\\\",\\\"33across\\\",\\\"merkle\\\",\\\"captify\\\",",
+        "{\"udla::iks\":\"1\",\"sb_wiz.qc\":\"4\",\"sb_wiz.pq\":\"http://\",\"rc::f\":\"0aAAyqRK_800TFQEVeql8Unh5g_slWZBxDFr"
+      ],
+      "src": [
+        "accounts.google.com",
+        "amiunique.org",
+        "ads.pubmatic.com",
+        "fingerprint.com",
+        "tsdtocl.com",
+        "cdn.taboola.com",
+        "www.youtube.com",
+        "www.google.com",
+        "timesofindia.indiatimes.com",
+        "coveryourtracks.eff.org"
+      ]
+    },
+    "storage.getItem": {
+      "t": "string",
+      "c": 5144,
+      "v": [
+        "_c;;i",
+        "nextRotationAttemptTs",
+        "PubMatic_USP",
+        "sb_wiz.ueh",
+        "apstagDebug"
+      ],
+      "src": [
+        "accounts.google.com",
+        "amiunique.org",
+        "ads.pubmatic.com",
+        "fingerprint.com",
+        "tsdtocl.com",
+        "cdn.taboola.com",
+        "www.youtube.com",
+        "www.google.com",
+        "timesofindia.indiatimes.com"
+      ]
+    },
+    "navigator.msSaveOrOpenBlob": {
+      "t": "undefined",
+      "c": 3,
+      "v": [
+        "undefined"
+      ],
+      "src": [
+        "www.google.com"
+      ]
+    },
+    "crypto.getRandomValues": {
+      "t": "number",
+      "c": 49,
+      "v": [
+        "16",
+        "8",
+        "64",
+        "1"
+      ],
+      "src": [
+        "www.youtube.com",
+        "www.google.com",
+        "platform.twitter.com",
+        "timesofindia.indiatimes.com",
+        "fingerprint.com"
+      ]
+    },
+    "permissions.query": {
+      "t": "string",
+      "c": 21,
+      "v": [
+        "microphone",
+        "notifications",
+        "camera",
+        "geolocation"
+      ],
+      "src": [
+        "browserleaks.com",
+        "www.google.com",
+        "fingerprint.com"
+      ]
+    },
+    "navigator.webdriver": {
+      "t": "boolean",
+      "c": 156,
+      "v": [
+        "false"
+      ],
+      "src": [
+        "fingerprint.com",
+        "browserleaks.com",
+        "www.youtube.com",
+        "www.google.com",
+        "timesofindia.indiatimes.com",
+        "coveryourtracks.eff.org"
+      ]
+    },
+    "Date.toString": {
+      "t": "string",
+      "c": 36,
+      "v": [
+        "Fri Mar 13 2026 14:56:41 GMT+0",
+        "Wed Apr 07 2027 14:56:25 GMT+0",
+        "Fri Mar 13 2026 15:00:00 GMT+0",
+        "Thu Jan 01 1970 05:30:00 GMT+0",
+        "Fri Mar 13 2026 14:56:46 GMT+0"
+      ],
+      "src": [
+        "browserleaks.com",
+        "www.youtube.com",
+        "www.google.com",
+        "timesofindia.indiatimes.com",
+        "ep2.adtrafficquality.google"
+      ]
+    },
+    "screen.availWidth": {
+      "t": "number",
+      "c": 229,
+      "v": [
+        "1440"
+      ],
+      "src": [
+        "fingerprint.com",
+        "browserleaks.com",
+        "www.youtube.com",
+        "www.google.com",
+        "timesofindia.indiatimes.com",
+        "coveryourtracks.eff.org"
+      ]
+    },
+    "screen.availHeight": {
+      "t": "number",
+      "c": 227,
+      "v": [
+        "786"
+      ],
+      "src": [
+        "fingerprint.com",
+        "browserleaks.com",
+        "www.youtube.com",
+        "www.google.com",
+        "timesofindia.indiatimes.com",
+        "coveryourtracks.eff.org"
+      ]
+    },
+    "screen.availLeft": {
+      "t": "number",
+      "c": 96,
+      "v": [
+        "0"
+      ],
+      "src": [
+        "browserleaks.com",
+        "www.youtube.com",
+        "www.google.com",
+        "fingerprint.com"
+      ]
+    },
+    "screen.availTop": {
+      "t": "number",
+      "c": 98,
+      "v": [
+        "25"
+      ],
+      "src": [
+        "browserleaks.com",
+        "www.youtube.com",
+        "www.google.com",
+        "fingerprint.com"
+      ]
+    },
+    "history.length": {
+      "t": "number",
+      "c": 78,
+      "v": [
+        "7",
+        "4",
+        "5",
+        "3"
+      ],
+      "src": [
+        "www.youtube.com",
+        "www.google.com",
+        "timesofindia.indiatimes.com",
+        "ep2.adtrafficquality.google"
+      ]
+    },
+    "navigator.hardwareConcurrency": {
+      "t": "number",
+      "c": 93,
+      "v": [
+        "8"
+      ],
+      "src": [
+        "fingerprint.com",
+        "firstpartysimulator.org",
+        "browserleaks.com",
+        "www.youtube.com",
+        "www.google.com",
+        "timesofindia.indiatimes.com",
+        "coveryourtracks.eff.org"
+      ]
+    },
+    "performance.clearResourceTimings": {
+      "t": "string",
+      "c": 4,
+      "v": [
+        "[fn]"
+      ],
+      "src": [
+        "www.youtube.com"
+      ]
+    },
+    "window.caches": {
+      "t": "object",
+      "c": 103,
+      "v": [
+        "{}"
+      ],
+      "src": [
+        "timesofindia.indiatimes.com",
+        "amiunique.org",
+        "www.youtube.com"
+      ]
+    },
+    "document.referrer": {
+      "t": "string",
+      "c": 2027,
+      "v": [
+        "",
+        "https://amiunique.org/timeline",
+        "https://timesofindia.indiatimes.com/",
+        "https://browserleaks.com/proxy",
+        "https://amiunique.org/"
+      ],
+      "src": [
+        "amiunique.org",
+        "fingerprint.com",
+        "timesofindia.indiatimes.com",
+        "firstpartysimulator.org",
+        "browserleaks.com",
+        "www.youtube.com",
+        "www.google.com",
+        "firstpartysimulator.net",
+        "coveryourtracks.eff.org"
+      ]
+    },
+    "document.URL": {
+      "t": "string",
+      "c": 410,
+      "v": [
+        "https://www.youtube.com/embed/?enablejsapi=1&rel=0&autoplay=0&playsinline=1&fs=1&hl=en-IN&embed_conf",
+        "https://timesofindia.indiatimes.com/world/middle-east/us-israel-iran-war-news-live-udates-middle-eas",
+        "https://timesofindia.indiatimes.com/",
+        "https://www.google.com/search?client=firefox-b-d&q=http%3A%2F%2F",
+        "https://www.google.com/search?client=firefox-b-d&q=browserleaks"
+      ],
+      "src": [
+        "www.youtube.com",
+        "www.google.com",
+        "timesofindia.indiatimes.com",
+        "fingerprint.com"
+      ]
+    },
+    "document.domain": {
+      "t": "string",
+      "c": 163,
+      "v": [
+        "timesofindia.indiatimes.com",
+        "indiatimes.com",
+        "amiunique.org",
+        "www.youtube.com"
+      ],
+      "src": [
+        "timesofindia.indiatimes.com",
+        "amiunique.org",
+        "www.youtube.com"
+      ]
+    },
+    "navigator.onLine": {
+      "t": "boolean",
+      "c": 121,
+      "v": [
+        "true"
+      ],
+      "src": [
+        "www.youtube.com",
+        "browserleaks.com",
+        "timesofindia.indiatimes.com",
+        "amiunique.org",
+        "fingerprint.com"
+      ]
+    },
+    "window.indexedDB": {
+      "t": "object",
+      "c": 155,
+      "v": [
+        "{}"
+      ],
+      "src": [
+        "www.youtube.com",
+        "coveryourtracks.eff.org",
+        "timesofindia.indiatimes.com",
+        "amiunique.org",
+        "fingerprint.com"
+      ]
+    },
+    "storage.indexedDB.open": {
+      "t": "string",
+      "c": 58,
+      "v": [
+        "rKy90E1AcZ2eXOgt",
+        "LogsDatabaseV2:Veabfd472||",
+        "test",
+        "YtIdbMeta",
+        "evercookie-db"
+      ],
+      "src": [
+        "timesofindia.indiatimes.com",
+        "fingerprint.com",
+        "amiunique.org",
+        "www.youtube.com"
+      ]
+    },
+    "document.fullscreenEnabled": {
+      "t": "boolean",
+      "c": 2,
+      "v": [
+        "true"
+      ],
+      "src": [
+        "www.youtube.com"
+      ]
+    },
+    "media.decodingInfo": {
+      "t": "string",
+      "c": 74,
+      "v": [
+        "{\"type\":\"file\",\"video\":{\"contentType\":\"video/mp4; ",
+        "{\"type\":\"media-source\",\"video\":{\"contentType\":\"vid",
+        "{\"type\":\"file\",\"video\":{\"contentType\":\"video/webm;"
+      ],
+      "src": [
+        "fingerprint.com",
+        "www.youtube.com"
+      ]
+    },
+    "navigator.mediaSession": {
+      "t": "object",
+      "c": 13,
+      "v": [
+        "{}"
+      ],
+      "src": [
+        "fingerprint.com",
+        "browserleaks.com",
+        "www.youtube.com"
+      ]
+    },
+    "document.title": {
+      "t": "string",
+      "c": 429,
+      "v": [
+        "",
+        "My Fingerprint- Am I Unique ?",
+        "YouTube",
+        "Google",
+        "US Israel Iran War News Live Updates: Powerful explosions shake Tehran as Israel launches wide-scale"
+      ],
+      "src": [
+        "amiunique.org",
+        "fingerprint.com",
+        "timesofindia.indiatimes.com",
+        "firstpartysimulator.org",
+        "www.youtube.com",
+        "www.google.com",
+        "firstpartysimulator.net",
+        "coveryourtracks.eff.org"
+      ]
+    },
+    "window.menubar": {
+      "t": "object",
+      "c": 4,
+      "v": [
+        "{}"
+      ],
+      "src": [
+        "ep2.adtrafficquality.google",
+        "www.youtube.com"
+      ]
+    },
+    "window.toolbar": {
+      "t": "object",
+      "c": 4,
+      "v": [
+        "{}"
+      ],
+      "src": [
+        "ep2.adtrafficquality.google",
+        "www.youtube.com"
+      ]
+    },
+    "window.locationbar": {
+      "t": "object",
+      "c": 4,
+      "v": [
+        "{}"
+      ],
+      "src": [
+        "ep2.adtrafficquality.google",
+        "www.youtube.com"
+      ]
+    },
+    "window.statusbar": {
+      "t": "object",
+      "c": 4,
+      "v": [
+        "{}"
+      ],
+      "src": [
+        "ep2.adtrafficquality.google",
+        "www.youtube.com"
+      ]
+    },
+    "window.isSecureContext": {
+      "t": "boolean",
+      "c": 385,
+      "v": [
+        "true"
+      ],
+      "src": [
+        "www.youtube.com",
+        "www.google.com",
+        "timesofindia.indiatimes.com",
+        "fingerprint.com"
+      ]
+    },
+    "navigator.keyboard": {
+      "t": "undefined",
+      "c": 4,
+      "v": [
+        "undefined"
+      ],
+      "src": [
+        "www.youtube.com",
+        "www.google.com"
+      ]
+    },
+    "window.opener": {
+      "t": "null",
+      "c": 65,
+      "v": [
+        "null"
+      ],
+      "src": [
+        "fingerprint.com",
+        "www.youtube.com",
+        "www.google.com",
+        "timesofindia.indiatimes.com",
+        "ep2.adtrafficquality.google"
+      ]
+    },
+    "plugins.plugins": {
+      "t": "string",
+      "c": 328,
+      "v": [
+        "5 plugins"
+      ],
+      "src": [
+        "ep2.adtrafficquality.google",
+        "firstpartysimulator.org",
+        "www.youtube.com",
+        "browserleaks.com",
+        "coveryourtracks.eff.org",
+        "fingerprint.com"
+      ]
+    },
+    "navigator.language": {
+      "t": "string",
+      "c": 513,
+      "v": [
+        "en-US"
+      ],
+      "src": [
+        "www.youtube.com",
+        "browserleaks.com",
+        "coveryourtracks.eff.org",
+        "timesofindia.indiatimes.com",
+        "fingerprint.com"
+      ]
+    },
+    "canvas.getContext": {
+      "t": "string",
+      "c": 226,
+      "v": [
+        "experimental-webgl",
+        "webgl2",
+        "moz-webgl",
+        "2d",
+        "webgl"
+      ],
+      "src": [
+        "fingerprint.com",
+        "firstpartysimulator.org",
+        "browserleaks.com",
+        "www.youtube.com",
+        "www.google.com",
+        "timesofindia.indiatimes.com",
+        "coveryourtracks.eff.org",
+        "ep2.adtrafficquality.google"
+      ]
+    },
+    "webgl.getParameter(7937)": {
+      "t": "string",
+      "c": 62,
+      "v": [
+        "Apple M1, or similar"
+      ],
+      "src": [
+        "fingerprint.com",
+        "firstpartysimulator.org",
+        "browserleaks.com",
+        "www.youtube.com",
+        "www.google.com",
+        "coveryourtracks.eff.org",
+        "ep2.adtrafficquality.google"
+      ]
+    },
+    "navigator.languages": {
+      "t": "object",
+      "c": 173,
+      "v": [
+        "[\"en-US\",\"en\"]"
+      ],
+      "src": [
+        "amiunique.org",
+        "fingerprint.com",
+        "browserleaks.com",
+        "www.youtube.com",
+        "www.google.com",
+        "timesofindia.indiatimes.com",
+        "coveryourtracks.eff.org"
+      ]
+    },
+    "window.outerWidth": {
+      "t": "number",
+      "c": 44,
+      "v": [
+        "1440",
+        "0"
+      ],
+      "src": [
+        "fingerprint.com",
+        "browserleaks.com",
+        "www.youtube.com",
+        "www.google.com",
+        "timesofindia.indiatimes.com"
+      ]
+    },
+    "window.outerHeight": {
+      "t": "number",
+      "c": 44,
+      "v": [
+        "786",
+        "0"
+      ],
+      "src": [
+        "fingerprint.com",
+        "browserleaks.com",
+        "www.youtube.com",
+        "www.google.com",
+        "timesofindia.indiatimes.com"
+      ]
+    },
+    "navigator.userActivation": {
+      "t": "object",
+      "c": 62,
+      "v": [
+        "{}"
+      ],
+      "src": [
+        "fingerprint.com",
+        "browserleaks.com",
+        "www.youtube.com",
+        "www.google.com",
+        "timesofindia.indiatimes.com"
+      ]
+    },
+    "Intl.resolvedOptions": {
+      "t": "string",
+      "c": 171,
+      "v": [
+        "Asia/Kolkata"
+      ],
+      "src": [
+        "www.youtube.com",
+        "browserleaks.com",
+        "coveryourtracks.eff.org",
+        "timesofindia.indiatimes.com",
+        "fingerprint.com"
+      ]
+    },
+    "screen.colorDepth": {
+      "t": "number",
+      "c": 157,
+      "v": [
+        "30"
+      ],
+      "src": [
+        "fingerprint.com",
+        "browserleaks.com",
+        "www.youtube.com",
+        "www.google.com",
+        "timesofindia.indiatimes.com",
+        "coveryourtracks.eff.org"
+      ]
+    },
+    "window.screenX": {
+      "t": "number",
+      "c": 2,
+      "v": [
+        "0"
+      ],
+      "src": [
+        "www.youtube.com"
+      ]
+    },
+    "window.screenY": {
+      "t": "number",
+      "c": 2,
+      "v": [
+        "0"
+      ],
+      "src": [
+        "www.youtube.com"
+      ]
+    },
+    "window.screenLeft": {
+      "t": "number",
+      "c": 2,
+      "v": [
+        "0"
+      ],
+      "src": [
+        "www.youtube.com"
+      ]
+    },
+    "window.screenTop": {
+      "t": "number",
+      "c": 2,
+      "v": [
+        "0"
+      ],
+      "src": [
+        "www.youtube.com"
+      ]
+    },
+    "navigator.cookieDeprecationLabel": {
+      "t": "undefined",
+      "c": 52,
+      "v": [
+        "undefined"
+      ],
+      "src": [
+        "timesofindia.indiatimes.com",
+        "www.google.com",
+        "ep2.adtrafficquality.google",
+        "fingerprint.com"
+      ]
+    },
+    "window.frames": {
+      "t": "object",
+      "c": 962,
+      "v": [
+        "[obj]"
+      ],
+      "src": [
+        "js-sec.indexww.com",
+        "www.google.com",
+        "timesofindia.indiatimes.com",
+        "fingerprint.com",
+        "ads.pubmatic.com",
+        "acdn.adnxs.com"
+      ]
+    },
+    "window.visualViewport": {
+      "t": "object",
+      "c": 55,
+      "v": [
+        "{}"
+      ],
+      "src": [
+        "www.google.com",
+        "timesofindia.indiatimes.com",
+        "fingerprint.com"
+      ]
+    },
+    "navigator.doNotTrack": {
+      "t": "string",
+      "c": 78,
+      "v": [
+        "unspecified"
+      ],
+      "src": [
+        "timesofindia.indiatimes.com",
+        "browserleaks.com",
+        "fingerprint.com"
+      ]
+    },
+    "navigator.msDoNotTrack": {
+      "t": "undefined",
+      "c": 24,
+      "v": [
+        "undefined"
+      ],
+      "src": [
+        "timesofindia.indiatimes.com",
+        "browserleaks.com"
+      ]
+    },
+    "navigator.globalPrivacyControl": {
+      "t": "boolean",
+      "c": 119,
+      "v": [
+        "false"
+      ],
+      "src": [
+        "timesofindia.indiatimes.com",
+        "browserleaks.com",
+        "fingerprint.com"
+      ]
+    },
+    "document.scripts": {
+      "t": "object",
+      "c": 30,
+      "v": [
+        "{\"0\":{},\"1\":{},\"2\":{},\"3\":{},\"4\":{},\"5\":{},\"6\":{},\"7\":{},\"8\":{},\"9\":{},\"10\":{},\"11\":{},\"12\":{},\"13\":"
+      ],
+      "src": [
+        "timesofindia.indiatimes.com",
+        "fingerprint.com"
+      ]
+    },
+    "window.name": {
+      "t": "string",
+      "c": 158,
+      "v": [
+        "",
+        "c-wtmb09m92zmw",
+        "null"
+      ],
+      "src": [
+        "b7235a33fd35b8f0b5288e012cc5bd69.safeframe.googlesyndication.com",
+        "www.google.com",
+        "timesofindia.indiatimes.com",
+        "amiunique.org",
+        "b53f3cefc1b5b29da6bfa38defeaf6e8.safeframe.googlesyndication.com",
+        "fingerprint.com"
+      ]
+    },
+    "screen.orientation": {
+      "t": "object",
+      "c": 67,
+      "v": [
+        "{}"
+      ],
+      "src": [
+        "browserleaks.com",
+        "www.google.com",
+        "timesofindia.indiatimes.com"
+      ]
+    },
+    "window.scrollX": {
+      "t": "number",
+      "c": 153,
+      "v": [
+        "0"
+      ],
+      "src": [
+        "timesofindia.indiatimes.com",
+        "www.google.com",
+        "fingerprint.com"
+      ]
+    },
+    "window.external": {
+      "t": "object",
+      "c": 210,
+      "v": [
+        "{}"
+      ],
+      "src": [
+        "ep2.adtrafficquality.google",
+        "browserleaks.com",
+        "timesofindia.indiatimes.com",
+        "amiunique.org",
+        "fingerprint.com"
+      ]
+    },
+    "navigator.loadPurpose": {
+      "t": "undefined",
+      "c": 77,
+      "v": [
+        "undefined"
+      ],
+      "src": [
+        "timesofindia.indiatimes.com",
+        "fingerprint.com"
+      ]
+    },
+    "document.characterSet": {
+      "t": "string",
+      "c": 94,
+      "v": [
+        "UTF-8"
+      ],
+      "src": [
+        "timesofindia.indiatimes.com",
+        "fingerprint.com",
+        "amiunique.org"
+      ]
+    },
+    "window.length": {
+      "t": "number",
+      "c": 602,
+      "v": [
+        "2",
+        "8",
+        "3",
+        "13",
+        "9"
+      ],
+      "src": [
+        "timesofindia.indiatimes.com",
+        "coveryourtracks.eff.org"
+      ]
+    },
+    "window.customElements": {
+      "t": "object",
+      "c": 73760,
+      "v": [
+        "{}"
+      ],
+      "src": [
+        "timesofindia.indiatimes.com",
+        "fingerprint.com"
+      ]
+    },
+    "performance.getEntries": {
+      "t": "string",
+      "c": 30,
+      "v": [
+        "[fn]"
+      ],
+      "src": [
+        "timesofindia.indiatimes.com",
+        "fingerprint.com"
+      ]
+    },
+    "performance.setResourceTimingBufferSize": {
+      "t": "string",
+      "c": 21,
+      "v": [
+        "[fn]"
+      ],
+      "src": [
+        "timesofindia.indiatimes.com"
+      ]
+    },
+    "history.pushState": {
+      "t": "function",
+      "c": 124,
+      "v": [
+        "[fn]"
+      ],
+      "src": [
+        "timesofindia.indiatimes.com",
+        "fingerprint.com",
+        "amiunique.org"
+      ]
+    },
+    "document.lastModified": {
+      "t": "string",
+      "c": 45,
+      "v": [
+        "03/13/2026 14:56:03",
+        "03/13/2026 14:56:47",
+        "03/13/2026 14:56:45"
+      ],
+      "src": [
+        "timesofindia.indiatimes.com"
+      ]
+    },
+    "navigator.appName": {
+      "t": "string",
+      "c": 109,
+      "v": [
+        "Netscape"
+      ],
+      "src": [
+        "browserleaks.com",
+        "coveryourtracks.eff.org",
+        "timesofindia.indiatimes.com",
+        "fingerprint.com",
+        "ads.pubmatic.com"
+      ]
+    },
+    "navigator.appMinorVersion": {
+      "t": "undefined",
+      "c": 12,
+      "v": [
+        "undefined"
+      ],
+      "src": [
+        "timesofindia.indiatimes.com",
+        "browserleaks.com"
+      ]
+    },
+    "navigator.scheduling": {
+      "t": "undefined",
+      "c": 19,
+      "v": [
+        "undefined"
+      ],
+      "src": [
+        "timesofindia.indiatimes.com",
+        "fingerprint.com"
+      ]
+    },
+    "navigator.serviceWorker": {
+      "t": "object",
+      "c": 51,
+      "v": [
+        "{}"
+      ],
+      "src": [
+        "timesofindia.indiatimes.com",
+        "browserleaks.com",
+        "fingerprint.com"
+      ]
+    },
+    "navigator.appVersion": {
+      "t": "string",
+      "c": 95,
+      "v": [
+        "5.0 (Macintosh)"
+      ],
+      "src": [
+        "timesofindia.indiatimes.com",
+        "browserleaks.com",
+        "fingerprint.com"
+      ]
+    },
+    "speech.getVoices": {
+      "t": "string",
+      "c": 26,
+      "v": [
+        "0 voices",
+        "177 voices"
+      ],
+      "src": [
+        "ep2.adtrafficquality.google",
+        "browserleaks.com",
+        "fingerprint.com"
+      ]
+    },
+    "navigator.userLanguage": {
+      "t": "undefined",
+      "c": 88,
+      "v": [
+        "undefined"
+      ],
+      "src": [
+        "fingerprint.com",
+        "browserleaks.com",
+        "coveryourtracks.eff.org"
+      ]
+    },
+    "webrtc.RTCPeerConnection": {
+      "t": "string",
+      "c": 23,
+      "v": [
+        "new"
+      ],
+      "src": [
+        "fingerprint.com",
+        "browserleaks.com"
+      ]
+    },
+    "webrtc.createDataChannel": {
+      "t": "string",
+      "c": 20,
+      "v": [
+        "0.20550530574204062",
+        "bl"
+      ],
+      "src": [
+        "fingerprint.com",
+        "browserleaks.com"
+      ]
+    },
+    "navigator.": {
+      "t": "undefined",
+      "c": 27,
+      "v": [
+        "undefined"
+      ],
+      "src": [
+        "fingerprint.com"
+      ]
+    },
+    "navigator.requestMediaKeySystemAccess": {
+      "t": "function",
+      "c": 74,
+      "v": [
+        "[fn]"
+      ],
+      "src": [
+        "fingerprint.com",
+        "browserleaks.com"
+      ]
+    },
+    "storage.estimate": {
+      "t": "string",
+      "c": 11,
+      "v": [
+        "[FP]"
+      ],
+      "src": [
+        "fingerprint.com",
+        "www.google.com"
+      ]
+    },
+    "canvas.fillText": {
+      "t": "string",
+      "c": 72,
+      "v": [
+        "Cwm fjordbank gly \ud83d\ude03",
+        "Cwm fjordbank glyphs"
+      ],
+      "src": [
+        "fingerprint.com",
+        "firstpartysimulator.org",
+        "coveryourtracks.eff.org"
+      ]
+    },
+    "canvas.toDataURL": {
+      "t": "string",
+      "c": 105,
+      "v": [
+        "[FP]"
+      ],
+      "src": [
+        "fingerprint.com",
+        "firstpartysimulator.org",
+        "coveryourtracks.eff.org"
+      ]
+    },
+    "navigator.gpu": {
+      "t": "object",
+      "c": 29,
+      "v": [
+        "{}"
+      ],
+      "src": [
+        "fingerprint.com",
+        "browserleaks.com"
+      ]
+    },
+    "navigator.null": {
+      "t": "undefined",
+      "c": 9,
+      "v": [
+        "undefined"
+      ],
+      "src": [
+        "fingerprint.com"
+      ]
+    },
+    "webgl.getSupportedExtensions": {
+      "t": "string",
+      "c": 49,
+      "v": [
+        "13 ext",
+        "27 ext"
+      ],
+      "src": [
+        "firstpartysimulator.org",
+        "www.google.com",
+        "browserleaks.com",
+        "coveryourtracks.eff.org",
+        "fingerprint.com"
+      ]
+    },
+    "webgl.getParameter(32777)": {
+      "t": "number",
+      "c": 36,
+      "v": [
+        "32774"
+      ],
+      "src": [
+        "fingerprint.com"
+      ]
+    },
+    "webgl.getParameter(34877)": {
+      "t": "number",
+      "c": 18,
+      "v": [
+        "32774"
+      ],
+      "src": [
+        "fingerprint.com"
+      ]
+    },
+    "webgl.getParameter(32968)": {
+      "t": "number",
+      "c": 18,
+      "v": [
+        "0"
+      ],
+      "src": [
+        "fingerprint.com"
+      ]
+    },
+    "webgl.getParameter(32969)": {
+      "t": "number",
+      "c": 18,
+      "v": [
+        "1"
+      ],
+      "src": [
+        "fingerprint.com"
+      ]
+    },
+    "webgl.getParameter(32970)": {
+      "t": "number",
+      "c": 18,
+      "v": [
+        "0"
+      ],
+      "src": [
+        "fingerprint.com"
+      ]
+    },
+    "webgl.getParameter(32971)": {
+      "t": "number",
+      "c": 18,
+      "v": [
+        "1"
+      ],
+      "src": [
+        "fingerprint.com"
+      ]
+    },
+    "webgl.getParameter(32773)": {
+      "t": "object",
+      "c": 18,
+      "v": [
+        "{\"0\":0,\"1\":0,\"2\":0,\"3\":0}"
+      ],
+      "src": [
+        "fingerprint.com"
+      ]
+    },
+    "webgl.getParameter(2884)": {
+      "t": "boolean",
+      "c": 18,
+      "v": [
+        "false"
+      ],
+      "src": [
+        "fingerprint.com"
+      ]
+    },
+    "webgl.getParameter(3042)": {
+      "t": "boolean",
+      "c": 18,
+      "v": [
+        "false"
+      ],
+      "src": [
+        "fingerprint.com"
+      ]
+    },
+    "webgl.getParameter(3024)": {
+      "t": "boolean",
+      "c": 18,
+      "v": [
+        "true"
+      ],
+      "src": [
+        "fingerprint.com"
+      ]
+    },
+    "webgl.getParameter(2960)": {
+      "t": "boolean",
+      "c": 18,
+      "v": [
+        "false"
+      ],
+      "src": [
+        "fingerprint.com"
+      ]
+    },
+    "webgl.getParameter(2929)": {
+      "t": "boolean",
+      "c": 18,
+      "v": [
+        "false"
+      ],
+      "src": [
+        "fingerprint.com"
+      ]
+    },
+    "webgl.getParameter(3089)": {
+      "t": "boolean",
+      "c": 18,
+      "v": [
+        "false"
+      ],
+      "src": [
+        "fingerprint.com"
+      ]
+    },
+    "webgl.getParameter(32823)": {
+      "t": "boolean",
+      "c": 18,
+      "v": [
+        "false"
+      ],
+      "src": [
+        "fingerprint.com"
+      ]
+    },
+    "webgl.getParameter(2849)": {
+      "t": "number",
+      "c": 18,
+      "v": [
+        "1"
+      ],
+      "src": [
+        "fingerprint.com"
+      ]
+    },
+    "webgl.getParameter(33901)": {
+      "t": "object",
+      "c": 38,
+      "v": [
+        "{\"0\":1,\"1\":64}"
+      ],
+      "src": [
+        "fingerprint.com",
+        "browserleaks.com",
+        "firstpartysimulator.org",
+        "coveryourtracks.eff.org"
+      ]
+    },
+    "webgl.getParameter(33902)": {
+      "t": "object",
+      "c": 38,
+      "v": [
+        "{\"0\":1,\"1\":1}"
+      ],
+      "src": [
+        "fingerprint.com",
+        "browserleaks.com",
+        "firstpartysimulator.org",
+        "coveryourtracks.eff.org"
+      ]
+    },
+    "webgl.getParameter(2885)": {
+      "t": "number",
+      "c": 18,
+      "v": [
+        "1029"
+      ],
+      "src": [
+        "fingerprint.com"
+      ]
+    },
+    "webgl.getParameter(2886)": {
+      "t": "number",
+      "c": 18,
+      "v": [
+        "2305"
+      ],
+      "src": [
+        "fingerprint.com"
+      ]
+    },
+    "webgl.getParameter(2928)": {
+      "t": "object",
+      "c": 18,
+      "v": [
+        "{\"0\":0,\"1\":1}"
+      ],
+      "src": [
+        "fingerprint.com"
+      ]
+    },
+    "webgl.getParameter(2930)": {
+      "t": "boolean",
+      "c": 18,
+      "v": [
+        "true"
+      ],
+      "src": [
+        "fingerprint.com"
+      ]
+    },
+    "webgl.getParameter(2931)": {
+      "t": "number",
+      "c": 18,
+      "v": [
+        "1"
+      ],
+      "src": [
+        "fingerprint.com"
+      ]
+    },
+    "webgl.getParameter(2932)": {
+      "t": "number",
+      "c": 18,
+      "v": [
+        "513"
+      ],
+      "src": [
+        "fingerprint.com"
+      ]
+    },
+    "webgl.getParameter(2961)": {
+      "t": "number",
+      "c": 18,
+      "v": [
+        "0"
+      ],
+      "src": [
+        "fingerprint.com"
+      ]
+    },
+    "webgl.getParameter(2962)": {
+      "t": "number",
+      "c": 18,
+      "v": [
+        "519"
+      ],
+      "src": [
+        "fingerprint.com"
+      ]
+    },
+    "webgl.getParameter(2964)": {
+      "t": "number",
+      "c": 18,
+      "v": [
+        "7680"
+      ],
+      "src": [
+        "fingerprint.com"
+      ]
+    },
+    "webgl.getParameter(2965)": {
+      "t": "number",
+      "c": 18,
+      "v": [
+        "7680"
+      ],
+      "src": [
+        "fingerprint.com"
+      ]
+    },
+    "webgl.getParameter(2966)": {
+      "t": "number",
+      "c": 18,
+      "v": [
+        "7680"
+      ],
+      "src": [
+        "fingerprint.com"
+      ]
+    },
+    "webgl.getParameter(2967)": {
+      "t": "number",
+      "c": 18,
+      "v": [
+        "0"
+      ],
+      "src": [
+        "fingerprint.com"
+      ]
+    },
+    "webgl.getParameter(2963)": {
+      "t": "number",
+      "c": 18,
+      "v": [
+        "4294967295"
+      ],
+      "src": [
+        "fingerprint.com"
+      ]
+    },
+    "webgl.getParameter(2968)": {
+      "t": "number",
+      "c": 18,
+      "v": [
+        "4294967295"
+      ],
+      "src": [
+        "fingerprint.com"
+      ]
+    },
+    "webgl.getParameter(34816)": {
+      "t": "number",
+      "c": 18,
+      "v": [
+        "519"
+      ],
+      "src": [
+        "fingerprint.com"
+      ]
+    },
+    "webgl.getParameter(34817)": {
+      "t": "number",
+      "c": 18,
+      "v": [
+        "7680"
+      ],
+      "src": [
+        "fingerprint.com"
+      ]
+    },
+    "webgl.getParameter(34818)": {
+      "t": "number",
+      "c": 18,
+      "v": [
+        "7680"
+      ],
+      "src": [
+        "fingerprint.com"
+      ]
+    },
+    "webgl.getParameter(34819)": {
+      "t": "number",
+      "c": 18,
+      "v": [
+        "7680"
+      ],
+      "src": [
+        "fingerprint.com"
+      ]
+    },
+    "webgl.getParameter(36003)": {
+      "t": "number",
+      "c": 18,
+      "v": [
+        "0"
+      ],
+      "src": [
+        "fingerprint.com"
+      ]
+    },
+    "webgl.getParameter(36004)": {
+      "t": "number",
+      "c": 18,
+      "v": [
+        "4294967295"
+      ],
+      "src": [
+        "fingerprint.com"
+      ]
+    },
+    "webgl.getParameter(36005)": {
+      "t": "number",
+      "c": 18,
+      "v": [
+        "4294967295"
+      ],
+      "src": [
+        "fingerprint.com"
+      ]
+    },
+    "webgl.getParameter(2978)": {
+      "t": "object",
+      "c": 18,
+      "v": [
+        "{\"0\":0,\"1\":0,\"2\":300,\"3\":150}"
+      ],
+      "src": [
+        "fingerprint.com"
+      ]
+    },
+    "webgl.getParameter(3088)": {
+      "t": "object",
+      "c": 18,
+      "v": [
+        "{\"0\":0,\"1\":0,\"2\":300,\"3\":150}"
+      ],
+      "src": [
+        "fingerprint.com"
+      ]
+    },
+    "webgl.getParameter(3106)": {
+      "t": "object",
+      "c": 18,
+      "v": [
+        "{\"0\":0,\"1\":0,\"2\":0,\"3\":0}"
+      ],
+      "src": [
+        "fingerprint.com"
+      ]
+    },
+    "webgl.getParameter(3107)": {
+      "t": "object",
+      "c": 18,
+      "v": [
+        "[true,true,true,true]"
+      ],
+      "src": [
+        "fingerprint.com"
+      ]
+    },
+    "webgl.getParameter(3317)": {
+      "t": "number",
+      "c": 18,
+      "v": [
+        "4"
+      ],
+      "src": [
+        "fingerprint.com"
+      ]
+    },
+    "webgl.getParameter(3333)": {
+      "t": "number",
+      "c": 18,
+      "v": [
+        "4"
+      ],
+      "src": [
+        "fingerprint.com"
+      ]
+    },
+    "webgl.getParameter(3379)": {
+      "t": "number",
+      "c": 38,
+      "v": [
+        "8192"
+      ],
+      "src": [
+        "fingerprint.com",
+        "browserleaks.com",
+        "firstpartysimulator.org",
+        "coveryourtracks.eff.org"
+      ]
+    },
+    "webgl.getParameter(3386)": {
+      "t": "object",
+      "c": 38,
+      "v": [
+        "{\"0\":16384,\"1\":16384}"
+      ],
+      "src": [
+        "fingerprint.com",
+        "browserleaks.com",
+        "firstpartysimulator.org",
+        "coveryourtracks.eff.org"
+      ]
+    },
+    "webgl.getParameter(3408)": {
+      "t": "number",
+      "c": 18,
+      "v": [
+        "4"
+      ],
+      "src": [
+        "fingerprint.com"
+      ]
+    },
+    "webgl.getParameter(3410)": {
+      "t": "number",
+      "c": 38,
+      "v": [
+        "8"
+      ],
+      "src": [
+        "fingerprint.com",
+        "browserleaks.com",
+        "firstpartysimulator.org",
+        "coveryourtracks.eff.org"
+      ]
+    },
+    "webgl.getParameter(3411)": {
+      "t": "number",
+      "c": 38,
+      "v": [
+        "8"
+      ],
+      "src": [
+        "fingerprint.com",
+        "browserleaks.com",
+        "firstpartysimulator.org",
+        "coveryourtracks.eff.org"
+      ]
+    },
+    "webgl.getParameter(3412)": {
+      "t": "number",
+      "c": 38,
+      "v": [
+        "8"
+      ],
+      "src": [
+        "fingerprint.com",
+        "browserleaks.com",
+        "firstpartysimulator.org",
+        "coveryourtracks.eff.org"
+      ]
+    },
+    "webgl.getParameter(3413)": {
+      "t": "number",
+      "c": 38,
+      "v": [
+        "8"
+      ],
+      "src": [
+        "fingerprint.com",
+        "browserleaks.com",
+        "firstpartysimulator.org",
+        "coveryourtracks.eff.org"
+      ]
+    },
+    "webgl.getParameter(3414)": {
+      "t": "number",
+      "c": 38,
+      "v": [
+        "24"
+      ],
+      "src": [
+        "fingerprint.com",
+        "browserleaks.com",
+        "firstpartysimulator.org",
+        "coveryourtracks.eff.org"
+      ]
+    },
+    "webgl.getParameter(3415)": {
+      "t": "number",
+      "c": 38,
+      "v": [
+        "0"
+      ],
+      "src": [
+        "fingerprint.com",
+        "browserleaks.com",
+        "firstpartysimulator.org",
+        "coveryourtracks.eff.org"
+      ]
+    },
+    "webgl.getParameter(10752)": {
+      "t": "number",
+      "c": 18,
+      "v": [
+        "0"
+      ],
+      "src": [
+        "fingerprint.com"
+      ]
+    },
+    "webgl.getParameter(32824)": {
+      "t": "number",
+      "c": 18,
+      "v": [
+        "0"
+      ],
+      "src": [
+        "fingerprint.com"
+      ]
+    },
+    "webgl.getParameter(32936)": {
+      "t": "number",
+      "c": 18,
+      "v": [
+        "1"
+      ],
+      "src": [
+        "fingerprint.com"
+      ]
+    },
+    "webgl.getParameter(32937)": {
+      "t": "number",
+      "c": 18,
+      "v": [
+        "4"
+      ],
+      "src": [
+        "fingerprint.com"
+      ]
+    },
+    "webgl.getParameter(32938)": {
+      "t": "number",
+      "c": 18,
+      "v": [
+        "1"
+      ],
+      "src": [
+        "fingerprint.com"
+      ]
+    },
+    "webgl.getParameter(32939)": {
+      "t": "boolean",
+      "c": 18,
+      "v": [
+        "false"
+      ],
+      "src": [
+        "fingerprint.com"
+      ]
+    },
+    "webgl.getParameter(34467)": {
+      "t": "object",
+      "c": 18,
+      "v": [
+        "{}"
+      ],
+      "src": [
+        "fingerprint.com"
+      ]
+    },
+    "webgl.getParameter(33170)": {
+      "t": "number",
+      "c": 18,
+      "v": [
+        "4352"
+      ],
+      "src": [
+        "fingerprint.com"
+      ]
+    },
+    "webgl.getParameter(34921)": {
+      "t": "number",
+      "c": 38,
+      "v": [
+        "16"
+      ],
+      "src": [
+        "fingerprint.com",
+        "browserleaks.com",
+        "firstpartysimulator.org",
+        "coveryourtracks.eff.org"
+      ]
+    },
+    "webgl.getParameter(36347)": {
+      "t": "number",
+      "c": 38,
+      "v": [
+        "1024"
+      ],
+      "src": [
+        "fingerprint.com",
+        "browserleaks.com",
+        "firstpartysimulator.org",
+        "coveryourtracks.eff.org"
+      ]
+    },
+    "webgl.getParameter(36348)": {
+      "t": "number",
+      "c": 38,
+      "v": [
+        "32"
+      ],
+      "src": [
+        "fingerprint.com",
+        "browserleaks.com",
+        "firstpartysimulator.org",
+        "coveryourtracks.eff.org"
+      ]
+    },
+    "webgl.getParameter(35661)": {
+      "t": "number",
+      "c": 38,
+      "v": [
+        "80"
+      ],
+      "src": [
+        "fingerprint.com",
+        "browserleaks.com",
+        "firstpartysimulator.org",
+        "coveryourtracks.eff.org"
+      ]
+    },
+    "webgl.getParameter(35660)": {
+      "t": "number",
+      "c": 38,
+      "v": [
+        "16"
+      ],
+      "src": [
+        "fingerprint.com",
+        "browserleaks.com",
+        "firstpartysimulator.org",
+        "coveryourtracks.eff.org"
+      ]
+    },
+    "webgl.getParameter(34930)": {
+      "t": "number",
+      "c": 38,
+      "v": [
+        "16"
+      ],
+      "src": [
+        "fingerprint.com",
+        "browserleaks.com",
+        "firstpartysimulator.org",
+        "coveryourtracks.eff.org"
+      ]
+    },
+    "webgl.getParameter(36349)": {
+      "t": "number",
+      "c": 38,
+      "v": [
+        "1024"
+      ],
+      "src": [
+        "fingerprint.com",
+        "browserleaks.com",
+        "firstpartysimulator.org",
+        "coveryourtracks.eff.org"
+      ]
+    },
+    "webgl.getParameter(35724)": {
+      "t": "string",
+      "c": 56,
+      "v": [
+        "WebGL GLSL ES 1.0",
+        "WebGL GLSL ES 3.00"
+      ],
+      "src": [
+        "fingerprint.com",
+        "browserleaks.com",
+        "firstpartysimulator.org",
+        "coveryourtracks.eff.org"
+      ]
+    },
+    "webgl.getParameter(7936)": {
+      "t": "string",
+      "c": 56,
+      "v": [
+        "Mozilla"
+      ],
+      "src": [
+        "fingerprint.com",
+        "browserleaks.com",
+        "firstpartysimulator.org",
+        "coveryourtracks.eff.org"
+      ]
+    },
+    "webgl.getParameter(7938)": {
+      "t": "string",
+      "c": 56,
+      "v": [
+        "WebGL 1.0",
+        "WebGL 2.0"
+      ],
+      "src": [
+        "fingerprint.com",
+        "browserleaks.com",
+        "firstpartysimulator.org",
+        "coveryourtracks.eff.org"
+      ]
+    },
+    "webgl.getParameter(34076)": {
+      "t": "number",
+      "c": 38,
+      "v": [
+        "8192"
+      ],
+      "src": [
+        "fingerprint.com",
+        "browserleaks.com",
+        "firstpartysimulator.org",
+        "coveryourtracks.eff.org"
+      ]
+    },
+    "webgl.getParameter(34016)": {
+      "t": "number",
+      "c": 18,
+      "v": [
+        "33984"
+      ],
+      "src": [
+        "fingerprint.com"
+      ]
+    },
+    "webgl.getParameter(35738)": {
+      "t": "number",
+      "c": 18,
+      "v": [
+        "5121"
+      ],
+      "src": [
+        "fingerprint.com"
+      ]
+    },
+    "webgl.getParameter(35739)": {
+      "t": "number",
+      "c": 18,
+      "v": [
+        "6408"
+      ],
+      "src": [
+        "fingerprint.com"
+      ]
+    },
+    "webgl.getParameter(34024)": {
+      "t": "number",
+      "c": 38,
+      "v": [
+        "8192"
+      ],
+      "src": [
+        "fingerprint.com",
+        "browserleaks.com",
+        "firstpartysimulator.org",
+        "coveryourtracks.eff.org"
+      ]
+    },
+    "webgl.getParameter(37440)": {
+      "t": "boolean",
+      "c": 18,
+      "v": [
+        "false"
+      ],
+      "src": [
+        "fingerprint.com"
+      ]
+    },
+    "webgl.getParameter(37441)": {
+      "t": "boolean",
+      "c": 18,
+      "v": [
+        "false"
+      ],
+      "src": [
+        "fingerprint.com"
+      ]
+    },
+    "webgl.getParameter(37443)": {
+      "t": "number",
+      "c": 18,
+      "v": [
+        "37444"
+      ],
+      "src": [
+        "fingerprint.com"
+      ]
+    },
+    "webgl.getExtension": {
+      "t": "string",
+      "c": 596,
+      "v": [
+        "EXT_color_buffer_half_float:yes",
+        "WEBGL_lose_context:yes",
+        "WEBGL_debug_renderer_info:yes",
+        "EXT_blend_minmax:yes",
+        "EXT_texture_filter_anisotropic:yes"
+      ],
+      "src": [
+        "firstpartysimulator.org",
+        "www.google.com",
+        "browserleaks.com",
+        "coveryourtracks.eff.org",
+        "fingerprint.com"
+      ]
+    },
+    "webgl.getParameter(34047)": {
+      "t": "number",
+      "c": 38,
+      "v": [
+        "16"
+      ],
+      "src": [
+        "fingerprint.com",
+        "browserleaks.com",
+        "firstpartysimulator.org",
+        "coveryourtracks.eff.org"
+      ]
+    },
+    "webgl.getParameter(35723)": {
+      "t": "number",
+      "c": 18,
+      "v": [
+        "4352"
+      ],
+      "src": [
+        "fingerprint.com"
+      ]
+    },
+    "webgl.getParameter(34229)": {
+      "t": "null",
+      "c": 18,
+      "v": [
+        "null"
+      ],
+      "src": [
+        "fingerprint.com"
+      ]
+    },
+    "webgl.getParameter(34853)": {
+      "t": "number",
+      "c": 18,
+      "v": [
+        "1029"
+      ],
+      "src": [
+        "fingerprint.com"
+      ]
+    },
+    "webgl.getParameter(34854)": {
+      "t": "number",
+      "c": 18,
+      "v": [
+        "0"
+      ],
+      "src": [
+        "fingerprint.com"
+      ]
+    },
+    "webgl.getParameter(36063)": {
+      "t": "number",
+      "c": 19,
+      "v": [
+        "8"
+      ],
+      "src": [
+        "fingerprint.com",
+        "browserleaks.com"
+      ]
+    },
+    "webgl.getParameter(34852)": {
+      "t": "number",
+      "c": 20,
+      "v": [
+        "8"
+      ],
+      "src": [
+        "fingerprint.com",
+        "browserleaks.com"
+      ]
+    },
+    "webgl.getShaderPrecisionFormat": {
+      "t": "string",
+      "c": 876,
+      "v": [
+        "35633,36338",
+        "35633,36337",
+        "35632,36338",
+        "35632,36337",
+        "35633,36336"
+      ],
+      "src": [
+        "fingerprint.com",
+        "browserleaks.com",
+        "firstpartysimulator.org",
+        "coveryourtracks.eff.org"
+      ]
+    },
+    "performance.": {
+      "t": "undefined",
+      "c": 9,
+      "v": [
+        "undefined"
+      ],
+      "src": [
+        "fingerprint.com"
+      ]
+    },
+    "navigator.oscpu": {
+      "t": "string",
+      "c": 47,
+      "v": [
+        "Intel Mac OS X 10.15"
+      ],
+      "src": [
+        "fingerprint.com",
+        "browserleaks.com",
+        "coveryourtracks.eff.org"
+      ]
+    },
+    "navigator.cpuClass": {
+      "t": "undefined",
+      "c": 44,
+      "v": [
+        "undefined"
+      ],
+      "src": [
+        "fingerprint.com",
+        "browserleaks.com",
+        "coveryourtracks.eff.org"
+      ]
+    },
+    "navigator.pdfViewerEnabled": {
+      "t": "boolean",
+      "c": 31,
+      "v": [
+        "true"
+      ],
+      "src": [
+        "fingerprint.com",
+        "browserleaks.com"
+      ]
+    },
+    "navigator.productSub": {
+      "t": "string",
+      "c": 38,
+      "v": [
+        "20100101"
+      ],
+      "src": [
+        "fingerprint.com",
+        "browserleaks.com",
+        "coveryourtracks.eff.org"
+      ]
+    },
+    "plugins.mimeTypes": {
+      "t": "string",
+      "c": 562,
+      "v": [
+        "2 types"
+      ],
+      "src": [
+        "fingerprint.com",
+        "coveryourtracks.eff.org",
+        "browserleaks.com",
+        "amiunique.org"
+      ]
+    },
+    "navigator.javaEnabled": {
+      "t": "function",
+      "c": 51,
+      "v": [
+        "[fn]"
+      ],
+      "src": [
+        "fingerprint.com",
+        "browserleaks.com",
+        "amiunique.org"
+      ]
+    },
+    "navigator.requestMIDIAccess": {
+      "t": "function",
+      "c": 11,
+      "v": [
+        "[fn]"
+      ],
+      "src": [
+        "fingerprint.com",
+        "browserleaks.com"
+      ]
+    },
+    "navigator.mozGetUserMedia": {
+      "t": "function",
+      "c": 11,
+      "v": [
+        "[fn]"
+      ],
+      "src": [
+        "fingerprint.com",
+        "browserleaks.com"
+      ]
+    },
+    "navigator.getAutoplayPolicy": {
+      "t": "function",
+      "c": 11,
+      "v": [
+        "[fn]"
+      ],
+      "src": [
+        "fingerprint.com",
+        "browserleaks.com"
+      ]
+    },
+    "navigator.registerProtocolHandler": {
+      "t": "function",
+      "c": 11,
+      "v": [
+        "[fn]"
+      ],
+      "src": [
+        "fingerprint.com",
+        "browserleaks.com"
+      ]
+    },
+    "navigator.taintEnabled": {
+      "t": "function",
+      "c": 11,
+      "v": [
+        "[fn]"
+      ],
+      "src": [
+        "fingerprint.com",
+        "browserleaks.com"
+      ]
+    },
+    "navigator.vendorSub": {
+      "t": "string",
+      "c": 13,
+      "v": [
+        ""
+      ],
+      "src": [
+        "fingerprint.com",
+        "browserleaks.com"
+      ]
+    },
+    "navigator.buildID": {
+      "t": "string",
+      "c": 14,
+      "v": [
+        "20181001000000"
+      ],
+      "src": [
+        "fingerprint.com",
+        "www.google.com",
+        "browserleaks.com"
+      ]
+    },
+    "navigator.credentials": {
+      "t": "object",
+      "c": 11,
+      "v": [
+        "{}"
+      ],
+      "src": [
+        "fingerprint.com",
+        "browserleaks.com"
+      ]
+    },
+    "navigator.clipboard": {
+      "t": "object",
+      "c": 11,
+      "v": [
+        "{}"
+      ],
+      "src": [
+        "fingerprint.com",
+        "browserleaks.com"
+      ]
+    },
+    "navigator.wakeLock": {
+      "t": "object",
+      "c": 11,
+      "v": [
+        "{}"
+      ],
+      "src": [
+        "fingerprint.com",
+        "browserleaks.com"
+      ]
+    },
+    "navigator.login": {
+      "t": "object",
+      "c": 11,
+      "v": [
+        "{}"
+      ],
+      "src": [
+        "fingerprint.com",
+        "browserleaks.com"
+      ]
+    },
+    "navigator.appCodeName": {
+      "t": "string",
+      "c": 13,
+      "v": [
+        "Mozilla"
+      ],
+      "src": [
+        "fingerprint.com",
+        "browserleaks.com"
+      ]
+    },
+    "navigator.locks": {
+      "t": "object",
+      "c": 11,
+      "v": [
+        "{}"
+      ],
+      "src": [
+        "fingerprint.com",
+        "browserleaks.com"
+      ]
+    },
+    "navigator.constructor": {
+      "t": "function",
+      "c": 237,
+      "v": [
+        "[fn]"
+      ],
+      "src": [
+        "fingerprint.com"
+      ]
+    },
+    "canvas.getImageData": {
+      "t": "string",
+      "c": 13,
+      "v": [
+        "[FP]"
+      ],
+      "src": [
+        "fingerprint.com",
+        "browserleaks.com"
+      ]
+    },
+    "audio.getChannelData": {
+      "t": "number",
+      "c": 36,
+      "v": [
+        "0"
+      ],
+      "src": [
+        "fingerprint.com",
+        "firstpartysimulator.org",
+        "coveryourtracks.eff.org"
+      ]
+    },
+    "history.constructor": {
+      "t": "function",
+      "c": 228,
+      "v": [
+        "[fn]"
+      ],
+      "src": [
+        "fingerprint.com"
+      ]
+    },
+    "screen.constructor": {
+      "t": "function",
+      "c": 228,
+      "v": [
+        "[fn]"
+      ],
+      "src": [
+        "fingerprint.com"
+      ]
+    },
+    "webgl.getParameter(37445)": {
+      "t": "string",
+      "c": 38,
+      "v": [
+        "Apple"
+      ],
+      "src": [
+        "www.google.com",
+        "browserleaks.com",
+        "firstpartysimulator.org",
+        "coveryourtracks.eff.org"
+      ]
+    },
+    "webgl.RENDERER/VENDOR": {
+      "t": "string",
+      "c": 74,
+      "v": [
+        "Apple M1, or similar",
+        "Apple"
+      ],
+      "src": [
+        "www.google.com",
+        "browserleaks.com",
+        "firstpartysimulator.org",
+        "coveryourtracks.eff.org"
+      ]
+    },
+    "webgl.getParameter(37446)": {
+      "t": "string",
+      "c": 38,
+      "v": [
+        "Apple M1, or similar"
+      ],
+      "src": [
+        "www.google.com",
+        "browserleaks.com",
+        "firstpartysimulator.org",
+        "coveryourtracks.eff.org"
+      ]
+    },
+    "media.enumerateDevices": {
+      "t": "string",
+      "c": 3,
+      "v": [
+        "[FP]"
+      ],
+      "src": [
+        "browserleaks.com"
+      ]
+    },
+    "webgl.getParameter(35658)": {
+      "t": "number",
+      "c": 1,
+      "v": [
+        "4096"
+      ],
+      "src": [
+        "browserleaks.com"
+      ]
+    },
+    "webgl.getParameter(35371)": {
+      "t": "number",
+      "c": 1,
+      "v": [
+        "16"
+      ],
+      "src": [
+        "browserleaks.com"
+      ]
+    },
+    "webgl.getParameter(37154)": {
+      "t": "number",
+      "c": 1,
+      "v": [
+        "64"
+      ],
+      "src": [
+        "browserleaks.com"
+      ]
+    },
+    "webgl.getParameter(35659)": {
+      "t": "number",
+      "c": 1,
+      "v": [
+        "124"
+      ],
+      "src": [
+        "browserleaks.com"
+      ]
+    },
+    "webgl.getParameter(35978)": {
+      "t": "number",
+      "c": 1,
+      "v": [
+        "64"
+      ],
+      "src": [
+        "browserleaks.com"
+      ]
+    },
+    "webgl.getParameter(35979)": {
+      "t": "number",
+      "c": 1,
+      "v": [
+        "4"
+      ],
+      "src": [
+        "browserleaks.com"
+      ]
+    },
+    "webgl.getParameter(35968)": {
+      "t": "number",
+      "c": 1,
+      "v": [
+        "4"
+      ],
+      "src": [
+        "browserleaks.com"
+      ]
+    },
+    "webgl.getParameter(35657)": {
+      "t": "number",
+      "c": 1,
+      "v": [
+        "4096"
+      ],
+      "src": [
+        "browserleaks.com"
+      ]
+    },
+    "webgl.getParameter(35373)": {
+      "t": "number",
+      "c": 1,
+      "v": [
+        "16"
+      ],
+      "src": [
+        "browserleaks.com"
+      ]
+    },
+    "webgl.getParameter(37157)": {
+      "t": "number",
+      "c": 1,
+      "v": [
+        "128"
+      ],
+      "src": [
+        "browserleaks.com"
+      ]
+    },
+    "webgl.getParameter(35076)": {
+      "t": "number",
+      "c": 1,
+      "v": [
+        "-8"
+      ],
+      "src": [
+        "browserleaks.com"
+      ]
+    },
+    "webgl.getParameter(35077)": {
+      "t": "number",
+      "c": 1,
+      "v": [
+        "7"
+      ],
+      "src": [
+        "browserleaks.com"
+      ]
+    },
+    "webgl.getParameter(36183)": {
+      "t": "number",
+      "c": 1,
+      "v": [
+        "4"
+      ],
+      "src": [
+        "browserleaks.com"
+      ]
+    },
+    "webgl.getParameter(32883)": {
+      "t": "number",
+      "c": 1,
+      "v": [
+        "2048"
+      ],
+      "src": [
+        "browserleaks.com"
+      ]
+    },
+    "webgl.getParameter(35071)": {
+      "t": "number",
+      "c": 1,
+      "v": [
+        "2048"
+      ],
+      "src": [
+        "browserleaks.com"
+      ]
+    },
+    "webgl.getParameter(34045)": {
+      "t": "number",
+      "c": 1,
+      "v": [
+        "16"
+      ],
+      "src": [
+        "browserleaks.com"
+      ]
+    },
+    "webgl.getParameter(35375)": {
+      "t": "number",
+      "c": 1,
+      "v": [
+        "80"
+      ],
+      "src": [
+        "browserleaks.com"
+      ]
+    },
+    "webgl.getParameter(35376)": {
+      "t": "number",
+      "c": 1,
+      "v": [
+        "65536"
+      ],
+      "src": [
+        "browserleaks.com"
+      ]
+    },
+    "webgl.getParameter(35380)": {
+      "t": "number",
+      "c": 1,
+      "v": [
+        "256"
+      ],
+      "src": [
+        "browserleaks.com"
+      ]
+    },
+    "webgl.getParameter(35374)": {
+      "t": "number",
+      "c": 1,
+      "v": [
+        "80"
+      ],
+      "src": [
+        "browserleaks.com"
+      ]
+    },
+    "webgl.getParameter(35377)": {
+      "t": "number",
+      "c": 1,
+      "v": [
+        "266240"
+      ],
+      "src": [
+        "browserleaks.com"
+      ]
+    },
+    "webgl.getParameter(35379)": {
+      "t": "number",
+      "c": 1,
+      "v": [
+        "266240"
+      ],
+      "src": [
+        "browserleaks.com"
+      ]
+    },
+    "webgl.getParameter(undefined)": {
+      "t": "null",
+      "c": 24,
+      "v": [
+        "null"
+      ],
+      "src": [
+        "browserleaks.com"
+      ]
+    },
+    "screen.systemXDPI": {
+      "t": "undefined",
+      "c": 2,
+      "v": [
+        "undefined"
+      ],
+      "src": [
+        "browserleaks.com"
+      ]
+    },
+    "screen.logicalYDPI": {
+      "t": "undefined",
+      "c": 2,
+      "v": [
+        "undefined"
+      ],
+      "src": [
+        "browserleaks.com"
+      ]
+    },
+    "screen.deviceXDPI": {
+      "t": "undefined",
+      "c": 2,
+      "v": [
+        "undefined"
+      ],
+      "src": [
+        "browserleaks.com"
+      ]
+    },
+    "screen.mozLockOrientation": {
+      "t": "function",
+      "c": 4,
+      "v": [
+        "[fn]"
+      ],
+      "src": [
+        "browserleaks.com"
+      ]
+    },
+    "screen.mozUnlockOrientation": {
+      "t": "function",
+      "c": 4,
+      "v": [
+        "[fn]"
+      ],
+      "src": [
+        "browserleaks.com"
+      ]
+    },
+    "screen.pixelDepth": {
+      "t": "number",
+      "c": 6,
+      "v": [
+        "30"
+      ],
+      "src": [
+        "browserleaks.com",
+        "www.google.com"
+      ]
+    },
+    "screen.top": {
+      "t": "number",
+      "c": 4,
+      "v": [
+        "0"
+      ],
+      "src": [
+        "browserleaks.com"
+      ]
+    },
+    "screen.left": {
+      "t": "number",
+      "c": 4,
+      "v": [
+        "0"
+      ],
+      "src": [
+        "browserleaks.com"
+      ]
+    },
+    "screen.mozOrientation": {
+      "t": "string",
+      "c": 4,
+      "v": [
+        "landscape-primary"
+      ],
+      "src": [
+        "browserleaks.com"
+      ]
+    },
+    "screen.onmozorientationchange": {
+      "t": "null",
+      "c": 6,
+      "v": [
+        "null"
+      ],
+      "src": [
+        "browserleaks.com"
+      ]
+    },
+    "screen.addEventListener": {
+      "t": "function",
+      "c": 4,
+      "v": [
+        "[fn]"
+      ],
+      "src": [
+        "browserleaks.com"
+      ]
+    },
+    "screen.removeEventListener": {
+      "t": "function",
+      "c": 4,
+      "v": [
+        "[fn]"
+      ],
+      "src": [
+        "browserleaks.com"
+      ]
+    },
+    "screen.dispatchEvent": {
+      "t": "function",
+      "c": 4,
+      "v": [
+        "[fn]"
+      ],
+      "src": [
+        "browserleaks.com"
+      ]
+    },
+    "navigator.devicePosture": {
+      "t": "undefined",
+      "c": 2,
+      "v": [
+        "undefined"
+      ],
+      "src": [
+        "browserleaks.com"
+      ]
+    },
+    "navigator.browserLanguage": {
+      "t": "undefined",
+      "c": 2,
+      "v": [
+        "undefined"
+      ],
+      "src": [
+        "browserleaks.com"
+      ]
+    },
+    "navigator.systemLanguage": {
+      "t": "undefined",
+      "c": 10,
+      "v": [
+        "undefined"
+      ],
+      "src": [
+        "browserleaks.com",
+        "coveryourtracks.eff.org"
+      ]
+    },
+    "navigator.pointerEnabled": {
+      "t": "undefined",
+      "c": 2,
+      "v": [
+        "undefined"
+      ],
+      "src": [
+        "browserleaks.com"
+      ]
+    },
+    "navigator.msMaxTouchPoints": {
+      "t": "undefined",
+      "c": 18,
+      "v": [
+        "undefined"
+      ],
+      "src": [
+        "browserleaks.com",
+        "coveryourtracks.eff.org"
+      ]
+    },
+    "navigator.msManipulationViewsEnabled": {
+      "t": "undefined",
+      "c": 2,
+      "v": [
+        "undefined"
+      ],
+      "src": [
+        "browserleaks.com"
+      ]
+    },
+    "navigator.battery": {
+      "t": "undefined",
+      "c": 2,
+      "v": [
+        "undefined"
+      ],
+      "src": [
+        "browserleaks.com"
+      ]
+    },
+    "navigator.mozBattery": {
+      "t": "undefined",
+      "c": 2,
+      "v": [
+        "undefined"
+      ],
+      "src": [
+        "browserleaks.com"
+      ]
+    },
+    "navigator.webkitBattery": {
+      "t": "undefined",
+      "c": 2,
+      "v": [
+        "undefined"
+      ],
+      "src": [
+        "browserleaks.com"
+      ]
+    },
+    "audio.AudioContext": {
+      "t": "string",
+      "c": 2,
+      "v": [
+        "new"
+      ],
+      "src": [
+        "browserleaks.com"
+      ]
+    },
+    "audio.createAnalyser": {
+      "t": "string",
+      "c": 2,
+      "v": [
+        "[FP]"
+      ],
+      "src": [
+        "browserleaks.com"
+      ]
+    },
+    "fonts.check": {
+      "t": "string",
+      "c": 8,
+      "v": [
+        "bold 12px WorkSans"
+      ],
+      "src": [
+        "coveryourtracks.eff.org"
+      ]
+    },
+    "screen.__proto__": {
+      "t": "object",
+      "c": 12,
+      "v": [
+        "[obj]"
+      ],
+      "src": [
+        "www.google.com"
+      ]
+    }
+  },
+  "last_updated": "2026-03-16T02:40:45.980411",
+  "total_apis": 313
+}

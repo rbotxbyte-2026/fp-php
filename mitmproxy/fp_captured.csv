@@ -1,0 +1,313 @@
+category,property,type,count,values,sources
+Date,getTimezoneOffset,number,535,-330; NaN,ep2.adtrafficquality.google; www.youtube.com; www.google.com; coveryourtracks.eff.org; timesofindia.indiatimes.com; ogs.google.com; fingerprint.com
+Date,toString,string,34,Fri Mar 13 2026 15:00:00 GMT+0; Fri Mar 13 2026 14:56:41 GMT+0; Thu Jan 01 1970 05:30:00 GMT+0; Wed Apr 07 2027 14:56:25 GMT+0; Fri Mar 13 2026 14:56:46 GMT+0,ep2.adtrafficquality.google; www.youtube.com; www.google.com; browserleaks.com; timesofindia.indiatimes.com
+Intl,resolvedOptions,string,171,Asia/Kolkata,www.youtube.com; browserleaks.com; coveryourtracks.eff.org; timesofindia.indiatimes.com; fingerprint.com
+audio,AudioContext,string,2,new,browserleaks.com
+audio,createAnalyser,string,2,[FP],browserleaks.com
+audio,getChannelData,number,36,0,fingerprint.com; firstpartysimulator.org; coveryourtracks.eff.org
+canvas,fillText,string,72,Cwm fjordbank gly 😃; Cwm fjordbank glyphs,fingerprint.com; firstpartysimulator.org; coveryourtracks.eff.org
+canvas,getContext,string,222,experimental-webgl; webgl2; 2d; moz-webgl; webgl,ep2.adtrafficquality.google; firstpartysimulator.org; www.youtube.com; www.google.com; browserleaks.com; coveryourtracks.eff.org; timesofindia.indiatimes.com; fingerprint.com
+canvas,getImageData,string,13,[FP],fingerprint.com; browserleaks.com
+canvas,toDataURL,string,105,[FP],fingerprint.com; firstpartysimulator.org; coveryourtracks.eff.org
+crypto,getRandomValues,number,49,16; 8; 64; 1,www.youtube.com; www.google.com; platform.twitter.com; timesofindia.indiatimes.com; fingerprint.com
+css,matchMedia,string,397,(max-width:740px); (prefers-reduced-motion); (orientation: landscape); (max-width:640px); (max-width: 1200px),www.youtube.com; www.google.com; browserleaks.com; timesofindia.indiatimes.com; ogs.google.com; fingerprint.com
+css,supports,string,18,"selector(:has(*)); animation-timing-function,line; backdrop-filter,blur(2px)",fingerprint.com; www.google.com; www.youtube.com
+document,URL,string,406,https://www.google.com/search?client=firefox-b-d&q=browserleaks; https://www.google.com/search?client=firefox-b-d&q=http%3A%2F%2F; https://timesofindia.indiatimes.com/; https://timesofindia.indiatimes.com/world/middle-east/us-israel-iran-war-news-live-udates-middle-eas; https://www.youtube.com/embed/?enablejsapi=1&rel=0&autoplay=0&playsinline=1&fs=1&hl=en-IN&embed_conf,timesofindia.indiatimes.com; www.google.com; fingerprint.com; www.youtube.com
+document,characterSet,string,94,UTF-8,timesofindia.indiatimes.com; fingerprint.com; amiunique.org
+document,compatMode,string,912,CSS1Compat; BackCompat,timesofindia.indiatimes.com; www.google.com; ogs.google.com; fingerprint.com
+document,contentType,string,393,text/html,timesofindia.indiatimes.com; www.google.com; ogs.google.com; www.youtube.com
+document,cookie,string,12071,; KADUSERCOOKIE=8009606A-DBA5-40EF-91E1-D648004F55C9; chkSecSet=7; DPSync2=1775952000%3A102%7C17734464; geo_continent=AS; geo_country=IN; geo_region=; optout=1; _sharedid=7630dde1-2fcf-4a07-9c42-ed0bd47684ed; _sharedid_cst=znv0HA%3D%3D; _ga_FCN624MN68=GS2.1.s17; KADUSERCOOKIE=8009606A-DBA5-40EF-91E1-D648004F55C9; chkSecSet=4; DPSync2=1775952000%3A102%7C17734464,hbx.media.net; www.youtube.com; www.google.com; browserleaks.com; timesofindia.indiatimes.com; amiunique.org; ogs.google.com; fingerprint.com; ads.pubmatic.com; acdn.adnxs.com; cdn.taboola.com
+document,domain,string,163,timesofindia.indiatimes.com; indiatimes.com; amiunique.org; www.youtube.com,timesofindia.indiatimes.com; amiunique.org; www.youtube.com
+document,fullscreenEnabled,boolean,2,true,www.youtube.com
+document,hidden,boolean,20695,false; true,ep2.adtrafficquality.google; www.youtube.com; www.google.com; timesofindia.indiatimes.com; ogs.google.com; fingerprint.com
+document,lastModified,string,45,03/13/2026 14:56:03; 03/13/2026 14:56:47; 03/13/2026 14:56:45,timesofindia.indiatimes.com
+document,readyState,string,1484,complete; interactive; loading,hbx.media.net; tsdtocl.com; js-sec.indexww.com; www.youtube.com; ms-cookie-sync.presage.io; amiunique.org; ogs.google.com; timesinternet-d.openx.net; browserleaks.com; s.amazon-adsystem.com; ssum-sec.casalemedia.com; firstpartysimulator.net; acdn.adnxs.com; ep2.adtrafficquality.google; firstpartysimulator.org; b7235a33fd35b8f0b5288e012cc5bd69.safeframe.googlesyndication.com; www.google.com; u.openx.net; platform.twitter.com; accounts.google.com; coveryourtracks.eff.org; timesofindia.indiatimes.com; b53f3cefc1b5b29da6bfa38defeaf6e8.safeframe.googlesyndication.com; ads.pubmatic.com; eus.rubiconproject.com; cdn.taboola.com; fingerprint.com; sync.intentiq.com; sync.inmobi.com
+document,referrer,string,2023,; https://amiunique.org/timeline; https://browserleaks.com/proxy; https://timesofindia.indiatimes.com/; https://amiunique.org/,firstpartysimulator.org; www.youtube.com; browserleaks.com; coveryourtracks.eff.org; timesofindia.indiatimes.com; amiunique.org; firstpartysimulator.net; fingerprint.com
+document,scripts,object,30,"{""0"":{},""1"":{},""2"":{},""3"":{},""4"":{},""5"":{},""6"":{},""7"":{},""8"":{},""9"":{},""10"":{},""11"":{},""12"":{},""13"":",timesofindia.indiatimes.com; fingerprint.com
+document,title,string,427,; YouTube; Am I Unique ?; US Israel Iran War News Live Updates: Powerful explosions shake Tehran as Israel launches wide-scale; My Fingerprint- Am I Unique ?,firstpartysimulator.org; www.youtube.com; coveryourtracks.eff.org; timesofindia.indiatimes.com; firstpartysimulator.net; amiunique.org; fingerprint.com
+document,visibilityState,string,342,visible; hidden,www.youtube.com; www.google.com; browserleaks.com; timesofindia.indiatimes.com; amiunique.org; ogs.google.com; fingerprint.com
+fonts,check,string,8,bold 12px WorkSans,coveryourtracks.eff.org
+history,constructor,function,228,[fn],fingerprint.com
+history,length,number,76,7; 4; 3; 5,timesofindia.indiatimes.com; www.google.com; ep2.adtrafficquality.google; www.youtube.com
+history,pushState,function,124,[fn],timesofindia.indiatimes.com; fingerprint.com; amiunique.org
+history,replaceState,function,90,[fn],timesofindia.indiatimes.com; www.google.com; fingerprint.com; amiunique.org
+history,scrollRestoration,string,2,auto,ogs.google.com
+history,state,null,153,"{""state"":null,""url"":""/search?client=firefox-b-d&q=browserleaks&sei=mdizacKhG-CX5OUPnZneoAU"",""metadat; {""state"":null,""url"":""/search?client=firefox-b-d&q=http%3A%2F%2F"",""metadata"":{""entryId"":1773392525989; {""key"":""1773394046047""}; null",www.google.com; timesofindia.indiatimes.com; amiunique.org; ogs.google.com; fingerprint.com
+media,decodingInfo,string,74,"{""type"":""file"",""video"":{""contentType"":""video/mp4; ; {""type"":""media-source"",""video"":{""contentType"":""vid; {""type"":""file"",""video"":{""contentType"":""video/webm;",fingerprint.com; www.youtube.com
+media,enumerateDevices,string,3,[FP],browserleaks.com
+navigator,,undefined,27,undefined,fingerprint.com
+navigator,appCodeName,string,13,Mozilla,fingerprint.com; browserleaks.com
+navigator,appMinorVersion,undefined,12,undefined,timesofindia.indiatimes.com; browserleaks.com
+navigator,appName,string,109,Netscape,browserleaks.com; coveryourtracks.eff.org; timesofindia.indiatimes.com; fingerprint.com; ads.pubmatic.com
+navigator,appVersion,string,95,5.0 (Macintosh),timesofindia.indiatimes.com; browserleaks.com; fingerprint.com
+navigator,battery,undefined,2,undefined,browserleaks.com
+navigator,bluetooth,undefined,177,undefined,hbx.media.net; tsdtocl.com; js-sec.indexww.com; www.youtube.com; ms-cookie-sync.presage.io; amiunique.org; ogs.google.com; timesinternet-d.openx.net; browserleaks.com; s.amazon-adsystem.com; ssum-sec.casalemedia.com; firstpartysimulator.net; acdn.adnxs.com; ep2.adtrafficquality.google; firstpartysimulator.org; b7235a33fd35b8f0b5288e012cc5bd69.safeframe.googlesyndication.com; www.google.com; u.openx.net; platform.twitter.com; accounts.google.com; coveryourtracks.eff.org; timesofindia.indiatimes.com; b53f3cefc1b5b29da6bfa38defeaf6e8.safeframe.googlesyndication.com; ads.pubmatic.com; eus.rubiconproject.com; cdn.taboola.com; fingerprint.com; sync.intentiq.com; sync.inmobi.com
+navigator,browserLanguage,undefined,2,undefined,browserleaks.com
+navigator,buildID,string,14,20181001000000,fingerprint.com; www.google.com; browserleaks.com
+navigator,clipboard,object,11,{},fingerprint.com; browserleaks.com
+navigator,connection,undefined,381,undefined,hbx.media.net; tsdtocl.com; js-sec.indexww.com; www.youtube.com; ms-cookie-sync.presage.io; amiunique.org; ogs.google.com; timesinternet-d.openx.net; browserleaks.com; s.amazon-adsystem.com; ssum-sec.casalemedia.com; firstpartysimulator.net; acdn.adnxs.com; ep2.adtrafficquality.google; firstpartysimulator.org; b7235a33fd35b8f0b5288e012cc5bd69.safeframe.googlesyndication.com; www.google.com; u.openx.net; platform.twitter.com; accounts.google.com; coveryourtracks.eff.org; timesofindia.indiatimes.com; b53f3cefc1b5b29da6bfa38defeaf6e8.safeframe.googlesyndication.com; ads.pubmatic.com; eus.rubiconproject.com; cdn.taboola.com; fingerprint.com; sync.intentiq.com; sync.inmobi.com
+navigator,constructor,function,237,[fn],fingerprint.com
+navigator,cookieDeprecationLabel,undefined,52,undefined,timesofindia.indiatimes.com; www.google.com; ep2.adtrafficquality.google; fingerprint.com
+navigator,cookieEnabled,boolean,482,true,hbx.media.net; www.youtube.com; www.google.com; browserleaks.com; timesofindia.indiatimes.com; amiunique.org; ogs.google.com; fingerprint.com
+navigator,cpuClass,undefined,44,undefined,fingerprint.com; browserleaks.com; coveryourtracks.eff.org
+navigator,credentials,object,11,{},fingerprint.com; browserleaks.com
+navigator,deviceMemory,undefined,144,undefined,www.youtube.com; www.google.com; browserleaks.com; coveryourtracks.eff.org; timesofindia.indiatimes.com; fingerprint.com
+navigator,devicePosture,undefined,2,undefined,browserleaks.com
+navigator,doNotTrack,string,78,unspecified,timesofindia.indiatimes.com; browserleaks.com; fingerprint.com
+navigator,geolocation,object,890,{},hbx.media.net; tsdtocl.com; js-sec.indexww.com; www.youtube.com; ms-cookie-sync.presage.io; amiunique.org; ogs.google.com; timesinternet-d.openx.net; browserleaks.com; s.amazon-adsystem.com; ssum-sec.casalemedia.com; firstpartysimulator.net; acdn.adnxs.com; ep2.adtrafficquality.google; firstpartysimulator.org; b7235a33fd35b8f0b5288e012cc5bd69.safeframe.googlesyndication.com; www.google.com; u.openx.net; platform.twitter.com; accounts.google.com; coveryourtracks.eff.org; timesofindia.indiatimes.com; b53f3cefc1b5b29da6bfa38defeaf6e8.safeframe.googlesyndication.com; ads.pubmatic.com; eus.rubiconproject.com; cdn.taboola.com; fingerprint.com; sync.intentiq.com; sync.inmobi.com
+navigator,getAutoplayPolicy,function,11,[fn],fingerprint.com; browserleaks.com
+navigator,getBattery,undefined,179,undefined,hbx.media.net; tsdtocl.com; js-sec.indexww.com; www.youtube.com; ms-cookie-sync.presage.io; amiunique.org; ogs.google.com; timesinternet-d.openx.net; browserleaks.com; s.amazon-adsystem.com; ssum-sec.casalemedia.com; firstpartysimulator.net; acdn.adnxs.com; ep2.adtrafficquality.google; firstpartysimulator.org; b7235a33fd35b8f0b5288e012cc5bd69.safeframe.googlesyndication.com; www.google.com; u.openx.net; platform.twitter.com; accounts.google.com; coveryourtracks.eff.org; timesofindia.indiatimes.com; b53f3cefc1b5b29da6bfa38defeaf6e8.safeframe.googlesyndication.com; ads.pubmatic.com; eus.rubiconproject.com; cdn.taboola.com; fingerprint.com; sync.intentiq.com; sync.inmobi.com
+navigator,getGamepads,function,361,[fn],hbx.media.net; tsdtocl.com; js-sec.indexww.com; www.youtube.com; ms-cookie-sync.presage.io; amiunique.org; ogs.google.com; timesinternet-d.openx.net; browserleaks.com; s.amazon-adsystem.com; ssum-sec.casalemedia.com; firstpartysimulator.net; acdn.adnxs.com; ep2.adtrafficquality.google; firstpartysimulator.org; b7235a33fd35b8f0b5288e012cc5bd69.safeframe.googlesyndication.com; www.google.com; u.openx.net; platform.twitter.com; accounts.google.com; coveryourtracks.eff.org; timesofindia.indiatimes.com; b53f3cefc1b5b29da6bfa38defeaf6e8.safeframe.googlesyndication.com; ads.pubmatic.com; eus.rubiconproject.com; cdn.taboola.com; fingerprint.com; sync.intentiq.com; sync.inmobi.com
+navigator,globalPrivacyControl,boolean,119,false,timesofindia.indiatimes.com; browserleaks.com; fingerprint.com
+navigator,gpu,object,29,{},fingerprint.com; browserleaks.com
+navigator,hardwareConcurrency,number,91,8,firstpartysimulator.org; www.youtube.com; www.google.com; browserleaks.com; coveryourtracks.eff.org; timesofindia.indiatimes.com; fingerprint.com
+navigator,hid,undefined,175,undefined,hbx.media.net; tsdtocl.com; js-sec.indexww.com; www.youtube.com; ms-cookie-sync.presage.io; amiunique.org; ogs.google.com; timesinternet-d.openx.net; browserleaks.com; s.amazon-adsystem.com; ssum-sec.casalemedia.com; firstpartysimulator.net; acdn.adnxs.com; ep2.adtrafficquality.google; firstpartysimulator.org; b7235a33fd35b8f0b5288e012cc5bd69.safeframe.googlesyndication.com; www.google.com; u.openx.net; platform.twitter.com; accounts.google.com; coveryourtracks.eff.org; timesofindia.indiatimes.com; b53f3cefc1b5b29da6bfa38defeaf6e8.safeframe.googlesyndication.com; ads.pubmatic.com; eus.rubiconproject.com; cdn.taboola.com; fingerprint.com; sync.intentiq.com; sync.inmobi.com
+navigator,javaEnabled,function,51,[fn],fingerprint.com; browserleaks.com; amiunique.org
+navigator,keyboard,undefined,2,undefined,www.youtube.com
+navigator,language,string,513,en-US,www.youtube.com; browserleaks.com; coveryourtracks.eff.org; timesofindia.indiatimes.com; fingerprint.com
+navigator,languages,object,171,"[""en-US"",""en""]",www.youtube.com; www.google.com; browserleaks.com; coveryourtracks.eff.org; timesofindia.indiatimes.com; amiunique.org; fingerprint.com
+navigator,loadPurpose,undefined,77,undefined,timesofindia.indiatimes.com; fingerprint.com
+navigator,locks,object,11,{},fingerprint.com; browserleaks.com
+navigator,login,object,11,{},fingerprint.com; browserleaks.com
+navigator,maxTouchPoints,number,209,0,ep2.adtrafficquality.google; www.youtube.com; www.google.com; browserleaks.com; coveryourtracks.eff.org; amiunique.org; ogs.google.com; fingerprint.com
+navigator,mediaCapabilities,object,614,{},hbx.media.net; tsdtocl.com; js-sec.indexww.com; www.youtube.com; ms-cookie-sync.presage.io; amiunique.org; ogs.google.com; timesinternet-d.openx.net; browserleaks.com; s.amazon-adsystem.com; ssum-sec.casalemedia.com; firstpartysimulator.net; acdn.adnxs.com; ep2.adtrafficquality.google; firstpartysimulator.org; b7235a33fd35b8f0b5288e012cc5bd69.safeframe.googlesyndication.com; www.google.com; u.openx.net; platform.twitter.com; accounts.google.com; coveryourtracks.eff.org; timesofindia.indiatimes.com; b53f3cefc1b5b29da6bfa38defeaf6e8.safeframe.googlesyndication.com; ads.pubmatic.com; eus.rubiconproject.com; cdn.taboola.com; fingerprint.com; sync.intentiq.com; sync.inmobi.com
+navigator,mediaDevices,object,195,{},hbx.media.net; tsdtocl.com; js-sec.indexww.com; www.youtube.com; ms-cookie-sync.presage.io; amiunique.org; ogs.google.com; timesinternet-d.openx.net; browserleaks.com; s.amazon-adsystem.com; ssum-sec.casalemedia.com; firstpartysimulator.net; acdn.adnxs.com; ep2.adtrafficquality.google; firstpartysimulator.org; b7235a33fd35b8f0b5288e012cc5bd69.safeframe.googlesyndication.com; www.google.com; u.openx.net; platform.twitter.com; accounts.google.com; coveryourtracks.eff.org; timesofindia.indiatimes.com; b53f3cefc1b5b29da6bfa38defeaf6e8.safeframe.googlesyndication.com; ads.pubmatic.com; eus.rubiconproject.com; cdn.taboola.com; fingerprint.com; sync.intentiq.com; sync.inmobi.com
+navigator,mediaSession,object,13,{},fingerprint.com; browserleaks.com; www.youtube.com
+navigator,mimeTypes,object,737,[MimeTypes:2],hbx.media.net; tsdtocl.com; js-sec.indexww.com; www.youtube.com; ms-cookie-sync.presage.io; amiunique.org; ogs.google.com; timesinternet-d.openx.net; browserleaks.com; s.amazon-adsystem.com; ssum-sec.casalemedia.com; firstpartysimulator.net; acdn.adnxs.com; ep2.adtrafficquality.google; firstpartysimulator.org; b7235a33fd35b8f0b5288e012cc5bd69.safeframe.googlesyndication.com; www.google.com; u.openx.net; platform.twitter.com; accounts.google.com; coveryourtracks.eff.org; timesofindia.indiatimes.com; b53f3cefc1b5b29da6bfa38defeaf6e8.safeframe.googlesyndication.com; ads.pubmatic.com; eus.rubiconproject.com; cdn.taboola.com; fingerprint.com; sync.intentiq.com; sync.inmobi.com
+navigator,mozBattery,undefined,2,undefined,browserleaks.com
+navigator,mozConnection,undefined,233,undefined,hbx.media.net; tsdtocl.com; js-sec.indexww.com; www.youtube.com; ms-cookie-sync.presage.io; amiunique.org; ogs.google.com; timesinternet-d.openx.net; browserleaks.com; s.amazon-adsystem.com; ssum-sec.casalemedia.com; firstpartysimulator.net; acdn.adnxs.com; ep2.adtrafficquality.google; firstpartysimulator.org; b7235a33fd35b8f0b5288e012cc5bd69.safeframe.googlesyndication.com; www.google.com; u.openx.net; platform.twitter.com; accounts.google.com; coveryourtracks.eff.org; timesofindia.indiatimes.com; b53f3cefc1b5b29da6bfa38defeaf6e8.safeframe.googlesyndication.com; ads.pubmatic.com; eus.rubiconproject.com; cdn.taboola.com; fingerprint.com; sync.intentiq.com; sync.inmobi.com
+navigator,mozGetUserMedia,function,11,[fn],fingerprint.com; browserleaks.com
+navigator,msDoNotTrack,undefined,24,undefined,timesofindia.indiatimes.com; browserleaks.com
+navigator,msManipulationViewsEnabled,undefined,2,undefined,browserleaks.com
+navigator,msMaxTouchPoints,undefined,18,undefined,browserleaks.com; coveryourtracks.eff.org
+navigator,msPointerEnabled,undefined,8,undefined,www.google.com; browserleaks.com; www.youtube.com
+navigator,msSaveOrOpenBlob,undefined,3,undefined,www.google.com
+navigator,null,undefined,9,undefined,fingerprint.com
+navigator,onLine,boolean,121,true,www.youtube.com; browserleaks.com; timesofindia.indiatimes.com; amiunique.org; fingerprint.com
+navigator,oscpu,string,47,Intel Mac OS X 10.15,fingerprint.com; browserleaks.com; coveryourtracks.eff.org
+navigator,pdfViewerEnabled,boolean,31,true,fingerprint.com; browserleaks.com
+navigator,permissions,object,572,{},hbx.media.net; tsdtocl.com; js-sec.indexww.com; www.youtube.com; ms-cookie-sync.presage.io; amiunique.org; ogs.google.com; timesinternet-d.openx.net; browserleaks.com; s.amazon-adsystem.com; ssum-sec.casalemedia.com; firstpartysimulator.net; acdn.adnxs.com; ep2.adtrafficquality.google; firstpartysimulator.org; b7235a33fd35b8f0b5288e012cc5bd69.safeframe.googlesyndication.com; www.google.com; u.openx.net; platform.twitter.com; accounts.google.com; coveryourtracks.eff.org; timesofindia.indiatimes.com; b53f3cefc1b5b29da6bfa38defeaf6e8.safeframe.googlesyndication.com; ads.pubmatic.com; eus.rubiconproject.com; cdn.taboola.com; fingerprint.com; sync.intentiq.com; sync.inmobi.com
+navigator,platform,string,187,MacIntel,ep2.adtrafficquality.google; www.youtube.com; www.google.com; browserleaks.com; coveryourtracks.eff.org; timesofindia.indiatimes.com; amiunique.org; fingerprint.com
+navigator,plugins,object,503,[Plugins:5],hbx.media.net; tsdtocl.com; js-sec.indexww.com; www.youtube.com; ms-cookie-sync.presage.io; amiunique.org; ogs.google.com; timesinternet-d.openx.net; browserleaks.com; s.amazon-adsystem.com; ssum-sec.casalemedia.com; firstpartysimulator.net; acdn.adnxs.com; ep2.adtrafficquality.google; firstpartysimulator.org; b7235a33fd35b8f0b5288e012cc5bd69.safeframe.googlesyndication.com; www.google.com; u.openx.net; platform.twitter.com; accounts.google.com; coveryourtracks.eff.org; timesofindia.indiatimes.com; b53f3cefc1b5b29da6bfa38defeaf6e8.safeframe.googlesyndication.com; ads.pubmatic.com; eus.rubiconproject.com; cdn.taboola.com; fingerprint.com; sync.intentiq.com; sync.inmobi.com
+navigator,pointerEnabled,undefined,2,undefined,browserleaks.com
+navigator,product,string,220,Gecko,www.google.com; browserleaks.com; coveryourtracks.eff.org; timesofindia.indiatimes.com; amiunique.org; ogs.google.com; fingerprint.com
+navigator,productSub,string,38,20100101,fingerprint.com; browserleaks.com; coveryourtracks.eff.org
+navigator,registerProtocolHandler,function,11,[fn],fingerprint.com; browserleaks.com
+navigator,requestMIDIAccess,function,11,[fn],fingerprint.com; browserleaks.com
+navigator,requestMediaKeySystemAccess,function,74,[fn],fingerprint.com; browserleaks.com
+navigator,scheduling,undefined,19,undefined,timesofindia.indiatimes.com; fingerprint.com
+navigator,sendBeacon,function,656,[fn],www.google.com; browserleaks.com; timesofindia.indiatimes.com; amiunique.org; ogs.google.com; fingerprint.com
+navigator,serial,undefined,175,undefined,hbx.media.net; tsdtocl.com; js-sec.indexww.com; www.youtube.com; ms-cookie-sync.presage.io; amiunique.org; ogs.google.com; timesinternet-d.openx.net; browserleaks.com; s.amazon-adsystem.com; ssum-sec.casalemedia.com; firstpartysimulator.net; acdn.adnxs.com; ep2.adtrafficquality.google; firstpartysimulator.org; b7235a33fd35b8f0b5288e012cc5bd69.safeframe.googlesyndication.com; www.google.com; u.openx.net; platform.twitter.com; accounts.google.com; coveryourtracks.eff.org; timesofindia.indiatimes.com; b53f3cefc1b5b29da6bfa38defeaf6e8.safeframe.googlesyndication.com; ads.pubmatic.com; eus.rubiconproject.com; cdn.taboola.com; fingerprint.com; sync.intentiq.com; sync.inmobi.com
+navigator,serviceWorker,object,51,{},timesofindia.indiatimes.com; browserleaks.com; fingerprint.com
+navigator,storage,object,1081,{},hbx.media.net; tsdtocl.com; js-sec.indexww.com; www.youtube.com; ms-cookie-sync.presage.io; amiunique.org; ogs.google.com; timesinternet-d.openx.net; browserleaks.com; s.amazon-adsystem.com; ssum-sec.casalemedia.com; firstpartysimulator.net; acdn.adnxs.com; ep2.adtrafficquality.google; firstpartysimulator.org; b7235a33fd35b8f0b5288e012cc5bd69.safeframe.googlesyndication.com; www.google.com; u.openx.net; platform.twitter.com; accounts.google.com; coveryourtracks.eff.org; timesofindia.indiatimes.com; b53f3cefc1b5b29da6bfa38defeaf6e8.safeframe.googlesyndication.com; ads.pubmatic.com; eus.rubiconproject.com; cdn.taboola.com; fingerprint.com; sync.intentiq.com; sync.inmobi.com
+navigator,systemLanguage,undefined,10,undefined,browserleaks.com; coveryourtracks.eff.org
+navigator,taintEnabled,function,11,[fn],fingerprint.com; browserleaks.com
+navigator,usb,undefined,175,undefined,hbx.media.net; tsdtocl.com; js-sec.indexww.com; www.youtube.com; ms-cookie-sync.presage.io; amiunique.org; ogs.google.com; timesinternet-d.openx.net; browserleaks.com; s.amazon-adsystem.com; ssum-sec.casalemedia.com; firstpartysimulator.net; acdn.adnxs.com; ep2.adtrafficquality.google; firstpartysimulator.org; b7235a33fd35b8f0b5288e012cc5bd69.safeframe.googlesyndication.com; www.google.com; u.openx.net; platform.twitter.com; accounts.google.com; coveryourtracks.eff.org; timesofindia.indiatimes.com; b53f3cefc1b5b29da6bfa38defeaf6e8.safeframe.googlesyndication.com; ads.pubmatic.com; eus.rubiconproject.com; cdn.taboola.com; fingerprint.com; sync.intentiq.com; sync.inmobi.com
+navigator,userActivation,object,60,{},www.youtube.com; www.google.com; browserleaks.com; timesofindia.indiatimes.com; fingerprint.com
+navigator,userAgent,string,8842,Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:148.0) Gecko/20100101 Firefox/148.0,hbx.media.net; firstpartysimulator.org; www.youtube.com; www.google.com; browserleaks.com; platform.twitter.com; coveryourtracks.eff.org; timesofindia.indiatimes.com; amiunique.org; ogs.google.com; fingerprint.com; ads.pubmatic.com
+navigator,userAgentData,undefined,832,undefined,hbx.media.net; tsdtocl.com; js-sec.indexww.com; www.youtube.com; ms-cookie-sync.presage.io; amiunique.org; ogs.google.com; timesinternet-d.openx.net; browserleaks.com; s.amazon-adsystem.com; ssum-sec.casalemedia.com; firstpartysimulator.net; acdn.adnxs.com; ep2.adtrafficquality.google; firstpartysimulator.org; b7235a33fd35b8f0b5288e012cc5bd69.safeframe.googlesyndication.com; www.google.com; u.openx.net; platform.twitter.com; accounts.google.com; coveryourtracks.eff.org; timesofindia.indiatimes.com; b53f3cefc1b5b29da6bfa38defeaf6e8.safeframe.googlesyndication.com; ads.pubmatic.com; eus.rubiconproject.com; cdn.taboola.com; fingerprint.com; sync.intentiq.com; sync.inmobi.com
+navigator,userLanguage,undefined,88,undefined,fingerprint.com; browserleaks.com; coveryourtracks.eff.org
+navigator,vendor,string,710,,www.youtube.com; www.google.com; browserleaks.com; timesofindia.indiatimes.com; amiunique.org; fingerprint.com
+navigator,vendorSub,string,13,,fingerprint.com; browserleaks.com
+navigator,wakeLock,object,11,{},fingerprint.com; browserleaks.com
+navigator,webdriver,boolean,154,false,www.youtube.com; www.google.com; browserleaks.com; coveryourtracks.eff.org; timesofindia.indiatimes.com; fingerprint.com
+navigator,webkitBattery,undefined,2,undefined,browserleaks.com
+navigator,webkitConnection,undefined,244,undefined,hbx.media.net; tsdtocl.com; js-sec.indexww.com; www.youtube.com; ms-cookie-sync.presage.io; amiunique.org; ogs.google.com; timesinternet-d.openx.net; browserleaks.com; s.amazon-adsystem.com; ssum-sec.casalemedia.com; firstpartysimulator.net; acdn.adnxs.com; ep2.adtrafficquality.google; firstpartysimulator.org; b7235a33fd35b8f0b5288e012cc5bd69.safeframe.googlesyndication.com; www.google.com; u.openx.net; platform.twitter.com; accounts.google.com; coveryourtracks.eff.org; timesofindia.indiatimes.com; b53f3cefc1b5b29da6bfa38defeaf6e8.safeframe.googlesyndication.com; ads.pubmatic.com; eus.rubiconproject.com; cdn.taboola.com; fingerprint.com; sync.intentiq.com; sync.inmobi.com
+performance,,undefined,9,undefined,fingerprint.com
+performance,clearMarks,string,88,[fn],timesofindia.indiatimes.com; www.google.com; ogs.google.com
+performance,clearMeasures,string,77,[fn],www.google.com; ogs.google.com
+performance,clearResourceTimings,string,4,[fn],www.youtube.com
+performance,getEntries,string,30,[fn],timesofindia.indiatimes.com; fingerprint.com
+performance,getEntriesByName,string,88,[fn],timesofindia.indiatimes.com; www.google.com; fingerprint.com; www.youtube.com
+performance,getEntriesByType,string,785,[fn],www.youtube.com; www.google.com; timesofindia.indiatimes.com; ogs.google.com; fingerprint.com
+performance,interactionCount,number,6,0; 1,timesofindia.indiatimes.com; ogs.google.com
+performance,mark,string,473,[fn],www.youtube.com; www.google.com; timesofindia.indiatimes.com; ogs.google.com; fingerprint.com
+performance,measure,string,135,[fn],timesofindia.indiatimes.com; www.google.com; ogs.google.com
+performance,memory,undefined,14,undefined,ep2.adtrafficquality.google; www.google.com; ogs.google.com; www.youtube.com
+performance,setResourceTimingBufferSize,string,21,[fn],timesofindia.indiatimes.com
+performance,timeOrigin,number,140,1773393970750; 1773394074554; 1773393986322; 1773394025061; 1773393965352,ep2.adtrafficquality.google; www.youtube.com; www.google.com; timesofindia.indiatimes.com; fingerprint.com
+performance,timing,object,1184,"{""navigationStart"":1773393982677,""unloadEventStart"":0,""unloadEventEnd"":0,""redirectStart"":0,""redirect; {""navigationStart"":1773394333638,""unloadEventStart"":1773394334346,""unloadEventEnd"":1773394334346,""re; {""navigationStart"":1773394080661,""unloadEventStart"":0,""unloadEventEnd"":0,""redirectStart"":17733940806; {""navigationStart"":1773394323677,""unloadEventStart"":0,""unloadEventEnd"":0,""redirectStart"":0,""redirect; {""navigationStart"":1773394005251,""unloadEventStart"":1773394005268,""unloadEventEnd"":1773394005280,""re",www.youtube.com; www.google.com; timesofindia.indiatimes.com; amiunique.org; ogs.google.com; fingerprint.com
+permissions,query,string,19,microphone; camera; geolocation; notifications,fingerprint.com; www.google.com; browserleaks.com
+plugins,mimeTypes,string,562,2 types,fingerprint.com; coveryourtracks.eff.org; browserleaks.com; amiunique.org
+plugins,plugins,string,328,5 plugins,ep2.adtrafficquality.google; firstpartysimulator.org; www.youtube.com; browserleaks.com; coveryourtracks.eff.org; fingerprint.com
+screen,addEventListener,function,4,[fn],browserleaks.com
+screen,availHeight,number,225,786,www.youtube.com; www.google.com; browserleaks.com; coveryourtracks.eff.org; timesofindia.indiatimes.com; fingerprint.com
+screen,availLeft,number,94,0,fingerprint.com; www.google.com; browserleaks.com; www.youtube.com
+screen,availTop,number,96,25,fingerprint.com; www.google.com; browserleaks.com; www.youtube.com
+screen,availWidth,number,227,1440,www.youtube.com; www.google.com; browserleaks.com; coveryourtracks.eff.org; timesofindia.indiatimes.com; fingerprint.com
+screen,colorDepth,number,155,30,www.youtube.com; browserleaks.com; coveryourtracks.eff.org; timesofindia.indiatimes.com; fingerprint.com
+screen,constructor,function,228,[fn],fingerprint.com
+screen,deviceXDPI,undefined,2,undefined,browserleaks.com
+screen,dispatchEvent,function,4,[fn],browserleaks.com
+screen,height,number,807,900,www.youtube.com; www.google.com; browserleaks.com; coveryourtracks.eff.org; timesofindia.indiatimes.com; amiunique.org; ogs.google.com; fingerprint.com
+screen,left,number,4,0,browserleaks.com
+screen,logicalYDPI,undefined,2,undefined,browserleaks.com
+screen,mozLockOrientation,function,4,[fn],browserleaks.com
+screen,mozOrientation,string,4,landscape-primary,browserleaks.com
+screen,mozUnlockOrientation,function,4,[fn],browserleaks.com
+screen,onmozorientationchange,null,6,null,browserleaks.com
+screen,orientation,object,65,{},timesofindia.indiatimes.com; browserleaks.com
+screen,pixelDepth,number,4,30,browserleaks.com
+screen,removeEventListener,function,4,[fn],browserleaks.com
+screen,systemXDPI,undefined,2,undefined,browserleaks.com
+screen,top,number,4,0,browserleaks.com
+screen,width,number,809,1440,www.youtube.com; www.google.com; browserleaks.com; coveryourtracks.eff.org; timesofindia.indiatimes.com; amiunique.org; ogs.google.com; fingerprint.com
+speech,getVoices,string,26,0 voices; 177 voices,ep2.adtrafficquality.google; browserleaks.com; fingerprint.com
+storage,estimate,string,11,[FP],fingerprint.com; www.google.com
+storage,getItem,string,5088,yt-player-quality; apstagDebug; nextRotationAttemptTs; aps:_system:prepend/events; PubMatic_USP,tsdtocl.com; www.youtube.com; www.google.com; accounts.google.com; timesofindia.indiatimes.com; amiunique.org; fingerprint.com; ads.pubmatic.com; cdn.taboola.com
+storage,indexedDB.open,string,58,rKy90E1AcZ2eXOgt; LogsDatabaseV2:Veabfd472||; test; YtIdbMeta; evercookie-db,timesofindia.indiatimes.com; fingerprint.com; amiunique.org; www.youtube.com
+storage,setItem,string,2850,PubMatic_USP; sb_wiz.sc_pq; rc::b; _gcl_ls; ABLocalFlags,tsdtocl.com; www.youtube.com; www.google.com; accounts.google.com; timesofindia.indiatimes.com; fingerprint.com; ads.pubmatic.com; cdn.taboola.com
+webgl,RENDERER/VENDOR,string,74,"Apple M1, or similar; Apple",www.google.com; browserleaks.com; firstpartysimulator.org; coveryourtracks.eff.org
+webgl,getExtension,string,596,EXT_color_buffer_half_float:yes; WEBGL_lose_context:yes; WEBGL_debug_renderer_info:yes; EXT_blend_minmax:yes; EXT_texture_filter_anisotropic:yes,firstpartysimulator.org; www.google.com; browserleaks.com; coveryourtracks.eff.org; fingerprint.com
+webgl,getParameter(10752),number,18,0,fingerprint.com
+webgl,getParameter(2849),number,18,1,fingerprint.com
+webgl,getParameter(2884),boolean,18,false,fingerprint.com
+webgl,getParameter(2885),number,18,1029,fingerprint.com
+webgl,getParameter(2886),number,18,2305,fingerprint.com
+webgl,getParameter(2928),object,18,"{""0"":0,""1"":1}",fingerprint.com
+webgl,getParameter(2929),boolean,18,false,fingerprint.com
+webgl,getParameter(2930),boolean,18,true,fingerprint.com
+webgl,getParameter(2931),number,18,1,fingerprint.com
+webgl,getParameter(2932),number,18,513,fingerprint.com
+webgl,getParameter(2960),boolean,18,false,fingerprint.com
+webgl,getParameter(2961),number,18,0,fingerprint.com
+webgl,getParameter(2962),number,18,519,fingerprint.com
+webgl,getParameter(2963),number,18,4294967295,fingerprint.com
+webgl,getParameter(2964),number,18,7680,fingerprint.com
+webgl,getParameter(2965),number,18,7680,fingerprint.com
+webgl,getParameter(2966),number,18,7680,fingerprint.com
+webgl,getParameter(2967),number,18,0,fingerprint.com
+webgl,getParameter(2968),number,18,4294967295,fingerprint.com
+webgl,getParameter(2978),object,18,"{""0"":0,""1"":0,""2"":300,""3"":150}",fingerprint.com
+webgl,getParameter(3024),boolean,18,true,fingerprint.com
+webgl,getParameter(3042),boolean,18,false,fingerprint.com
+webgl,getParameter(3088),object,18,"{""0"":0,""1"":0,""2"":300,""3"":150}",fingerprint.com
+webgl,getParameter(3089),boolean,18,false,fingerprint.com
+webgl,getParameter(3106),object,18,"{""0"":0,""1"":0,""2"":0,""3"":0}",fingerprint.com
+webgl,getParameter(3107),object,18,"[true,true,true,true]",fingerprint.com
+webgl,getParameter(32773),object,18,"{""0"":0,""1"":0,""2"":0,""3"":0}",fingerprint.com
+webgl,getParameter(32777),number,36,32774,fingerprint.com
+webgl,getParameter(32823),boolean,18,false,fingerprint.com
+webgl,getParameter(32824),number,18,0,fingerprint.com
+webgl,getParameter(32883),number,1,2048,browserleaks.com
+webgl,getParameter(32936),number,18,1,fingerprint.com
+webgl,getParameter(32937),number,18,4,fingerprint.com
+webgl,getParameter(32938),number,18,1,fingerprint.com
+webgl,getParameter(32939),boolean,18,false,fingerprint.com
+webgl,getParameter(32968),number,18,0,fingerprint.com
+webgl,getParameter(32969),number,18,1,fingerprint.com
+webgl,getParameter(32970),number,18,0,fingerprint.com
+webgl,getParameter(32971),number,18,1,fingerprint.com
+webgl,getParameter(3317),number,18,4,fingerprint.com
+webgl,getParameter(33170),number,18,4352,fingerprint.com
+webgl,getParameter(3333),number,18,4,fingerprint.com
+webgl,getParameter(3379),number,38,8192,fingerprint.com; browserleaks.com; firstpartysimulator.org; coveryourtracks.eff.org
+webgl,getParameter(3386),object,38,"{""0"":16384,""1"":16384}",fingerprint.com; browserleaks.com; firstpartysimulator.org; coveryourtracks.eff.org
+webgl,getParameter(33901),object,38,"{""0"":1,""1"":64}",fingerprint.com; browserleaks.com; firstpartysimulator.org; coveryourtracks.eff.org
+webgl,getParameter(33902),object,38,"{""0"":1,""1"":1}",fingerprint.com; browserleaks.com; firstpartysimulator.org; coveryourtracks.eff.org
+webgl,getParameter(34016),number,18,33984,fingerprint.com
+webgl,getParameter(34024),number,38,8192,fingerprint.com; browserleaks.com; firstpartysimulator.org; coveryourtracks.eff.org
+webgl,getParameter(34045),number,1,16,browserleaks.com
+webgl,getParameter(34047),number,38,16,fingerprint.com; browserleaks.com; firstpartysimulator.org; coveryourtracks.eff.org
+webgl,getParameter(34076),number,38,8192,fingerprint.com; browserleaks.com; firstpartysimulator.org; coveryourtracks.eff.org
+webgl,getParameter(3408),number,18,4,fingerprint.com
+webgl,getParameter(3410),number,38,8,fingerprint.com; browserleaks.com; firstpartysimulator.org; coveryourtracks.eff.org
+webgl,getParameter(3411),number,38,8,fingerprint.com; browserleaks.com; firstpartysimulator.org; coveryourtracks.eff.org
+webgl,getParameter(3412),number,38,8,fingerprint.com; browserleaks.com; firstpartysimulator.org; coveryourtracks.eff.org
+webgl,getParameter(3413),number,38,8,fingerprint.com; browserleaks.com; firstpartysimulator.org; coveryourtracks.eff.org
+webgl,getParameter(3414),number,38,24,fingerprint.com; browserleaks.com; firstpartysimulator.org; coveryourtracks.eff.org
+webgl,getParameter(3415),number,38,0,fingerprint.com; browserleaks.com; firstpartysimulator.org; coveryourtracks.eff.org
+webgl,getParameter(34229),null,18,null,fingerprint.com
+webgl,getParameter(34467),object,18,{},fingerprint.com
+webgl,getParameter(34816),number,18,519,fingerprint.com
+webgl,getParameter(34817),number,18,7680,fingerprint.com
+webgl,getParameter(34818),number,18,7680,fingerprint.com
+webgl,getParameter(34819),number,18,7680,fingerprint.com
+webgl,getParameter(34852),number,20,8,fingerprint.com; browserleaks.com
+webgl,getParameter(34853),number,18,1029,fingerprint.com
+webgl,getParameter(34854),number,18,0,fingerprint.com
+webgl,getParameter(34877),number,18,32774,fingerprint.com
+webgl,getParameter(34921),number,38,16,fingerprint.com; browserleaks.com; firstpartysimulator.org; coveryourtracks.eff.org
+webgl,getParameter(34930),number,38,16,fingerprint.com; browserleaks.com; firstpartysimulator.org; coveryourtracks.eff.org
+webgl,getParameter(35071),number,1,2048,browserleaks.com
+webgl,getParameter(35076),number,1,-8,browserleaks.com
+webgl,getParameter(35077),number,1,7,browserleaks.com
+webgl,getParameter(35371),number,1,16,browserleaks.com
+webgl,getParameter(35373),number,1,16,browserleaks.com
+webgl,getParameter(35374),number,1,80,browserleaks.com
+webgl,getParameter(35375),number,1,80,browserleaks.com
+webgl,getParameter(35376),number,1,65536,browserleaks.com
+webgl,getParameter(35377),number,1,266240,browserleaks.com
+webgl,getParameter(35379),number,1,266240,browserleaks.com
+webgl,getParameter(35380),number,1,256,browserleaks.com
+webgl,getParameter(35657),number,1,4096,browserleaks.com
+webgl,getParameter(35658),number,1,4096,browserleaks.com
+webgl,getParameter(35659),number,1,124,browserleaks.com
+webgl,getParameter(35660),number,38,16,fingerprint.com; browserleaks.com; firstpartysimulator.org; coveryourtracks.eff.org
+webgl,getParameter(35661),number,38,80,fingerprint.com; browserleaks.com; firstpartysimulator.org; coveryourtracks.eff.org
+webgl,getParameter(35723),number,18,4352,fingerprint.com
+webgl,getParameter(35724),string,56,WebGL GLSL ES 1.0; WebGL GLSL ES 3.00,fingerprint.com; browserleaks.com; firstpartysimulator.org; coveryourtracks.eff.org
+webgl,getParameter(35738),number,18,5121,fingerprint.com
+webgl,getParameter(35739),number,18,6408,fingerprint.com
+webgl,getParameter(35968),number,1,4,browserleaks.com
+webgl,getParameter(35978),number,1,64,browserleaks.com
+webgl,getParameter(35979),number,1,4,browserleaks.com
+webgl,getParameter(36003),number,18,0,fingerprint.com
+webgl,getParameter(36004),number,18,4294967295,fingerprint.com
+webgl,getParameter(36005),number,18,4294967295,fingerprint.com
+webgl,getParameter(36063),number,19,8,fingerprint.com; browserleaks.com
+webgl,getParameter(36183),number,1,4,browserleaks.com
+webgl,getParameter(36347),number,38,1024,fingerprint.com; browserleaks.com; firstpartysimulator.org; coveryourtracks.eff.org
+webgl,getParameter(36348),number,38,32,fingerprint.com; browserleaks.com; firstpartysimulator.org; coveryourtracks.eff.org
+webgl,getParameter(36349),number,38,1024,fingerprint.com; browserleaks.com; firstpartysimulator.org; coveryourtracks.eff.org
+webgl,getParameter(37154),number,1,64,browserleaks.com
+webgl,getParameter(37157),number,1,128,browserleaks.com
+webgl,getParameter(37440),boolean,18,false,fingerprint.com
+webgl,getParameter(37441),boolean,18,false,fingerprint.com
+webgl,getParameter(37443),number,18,37444,fingerprint.com
+webgl,getParameter(37445),string,38,Apple,www.google.com; browserleaks.com; firstpartysimulator.org; coveryourtracks.eff.org
+webgl,getParameter(37446),string,38,"Apple M1, or similar",www.google.com; browserleaks.com; firstpartysimulator.org; coveryourtracks.eff.org
+webgl,getParameter(7936),string,56,Mozilla,fingerprint.com; browserleaks.com; firstpartysimulator.org; coveryourtracks.eff.org
+webgl,getParameter(7937),string,60,"Apple M1, or similar",ep2.adtrafficquality.google; firstpartysimulator.org; www.youtube.com; browserleaks.com; coveryourtracks.eff.org; fingerprint.com
+webgl,getParameter(7938),string,56,WebGL 1.0; WebGL 2.0,fingerprint.com; browserleaks.com; firstpartysimulator.org; coveryourtracks.eff.org
+webgl,getParameter(undefined),null,24,null,browserleaks.com
+webgl,getShaderPrecisionFormat,string,876,"35633,36338; 35633,36337; 35632,36338; 35632,36337; 35633,36336",fingerprint.com; browserleaks.com; firstpartysimulator.org; coveryourtracks.eff.org
+webgl,getSupportedExtensions,string,49,13 ext; 27 ext,firstpartysimulator.org; www.google.com; browserleaks.com; coveryourtracks.eff.org; fingerprint.com
+webrtc,RTCPeerConnection,string,23,new,fingerprint.com; browserleaks.com
+webrtc,createDataChannel,string,20,0.20550530574204062; bl,fingerprint.com; browserleaks.com
+window,caches,object,103,{},timesofindia.indiatimes.com; amiunique.org; www.youtube.com
+window,crypto,object,48738,{},hbx.media.net; tsdtocl.com; js-sec.indexww.com; www.youtube.com; ms-cookie-sync.presage.io; amiunique.org; ogs.google.com; timesinternet-d.openx.net; browserleaks.com; s.amazon-adsystem.com; ssum-sec.casalemedia.com; firstpartysimulator.net; acdn.adnxs.com; ep2.adtrafficquality.google; firstpartysimulator.org; b7235a33fd35b8f0b5288e012cc5bd69.safeframe.googlesyndication.com; www.google.com; u.openx.net; platform.twitter.com; accounts.google.com; coveryourtracks.eff.org; timesofindia.indiatimes.com; b53f3cefc1b5b29da6bfa38defeaf6e8.safeframe.googlesyndication.com; ads.pubmatic.com; eus.rubiconproject.com; cdn.taboola.com; fingerprint.com; sync.intentiq.com; sync.inmobi.com
+window,customElements,object,73760,{},timesofindia.indiatimes.com; fingerprint.com
+window,devicePixelRatio,number,255,2,ep2.adtrafficquality.google; www.youtube.com; www.google.com; browserleaks.com; timesofindia.indiatimes.com; ogs.google.com; fingerprint.com
+window,external,object,210,{},ep2.adtrafficquality.google; browserleaks.com; timesofindia.indiatimes.com; amiunique.org; fingerprint.com
+window,frames,object,962,[obj],js-sec.indexww.com; www.google.com; timesofindia.indiatimes.com; fingerprint.com; ads.pubmatic.com; acdn.adnxs.com
+window,indexedDB,object,155,{},www.youtube.com; coveryourtracks.eff.org; timesofindia.indiatimes.com; amiunique.org; fingerprint.com
+window,innerHeight,number,482,390; 0; 640; 702,www.youtube.com; www.google.com; browserleaks.com; timesofindia.indiatimes.com; amiunique.org; ogs.google.com; fingerprint.com
+window,innerWidth,number,906,0; 1391; 370; 1024,www.youtube.com; www.google.com; browserleaks.com; timesofindia.indiatimes.com; amiunique.org; ogs.google.com; fingerprint.com
+window,isSecureContext,boolean,381,true,timesofindia.indiatimes.com; www.google.com; fingerprint.com; www.youtube.com
+window,length,number,602,2; 8; 3; 13; 9,timesofindia.indiatimes.com; coveryourtracks.eff.org
+window,localStorage,object,11051,"{""udla::iks"":""1"",""sb_wiz.qc"":""4"",""sb_wiz.pq"":""http://"",""rc::f"":""0aAAyqRK_800TFQEVeql8Unh5g_slWZBxDFr; {""PubMatic_USP"":""{\""156011\"":{\""t\"":1773393992215,\""c\"":\""1---\""},\""164398\"":{\""t\"":1773393994995,\""; {""PubMatic_USP"":""{\""156011\"":{\""t\"":1773393992215,\""c\"":\""1---\""},\""159035\"":{\""t\"":1773393995626,\""; {""aps:5025:idVendors/enabled"":""[\""liveintent\"",\""pair\"",\""amx\"",\""33across\"",\""merkle\"",\""captify\"",; {""ul"":""f9c88e23-35df-4453-95d5-321bb2480a63-tuct10ad5dc4""}",tsdtocl.com; www.youtube.com; www.google.com; accounts.google.com; coveryourtracks.eff.org; timesofindia.indiatimes.com; amiunique.org; fingerprint.com; ads.pubmatic.com; cdn.taboola.com
+window,locationbar,object,4,{},ep2.adtrafficquality.google; www.youtube.com
+window,menubar,object,4,{},ep2.adtrafficquality.google; www.youtube.com
+window,name,string,158,; c-wtmb09m92zmw; null,b7235a33fd35b8f0b5288e012cc5bd69.safeframe.googlesyndication.com; www.google.com; timesofindia.indiatimes.com; amiunique.org; b53f3cefc1b5b29da6bfa38defeaf6e8.safeframe.googlesyndication.com; fingerprint.com
+window,navigation,object,90,{},fingerprint.com; www.google.com
+window,opener,null,63,null,ep2.adtrafficquality.google; www.youtube.com; www.google.com; timesofindia.indiatimes.com; fingerprint.com
+window,outerHeight,number,40,0; 786,www.youtube.com; www.google.com; browserleaks.com; timesofindia.indiatimes.com; fingerprint.com
+window,outerWidth,number,40,0; 1440,www.youtube.com; www.google.com; browserleaks.com; timesofindia.indiatimes.com; fingerprint.com
+window,pageXOffset,number,3206,0,timesofindia.indiatimes.com; www.google.com; fingerprint.com; amiunique.org
+window,pageYOffset,number,4056,2; 4; 1; 63; 0,timesofindia.indiatimes.com; www.google.com; fingerprint.com; amiunique.org
+window,parent,object,986,[obj],hbx.media.net; js-sec.indexww.com; tsdtocl.com; www.youtube.com; www.google.com; platform.twitter.com; timesofindia.indiatimes.com; ogs.google.com; fingerprint.com; ads.pubmatic.com; acdn.adnxs.com
+window,scheduler,object,529,{},timesofindia.indiatimes.com; www.google.com
+window,screenLeft,number,2,0,www.youtube.com
+window,screenTop,number,2,0,www.youtube.com
+window,screenX,number,2,0,www.youtube.com
+window,screenY,number,2,0,www.youtube.com
+window,scrollX,number,153,0,timesofindia.indiatimes.com; www.google.com; fingerprint.com
+window,scrollY,number,1013,44; 63; 29; 0; 1375,timesofindia.indiatimes.com; www.google.com; fingerprint.com
+window,self,object,1342662,[obj]; [err],ep2.adtrafficquality.google; js-sec.indexww.com; www.youtube.com; b7235a33fd35b8f0b5288e012cc5bd69.safeframe.googlesyndication.com; www.google.com; tsdtocl.com; browserleaks.com; platform.twitter.com; timesofindia.indiatimes.com; amiunique.org; ogs.google.com; b53f3cefc1b5b29da6bfa38defeaf6e8.safeframe.googlesyndication.com; fingerprint.com; ads.pubmatic.com; acdn.adnxs.com
+window,sessionStorage,object,1756,"{""__support__"":""\""xyz\""""}; {""__tcigc__"":""c"",""arLastUrl"":""https://timesofindia.indiatimes.com/"",""tbl-sesn-ref"":""https://timesofi; {""renewNudgePeriod"":""30"",""profile_info_NonLoggedin"":""{\""sso_id\"":null,\""subscription_method\"":\""\"",\; {""ph_phc_9dulIW3P2WvKyM4gpDwBlTymZArbmS7rAvfxFpU0p7t_posthog"":""{}""}; {""arLastUrl"":""https://timesofindia.indiatimes.com/"",""tbl-sesn-ref"":""https://timesofindia.indiatimes.",www.youtube.com; www.google.com; coveryourtracks.eff.org; timesofindia.indiatimes.com; amiunique.org; fingerprint.com
+window,speechSynthesis,object,553,{},hbx.media.net; tsdtocl.com; js-sec.indexww.com; www.youtube.com; ms-cookie-sync.presage.io; amiunique.org; ogs.google.com; timesinternet-d.openx.net; browserleaks.com; s.amazon-adsystem.com; ssum-sec.casalemedia.com; firstpartysimulator.net; acdn.adnxs.com; ep2.adtrafficquality.google; firstpartysimulator.org; b7235a33fd35b8f0b5288e012cc5bd69.safeframe.googlesyndication.com; www.google.com; u.openx.net; platform.twitter.com; accounts.google.com; coveryourtracks.eff.org; timesofindia.indiatimes.com; b53f3cefc1b5b29da6bfa38defeaf6e8.safeframe.googlesyndication.com; ads.pubmatic.com; eus.rubiconproject.com; cdn.taboola.com; fingerprint.com; sync.intentiq.com; sync.inmobi.com
+window,statusbar,object,4,{},ep2.adtrafficquality.google; www.youtube.com
+window,toolbar,object,4,{},ep2.adtrafficquality.google; www.youtube.com
+window,trustedTypes,object,244,{},ep2.adtrafficquality.google; www.youtube.com; b7235a33fd35b8f0b5288e012cc5bd69.safeframe.googlesyndication.com; www.google.com; timesofindia.indiatimes.com; amiunique.org; ogs.google.com; b53f3cefc1b5b29da6bfa38defeaf6e8.safeframe.googlesyndication.com; fingerprint.com
+window,visualViewport,object,53,{},timesofindia.indiatimes.com; fingerprint.com

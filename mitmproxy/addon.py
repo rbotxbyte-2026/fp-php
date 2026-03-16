@@ -31,6 +31,7 @@ JS_MONITOR = r"""
   
   const log = [];
   const unique = new Map();
+  const src = location.hostname || location.host || 'unknown';
   
   function ser(v) {
     try {
@@ -53,12 +54,14 @@ JS_MONITOR = r"""
     const k = cat + '.' + String(prop);
     const s = ser(val);
     const t = val === null ? 'null' : typeof val;
-    if (!unique.has(k)) unique.set(k, {c:0,t:t,v:new Set()});
+    if (!unique.has(k)) unique.set(k, {c:0,t:t,v:new Set(),src:new Set()});
     const e = unique.get(k);
     e.c++;
     if (e.v.size < 3) e.v.add(s);
-    log.push({ts:Date.now(),cat,prop:String(prop),t,v:s});
-    console.log('%c[FP] %c'+cat+'%c.'+prop+' = '+s.substring(0,40),
+    e.src.add(src);
+    log.push({ts:Date.now(),cat,prop:String(prop),t,v:s,src});
+
+    console.log('%c[FP:'+src+'] %c'+cat+'%c.'+prop+' = '+s.substring(0,40),
       'color:#f66;font-weight:bold','color:#e74c3c','color:#333');
   }
   
@@ -739,11 +742,12 @@ JS_MONITOR = r"""
   // EXPORT FUNCTIONS
   // ═══════════════════════════════════════════════════════════════════
   window.__FP_CSV__ = function() {
-    let csv = 'category,property,type,count,value' + String.fromCharCode(10);
+    let csv = 'category,property,type,count,value,source' + String.fromCharCode(10);
     unique.forEach((d,k) => {
       const [cat,...pp] = k.split('.');
       const val = ([...d.v][0]||'').replace(/"/g,'""');
-      csv += `"${cat}","${pp.join('.')}","${d.t}",${d.c},"${val}"` + String.fromCharCode(10);
+      const sources = [...(d.src||[])].join(';');
+      csv += `"${cat}","${pp.join('.')}","${d.t}",${d.c},"${val}","${sources}"` + String.fromCharCode(10);
     });
     navigator.clipboard?.writeText(csv);
     console.log('%c[FP] CSV copied! ('+unique.size+' APIs)','color:#2ecc71;font-weight:bold');
@@ -751,21 +755,22 @@ JS_MONITOR = r"""
   };
   
   window.__FP_JSON__ = function() {
-    const data = {url:location.href,ts:new Date().toISOString(),total:log.length,unique:unique.size,apis:{}};
-    unique.forEach((e,k) => { data.apis[k] = {t:e.t,c:e.c,v:[...e.v]}; });
+    const data = {url:location.href,source:src,ts:new Date().toISOString(),total:log.length,unique:unique.size,apis:{}};
+    unique.forEach((e,k) => { data.apis[k] = {t:e.t,c:e.c,v:[...e.v],src:[...(e.src||[])]}; });
     const json = JSON.stringify(data,null,2);
     navigator.clipboard?.writeText(json);
     console.log('%c[FP] JSON copied!','color:#2ecc71;font-weight:bold');
     return data;
   };
   
-  // Save to Flask server
+  // Save via proxy endpoint (same protocol - no mixed content)
   window.__FP_SAVE__ = function(useBeacon) {
     if (unique.size === 0) { console.log('[FP] No APIs to save'); return; }
-    const data = {url:location.href,ts:new Date().toISOString(),total:log.length,unique:unique.size,apis:{}};
-    unique.forEach((e,k) => { data.apis[k] = {t:e.t,c:e.c,v:[...e.v]}; });
+    const data = {url:location.href,source:src,ts:new Date().toISOString(),total:log.length,unique:unique.size,apis:{}};
+    unique.forEach((e,k) => { data.apis[k] = {t:e.t,c:e.c,v:[...e.v],src:[...(e.src||[])]}; });
     const json = JSON.stringify(data);
-    const saveUrl = 'http://192.168.1.4:5555/save';
+    // Use same-origin proxy endpoint to avoid mixed content block
+    const saveUrl = location.protocol + '//' + location.host + '/__fp_save__';
     console.log('[FP] Saving ' + unique.size + ' APIs to ' + saveUrl);
     try {
       if (useBeacon && navigator.sendBeacon) {
@@ -775,10 +780,9 @@ JS_MONITOR = r"""
         fetch(saveUrl, {
           method: 'POST',
           headers: {'Content-Type': 'application/json'},
-          body: json,
-          mode: 'cors'
-        }).then(r => r.json()).then(r => {
-          console.log('%c[FP] Saved! ' + r.apis + ' APIs','color:#2ecc71;font-weight:bold');
+          body: json
+        }).then(r => r.text()).then(r => {
+          console.log('%c[FP] Saved! ' + unique.size + ' APIs','color:#2ecc71;font-weight:bold');
         }).catch(e => console.log('[FP] Save error:', e));
       }
     } catch(e) { console.log('[FP] Save error:', e); }
@@ -809,7 +813,7 @@ JS_MONITOR = r"""
   
   window.__FP_SUMMARY__ = function() {
     console.log('%c═══════════════════════════════════════════════════════','color:#e74c3c');
-    console.log('%c  API ACCESS SUMMARY','color:#e74c3c;font-weight:bold;font-size:14px');
+    console.log('%c  API ACCESS SUMMARY ('+src+')','color:#e74c3c;font-weight:bold;font-size:14px');
     console.log('%c═══════════════════════════════════════════════════════','color:#e74c3c');
     const byCat = {};
     unique.forEach((d,k) => {
@@ -821,11 +825,12 @@ JS_MONITOR = r"""
       const apis = byCat[cat];
       console.log('%c['+cat.toUpperCase()+'] %c('+apis.length+')','color:#3498db;font-weight:bold','color:#888');
       apis.sort((a,b)=>b.c-a.c).forEach(a => {
-        console.log('  '+a.k+': '+([...a.v][0]||'').substring(0,50)+' ('+a.c+'x)');
+        const sources = [...(a.src||[])].join(',');
+        console.log('  '+a.k+': '+([...a.v][0]||'').substring(0,40)+' ('+a.c+'x) ['+sources+']');
       });
     });
     console.log('%c═══════════════════════════════════════════════════════','color:#e74c3c');
-    console.log('%cTOTAL: '+unique.size+' unique APIs','color:#2ecc71;font-weight:bold');
+    console.log('%cTOTAL: '+unique.size+' unique APIs from '+src,'color:#2ecc71;font-weight:bold');
     return byCat;
   };
   
@@ -879,18 +884,8 @@ JS_MONITOR = r"""
 })();
 """
 
-# HTML button - ultra simple with inline onclick
-SAVE_BUTTON_HTML = '''
-<div id="fp-debug-container" style="position:fixed !important;top:0 !important;left:0 !important;z-index:2147483647 !important;font-family:monospace !important;">
-  <button onclick="alert('CLICKED! __FP_SAVE__=' + (typeof window.__FP_SAVE__)); if(window.__FP_SAVE__) { try { window.__FP_SAVE__(false); alert('SAVED!'); } catch(e) { alert('ERROR: '+e); } } else { alert('NOT READY'); }" style="background:#e74c3c !important;color:#fff !important;padding:25px 40px !important;font-weight:bold !important;font-size:24px !important;cursor:pointer !important;border:4px solid #fff !important;border-radius:10px !important;">
-    💾 SAVE FP
-  </button>
-  <pre id="fp-log" style="background:#000 !important;color:#0f0 !important;padding:10px !important;font-size:14px !important;margin:5px 0 !important;max-width:350px !important;"></pre>
-</div>
-<script>
-document.getElementById('fp-log').innerText = 'Monitor: ' + !!window.__FP_MONITOR__ + '\\nSave fn: ' + (typeof window.__FP_SAVE__);
-</script>
-'''
+# HTML button - single line to avoid JS newline issues
+SAVE_BUTTON_HTML = '<div id="fp-debug-container" style="position:fixed !important;top:0 !important;left:0 !important;z-index:2147483647 !important;font-family:monospace !important;"><button onclick="if(window.__FP_SAVE__){window.__FP_SAVE__(false);this.innerText=\'SAVED!\';setTimeout(function(){document.getElementById(\'fp-save-btn\').innerText=\'SAVE\'}.bind(this),2000)}else{alert(\'Not ready\')}" id="fp-save-btn" style="background:#e74c3c !important;color:#fff !important;padding:20px 30px !important;font-weight:bold !important;font-size:20px !important;cursor:pointer !important;border:3px solid #fff !important;border-radius:8px !important;">SAVE</button></div>'
 
 def _inject(html: bytes, enc: str = "utf-8") -> bytes:
     script_tag = f"<script>/*FP*/{JS_MONITOR}</script>"
@@ -976,8 +971,10 @@ class FPMonitor:
                         existing["merged_apis"] = {}
                     
                     # Add capture record
+                    source = data.get("source", url.split("/")[2] if "/" in url else "unknown")
                     existing["captures"].append({
                         "url": url,
+                        "source": source,
                         "ts": data.get("ts"),
                         "unique": data.get("unique", 0),
                         "total": data.get("total", 0)
@@ -992,6 +989,10 @@ class FPMonitor:
                             vals = set(existing["merged_apis"][k].get("v", []))
                             vals.update(v.get("v", []))
                             existing["merged_apis"][k]["v"] = list(vals)[:5]
+                            # Merge sources
+                            srcs = set(existing["merged_apis"][k].get("src", []))
+                            srcs.update(v.get("src", []))
+                            existing["merged_apis"][k]["src"] = list(srcs)
                     
                     existing["last_updated"] = datetime.now().isoformat()
                     existing["total_apis"] = len(existing["merged_apis"])

@@ -50,15 +50,17 @@ def save_fp():
         if "merged_apis" not in existing:
             existing["merged_apis"] = {}
         
-        # Add capture
+        # Add capture with source
+        source = data.get("source", url.split("/")[2] if "://" in url else "unknown")
         existing["captures"].append({
             "url": url,
+            "source": source,
             "ts": data.get("ts", datetime.now().isoformat()),
             "unique": data.get("unique", len(apis)),
             "total": data.get("total", 0)
         })
         
-        # Merge APIs
+        # Merge APIs with source tracking
         for k, v in apis.items():
             if k not in existing["merged_apis"]:
                 existing["merged_apis"][k] = v
@@ -67,6 +69,10 @@ def save_fp():
                 vals = set(existing["merged_apis"][k].get("v", []))
                 vals.update(v.get("v", []))
                 existing["merged_apis"][k]["v"] = list(vals)[:5]
+                # Merge sources
+                srcs = set(existing["merged_apis"][k].get("src", []))
+                srcs.update(v.get("src", []))
+                existing["merged_apis"][k]["src"] = list(srcs)
         
         existing["last_updated"] = datetime.now().isoformat()
         existing["total_apis"] = len(existing["merged_apis"])
